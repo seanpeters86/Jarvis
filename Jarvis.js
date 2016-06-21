@@ -40,7 +40,7 @@ bot.on("message", function(message) {
                 bot.reply(message, "You do not have permission to add that role.");
             }
         // Check if role matches channel list
-        } else if (roleName[1] == "Developers" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
+        } else if (roleName[1] == "Developers" || roleName[1] == "CMs" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
             role = roles.get("name", roleName[1]).id; // get roleid of channel
             bot.addMemberToRole(user, role);
             bot.reply(message, "Added you to the role!");
@@ -65,7 +65,7 @@ bot.on("message", function(message) {
             } else {
                 bot.reply(message, "Role does not exist, or you cannot remove that role.");
             }
-        } else if (roleName[1] == "Developers" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
+        } else if (roleName[1] == "Developers" || roleName[1] == "CMs" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
             role = roles.get("name", roleName[1]).id;
             bot.removeMemberFromRole(user, role);
             bot.reply(message, "Removed you from the role!");
