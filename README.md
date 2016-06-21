@@ -18,3 +18,9 @@ Jarvis [Discord Bot](https://blog.discordapp.com/the-robot-revolution-has-unoffi
 | !random [alias: #ITSRANDOM] | It's never random! |
 | !question YESorNOquestion DISABLED| Magic 8 ball question thingy |
 | !superadd USER ROLE | In development |
+
+## To Install
+- First download the Node Package Manager (NPM)
+- then run '''npm install discord.js'''
+- Grab your API key [here](https://discordapp.com/developers/docs/topics/oauth2) to fill in the XXXX at the bottom of Jarvis.js
+- then run '''node Jarvis.js''' in your directory
