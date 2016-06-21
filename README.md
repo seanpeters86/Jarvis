@@ -1,5 +1,5 @@
 # Jarvis
-Jarvis Discord Bot written in JavaScript using Discord.js
+Jarvis [Discord Bot](https://blog.discordapp.com/the-robot-revolution-has-unofficially-begun/) written in JavaScript using [Discord.js](https://github.com/hydrabolt/discord.js/)
 
 ## Commands
 | Command Name  | Key |
