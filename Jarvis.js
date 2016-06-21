@@ -35,15 +35,15 @@ bot.on("message", function(message) {
                 }
                 role = roles.get("name", roleName[1]).id; // get roleid of class
                 bot.addMemberToRole(user, role);
-                bot.reply(message, "Added you to the role!");
+                bot.reply(message, "You are now a " + roleName[1] + "!");
             } else { // if not an officer/admin
-                bot.reply(message, "You do not have permission to add that role.");
+                bot.reply(message, "Class does not exist, or you do not have permission to add that role.");
             }
         // Check if role matches channel list
         } else if (roleName[1] == "Developers" || roleName[1] == "CMs" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
             role = roles.get("name", roleName[1]).id; // get roleid of channel
             bot.addMemberToRole(user, role);
-            bot.reply(message, "Added you to the role!");
+            bot.reply(message, "Added you to the " + roleName[1] + " channel!");
         } else { // if role does not exist
             bot.reply(message, "Role does not exist.");
         }
@@ -61,14 +61,14 @@ bot.on("message", function(message) {
                 }
                 role = roles.get("name", roleName[1]).id;
                 bot.removeMemberFromRole(user, role);
-                bot.reply(message, "Removed you from the role!");
+                bot.reply(message, "You are no longer a " + roleName[1] + "!");
             } else {
-                bot.reply(message, "Role does not exist, or you cannot remove that role.");
+                bot.reply(message, "Class does not exist, or you cannot remove that role.");
             }
         } else if (roleName[1] == "Developers" || roleName[1] == "CMs" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
             role = roles.get("name", roleName[1]).id;
             bot.removeMemberFromRole(user, role);
-            bot.reply(message, "Removed you from the role!");
+            bot.reply(message, "Removed you from the " + roleName[1] + "channel!");
         } else {
             bot.reply(message, "Role does not exist, or you cannot remove that role.");
         }
