@@ -1,4 +1,4 @@
-# Jarvis
+# Jarvis ![alt text](http://a1.mzstatic.com/us/r30/Purple/v4/8d/83/e2/8d83e20f-03ba-084a-5186-c03d5409b875/icon175x175.jpeg "Jarvis Logo")
 Jarvis [Discord Bot](https://blog.discordapp.com/the-robot-revolution-has-unofficially-begun/) written in JavaScript using [Discord.js](https://github.com/hydrabolt/discord.js/)
 
 ## Commands
@@ -16,11 +16,10 @@ Jarvis [Discord Bot](https://blog.discordapp.com/the-robot-revolution-has-unoffi
 | !website | Displays teh link to the guild website |
 | !help | Prints out the list of commands |
 | !random [alias: #ITSRANDOM] | It's never random! |
-| !question YESorNOquestion DISABLED| Magic 8 ball question thingy |
-| !superadd USER ROLE | In development |
 
 ## To Install
 - First download the Node Package Manager (NPM)
-- then run '''npm install discord.js'''
+- then run ```npm install discord.js```
 - Grab your API key [here](https://discordapp.com/developers/docs/topics/oauth2) to fill in the XXXX at the bottom of Jarvis.js
-- then run '''node Jarvis.js''' in your directory
+- then run ```node Jarvis.js``` in your directory
+- OR download [PM2](https://github.com/Unitech/PM2/) which is a great console runtime manager
