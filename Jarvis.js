@@ -3,10 +3,11 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
+Version: 0.1.5
 */
 var Discord = require("discord.js");
 var bot = new Discord.Client();
-require('String.prototype.startsWith'); // used to parse complicated messages
+//require('String.prototype.startsWith'); // used to parse complicated messages
 
 // begin main bot
 bot.on("message", function(message) {
@@ -16,76 +17,180 @@ bot.on("message", function(message) {
     var roles = message.channel.server.roles;
     var user = message.author;
     var role;
-    var roleName = message.content.split(" "); // roleName[0] = "ADDROLE", roleName[1] = "GivenRole"
+    var parsed = message.content.split(" "); // parsed[0] = "ADDROLE", parsed[1] = "GivenRole"
+    var parsedReg = input.split(" ");
+    var channels = message.channel.server.channels;
+    var channel;
+    var reserved;
     // Hello Jarvis
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
     }
+    else if (input.startsWith("!GAME")){
+      bot.setStatus('online',parsed[1]);
+    }
+    else if (input.startsWith("!SERVER")){
+      switch(parsedReg[1]){
+        case "DEATH":
+        case "DK":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "DEMON":
+        case "DH":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "DRUID":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "HUNTER":
+        case "HUNTARD":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "PALADIN":
+        case "PALY"
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "PRIEST":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "ROGUE":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "SHAMAN":
+        case "SHAMMY":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "MAGE":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "MONK":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "WARLOCK":
+        case "LOCK":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "WARRIOR":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "AMR":
+        case "ASKMRROBOT"
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "WCL":
+        case "WARCRAFTLOGS":
+        case "WARCRAFT":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        case "DISCORD":
+        case "API":
+          bot.reply(message,"XXXXXXXXX");
+          break;
+        default:
+          bot.reply(message,"Channel does not exist, or I'm not sure where to find it.");
+      }
+    }
+    // !voice channel file
+    else if (input.startsWith("!VOICE") && (parsed[1] === "Guild-Chat" || parsed[1] === "Raiding" || parsed[1] === "Overwatch" || parsed[1] === "PvP" || parsed[1] === "Officers")) {
+        channel = channels.get("name", parsed[1]).id;
+        role = roles.get("name", "Officers").id;
+        if (bot.memberHasRole(user, role)) {
+            if (bot.voiceConnection == null) {
+                bot.joinVoiceChannel(channel);
+                bot.voiceConnection.playfile(parsed[2], {
+                    volume: 0.25
+                }, function(error, intent) {
+                    if (error) console.log(error);
+                    intent.on("end", function() {
+                        bot.voiceConnection.stopPlaying();
+                    });
+                });
+            }
+            bot.leaveVoiceChannel(channel);
+        }
+    }
+    // !say channel message
+    else if (input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "challengemodes" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters" || parsed[1] === "hot-button-issues")) {
+        channel = channels.get("name", parsed[1]).id; // get channel id
+        role = roles.get("name", "Officers").id;
+        reserved = parsed[2];
+        for (var i = 3; i < parsed.length; i++) {
+            reserved = reserved + " " + parsed[i];
+        }
+        if (bot.memberHasRole(user, role)) {
+            bot.sendMessage(channel, reserved);
+        } else {
+            bot.reply(message, "You don't have valid permissions to do that.");
+        }
+    }
     // !addrole Role
     else if (input.startsWith("!ADDROLE") || input.startsWith("!ADD")) {
-        //bot.sendMessage(message,roleName[1]); // send message that contains the roleid
+        //bot.sendMessage(message,parsed[1]); // send message that contains the roleid
         // Check of role matches the class list
-        if (roleName[1] == "Mage" || roleName[1] == "Death" || roleName[1] == "Druid" || roleName[1] == "Hunter" || roleName[1] == "Demon" || roleName[1] == "Monk" || roleName[1] == "Paladin" || roleName[1] == "Rogue" || roleName[1] == "Shaman" || roleName[1] == "Warlock" || roleName[1] == "Warrior") {
+        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
             role = roles.get("name", "Officers").id; //get roll id of Officer/Admin role
             // Check if member is an Officer/Admin
             if (bot.memberHasRole(user, role)) {
-                if(roleName[1] == "Death"){
-                  roleName[1] = "Death Knight";
+                if (parsed[1] == "Death") {
+                    parsed[1] = "Death Knight";
                 }
-                if(roleName[1] == "Demon"){
-                  roleName[1] = "Demon Hunter";
+                if (parsed[1] == "Demon") {
+                    parsed[1] = "Demon Hunter";
                 }
-                role = roles.get("name", roleName[1]).id; // get roleid of class
+                role = roles.get("name", parsed[1]).id; // get roleid of class
                 bot.addMemberToRole(user, role);
-                bot.reply(message, "You are now a " + roleName[1] + "!");
+                bot.reply(message, "You are now a " + parsed[1] + "!");
             } else { // if not an officer/admin
                 bot.reply(message, "Class does not exist, or you do not have permission to add that role.");
             }
-        // Check if role matches channel list
-        } else if (roleName[1] == "Developers" || roleName[1] == "CMs" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
-            role = roles.get("name", roleName[1]).id; // get roleid of channel
+            // Check if role matches channel list
+        } else if (parsed[1] == "Developers" || parsed[1] == "CMs" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
+            role = roles.get("name", parsed[1]).id; // get roleid of channel
             bot.addMemberToRole(user, role);
-            bot.reply(message, "Added you to the " + roleName[1] + " channel!");
+            bot.reply(message, "Added you to the " + parsed[1] + " channel!");
         } else { // if role does not exist
             bot.reply(message, "Role does not exist.");
         }
     }
     // !removerole Developers
     else if (input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) {
-        if (roleName[1] == "Mage" || roleName[1] == "Death" || roleName[1] == "Druid" || roleName[1] == "Hunter" || roleName[1] == "Demon" || roleName[1] == "Monk" || roleName[1] == "Paladin" || roleName[1] == "Rogue" || roleName[1] == "Shaman" || roleName[1] == "Warlock" || roleName[1] == "Warrior") {
+        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
             role = roles.get("name", "Officers").id;
             if (bot.memberHasRole(user, role)) {
-                if(roleName[1] == "Death"){
-                  roleName[1] = "Death Knight";
+                if (parsed[1] == "Death") {
+                    parsed[1] = "Death Knight";
                 }
-                if(roleName[1] == "Demon"){
-                  roleName[1] = "Demon Hunter";
+                if (parsed[1] == "Demon") {
+                    parsed[1] = "Demon Hunter";
                 }
-                role = roles.get("name", roleName[1]).id;
+                role = roles.get("name", parsed[1]).id;
                 bot.removeMemberFromRole(user, role);
-                bot.reply(message, "You are no longer a " + roleName[1] + "!");
+                bot.reply(message, "You are no longer a " + parsed[1] + "!");
             } else {
                 bot.reply(message, "Class does not exist, or you cannot remove that role.");
             }
-        } else if (roleName[1] == "Developers" || roleName[1] == "CMs" || roleName[1] == "Healers" || roleName[1] == "Theorycrafting" || roleName[1] == "Overwatch" || roleName[1] == "HBI") {
-            role = roles.get("name", roleName[1]).id;
+        } else if (parsed[1] == "Developers" || parsed[1] == "CMs" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
+            role = roles.get("name", parsed[1]).id;
             bot.removeMemberFromRole(user, role);
-            bot.reply(message, "Removed you from the " + roleName[1] + "channel!");
+            bot.reply(message, "Removed you from " + parsed[1] + "!");
         } else {
             bot.reply(message, "Role does not exist, or you cannot remove that role.");
         }
     }
     // Good Night Jarvis
     else if (input === "GOOD NIGHT JARVIS") {
-        bot.reply(message, "Good Night Sir.");
+        role = roles.get("name", "Officers").id;
+        if (bot.memberHasRole(user, role)) {
+          bot.reply(message, "Good Night Sir.");
+        }
     }
-    // !Jarvis
+    // Jarvis GIF
     else if (input === "!JARVIS") {
         bot.sendFile(message, "http://31.media.tumblr.com/dea23aa7056d90cdfdacdc2117171e6f/tumblr_mmq33aTgAD1rvvj1ho2_r2_500.gif");
     }
     // invite link
     else if (input === "!INVITE") {
-        bot.sendMessage(message, "Here is the invite link: XXXXX");
+        bot.sendMessage(message, "Here is the invite link: XXXXXXXXX");
     }
     // Archimonde Kill Video
     else if (input === "!ARCHIMONDE") {
@@ -155,25 +260,21 @@ bot.on("message", function(message) {
     else if (input === "!BEASTLORD" || input === "!BEASTLORD DARMAC") {
         bot.sendMessage(message, "Here's the kill video for Mythic Beastlord Darmac: https://www.youtube.com/watch?v=n3Jr61veZkQ");
     }
-    // Beastlord Kill video
+    // YouTube Channel video
     else if (input === "!YOUTUBE") {
         bot.sendMessage(message, "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw");
     }
     // Plug.dj
     else if (input === "!MUSIC" || input === "!PLUG" || input === "!DJ" || input === "!PLUG.DJ") {
-        bot.sendMessage(message, "Here's our Plug.DJ channel: XXXXX");
+        bot.sendMessage(message, "Here's our Plug.DJ channel: https://plug.dj/exiledpower");
     }
-    // website
+    // Website Link
     else if (input === "!WEBSITE") {
         bot.sendMessage(message, "Check out dat website: http://www.exiledpower.com");
     }
-    // Roster
+    // Prints out the link to the roster in Google Sheets
     else if (input === "!ROSTER" || input === "#AMISITTING?") {
-        bot.sendMessage(message, "Here is the roster: XXXXX");
-    }
-    // help printer
-    else if (input === "!HELP") {
-        bot.sendMessage(message, "List of Commands:\n Kill Vidoes = !BossNameHere\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n  Add/Remove Channel Roles = !add [or !remove] roleName (roleName = Developers, Healers, Theorycrafting, Overwatch, HBI)");
+        bot.sendMessage(message, "Here is the roster: XXXXXXXXX");
     }
     // creator
     else if (input === "!QUESTION WHO CREATED YOU?" || input === "!CREATOR" || input === "!QUESTION WHO IS YOUR CREATOR?") {
@@ -187,5 +288,9 @@ bot.on("message", function(message) {
     else if (input === "!RANDOM" || input === "#ITSRANDOM") {
         bot.sendMessage(message, "It's never random. Molo is a cheater.");
     }
+    // Prints out list of commands in Discord
+    else if (input === "!HELP") {
+        bot.sendMessage(message, "List of Commands:\n Kill Vidoes = !BossNameHere\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] parsed (parsed = Developers, Healers, Theorycrafting, Overwatch, HBI)\n Change 'now playing' = !GAME input\n WoW Discord Links = !SERVER searchterms");
+    }
 });
-bot.loginWithToken("XXXXX");
+bot.loginWithToken("XXXXXXXXX");
