@@ -26,6 +26,10 @@ bot.on("message", function(message) {
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
     }
+    // git repo
+    else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE") {
+        bot.sendMessage(message,"Here is the link to my public source code: https://github.com/seanpeters86/Jarvis")
+    }
     // !game status
     else if (input.startsWith("!GAME")) {
         bot.setStatus('online', parsed[1]);
