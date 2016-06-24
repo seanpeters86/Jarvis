@@ -25,70 +25,68 @@ bot.on("message", function(message) {
     // Hello Jarvis
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
-    }
-    else if (input.startsWith("!GAME")){
-      bot.setStatus('online',parsed[1]);
-    }
-    else if (input.startsWith("!SERVER")){
-      switch(parsedReg[1]){
-        case "DEATH":
-        case "DK":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "DEMON":
-        case "DH":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "DRUID":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "HUNTER":
-        case "HUNTARD":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "PALADIN":
-        case "PALY"
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "PRIEST":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "ROGUE":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "SHAMAN":
-        case "SHAMMY":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "MAGE":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "MONK":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "WARLOCK":
-        case "LOCK":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "WARRIOR":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "AMR":
-        case "ASKMRROBOT"
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "WCL":
-        case "WARCRAFTLOGS":
-        case "WARCRAFT":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        case "DISCORD":
-        case "API":
-          bot.reply(message,"XXXXXXXXX");
-          break;
-        default:
-          bot.reply(message,"Channel does not exist, or I'm not sure where to find it.");
-      }
+    } else if (input.startsWith("!GAME")) {
+        bot.setStatus('online', parsed[1]);
+    } else if (input.startsWith("!SERVER")) {
+        switch (parsedReg[1]) {
+            case "DEATH":
+            case "DK":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "DEMON":
+            case "DH":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "DRUID":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "HUNTER":
+            case "HUNTARD":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "PALADIN":
+            case "PALY"
+            bot.reply(message, "XXXXXXXXX");
+            break;
+            case "PRIEST":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "ROGUE":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "SHAMAN":
+            case "SHAMMY":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "MAGE":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "MONK":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "WARLOCK":
+            case "LOCK":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "WARRIOR":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "AMR":
+            case "ASKMRROBOT"
+            bot.reply(message, "XXXXXXXXX");
+            break;
+            case "WCL":
+            case "WARCRAFTLOGS":
+            case "WARCRAFT":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            case "DISCORD":
+            case "API":
+                bot.reply(message, "XXXXXXXXX");
+                break;
+            default:
+                bot.reply(message, "Channel does not exist, or I'm not sure where to find it.");
+        }
     }
     // !voice channel file
     else if (input.startsWith("!VOICE") && (parsed[1] === "Guild-Chat" || parsed[1] === "Raiding" || parsed[1] === "Overwatch" || parsed[1] === "PvP" || parsed[1] === "Officers")) {
@@ -181,7 +179,7 @@ bot.on("message", function(message) {
     else if (input === "GOOD NIGHT JARVIS") {
         role = roles.get("name", "Officers").id;
         if (bot.memberHasRole(user, role)) {
-          bot.reply(message, "Good Night Sir.");
+            bot.reply(message, "Good Night Sir.");
         }
     }
     // Jarvis GIF
@@ -290,7 +288,7 @@ bot.on("message", function(message) {
     }
     // GITHUB issues
     else if (input === "!ISSUE" || input === "!SUGGESTION" || input === "!FEATURE" || input === "!FEEDBACK") {
-      bot.sendMessage(message, "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues")
+        bot.sendMessage(message, "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues")
     }
     // Prints out list of commands in Discord
     else if (input === "!HELP") {
