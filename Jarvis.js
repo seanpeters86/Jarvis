@@ -25,9 +25,13 @@ bot.on("message", function(message) {
     // Hello Jarvis
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
-    } else if (input.startsWith("!GAME")) {
+    }
+    // !game status
+    else if (input.startsWith("!GAME")) {
         bot.setStatus('online', parsed[1]);
-    } else if (input.startsWith("!SERVER")) {
+    }
+    // get discord servers
+    else if (input.startsWith("!SERVER")) {
         switch (parsedReg[1]) {
             case "DEATH":
             case "DK":
