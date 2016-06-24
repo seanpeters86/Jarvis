@@ -18,6 +18,12 @@ Jarvis [Discord Bot](https://blog.discordapp.com/the-robot-revolution-has-unoffi
 | !website | Displays teh link to the guild website |
 | !help | Prints out the list of commands |
 | !random [alias: #ITSRANDOM] | It's never random! |
+| !git [alias: !GITHUB, !CODE] | Displays the link to this git repo |
+| !game status | sets the users currently playing game to status |
+| !server search | displays the discord invite link for the server that matches the search |
+| !voice channel file | plays the file in the specified voice channel |
+| !say channel message1 message2 messagen | has jarvis send a message in the channel |
+| !issue [alias: !SUGGESTION, !FEATURE, !FEEDBACK] | links to the issue page on git |
 
 ## To Install
 - First download the Node Package Manager (NPM)
