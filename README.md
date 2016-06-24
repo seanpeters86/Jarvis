@@ -3,6 +3,8 @@
 
 Jarvis [Discord Bot](https://blog.discordapp.com/the-robot-revolution-has-unofficially-begun/) written in JavaScript using [Discord.js](https://github.com/hydrabolt/discord.js/)
 
+Check out the [Wiki](https://github.com/seanpeters86/Jarvis/wiki) for some walkthrough's of my code!
+
 ## Commands
 | Command Name  | Key |
 | ------------- | ------------- |
