@@ -30,7 +30,7 @@ bot.on("message", function(message) {
     else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE") {
         bot.sendMessage(message,"Here is the link to my public source code: https://github.com/seanpeters86/Jarvis")
     }
-    // !game status
+    // !game status for Jarvis
     else if (input.startsWith("!GAME")) {
         bot.setStatus('online', parsed[1]);
     }
@@ -300,7 +300,7 @@ bot.on("message", function(message) {
     }
     // Prints out list of commands in Discord
     else if (input === "!HELP") {
-        bot.sendMessage(message, "List of Commands:\n Kill Vidoes = !BossNameHere\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] parsed (parsed = Developers, Healers, Theorycrafting, Overwatch, HBI)\n Change 'now playing' = !GAME input\n WoW Discord Links = !SERVER searchterms");
+        bot.sendMessage(message, "List of Commands:\n Kill Vidoes = !BossNameHere\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] parsed (parsed = Developers, Healers, Theorycrafting, Overwatch, HBI)\n WoW Discord Links = !SERVER searchterms\n Get Source Code = !GITHUB\n Have an issue/suggestion? = !issue");
     }
 });
 bot.loginWithToken("XXXXXXXXX");
