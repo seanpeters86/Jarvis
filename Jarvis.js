@@ -3,12 +3,31 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
-Version: 0.1.5
+Version: 0.1.6
 */
 var Discord = require("discord.js");
 var bot = new Discord.Client();
-//require('String.prototype.startsWith'); // used to parse complicated messages
+var Twitter = require('twitter');
+var fs = require('fs');
+var settings = JSON.parse(fs.readFileSync('config.json'));
 
+var client = new Twitter({
+  consumer_key: settings.twitter.consumer_key,
+  consumer_secret: settings.twitter.consumer_secret,
+  access_token_key: settings.twitter.access_token_key,
+  access_token_secret: settings.twitter.access_token_secret
+});
+
+bot.on("ready", function(){
+  client.stream('statuses/filter', {track: settings.twitter.trigger_word}, function(stream){
+    stream.on('data', function(tweet){
+      console.log(tweet.user.name + " <@" + tweet.user.screen_name + "> - " + tweet.text);
+      if(tweet.user.name == undefined){ var name = tweet.user.screen_name; } else { var name = tweet.user.name; }
+      bot.sendMessage(settings.channel,"**" + name + "** `@" + tweet.user.screen_name + "` - " + tweet.text.replace(new RegExp(settings.twitter.trigger_word, "i"), "*" + settings.twitter.trigger_word + "*"));
+    });
+    stream.on('error', function(error) {});
+  });
+});
 // begin main bot
 bot.on("message", function(message) {
     // convert message into all upper case and store it in input
@@ -39,64 +58,64 @@ bot.on("message", function(message) {
         switch (parsedReg[1]) {
             case "DEATH":
             case "DK":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0ez1cFfUH3ingV96");
                 break;
             case "DEMON":
             case "DH":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0enuZ4FBFluNZH1r");
                 break;
             case "DRUID":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0dWu0WkuetF87H9H");
                 break;
             case "HUNTER":
             case "HUNTARD":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0isczJ3lChodOl7j");
                 break;
             case "PALADIN":
-            case "PALY"
-            bot.reply(message, "XXXXXXXXX");
+            case "PALY":
+                bot.reply(message, "https://discord.gg/0dvRDgpa5xZHFfnD");
             break;
             case "PRIEST":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0f1Ta8lT8xXXEAIY");
                 break;
             case "ROGUE":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0h08tydxoNhfDVZf");
                 break;
             case "SHAMAN":
             case "SHAMMY":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0VcupJEQX0JmBCcC");
                 break;
             case "MAGE":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0gLMHikX2aZ23VdA");
                 break;
             case "MONK":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0dkfBMAxzTmggsPH");
                 break;
             case "WARLOCK":
             case "LOCK":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0onXDymd9Wpc2CEu");
                 break;
             case "WARRIOR":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/0pYY7932lTH4FHW6");
                 break;
             case "AMR":
-            case "ASKMRROBOT"
-            bot.reply(message, "XXXXXXXXX");
+            case "ASKMRROBOT":
+                bot.reply(message, "https://discord.gg/RuJN9xP");
             break;
             case "WCL":
             case "WARCRAFTLOGS":
             case "WARCRAFT":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/3752GVf");
                 break;
             case "DISCORD":
             case "API":
-                bot.reply(message, "XXXXXXXXX");
+                bot.reply(message, "https://discord.gg/WtyHkza");
                 break;
             default:
                 bot.reply(message, "Channel does not exist, or I'm not sure where to find it.");
         }
     }
-    // !voice channel file
+    // !voice Guild-Chat gold.mp3
     else if (input.startsWith("!VOICE") && (parsed[1] === "Guild-Chat" || parsed[1] === "Raiding" || parsed[1] === "Overwatch" || parsed[1] === "PvP" || parsed[1] === "Officers")) {
         channel = channels.get("name", parsed[1]).id;
         role = roles.get("name", "Officers").id;
@@ -118,6 +137,7 @@ bot.on("message", function(message) {
     // !say channel message
     else if (input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "challengemodes" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters" || parsed[1] === "hot-button-issues")) {
         channel = channels.get("name", parsed[1]).id; // get channel id
+        console.log("Channel id: " + channel + " for " + parsed[1]);
         role = roles.get("name", "Officers").id;
         reserved = parsed[2];
         for (var i = 3; i < parsed.length; i++) {
@@ -196,7 +216,7 @@ bot.on("message", function(message) {
     }
     // invite link
     else if (input === "!INVITE") {
-        bot.sendMessage(message, "Here is the invite link: XXXXXXXXX");
+        bot.sendMessage(message, "Here is the invite link: https://discord.gg/0wt0wUFZgL39GHuH");
     }
     // Archimonde Kill Video
     else if (input === "!ARCHIMONDE") {
@@ -266,7 +286,7 @@ bot.on("message", function(message) {
     else if (input === "!BEASTLORD" || input === "!BEASTLORD DARMAC") {
         bot.sendMessage(message, "Here's the kill video for Mythic Beastlord Darmac: https://www.youtube.com/watch?v=n3Jr61veZkQ");
     }
-    // YouTube Channel video
+    // YouTube Channel
     else if (input === "!YOUTUBE") {
         bot.sendMessage(message, "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw");
     }
@@ -280,7 +300,7 @@ bot.on("message", function(message) {
     }
     // Prints out the link to the roster in Google Sheets
     else if (input === "!ROSTER" || input === "#AMISITTING?") {
-        bot.sendMessage(message, "Here is the roster: XXXXXXXXX");
+        bot.sendMessage(message, "Here is the roster: https://docs.google.com/spreadsheets/d/1Clq6mEklsLo5FWLd80D8togXN19MbBhVSci7inhre28/edit#gid=491110509");
     }
     // creator
     else if (input === "!QUESTION WHO CREATED YOU?" || input === "!CREATOR" || input === "!QUESTION WHO IS YOUR CREATOR?") {
@@ -303,4 +323,4 @@ bot.on("message", function(message) {
         bot.sendMessage(message, "List of Commands:\n Kill Vidoes = !BossNameHere\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] parsed (parsed = Developers, Healers, Theorycrafting, Overwatch, HBI)\n WoW Discord Links = !SERVER searchterms\n Get Source Code = !GITHUB\n Have an issue/suggestion? = !issue");
     }
 });
-bot.loginWithToken("XXXXXXXXX");
+bot.loginWithToken("MTkzMDg0NDY1MjAxOTM4NDQz.CkSPaw.dsVmwi58UsKPd_QzhTvVO99pmSU");
