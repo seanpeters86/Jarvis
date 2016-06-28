@@ -216,7 +216,7 @@ bot.on("message", function(message) {
     }
     // invite link
     else if (input === "!INVITE") {
-        bot.sendMessage(message, "Here is the invite link: https://discord.gg/0wt0wUFZgL39GHuH");
+        bot.sendMessage(message, "Here is the invite link: xxxxxxx");
     }
     // Archimonde Kill Video
     else if (input === "!ARCHIMONDE") {
@@ -300,7 +300,7 @@ bot.on("message", function(message) {
     }
     // Prints out the link to the roster in Google Sheets
     else if (input === "!ROSTER" || input === "#AMISITTING?") {
-        bot.sendMessage(message, "Here is the roster: https://docs.google.com/spreadsheets/d/1Clq6mEklsLo5FWLd80D8togXN19MbBhVSci7inhre28/edit#gid=491110509");
+        bot.sendMessage(message, "Here is the roster: xxx");
     }
     // creator
     else if (input === "!QUESTION WHO CREATED YOU?" || input === "!CREATOR" || input === "!QUESTION WHO IS YOUR CREATOR?") {
@@ -323,4 +323,4 @@ bot.on("message", function(message) {
         bot.sendMessage(message, "List of Commands:\n Kill Vidoes = !BossNameHere\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] parsed (parsed = Developers, Healers, Theorycrafting, Overwatch, HBI)\n WoW Discord Links = !SERVER searchterms\n Get Source Code = !GITHUB\n Have an issue/suggestion? = !issue");
     }
 });
-bot.loginWithToken("MTkzMDg0NDY1MjAxOTM4NDQz.CkSPaw.dsVmwi58UsKPd_QzhTvVO99pmSU");
+bot.loginWithToken("xxxxx");
