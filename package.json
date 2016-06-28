@@ -1,19 +1,18 @@
 {
-  "name": "Jarvis",
-  "version": "0.1.0",
-  "description": "Bot for Discord app for Exiled Power",
-  "readme": "README.md",
-  "maintainers": [],
-  "author": "seanpete",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.iu.edu/seanpete/Jarvis"
-  },
-  "license": "GNU",
-  "dependencies": {
-    "discord.js": "",
-    "startswith.js": "",
-    "npm": ""
-  },
-  "main": "Jarvis.js"
+	"name": "Jarvis",
+	"version": "0.1.6",
+	"description": "EP Discord Bot",
+	"main": "Jarvis.js",
+	"dependencies": {
+		"twitter": "latest",
+		"discord.js": "latest",
+		"fs": "latest"
+	},
+	"keywords": [
+		"Discord",
+		"Discordapp",
+		"Discord.js"
+	],
+	"author": "Sean Peters",
+	"license": "GNU"
 }
