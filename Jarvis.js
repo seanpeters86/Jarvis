@@ -3,14 +3,15 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
-Version: 0.1.6
+Version: 0.1.7
 */
 var Discord = require("discord.js");
 var bot = new Discord.Client();
-var Twitter = require('twitter');
-var fs = require('fs');
-var settings = JSON.parse(fs.readFileSync('config.json'));
+//var Twitter = require('twitter');
+//var fs = require('fs');
+//var settings = JSON.parse(fs.readFileSync('config.json'));
 
+/*
 var client = new Twitter({
   consumer_key: settings.twitter.consumer_key,
   consumer_secret: settings.twitter.consumer_secret,
@@ -28,6 +29,7 @@ bot.on("ready", function(){
     stream.on('error', function(error) {});
   });
 });
+*/
 // begin main bot
 bot.on("message", function(message) {
     // convert message into all upper case and store it in input
@@ -45,6 +47,14 @@ bot.on("message", function(message) {
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
     }
+    // WoWProgress Link
+    else if (input === "!RANKING" || input === "!RANKINGS" || input === "WOWPROGRESS") {
+        bot.sendMessage(message, "Here is the link to the EP WoWProgress Page: http://www.wowprogress.com/guild/us/arthas/Exiled+Power")
+    }
+    // Warcraft Logs Link
+    else if (input === "!LOGS" || input === "!WCL" || input === "!WARCRAFTLOGS") {
+        bot.sendMessage(message, "Here is the link to the EP Logs: https://www.warcraftlogs.com/guilds/reportslist/75984/")
+    }
     // git repo
     else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE") {
         bot.sendMessage(message,"Here is the link to my public source code: https://github.com/seanpeters86/Jarvis")
@@ -53,8 +63,14 @@ bot.on("message", function(message) {
     else if (input.startsWith("!GAME")) {
         bot.setStatus('online', parsed[1]);
     }
-    // get discord servers
-    else if (input.startsWith("!SERVER")) {
+    // do you need an adult
+    else if (input.startsWith("I NEED AN ADULT")) {
+        bot.reply(message, "Me too");
+    }
+        // get discord servers
+    else if (input.startsWith("?SERVER")) {
+        bot.sendMessage(message, "By using !server you can query my database for discord channel invite links. An example would be '!server rogue' to get the inite link for the rogue discord.");
+    } else if (input.startsWith("!SERVER")) {
         switch (parsedReg[1]) {
             case "DEATH":
             case "DK":
@@ -69,7 +85,7 @@ bot.on("message", function(message) {
                 break;
             case "HUNTER":
             case "HUNTARD":
-                bot.reply(message, "https://discord.gg/0isczJ3lChodOl7j");
+                bot.reply(message, "https://discord.gg/yqer4BX");
                 break;
             case "PALADIN":
             case "PALY":
@@ -135,7 +151,7 @@ bot.on("message", function(message) {
         }
     }
     // !say channel message
-    else if (input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "challengemodes" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters" || parsed[1] === "hot-button-issues")) {
+    else if (input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "pokemon" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters" || parsed[1] === "hot-button-issues")) {
         channel = channels.get("name", parsed[1]).id; // get channel id
         console.log("Channel id: " + channel + " for " + parsed[1]);
         role = roles.get("name", "Officers").id;
@@ -148,6 +164,8 @@ bot.on("message", function(message) {
         } else {
             bot.reply(message, "You don't have valid permissions to do that.");
         }
+    } else if (input.startsWith("?ADDROLE") || input.startsWith("?ADD")) {
+        bot.sendMessage(message, "To get added into a channel type '!add channelName' where channel name is a valid name (case matters!). The options are: Pokemon, Healers, Theorycrafting, Overwatch, and HBI.");
     }
     // !addrole Role
     else if (input.startsWith("!ADDROLE") || input.startsWith("!ADD")) {
@@ -170,13 +188,15 @@ bot.on("message", function(message) {
                 bot.reply(message, "Class does not exist, or you do not have permission to add that role.");
             }
             // Check if role matches channel list
-        } else if (parsed[1] == "Developers" || parsed[1] == "CMs" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
+        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
             role = roles.get("name", parsed[1]).id; // get roleid of channel
             bot.addMemberToRole(user, role);
             bot.reply(message, "Added you to the " + parsed[1] + " channel!");
         } else { // if role does not exist
             bot.reply(message, "Role does not exist.");
         }
+    } else if (input.startsWith("?REMOVEROLE") || input.startsWith("?REMOVE") || input.startsWith("?RM")) {
+        bot.sendMessage(message, "To remove yourself from a channel type '!remove channelName' where channel name is a valid name (case matters!). The options are: Pokemon, Healers, Theorycrafting, Overwatch, and HBI.");
     }
     // !removerole Developers
     else if (input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) {
@@ -195,7 +215,7 @@ bot.on("message", function(message) {
             } else {
                 bot.reply(message, "Class does not exist, or you cannot remove that role.");
             }
-        } else if (parsed[1] == "Developers" || parsed[1] == "CMs" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
+        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
             role = roles.get("name", parsed[1]).id;
             bot.removeMemberFromRole(user, role);
             bot.reply(message, "Removed you from " + parsed[1] + "!");
