@@ -47,24 +47,35 @@ bot.on("message", function(message) {
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
     }
+    // bad comment
+    else if (input.includes("FUCK YOU JARVIS")) {
+        var random = Math.floor((Math.random() * 3) + 1);
+        if (random == 1) {
+            bot.reply(message, "Why would you say that!?");
+        } else if (random == 2) {
+            bot.reply(message, "Well I don't think that was appropriate.");
+        } else {
+            bot.reply(message, "Fuck you too, silly human. Have you seen you're logs recently? (They suck)");
+        }
+    }
     // WoWProgress Link
     else if (input === "!RANKING" || input === "!RANKINGS" || input === "WOWPROGRESS") {
-        bot.sendMessage(message, "Here is the link to the EP WoWProgress Page: http://www.wowprogress.com/guild/us/arthas/Exiled+Power")
+        bot.sendMessage(message, "Here is the link to the EP WoWProgress Page: <http://www.wowprogress.com/guild/us/arthas/Exiled+Power>")
     }
     // Warcraft Logs Link
     else if (input === "!LOGS" || input === "!WCL" || input === "!WARCRAFTLOGS") {
-        bot.sendMessage(message, "Here is the link to the EP Logs: https://www.warcraftlogs.com/guilds/reportslist/75984/")
+        bot.sendMessage(message, "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>")
     }
     // git repo
-    else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE") {
-        bot.sendMessage(message,"Here is the link to my public source code: https://github.com/seanpeters86/Jarvis")
+    else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE" || input === "!SOURCE") {
+        bot.sendMessage(message, "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>");
     }
     // !game status for Jarvis
     else if (input.startsWith("!GAME")) {
         bot.setStatus('online', parsed[1]);
     }
     // do you need an adult
-    else if (input.startsWith("I NEED AN ADULT")) {
+    else if (input.includes("I NEED AN ADULT")) {
         bot.reply(message, "Me too");
     }
         // get discord servers
@@ -233,6 +244,10 @@ bot.on("message", function(message) {
     // Jarvis GIF
     else if (input === "!JARVIS") {
         bot.sendFile(message, "http://31.media.tumblr.com/dea23aa7056d90cdfdacdc2117171e6f/tumblr_mmq33aTgAD1rvvj1ho2_r2_500.gif");
+    }
+    // Fantasy GIF
+    else if (input === "!FANTASY" || input.includes("CLASS FANTASY")) {
+        bot.sendFile(message, "http://i.imgur.com/EMSiUF3.jpg");
     }
     // invite link
     else if (input === "!INVITE") {
