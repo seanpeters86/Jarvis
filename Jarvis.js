@@ -3,8 +3,9 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
-Version: 0.1.8
+Version: 1.0.0
 */
+
 var Discord = require("discord.js");
 var bot = new Discord.Client();
 var Twitter = require('twitter');
@@ -13,7 +14,7 @@ var request = require('request');
 var prettyjson = require("prettyjson");
 
 function classConvert(playerclass) {
-    switch(playerclass) {
+    switch (playerclass) {
         case 1:
             return "Death Knight";
             break;
@@ -44,21 +45,22 @@ function classConvert(playerclass) {
         case 10:
             return "Warlock";
             break;
-        case 11:  
+        case 11:
             return "Warrior";
             break;
         case 12:
             return "Demon Hunter";
-            break; 
+            break;
         default:
             return "WTF";
-            break;  
+            break;
     }
 }
+
 function specConvert(playerclass, spec) {
-    switch(playerclass) {
+    switch (playerclass) {
         case 1:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Blood";
                     break;
@@ -74,7 +76,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 2:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Balance";
                     break;
@@ -93,7 +95,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 3:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Beast Mastery";
                     break;
@@ -109,7 +111,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 4:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Arcane";
                     break;
@@ -125,7 +127,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 5:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Brewmaster";
                     break;
@@ -141,7 +143,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 6:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Holy";
                     break;
@@ -157,7 +159,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 7:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Discipline";
                     break;
@@ -173,7 +175,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 8:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Assassination";
                     break;
@@ -189,7 +191,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 9:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Elemental";
                     break;
@@ -205,7 +207,7 @@ function specConvert(playerclass, spec) {
             }
             break;
         case 10:
-            switch(spec) {
+            switch (spec) {
                 case 1:
                     return "Affliction";
                     break;
@@ -220,8 +222,8 @@ function specConvert(playerclass, spec) {
                     break;
             }
             break;
-        case 11:  
-            switch(spec) {
+        case 11:
+            switch (spec) {
                 case 1:
                     return "Arms";
                     break;
@@ -238,9 +240,9 @@ function specConvert(playerclass, spec) {
                     return "WTF";
                     break;
             }
-            break; 
-        case 12:  
-            switch(spec) {
+            break;
+        case 12:
+            switch (spec) {
                 case 1:
                     return "Havoc";
                     break;
@@ -251,10 +253,10 @@ function specConvert(playerclass, spec) {
                     return "WTF";
                     break;
             }
-            break;  
+            break;
         default:
             return "WTF";
-            break;   
+            break;
     }
 }
 
@@ -280,146 +282,13 @@ bot.on("message", function(message) {
     var raidid = 8;
     // Partition should almost always be set to 1, Pre-Patch is 2
     var partition = 2;
+    var planfortheweek = "The plan for Thursday is to continue the split run with Group 2 (Manny + Arch). Check the roster to make sure no conflicts exist. FYI if we can sell Blackhand mounts we will potentially be doing that on both days (WTB Guild Repairs).";
+    // Begin Command list
     // Hello Jarvis
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
     }
-    else if (input === "?RANKING") {
-        bot.reply(message, "By using !ranking PLAYERNAME BOSSNAME [-h] you can check WCL parses for that characters rankings. Simply add -h to the end to check HPS rankings instead of DPS.");
-    }
-    // ranking
-    else if (input.startsWith("!RANKING")) {
-        var char = encodeURIComponent(parsed[1]);
-        /*
-        switch(parsedReg[2]) {
-            case "NYTHENDRA":
-                encounter = 1853;
-                bossname = "Nythendra";
-                break;
-            case "IL'GYNOTH":
-            case "IL":
-            case "ILGYNOTH":
-                encounter = 1873;
-                bossname = "Il'gynoth, Heart of Corruption";
-                break;
-            case "ELERETHE":
-            case "RENFERAL":
-            case "ELE":
-                encounter = 1876;
-                bossname = "Elerethe Renferal";
-                break;
-            case "URSOC":
-                encounter = 1841
-                bossname = "Ursoc";
-                break;
-            case "DRAGONS":
-            case "DARGONS":
-                encounter = 1854;
-                bossname = "Dragons of the Nightmare";
-                break;
-            case "CENARIUS":
-                encounter = 1877;
-                bossname = "Cenarius";
-                break;
-            case "XAVIUS":
-                encounter = 1864;
-                bossname = "Xavius";
-                break;
-        }
-        */
-        switch(parsedReg[2]) {
-            case "HELLFIRE":
-            case "ASSAULT":
-            case "HFA":
-                encounter = 1778;
-                bossname = "Hellfire Assault";
-                break;
-            case "REAVER":
-            case "IRON":
-            case "IR":
-                encounter = 1785;
-                bossname = "Iron Reaver";
-                break;
-            case "KORMROK":
-                encounter = 1787;
-                bossname = "Kormrok";
-                break;
-            case "COUNCIL":
-                encounter = 1798;
-                bossname = "Hellfire High Council";
-                break;
-            case "KILROGG":
-                encounter = 1786;
-                bossname = "Kilrogg Deadeye";
-                break;
-            case "GOREFIEND":
-            case "GORE":
-                encounter = 1783;
-                bossname = "Gorefiend";
-                break;
-            case "ISKAR":
-            case "MOTHERFUCKER":
-            case "CODYSFAV":
-            case "CODYSFAVORITE":
-                encounter = 1788;
-                bossname = "Shadow-Lord Iskar";
-                break;
-            case "FEL":
-            case "ZAKUUN":
-                encounter = 1777;
-                bossname = "Fel Lord Zakuun";
-                break;
-            case "XHUL":
-                encounter = 1800;
-                bossname = "Xhul'horac";
-                break;
-            case "SOC":
-            case "SOCRETHAR":
-                encounter = 1794;
-                bossname = "Socrethar";
-                break;
-            case "TYRANT":
-                encounter = 1784;
-                bossname = "Tyrant Velhari";
-                break;
-            case "MANNY":
-            case "MANNOROTH":
-                encounter = 1795;
-                bossname = "Mannoroth";
-                break;
-            case "ARCHI":
-            case "ARCHIMONDE":
-                encounter = 1799;
-                bossname = "Archimonde";
-                break;
-            default:
-                encounter = 0;
-                bossname = "WTF";
-                break;     
-        }
-        if (input.endsWith("-H")){
-            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=hps&partition=" + partition + "&api_key=094548df90417c69b09887c0b13ff483";
-        } else {
-            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=dps&partition=" + partition + "&api_key=094548df90417c69b09887c0b13ff483";   
-        }
-        request({ method : 'GET', uri: uri, json: true}, (error, response, body) => {
-            if (!error && response.statusCode == 200 && (encounter != 0) && body.length > 0) {
-                var rank = response.body;
-                spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
-                playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
-                var classparsed = classConvert(playerclass);
-                var specparsed = specConvert(playerclass, spec);   
-                if (input.endsWith("-H")) {
-                    bot.reply(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
-                } else {
-                    bot.reply(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
-                }
-            } else {
-                bot.reply(message, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
-            }
-        });
-    }
-    // bad comment
+    // Fuck you Jarvis
     else if (input.includes("FUCK YOU JARVIS") || input.includes("FUCK YOU, JARVIS")) {
         var random = Math.floor((Math.random() * 3) + 1);
         if (random == 1) {
@@ -427,32 +296,41 @@ bot.on("message", function(message) {
         } else if (random == 2) {
             bot.reply(message, "Well I don't think that was appropriate.");
         } else {
-            bot.reply(message, "Fuck you too, silly human. Have you seen your logs recently? (They suck)");
+            bot.reply(message, "Fuck you too, silly human. Have you seen your logs recently? (They suck lol)");
         }
     }
     // thanks jarvis
-    else if (input.includes("THANKS JARVIS") || input.includes("THANK YOU, JARVIS") || input.includes("THANK YOU JARVIS")) {
+    else if (input.includes("THANKS JARVIS") || input.includes("THANKS, JARVIS") || input.includes("THANK YOU, JARVIS") || input.includes("THANK YOU JARVIS")) {
         bot.reply(message, "Anytime.");
     }
-    // artifact power guide
-    else if (input === "!ARTIFACT") {
-        bot.sendMessage(message, "Here is the artifact calculator for Legion: <https://docs.google.com/spreadsheets/d/11xQCzhiVM9gTZkUsu1UNs7z4dpwHpRQSUUZySY7xLv0/edit?usp=sharing>");
+    // Good Night Jarvis
+    else if (input === "GOOD NIGHT JARVIS") {
+        role = roles.get("name", "Officers").id;
+        if (bot.memberHasRole(user, role)) {
+            bot.reply(message, "Good Night Sir.");
+        }
     }
-    // SHAME
-    else if (input === "!SHAME" || input.includes("SHAME")) {
-        bot.sendMessage(message, "http://i.imgur.com/FidZknJ.gif");
-    }
-    // legion lexicon guide
-    else if (input === "!LEXICON" || input === "!LEVELING") {
-        bot.sendMessage(message, "Here is the leveling/gearing guide for Legion: <https://docs.google.com/spreadsheets/d/1TiiI4huz4NXKfx7PGvvVTyP6xu8VaDNZ4-FEn69mOhc/pubhtml#>");
+    // GoT Stuff
+    else if (input.includes("WHAT IS DEAD MAY NEVER DIE")) {
+        bot.sendFile(message, "http://media2.popsugar-assets.com/files/thumbor/8JmtgAwoUtycNcKiKMY626mWtf8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/05/24/864/n/1922283/4b3606df5ff39bb7_tumblr_m52wvwqwBQ1qb9ftxo1_500/i/House-Greyjoy-What-Dead-May-Never-Die.gif");
+    } else if (input.includes("WINTER IS COMING")) {
+        bot.sendFile(message, "https://media.makeameme.org/created/Brace-yourself-Winter.jpg");
+    } else if (input.includes("YOU KNOW NOTHING")) {
+        bot.sendFile(message, "http://i.imgur.com/FBC3qtM.gif");
+    } else if (input.includes("HOLD THE DOOR")) {
+        bot.sendFile(message, "http://gif4share.com/wp-content/uploads/2016/06/hold-the-door-game-of-thrones.gif");
     }
     // fuckin ø Ø
     else if (input.includes("Ø") && !(user.bot)) {
         bot.reply(message, "I hate that stupid o. Can we use real letters please?");
     }
+    // do you need an adult
+    else if (input.includes("I NEED AN ADULT")) {
+        bot.reply(message, "Me too");
+    }
     // salt
-    else if (input.includes("SALT")) {
-        var random = Math.floor((Math.random() * 7) +1);
+    else if (input === "SALT" || input === "!SALT") {
+        var random = Math.floor((Math.random() * 7) + 1);
         if (random == 1) {
             bot.sendFile(message, "http://i.imgur.com/Igir7HF.png");
         } else if (random == 2) {
@@ -471,7 +349,7 @@ bot.on("message", function(message) {
     }
     // wrecked
     else if (input.includes("WRECKED") || input.includes("REKT")) {
-        var random = Math.floor((Math.random() * 7) +1);
+        var random = Math.floor((Math.random() * 7) + 1);
         if (random == 1) {
             bot.sendFile(message, "https://cdn.meme.am/instances/500x/47131303.jpg");
         } else if (random == 2) {
@@ -488,10 +366,104 @@ bot.on("message", function(message) {
             bot.sendFile(message, "https://cdn.meme.am/instances/400x/52466269.jpg");
         }
     }
+    // Fantasy GIF
+    else if (input === "!FANTASY" || input.includes("CLASS FANTASY")) {
+        bot.sendFile(message, "http://i.imgur.com/EMSiUF3.jpg");
+    }
+    // Jarvis GIF
+    else if (input === "!JARVIS") {
+        bot.sendFile(message, "http://31.media.tumblr.com/dea23aa7056d90cdfdacdc2117171e6f/tumblr_mmq33aTgAD1rvvj1ho2_r2_500.gif");
+    } else if (input === "!PLAN" || input === "!PLANFORTHEWEEK" || input === "!COMMAND") {
+        bot.sendMessage(message, planfortheweek);
+    }
+    // artifact power guide
+    else if (input === "!ARTIFACT") {
+        bot.sendMessage(message, "Here is the artifact calculator for Legion: <https://docs.google.com/spreadsheets/d/11xQCzhiVM9gTZkUsu1UNs7z4dpwHpRQSUUZySY7xLv0/edit?usp=sharing>");
+    }
+    // SHAME
+    else if (input === "!SHAME" || input === "SHAME") {
+        bot.sendMessage(message, "http://i.imgur.com/FidZknJ.gif");
+    }
+    // Stay Classy Achieve
+    else if (input === "!STAYCLASSY") {
+        bot.sendMessage(message, "The following are the race/class combos we still need:\nTauren(Priest)\nTrolls(Warlock)\nUndead(Hunter)\nGoblins(DK, Rogue, Warlock, Priest)\nPandaren(Mage, Priest)");
+    }
+    // legion lexicon guide
+    else if (input === "!LEXICON" || input === "!LEVELING") {
+        bot.sendMessage(message, "Here is Soulflayer's leveling/gearing guide for Legion: <https://docs.google.com/spreadsheets/d/1TiiI4huz4NXKfx7PGvvVTyP6xu8VaDNZ4-FEn69mOhc/pubhtml#>");
+        bot.sendMessage(message, "Here is Zhengsim's leveling guide for Legion: <https://docs.google.com/spreadsheets/d/1QwcvZmhi4zoe_29RmV_UDoDqLXrFdIBirKBz6ClMo0o/edit#gid=0>");
+        bot.sendMessage(message, "Here is Brutall's speed leveling guide for Legion: <https://www.dropbox.com/s/ts5d8wqt6ughbaa/Brutall's%20Speed%20Leveling%20Guide%20for%20Legion%20(Horde).xlsx?dl=0>");
+    }
+    // WoWProgress Link
+    else if (input === "!WOWPROGRESS") {
+        bot.sendMessage(message, "Here is the link to the EP WoWProgress Page: <http://www.wowprogress.com/guild/us/arthas/Exiled+Power>");
+        var url = "http://www.wowprogress.com/guild/us/arthas/Exiled+Power/json_rank";
+        request({
+            method: 'GET',
+            uri: url,
+            json: true
+        }, (error, response, body) => {
+            if (!error && response.statusCode == 200) {
+                var json_rank = response.body;
+                console.log(json_rank);
+                bot.reply(message, "Exiled Power is currently ranked " + `${prettyjson.render(json_rank.world_rank)}` + " in the world and " + `${prettyjson.render(json_rank.realm_rank)}` + " on Arthas.");
+            } else {
+                bot.reply(message, "I could not find a ranking for Exiled Power on WoWProgress for the current tier.");
+            }
+        });
+    }
+    // Warcraft Logs Link
+    else if (input === "!LOGS" || input === "!WCL" || input === "!WARCRAFTLOGS") {
+        bot.sendMessage(message, "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>");
+    }
+    // git repo
+    else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE" || input === "!SOURCE") {
+        bot.sendMessage(message, "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>");
+    }
+    // GITHUB issues
+    else if (input === "!ISSUE" || input === "!SUGGESTION" || input === "!FEATURE" || input === "!FEEDBACK") {
+        bot.sendMessage(message, "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues")
+    }
+    // its not random
+    else if (input === "!RANDOM" || input === "#ITSRANDOM") {
+        bot.sendMessage(message, "It's never random. Molo is a cheater.");
+    }
+    // creator
+    else if (input === "!QUESTION WHO CREATED YOU?" || input === "!CREATOR" || input === "!QUESTION WHO IS YOUR CREATOR?") {
+        bot.sendMessage(message, "My creator is the almighty Republic of course. He's pretty swell.");
+    }
+    // !Is cody good at playing hunter?
+    else if (input === "!QUESTION IS CODY GOOD AT PLAYING HUNTER?") {
+        bot.reply(message, "Nope");
+    }
+    // invite link
+    else if (input === "!INVITE") {
+        bot.sendMessage(message, "Here is the invite link: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    }
+    // YouTube Channel
+    else if (input === "!YOUTUBE") {
+        bot.sendMessage(message, "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw");
+    }
+    // Plug.dj
+    else if (input === "!MUSIC" || input === "!PLUG" || input === "!DJ" || input === "!PLUG.DJ") {
+        bot.sendMessage(message, "Here's our Plug.DJ channel: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    }
+    // Website Link
+    else if (input === "!WEBSITE") {
+        bot.sendMessage(message, "Check out dat website: http://www.exiledpower.com");
+    }
+    // Prints out the link to the roster in Google Sheets
+    else if (input === "!ROSTER" || input === "#AMISITTING?") {
+        bot.sendMessage(message, "Here is the roster: <XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>");
+    }
+    // !game status for Jarvis
+    else if (input.startsWith("!GAME") && input.endsWith("-J")) {
+        bot.setStatus('online', parsed[1]);
+    }
     // lore core
     else if (input === "!LORE" || input === "!LORECORE" || input === "#LORECORE" || input === "#LORE") {
-        var random = Math.floor((Math.random() * 22) +1);
-        switch(random) {
+        var random = Math.floor((Math.random() * 22) + 1);
+        switch (random) {
             case 1:
                 bot.sendFile(message, "http://i.imgur.com/d4tjQQJ.jpg");
                 break;
@@ -534,7 +506,7 @@ bot.on("message", function(message) {
             case 14:
                 bot.sendFile(message, "http://i.imgur.com/Qfx2M5y.png");
                 break;
-            case 15: 
+            case 15:
                 bot.sendFile(message, "http://i.imgur.com/8pKvL0X.jpg");
                 break;
             case 16:
@@ -559,68 +531,190 @@ bot.on("message", function(message) {
                 bot.sendFile(message, "http://i.imgur.com/TuHyl0N.jpg");
         }
     }
-    // WoWProgress Link
-    else if (input === "!WOWPROGRESS") {
-        bot.sendMessage(message, "Here is the link to the EP WoWProgress Page: <http://www.wowprogress.com/guild/us/arthas/Exiled+Power>");
-        var url = "http://www.wowprogress.com/guild/us/arthas/Exiled+Power/json_rank";
-        request({ method : 'GET', uri: url, json: true}, (error, response, body) => {
-            if (!error && response.statusCode == 200) {
-                var json_rank = response.body;
-                console.log(json_rank);
-                bot.reply(message, "Exiled Power is currently ranked " + `${prettyjson.render(json_rank.world_rank)}` + " in the world and " + `${prettyjson.render(json_rank.realm_rank)}` + " on Arthas.");   
-            } else {
-                bot.reply(message, "I could not find a ranking for Exiled Power on WoWProgress for the current tier.");
+    // Video helper
+    else if (input.startsWith("?BOSS") || input.startsWith("!VIDEO")) {
+        bot.sendMessage(message, "By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
+    }
+    // Kill Videos
+    else if (input.startsWith("!BOSS") || input.startsWith("!VIDEO")) {
+        switch (parsedReg[1]) {
+            case "ARCHIMONDE":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=Jkt1iId7Xbc");
+                break;
+            case "MANNY":
+            case "MANNOROTH":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=b7mTPw0pv20");
+                break;
+            case "XHUL'HORAC":
+            case "XHUL":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=N2aSgC4DlIU");
+                break;
+            case "TYRANT":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=wHUKGvI6U2Y");
+                break;
+            case "FEL":
+            case "LORD":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=d0C92xy1fts");
+                break;
+            case "ISKAR":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=9iIAlJQ3Fws");
+                break;
+            case "SOCRETHAR":
+            case "SOC":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=cbO6Ri4XqlA");
+                break;
+            case "GOREFIEND":
+            case "GORE":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=OYOQ6ahRAc4");
+                break;
+            case "KILROGG":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=37hyWu503zo");
+                break;
+            case "COUNCIL":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=89wK24T2lK8");
+                break;
+            case "KORMROK":
+            case "KORM":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=KAnECqXw11c");
+                break;
+            case "REAVER":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=8exVgQfHAaA");
+                break;
+            case "ASSAULT":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=FBKpYBYkZ5w");
+                break;
+            case "HANS":
+            case "FRANZ":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=dCbk8OamUow");
+                break;
+            case "OREO":
+            case "OREGORGER":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=F8xwKWEci_I");
+                break;
+            case "GRUUL":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=zYs9iKxrUGU");
+                break;
+            case "BEASTLORD":
+            case "DARMAC":
+                bot.sendMessage(message, "https://www.youtube.com/watch?v=n3Jr61veZkQ");
+                break;
+            default:
+                bot.reply(message, "Boss/Video name not recognized");
+        }
+    }
+    // ?addrole helper 
+    else if (input.startsWith("?ADDROLE") || input.startsWith("?ADD")) {
+        bot.sendMessage(message, "To get added into a channel type '!add channelName' where channel name is a valid name (case matters!). The options are: Pokemon, Healers, Theorycrafting, and Overwatch.");
+    }
+    // !addrole Role
+    else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD")) && !(message.channel.isPrivate)) {
+        //bot.sendMessage(message,parsed[1]); // send message that contains the roleid
+        // Check of role matches the class list
+        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Priest" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
+            role = roles.get("name", "Officers").id; //get roll id of Officer/Admin role
+            // Check if member is an Officer/Admin
+            if (bot.memberHasRole(user, role)) {
+                if (parsed[1] == "Death") {
+                    parsed[1] = "Death Knight";
+                }
+                if (parsed[1] == "Demon") {
+                    parsed[1] = "Demon Hunter";
+                }
+                role = roles.get("name", parsed[1]).id; // get roleid of class
+                bot.addMemberToRole(user, role);
+                bot.reply(message, "You are now a " + parsed[1] + "!");
+            } else { // if not an officer/admin
+                bot.reply(message, "Class does not exist, or you do not have permission to add that role.");
             }
-        });
+            // Check if role matches channel list
+        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
+            role = roles.get("name", parsed[1]).id; // get roleid of channel
+            bot.addMemberToRole(user, role);
+            bot.reply(message, "Added you to the " + parsed[1] + " channel!");
+        } else { // if role does not exist
+            bot.reply(message, "Role does not exist.");
+        }
     }
-    // Warcraft Logs Link
-    else if (input === "!LOGS" || input === "!WCL" || input === "!WARCRAFTLOGS") {
-        bot.sendMessage(message, "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>");
+    // ?removerole helper
+    else if ((input.startsWith("?REMOVEROLE") || input.startsWith("?REMOVE") || input.startsWith("?RM")) && !(message.channel.isPrivate)) {
+        bot.sendMessage(message, "To remove yourself from a channel type '!remove channelName' where channel name is a valid name (case matters!). The options are: Pokemon, Healers, Theorycrafting, and Overwatch.");
     }
-    // git repo
-    else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE" || input === "!SOURCE") {
-        bot.sendMessage(message, "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>");
+    // !removerole Developers
+    else if ((input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) && !(message.channel.isPrivate)) {
+        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Priest" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
+            role = roles.get("name", "Officers").id;
+            if (bot.memberHasRole(user, role)) {
+                if (parsed[1] == "Death") {
+                    parsed[1] = "Death Knight";
+                }
+                if (parsed[1] == "Demon") {
+                    parsed[1] = "Demon Hunter";
+                }
+                role = roles.get("name", parsed[1]).id;
+                bot.removeMemberFromRole(user, role);
+                bot.reply(message, "You are no longer a " + parsed[1] + "!");
+            } else {
+                bot.reply(message, "Class does not exist, or you cannot remove that role.");
+            }
+        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
+            role = roles.get("name", parsed[1]).id;
+            bot.removeMemberFromRole(user, role);
+            bot.reply(message, "Removed you from " + parsed[1] + "!");
+        } else {
+            bot.reply(message, "Role does not exist, or you cannot remove that role.");
+        }
     }
-    // !game status for Jarvis
-    else if (input.startsWith("!GAME")) {
-        bot.setStatus('online', parsed[1]);
+    // !say channel message
+    else if (!(message.channel.isPrivate) && input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "raiding" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "pokemon" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters")) {
+        channel = channels.get("name", parsed[1]).id; // get channel id
+        console.log("Channel id: " + channel + " for " + parsed[1]);
+        role = roles.get("name", "Officers").id;
+        reserved = parsed[2];
+        for (var i = 3; i < parsed.length; i++) {
+            reserved = reserved + " " + parsed[i];
+        }
+        if (bot.memberHasRole(user, role)) {
+            bot.sendMessage(channel, reserved);
+        } else {
+            bot.reply(message, "You don't have valid permissions to do that.");
+        }
     }
-    // do you need an adult
-    else if (input.includes("I NEED AN ADULT")) {
-        bot.reply(message, "Me too");
-    }
-    // get guide links by class/spec
+    // !guide helper
     else if (input.startsWith("?GUIDE")) {
         bot.sendMessage(message, "By using !GUIDE you can query my database for class/general guides from across the web. An example would be '!guide shadowpriest' to get a guide for shadow priests.");
-    } else if (input.startsWith("!GUIDE")) {
+    }
+    // get guide links by class/spec 
+    else if (input.startsWith("!GUIDE")) {
         switch (parsedReg[1]) {
             case "BLOODDK":
             case "BLOODDEATHKNIGHT":
-                bot.reply(message,"Here is the guide for Blood Death Knights: <https://docs.google.com/document/d/1rNeybQ76QKKQ2k5NXoErhG6bfijHo8O1FPHuqxR54JE/edit>");
+                bot.reply(message, "Here is the guide for Blood Death Knights: <https://docs.google.com/document/d/1rNeybQ76QKKQ2k5NXoErhG6bfijHo8O1FPHuqxR54JE/edit>");
                 break;
             case "HOLYPRIEST":
-                bot.reply(message,"Here is the guide for Holy Priests: <https://www.automaticjak.com/guides/holy>");
+                bot.reply(message, "Here is the guide for Holy Priests: <https://www.automaticjak.com/guides/holy>");
                 break;
             case "DISCPRIEST":
             case "DISCIPLINEPRIEST":
-                bot.reply(message,"Here are the guides for Discipline Priests: <https://docs.google.com/document/d/1NbsDtJLVZqNc87jFzt-6WlPL02JOYmwppS1INtjVQTw/pub>\n<https://docs.google.com/document/d/1bYJ1KgX6cO6qHEoCVRTvsc0TCOYkQ_GUwUKd2672Ntg/pub>\n<https://www.automaticjak.com/guides/discipline>");
+                bot.reply(message, "Here are the guides for Discipline Priests: <https://docs.google.com/document/d/1NbsDtJLVZqNc87jFzt-6WlPL02JOYmwppS1INtjVQTw/pub>\n<https://docs.google.com/document/d/1bYJ1KgX6cO6qHEoCVRTvsc0TCOYkQ_GUwUKd2672Ntg/pub>\n<https://www.automaticjak.com/guides/discipline>");
                 break;
             case "SPRIEST":
             case "SHADOWPRIEST":
-                bot.reply(message,"Here is the guide for Shadow Priests: <https://howtopriest.com/viewtopic.php?f=19&t=8402>");
+                bot.reply(message, "Here is the guide for Shadow Priests: <https://howtopriest.com/viewtopic.php?f=19&t=8402>");
                 break;
             case "ELEMENTALSHAMAN":
             case "ELESHAMAN":
-                bot.reply(message,"Here is the guide for Elemental Shamans: <http://www.wowhead.com/guides/classes/shaman/elemental/overview>");
+                bot.reply(message, "Here is the guide for Elemental Shamans: <http://www.wowhead.com/guides/classes/shaman/elemental/overview>");
                 break;
             default:
                 bot.reply(message, "Class guide does not exist in my database, or I'm not sure where to find it.");
         }
     }
-    // get WA category links
+    // !WA helper
     else if (input.startsWith("?WA")) {
         bot.sendMessage(message, "By using !WA you can query my database for class/general Weak Auras from WAGO.io. An example would be '!wa rogue' to get weakauras for rogues.");
-    } else if (input.startsWith("!WA")) {
+    }
+    // get WA category links 
+    else if (input.startsWith("!WA")) {
         switch (parsedReg[1]) {
             case "WAGO":
                 bot.reply(message, "<https://wago.io/>");
@@ -693,10 +787,12 @@ bot.on("message", function(message) {
                 bot.reply(message, "Category does not exist, or I'm not sure where to find it.");
         }
     }
-    // get discord servers
+    // !server helper
     else if (input.startsWith("?SERVER")) {
         bot.sendMessage(message, "By using !server you can query my database for discord channel invite links. An example would be '!server rogue' to get the inite link for the rogue discord.");
-    } else if (input.startsWith("!SERVER")) {
+    }
+    // get discord servers
+    else if (input.startsWith("!SERVER")) {
         switch (parsedReg[1]) {
             case "WA":
                 bot.reply(message, "https://discord.me/wa2");
@@ -763,201 +859,158 @@ bot.on("message", function(message) {
                 bot.reply(message, "Channel does not exist, or I'm not sure where to find it.");
         }
     }
-    // !say channel message
-    else if (!(message.channel.isPrivate) && input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "pokemon" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters" || parsed[1] === "hot-button-issues")) {
-        channel = channels.get("name", parsed[1]).id; // get channel id
-        console.log("Channel id: " + channel + " for " + parsed[1]);
-        role = roles.get("name", "Officers").id;
-        reserved = parsed[2];
-        for (var i = 3; i < parsed.length; i++) {
-            reserved = reserved + " " + parsed[i];
+    // ranking help
+    else if (input === "?RANKING") {
+        bot.reply(message, "By using !ranking PLAYERNAME BOSSNAME [-h] you can check WCL parses for that characters rankings. Simply add -h to the end to check HPS rankings instead of DPS.");
+    }
+    // ranking
+    else if (input.startsWith("!RANKING")) {
+        var char = encodeURIComponent(parsed[1]);
+        /*
+        switch(parsedReg[2]) {
+            case "NYTHENDRA":
+                encounter = 1853;
+                bossname = "Nythendra";
+                break;
+            case "IL'GYNOTH":
+            case "IL":
+            case "ILGYNOTH":
+                encounter = 1873;
+                bossname = "Il'gynoth, Heart of Corruption";
+                break;
+            case "ELERETHE":
+            case "RENFERAL":
+            case "ELE":
+                encounter = 1876;
+                bossname = "Elerethe Renferal";
+                break;
+            case "URSOC":
+                encounter = 1841
+                bossname = "Ursoc";
+                break;
+            case "DRAGONS":
+            case "DARGONS":
+                encounter = 1854;
+                bossname = "Dragons of the Nightmare";
+                break;
+            case "CENARIUS":
+                encounter = 1877;
+                bossname = "Cenarius";
+                break;
+            case "XAVIUS":
+                encounter = 1864;
+                bossname = "Xavius";
+                break;
         }
-        if (bot.memberHasRole(user, role)) {
-            bot.sendMessage(channel, reserved);
+        */
+        switch (parsedReg[2]) {
+            case "HELLFIRE":
+            case "ASSAULT":
+            case "HFA":
+                encounter = 1778;
+                bossname = "Hellfire Assault";
+                break;
+            case "REAVER":
+            case "IRON":
+            case "IR":
+                encounter = 1785;
+                bossname = "Iron Reaver";
+                break;
+            case "KORMROK":
+                encounter = 1787;
+                bossname = "Kormrok";
+                break;
+            case "COUNCIL":
+                encounter = 1798;
+                bossname = "Hellfire High Council";
+                break;
+            case "KILROGG":
+                encounter = 1786;
+                bossname = "Kilrogg Deadeye";
+                break;
+            case "GOREFIEND":
+            case "GORE":
+                encounter = 1783;
+                bossname = "Gorefiend";
+                break;
+            case "ISKAR":
+            case "MOTHERFUCKER":
+            case "CODYSFAV":
+            case "CODYSFAVORITE":
+                encounter = 1788;
+                bossname = "Shadow-Lord Iskar";
+                break;
+            case "FEL":
+            case "ZAKUUN":
+                encounter = 1777;
+                bossname = "Fel Lord Zakuun";
+                break;
+            case "XHUL":
+                encounter = 1800;
+                bossname = "Xhul'horac";
+                break;
+            case "SOC":
+            case "SOCRETHAR":
+                encounter = 1794;
+                bossname = "Socrethar";
+                break;
+            case "TYRANT":
+                encounter = 1784;
+                bossname = "Tyrant Velhari";
+                break;
+            case "MANNY":
+            case "MANNOROTH":
+                encounter = 1795;
+                bossname = "Mannoroth";
+                break;
+            case "ARCHI":
+            case "ARCHIMONDE":
+                encounter = 1799;
+                bossname = "Archimonde";
+                break;
+            default:
+                encounter = 0;
+                bossname = "WTF";
+                break;
+        }
+        if (input.endsWith("-H")) {
+            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=hps&partition=" + partition + "&api_key=094548df90417c69b09887c0b13ff483";
         } else {
-            bot.reply(message, "You don't have valid permissions to do that.");
+            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=dps&partition=" + partition + "&api_key=094548df90417c69b09887c0b13ff483";
         }
-    } else if (input.startsWith("?ADDROLE") || input.startsWith("?ADD")) {
-        bot.sendMessage(message, "To get added into a channel type '!add channelName' where channel name is a valid name (case matters!). The options are: Pokemon, Healers, Theorycrafting, Overwatch, and HBI.");
-    }
-    // !addrole Role
-    else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD")) && !(message.channel.isPrivate)) {
-        //bot.sendMessage(message,parsed[1]); // send message that contains the roleid
-        // Check of role matches the class list
-        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Priest" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
-            role = roles.get("name", "Officers").id; //get roll id of Officer/Admin role
-            // Check if member is an Officer/Admin
-            if (bot.memberHasRole(user, role)) {
-                if (parsed[1] == "Death") {
-                    parsed[1] = "Death Knight";
+        request({
+            method: 'GET',
+            uri: uri,
+            json: true
+        }, (error, response, body) => {
+            if (!error && response.statusCode == 200 && (encounter != 0) && body.length > 0) {
+                var rank = response.body;
+                spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
+                playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
+                var classparsed = classConvert(playerclass);
+                var specparsed = specConvert(playerclass, spec);
+                if (input.endsWith("-H")) {
+                    bot.reply(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
+                } else {
+                    bot.reply(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
                 }
-                if (parsed[1] == "Demon") {
-                    parsed[1] = "Demon Hunter";
-                }
-                role = roles.get("name", parsed[1]).id; // get roleid of class
-                bot.addMemberToRole(user, role);
-                bot.reply(message, "You are now a " + parsed[1] + "!");
-            } else { // if not an officer/admin
-                bot.reply(message, "Class does not exist, or you do not have permission to add that role.");
-            }
-            // Check if role matches channel list
-        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
-            role = roles.get("name", parsed[1]).id; // get roleid of channel
-            bot.addMemberToRole(user, role);
-            bot.reply(message, "Added you to the " + parsed[1] + " channel!");
-        } else { // if role does not exist
-            bot.reply(message, "Role does not exist.");
-        }
-    } else if ((input.startsWith("?REMOVEROLE") || input.startsWith("?REMOVE") || input.startsWith("?RM")) && !(message.channel.isPrivate)) {
-        bot.sendMessage(message, "To remove yourself from a channel type '!remove channelName' where channel name is a valid name (case matters!). The options are: Pokemon, Healers, Theorycrafting, Overwatch, and HBI.");
-    }
-    // !removerole Developers
-    else if ((input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) && !(message.channel.isPrivate)) {
-        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Priest" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
-            role = roles.get("name", "Officers").id;
-            if (bot.memberHasRole(user, role)) {
-                if (parsed[1] == "Death") {
-                    parsed[1] = "Death Knight";
-                }
-                if (parsed[1] == "Demon") {
-                    parsed[1] = "Demon Hunter";
-                }
-                role = roles.get("name", parsed[1]).id;
-                bot.removeMemberFromRole(user, role);
-                bot.reply(message, "You are no longer a " + parsed[1] + "!");
             } else {
-                bot.reply(message, "Class does not exist, or you cannot remove that role.");
+                bot.reply(message, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
             }
-        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch" || parsed[1] == "HBI") {
-            role = roles.get("name", parsed[1]).id;
-            bot.removeMemberFromRole(user, role);
-            bot.reply(message, "Removed you from " + parsed[1] + "!");
-        } else {
-            bot.reply(message, "Role does not exist, or you cannot remove that role.");
-        }
-    }
-    // Good Night Jarvis
-    else if (input === "GOOD NIGHT JARVIS") {
-        role = roles.get("name", "Officers").id;
-        if (bot.memberHasRole(user, role)) {
-            bot.reply(message, "Good Night Sir.");
-        }
-    }
-    // Jarvis GIF
-    else if (input === "!JARVIS") {
-        bot.sendFile(message, "http://31.media.tumblr.com/dea23aa7056d90cdfdacdc2117171e6f/tumblr_mmq33aTgAD1rvvj1ho2_r2_500.gif");
-    }
-    // Fantasy GIF
-    else if (input === "!FANTASY" || input.includes("CLASS FANTASY")) {
-        bot.sendFile(message, "http://i.imgur.com/EMSiUF3.jpg");
-    }
-    // invite link
-    else if (input === "!INVITE") {
-        bot.sendMessage(message, "Here is the invite link: XXXX");
-    }
-    // Archimonde Kill Video
-    else if (input === "!ARCHIMONDE") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Archimonde: https://www.youtube.com/watch?v=Jkt1iId7Xbc");
-    }
-    // Mannoroth Kill video
-    else if (input === "!MANNY" || input === "!MANNOROTH") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Mannoroth: https://www.youtube.com/watch?v=b7mTPw0pv20");
-    }
-    // Xhul'Horac Kill video
-    else if (input === "!XHUL'HORAC" || input === "!XHUL") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Xhul'Horac: https://www.youtube.com/watch?v=N2aSgC4DlIU");
-    }
-    // Tyrant Kill video
-    else if (input === "!TYRANT") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Tyrant: https://www.youtube.com/watch?v=wHUKGvI6U2Y");
-    }
-    // Fel Lord Kill video
-    else if (input === "!FEL LORD" || input === "!FEL") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Fel Lord: https://www.youtube.com/watch?v=d0C92xy1fts");
-    }
-    // Iskar Kill video
-    else if (input === "!ISKAR") {
-        bot.sendMessage(message, "Hey it's @Codiak#2504 favorite!! Mythic Iskar: https://www.youtube.com/watch?v=9iIAlJQ3Fws");
-    }
-    // Socrethar Kill video
-    else if (input === "!SOCRETHAR" || input === "!SOC") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Socrethar: https://www.youtube.com/watch?v=cbO6Ri4XqlA");
-    }
-    // Gorefiend Kill video
-    else if (input === "!GOREFIEND" || input === "!GORE") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Gorefiend: https://www.youtube.com/watch?v=OYOQ6ahRAc4");
-    }
-    // Kilrogg Kill video
-    else if (input === "!KILROGG") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Kilrogg: https://www.youtube.com/watch?v=37hyWu503zo");
-    }
-    // COUNCIL Kill video
-    else if (input === "!COUNCIL" || input === "!HELLFIRE HIGH COUNCIL") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Hellfire High Council: https://www.youtube.com/watch?v=89wK24T2lK8");
-    }
-    // Kormrok Kill video
-    else if (input === "!KORMROK" || input === "!KORM") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Kormrok: https://www.youtube.com/watch?v=KAnECqXw11c");
-    }
-    // Reaver Kill video
-    else if (input === "!REAVER" || input === "!IRON REAVER") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Iron Reaver: https://www.youtube.com/watch?v=8exVgQfHAaA");
-    }
-    // Assault Kill video
-    else if (input === "!ASSAULT" || input === "!HELLFIRE ASSAULT") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Hellfire Assault: https://www.youtube.com/watch?v=FBKpYBYkZ5w");
-    }
-    // Hans Kill video
-    else if (input === "!HANS" || input === "!FRANZ" || input === "!HANS'GAR AND FRANZOK") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Hans'gar and Franzok: https://www.youtube.com/watch?v=dCbk8OamUow");
-    }
-    // Oreo Kill video
-    else if (input === "!OREO" || input === "!ORE" || input === "!OREGORGER") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Oregorger: https://www.youtube.com/watch?v=F8xwKWEci_I");
-    }
-    // Gruul Kill video
-    else if (input === "!GRUUL") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Gruul: https://www.youtube.com/watch?v=zYs9iKxrUGU");
-    }
-    // Beastlord Kill video
-    else if (input === "!BEASTLORD" || input === "!BEASTLORD DARMAC") {
-        bot.sendMessage(message, "Here's the kill video for Mythic Beastlord Darmac: https://www.youtube.com/watch?v=n3Jr61veZkQ");
-    }
-    // YouTube Channel
-    else if (input === "!YOUTUBE") {
-        bot.sendMessage(message, "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw");
-    }
-    // Plug.dj
-    else if (input === "!MUSIC" || input === "!PLUG" || input === "!DJ" || input === "!PLUG.DJ") {
-        bot.sendMessage(message, "Here's our Plug.DJ channel: XXX");
-    }
-    // Website Link
-    else if (input === "!WEBSITE") {
-        bot.sendMessage(message, "Check out dat website: http://www.exiledpower.com");
-    }
-    // Prints out the link to the roster in Google Sheets
-    else if (input === "!ROSTER" || input === "#AMISITTING?") {
-        bot.sendMessage(message, "Here is the roster: XXX");
-    }
-    // creator
-    else if (input === "!QUESTION WHO CREATED YOU?" || input === "!CREATOR" || input === "!QUESTION WHO IS YOUR CREATOR?") {
-        bot.sendMessage(message, "My creator is the almighty Republic of course. He's pretty swell.");
-    }
-    // !Is cody good at playing hunter?
-    else if (input === "!QUESTION IS CODY GOOD AT PLAYING HUNTER?") {
-        bot.reply(message, "Nope");
-    }
-    // its not random
-    else if (input === "!RANDOM" || input === "#ITSRANDOM") {
-        bot.sendMessage(message, "It's never random. Molo is a cheater.");
-    }
-    // GITHUB issues
-    else if (input === "!ISSUE" || input === "!SUGGESTION" || input === "!FEATURE" || input === "!FEEDBACK") {
-        bot.sendMessage(message, "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues")
+        });
     }
     // Prints out list of commands in Discord
-    else if (input === "!HELP") {
-        bot.sendMessage(message, "You can now message Jarvis directly! Most things will work (other than channel specific stuff).\nList of Commands:\n Kill Vidoes = !BossNameHere\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] CHANNEL (CHANNEL = Pokemon, Healers, Theorycrafting, Overwatch, HBI)\n WoW Discord Links = !SERVER searchterms\n Get Source Code = !GITHUB\n Have an issue/suggestion? = !issue\n WCL = !WCL\n WoWProgress = !WOWPROGRESS\n Artifact Power Guide = !Artifact\n Legion Leveling Lexicon = !Lexicon\n Random Lore Facts = !Lore\n WAGO Class Links = !wa CLASSNAME");
+    else if (input === "!HELP" || input === "?JARVIS") {
+        bot.sendMessage(message, "You can now message Jarvis directly! Most things will work (other than channel specific stuff).\nList of Commands:\n Kill Vidoes = !BOSS BOSSNAMEHERE or !VIDEO VIDEONAMEHERE\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] CHANNEL (CHANNEL = Healers, Theorycrafting, Overwatch)\n WoW Discord Links = !SERVER searchterms\n Get Source Code = !GITHUB\n Have an issue/suggestion? = !issue\n WCL = !WCL\n WoWProgress = !WOWPROGRESS\n Artifact Power Guide = !Artifact\n Legion Leveling Lexicon = !Lexicon\n Random Lore Facts = !Lore\n WAGO Class Links = !wa CLASSNAME");
+    }
+    // command not found
+    else if (input.startsWith("!")) {
+        bot.reply(message, "I'm sorry, but I don't recognize that command pattern. Try using !help or ?commandname to get assistance.");
     }
 });
-bot.loginWithToken("XXX");
+bot.loginWithToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+
+bot.on("disconnect", function() {
+    console.log("Bot disconnected");
+    bot.loginWithToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+});
