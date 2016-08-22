@@ -8,24 +8,30 @@ Check out the [Wiki](https://github.com/seanpeters86/Jarvis/wiki) for some walkt
 ## Commands
 | Command Name  | Key |
 | ------------- | ------------- |
-| Hello Jarvis | Jarvis says hello!  |
-| !addrole ROLE  [alias: !add ROLE]| adds an existing role, ROLE, to a user  |
-| !removerole ROLE [alias: !remove ROLE, !rm ROLE] | removes an existing role, ROLE, from a user |
-| Good night Jarvis | Jarvis says goodnight |
-| !Jarvis | Displays a Jarvis gif |
-| !invite | Displays the discord invite link |
-| !roster [alias: #AMISITTING?] | Displays the current roster from Google Drive |
-| !BOSSNAME | Displays the Boss Kill Video, if it exists |
-| !music [alias: !plug, !DJ, !Plug.DJ] | Displays the link to Plug.DJ |
-| !website | Displays teh link to the guild website |
-| !help | Prints out the list of commands |
-| !random [alias: #ITSRANDOM] | It's never random! |
-| !git [alias: !GITHUB, !CODE] | Displays the link to this git repo |
-| !game status | sets the users currently playing game to status |
-| !server search | displays the discord invite link for the server that matches the search |
-| !voice channel file | plays the file in the specified voice channel |
-| !say channel message1 message2 messagen | has jarvis send a message in the channel |
-| !issue [alias: !SUGGESTION, !FEATURE, !FEEDBACK] | links to the issue page on git |
+| Hello Jarvis |  Jarvis says hello! |
+| SALT | Displays a random salt gif |
+| WRECKED | displays a random wrecked gif |
+| !FANTASY | Displays a class fantasy gif |
+| !ARTIFACT | Links to the artifact calculation guide |
+| !SHAME | displays the shame gif |
+| !LEXICON | links the current legion leveling guides |
+| !WOWPROGRESS | Links to wowprogress and checks EPs current server ranking |
+| !WARCRAFTLOGS | Links to the WCL page for EP |
+| !INVITE | generates an invite link |
+| !ROSTER | links to the guild roster |
+| !LORE | displays a random lore image |
+| !BOSS BOSSNAME | links to the boss kill video if in the database |
+| !VIDEO VIDEONAME | links to the video if in the database |
+| !ADDROLE ROLENAME | adds the given role to the user |
+| !REMOVEROLE ROLENAME | removes the given role from the user |
+| !SAY CHANNELNAME MESSAGE STRING HERE| has jarvis say whatever you want in the given channel |
+| !GUIDE SPECCLASS | links to the guide if it exists in the database |
+| !WA QUERY | links to the WAGO.IO category based on the query |
+| !SERVER QUERY | links to the discord server based on the query |
+| !RANKING PLAYERNAME BOSSNAME | queries WCL for rankings on the given boss for the given player for their specific class/spec |
+| !HELP | DISPLAYS COMMAND LIST |
+
+
 
 ## To Install
 - First download the Node Package Manager (NPM)
