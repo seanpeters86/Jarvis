@@ -18,6 +18,7 @@ Check out the [Wiki](https://github.com/seanpeters86/Jarvis/wiki) for some walkt
 | !WOWPROGRESS | Links to wowprogress and checks EPs current server ranking |
 | !WARCRAFTLOGS | Links to the WCL page for EP |
 | !INVITE | generates an invite link |
+| !PIPELINE | generates the link to the video pipeline file |
 | !ROSTER | links to the guild roster |
 | !LORE | displays a random lore image |
 | !BOSS BOSSNAME | links to the boss kill video if in the database |
