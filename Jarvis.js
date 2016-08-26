@@ -3,7 +3,7 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
-Version: 1.0.0
+Version: 1.1.0
 */
 
 var Discord = require("discord.js");
@@ -180,10 +180,13 @@ function specConvert(playerclass, spec) {
                     return "Assassination";
                     break;
                 case 2:
-                    return "Outlaw";
+                    return "Combat";
                     break;
                 case 3:
                     return "Subtlety";
+                    break;
+                case 4:
+                    return "Outlaw";
                     break;
                 default:
                     return "WTF";
@@ -282,13 +285,13 @@ bot.on("message", function(message) {
     var raidid = 8;
     // Partition should almost always be set to 1, Pre-Patch is 2
     var partition = 2;
-    var planfortheweek = "The plan for Thursday is to continue the split run with Group 2 (Manny + Arch). Check the roster to make sure no conflicts exist. FYI if we can sell Blackhand mounts we will potentially be doing that on both days (WTB Guild Repairs).";
+    var planfortheweek = "Get ready for Legion Launch on Tuesday. You can do ```!countdown Legion``` to see how much longer we have. Dungeon groups for the first 3 weeks are posted on the second sheet of the roster.";
     // Begin Command list
     // Hello Jarvis
     if (input === "HELLO JARVIS") {
         bot.reply(message, "Hello! Good to be back.");
     }
-    // Fuck you Jarvis
+    // Fuck You Jarvis
     else if (input.includes("FUCK YOU JARVIS") || input.includes("FUCK YOU, JARVIS")) {
         var random = Math.floor((Math.random() * 3) + 1);
         if (random == 1) {
@@ -299,7 +302,7 @@ bot.on("message", function(message) {
             bot.reply(message, "Fuck you too, silly human. Have you seen your logs recently? (They suck lol)");
         }
     }
-    // thanks jarvis
+    // Thanks Jarvis
     else if (input.includes("THANKS JARVIS") || input.includes("THANKS, JARVIS") || input.includes("THANK YOU, JARVIS") || input.includes("THANK YOU JARVIS")) {
         bot.reply(message, "Anytime.");
     }
@@ -328,47 +331,72 @@ bot.on("message", function(message) {
     else if (input.includes("I NEED AN ADULT")) {
         bot.reply(message, "Me too");
     }
+    // delete test
+    /*
+    else if (input.includes("HARAMBE") && !(message.channel.isPrivate)) {
+        bot.deleteMessage(message);
+        bot.sendMessage(user,"Harambe is dead.");
+    }
+    */
     // salt
     else if (input === "SALT" || input === "!SALT") {
         var random = Math.floor((Math.random() * 7) + 1);
-        if (random == 1) {
-            bot.sendFile(message, "http://i.imgur.com/Igir7HF.png");
-        } else if (random == 2) {
-            bot.sendFile(message, "http://i.imgur.com/mzfz7vf.jpg");
-        } else if (random == 3) {
-            bot.sendFile(message, "https://images.rapgenius.com/44f0fc58fb3a86b3c7cc19cfaab2bf1a.612x612x1.jpg");
-        } else if (random == 4) {
-            bot.sendFile(message, "https://cdn.meme.am/instances/500x/51800528.jpg");
-        } else if (random == 5) {
-            bot.sendFile(message, "http://ct.fra.bz/ol/fz/sw/i40/2/4/8/frabz-salt-salt-everywhere-898ce5.jpg");
-        } else if (random == 6) {
-            bot.sendFile(message, "http://www.relatably.com/m/img/high-level-meme/3972715.jpg");
-        } else {
-            bot.sendFile(message, "http://static1.gamespot.com/uploads/original/1333/13335885/2874659-2341208346-ibzFa.gif");
+        switch (random) {
+            case 1:
+                bot.sendFile(message, "http://i.imgur.com/Igir7HF.png");
+                break;
+            case 2:
+                bot.sendFile(message, "http://i.imgur.com/mzfz7vf.jpg");
+                break;
+            case 3:
+                bot.sendFile(message, "https://images.rapgenius.com/44f0fc58fb3a86b3c7cc19cfaab2bf1a.612x612x1.jpg");
+                break;
+            case 4:
+                bot.sendFile(message, "https://cdn.meme.am/instances/500x/51800528.jpg");
+                break;
+            case 5:
+                bot.sendFile(message, "http://ct.fra.bz/ol/fz/sw/i40/2/4/8/frabz-salt-salt-everywhere-898ce5.jpg");
+                break;
+            case 6:
+                bot.sendFile(message, "http://www.relatably.com/m/img/high-level-meme/3972715.jpg");
+                break;
+            default:
+                bot.sendFile(message, "http://static1.gamespot.com/uploads/original/1333/13335885/2874659-2341208346-ibzFa.gif");
         }
     }
     // wrecked
     else if (input.includes("WRECKED") || input.includes("REKT")) {
         var random = Math.floor((Math.random() * 7) + 1);
-        if (random == 1) {
-            bot.sendFile(message, "https://cdn.meme.am/instances/500x/47131303.jpg");
-        } else if (random == 2) {
-            bot.sendFile(message, "https://cdn.meme.am/instances/500x/50087032.jpg");
-        } else if (random == 3) {
-            bot.sendFile(message, "https://media.giphy.com/media/opY7SoUTNU3ao/giphy.gif");
-        } else if (random == 4) {
-            bot.sendFile(message, "http://i.imgur.com/6mbJFvA.jpg");
-        } else if (random == 5) {
-            bot.sendFile(message, "http://s2.quickmeme.com/img/94/941350454edd1fd9e446160102a2a51b3a7a2394dcfcb40caa9c96d60c9ea94e.jpg");
-        } else if (random == 6) {
-            bot.sendFile(message, "http://cdnvideo.dolimg.com/cdn_assets/f6ef0c9bee8be77f5896afb421a04d7586ce7dbe.jpg");
-        } else {
-            bot.sendFile(message, "https://cdn.meme.am/instances/400x/52466269.jpg");
+        switch (random) {
+            case 1:
+                bot.sendFile(message, "https://cdn.meme.am/instances/500x/47131303.jpg");
+                break;
+            case 2:
+                bot.sendFile(message, "https://cdn.meme.am/instances/500x/50087032.jpg");
+                break;
+            case 3:
+                bot.sendFile(message, "https://media.giphy.com/media/opY7SoUTNU3ao/giphy.gif");
+                break;
+            case 4:
+                bot.sendFile(message, "http://i.imgur.com/6mbJFvA.jpg");
+                break;
+            case 5:
+                bot.sendFile(message, "http://s2.quickmeme.com/img/94/941350454edd1fd9e446160102a2a51b3a7a2394dcfcb40caa9c96d60c9ea94e.jpg");
+                break;
+            case 6:
+                bot.sendFile(message, "http://cdnvideo.dolimg.com/cdn_assets/f6ef0c9bee8be77f5896afb421a04d7586ce7dbe.jpg");
+                break;
+            default:
+                bot.sendFile(message, "https://cdn.meme.am/instances/400x/52466269.jpg");
         }
     }
     // Fantasy GIF
     else if (input === "!FANTASY" || input.includes("CLASS FANTASY")) {
         bot.sendFile(message, "http://i.imgur.com/EMSiUF3.jpg");
+    }
+    // Pipeline Link
+    else if (input === "!PIPELINE" || input === "!SCHEDULE" || input === "!IDEAS") {
+        bot.sendMessage(message, "<XXXXXXXXXXX>");
     }
     // Jarvis GIF
     else if (input === "!JARVIS") {
@@ -379,6 +407,14 @@ bot.on("message", function(message) {
     // artifact power guide
     else if (input === "!ARTIFACT") {
         bot.sendMessage(message, "Here is the artifact calculator for Legion: <https://docs.google.com/spreadsheets/d/11xQCzhiVM9gTZkUsu1UNs7z4dpwHpRQSUUZySY7xLv0/edit?usp=sharing>");
+    }
+    // EN Guide
+    else if (input === "!EN" || input === "!EMERALD") {
+        bot.sendMessage(message, "Here is the minimalist guide to the Emerald Nightmare <http://i.imgur.com/uVVRhYq.png>");
+    }
+    // Codec guide
+    else if (input === "!CODEC" || input === "!EXPORT" || input === "!EXPORTING" || input === "!PREMEIRE" || input === "!HANDBRAKE" || input === "!CONVERTING" || input === "!CONVERT") {
+        bot.sendMessage(message, "Here is the link for the Video Codec/Exporting Guide + Handbrake: <XXXXXXXXXXX>")
     }
     // SHAME
     else if (input === "!SHAME" || input === "SHAME") {
@@ -406,9 +442,9 @@ bot.on("message", function(message) {
             if (!error && response.statusCode == 200) {
                 var json_rank = response.body;
                 console.log(json_rank);
-                bot.reply(message, "Exiled Power is currently ranked " + `${prettyjson.render(json_rank.world_rank)}` + " in the world and " + `${prettyjson.render(json_rank.realm_rank)}` + " on Arthas.");
+                bot.sendMessage(message, "Exiled Power is currently ranked " + `${prettyjson.render(json_rank.world_rank)}` + " in the world and " + `${prettyjson.render(json_rank.realm_rank)}` + " on Arthas.");
             } else {
-                bot.reply(message, "I could not find a ranking for Exiled Power on WoWProgress for the current tier.");
+                bot.sendMessage(message, "I could not find a ranking for Exiled Power on WoWProgress for the current tier.");
             }
         });
     }
@@ -418,10 +454,12 @@ bot.on("message", function(message) {
     }
     // git repo
     else if (input === "!GITHUB" || input === "!GIT" || input === "!CODE" || input === "!SOURCE") {
+        bot.deleteMessage(message);
         bot.sendMessage(message, "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>");
     }
     // GITHUB issues
     else if (input === "!ISSUE" || input === "!SUGGESTION" || input === "!FEATURE" || input === "!FEEDBACK") {
+        bot.deleteMessage(message);
         bot.sendMessage(message, "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues")
     }
     // its not random
@@ -438,7 +476,7 @@ bot.on("message", function(message) {
     }
     // invite link
     else if (input === "!INVITE") {
-        bot.sendMessage(message, "Here is the invite link: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        bot.sendMessage(message, "Here is the invite link: XXXXXXXXXXX");
     }
     // YouTube Channel
     else if (input === "!YOUTUBE") {
@@ -446,7 +484,7 @@ bot.on("message", function(message) {
     }
     // Plug.dj
     else if (input === "!MUSIC" || input === "!PLUG" || input === "!DJ" || input === "!PLUG.DJ") {
-        bot.sendMessage(message, "Here's our Plug.DJ channel: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+        bot.sendMessage(message, "Here's our Plug.DJ channel: XXXXXXXXXXX");
     }
     // Website Link
     else if (input === "!WEBSITE") {
@@ -454,11 +492,89 @@ bot.on("message", function(message) {
     }
     // Prints out the link to the roster in Google Sheets
     else if (input === "!ROSTER" || input === "#AMISITTING?") {
-        bot.sendMessage(message, "Here is the roster: <XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX>");
+        bot.sendMessage(message, "Here is the roster: <XXXXXXXXXXX>");
     }
     // !game status for Jarvis
     else if (input.startsWith("!GAME") && input.endsWith("-J")) {
+        bot.deleteMessage(message);
         bot.setStatus('online', parsed[1]);
+    }
+    // cheatsheet
+    else if (input === "!CHEATSHEET" || input === "!DUNGEONGUIDE") {
+        bot.sendMessage(message, "Here is the mythic dungeon Cheat Sheet: <https://docs.google.com/document/d/1_tqb6mbU14BoABc4ApMTFxWMGaZ1KIu-6nuZ83p7tGM/preview>");
+    }
+    // pre-raid bis sheet
+    else if (input === "!BISLIST" || input.startsWith("!PRE-RAID")) {
+        bot.sendMessage(message, "Here is the Pre-Raid BiS List: <https://docs.google.com/spreadsheets/d/1Czd_rhHdeN75oLQiXdOxn1w0IqJOvVlSQhmTiaUS3sE/edit#gid=2137413748>");
+    }
+    // addons
+    else if (input === "!ADDONS") {
+        bot.sendMessage(message, "Auto Turn In: <https://mods.curse.com/addons/wow/autoturnin>\nWorld Quest Tracker: <https://mods.curse.com/addons/wow/world-quest-tracker>\nWorld Quest List: <	https://mods.curse.com/addons/wow/world-quests-list>\nCharacter Stat Sheet: <https://mods.curse.com/addons/wow/dejacharacterstats>\nHandyNotes Tracker: <https://mods.curse.com/addons/wow/handynotes_legionrarestreasures>");
+    }
+    // pinned messages 
+    else if (input.startsWith("!PINNED")) {
+        if (!(input.endsWith("-P"))) {
+            bot.deleteMessage(message);
+        }
+         bot.getPinnedMessages(message.channel, (err, messages) => {
+	      if(!err) {
+	          for(var message of messages) {
+                  var content = message.content;
+	              //console.log(content);
+                  if (input.endsWith("-P")) {
+                      bot.sendMessage(message,content);
+                  } else {
+                      bot.sendMessage(user,content);
+                  }
+                  if (!message.content) {
+                      bot.sendMessage(user,"No pinned messages in this channel, or I can't find them.");
+                  }
+	          }
+	      } else {
+	          console.log("Couldn't fetch pins: " + err);
+	      }
+	  });
+    }
+    // countdown helper
+    else if (input.startsWith("?COUNTDOWN")) {
+        bot.sendMessage(message,"Use !countdown QUERY, with QUERY being something such as Legion or EN");
+    }
+    // countdown
+    else if (input.startsWith("!COUNTDOWN")) {
+        var current = new Date();
+        switch (parsedReg[1]) {
+            case "LEGION":
+            case "LAUNCH":
+                var countdownName = "Legion";
+                var calculated = new Date(2016,7,30,7);
+                break;
+            case "MYTHIC+":
+            case "MYTHICPLUS":
+            case "EMERALD":
+            case "EN":
+                if (parsedReg[2] === "MYTHIC" || parsedReg[3] === "MYTHIC") {
+                    var countdownName = "Emerald Nightmare Mythic";
+                    var calculated = new Date(2016,8,27,3);
+                    break;
+                } else {
+                    var countdownName = "Emerald Nightmare Normal & Heroic / Mythic+";
+                    var calculated = new Date(2016,8,20,3);
+                    break;
+                }
+            default:
+                var countdownName = "INVALID";
+        }
+        var difference = calculated - current;
+        var seconds = Math.round((difference)/1000);
+        var minutes = Math.round((seconds)/60);
+        var hours = Math.round((minutes)/60);
+        var days = Math.round((hours)/24);
+        if (!(countdownName === "INVALID")){
+            bot.sendMessage(message,"Countdown to " + countdownName + "\n" + days + " Days, " + (hours % 24) + " Hours, " + (minutes % 60) + " Minutes, and " + (seconds % 60) + " Seconds.");
+        } else {
+            bot.sendMessage(message, "Invalid query. Current options are: Legion, Mythic+ and Emerald Nightmare");
+        }
+        console.log("Days: " + days + " Hours: " + (hours % 24) + " Minutes: " + (minutes % 60) + " Seconds: " + (seconds % 60));
     }
     // lore core
     else if (input === "!LORE" || input === "!LORECORE" || input === "#LORECORE" || input === "#LORE") {
@@ -532,12 +648,38 @@ bot.on("message", function(message) {
         }
     }
     // Video helper
-    else if (input.startsWith("?BOSS") || input.startsWith("!VIDEO")) {
+    else if (input.startsWith("?BOSS") || input.startsWith("?VIDEO")) {
         bot.sendMessage(message, "By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
     }
     // Kill Videos
     else if (input.startsWith("!BOSS") || input.startsWith("!VIDEO")) {
         switch (parsedReg[1]) {
+            case "NYTHENDRA":
+                bot.sendMessage(message, "Video not posted yet!");
+                break;
+            case "IL'GYNOTH":
+            case "IL":
+            case "ILGYNOTH":
+                bot.sendMessage(message, "Video not posted yet!");
+                break;
+            case "ELERETHE":
+            case "RENFERAL":
+            case "ELE":
+                bot.sendMessage(message, "Video not posted yet!");
+                break;
+            case "URSOC":
+                bot.sendMessage(message, "Video not posted yet!");
+                break;
+            case "DRAGONS":
+            case "DARGONS":
+                bot.sendMessage(message, "Video not posted yet!");
+                break;
+            case "CENARIUS":
+                bot.sendMessage(message, "Video not posted yet!");
+                break;
+            case "XAVIUS":
+                bot.sendMessage(message, "Video not posted yet!");
+                break;
             case "ARCHIMONDE":
                 bot.sendMessage(message, "https://www.youtube.com/watch?v=Jkt1iId7Xbc");
                 break;
@@ -607,7 +749,7 @@ bot.on("message", function(message) {
         bot.sendMessage(message, "To get added into a channel type '!add channelName' where channel name is a valid name (case matters!). The options are: Pokemon, Healers, Theorycrafting, and Overwatch.");
     }
     // !addrole Role
-    else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD")) && !(message.channel.isPrivate)) {
+    else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
         //bot.sendMessage(message,parsed[1]); // send message that contains the roleid
         // Check of role matches the class list
         if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Priest" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
@@ -627,7 +769,7 @@ bot.on("message", function(message) {
                 bot.reply(message, "Class does not exist, or you do not have permission to add that role.");
             }
             // Check if role matches channel list
-        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
+        } else if (parsed[1] == "Developers" || parsed[1] == "Music" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
             role = roles.get("name", parsed[1]).id; // get roleid of channel
             bot.addMemberToRole(user, role);
             bot.reply(message, "Added you to the " + parsed[1] + " channel!");
@@ -656,7 +798,7 @@ bot.on("message", function(message) {
             } else {
                 bot.reply(message, "Class does not exist, or you cannot remove that role.");
             }
-        } else if (parsed[1] == "Developers" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
+        } else if (parsed[1] == "Developers" || parsed[1] == "Music" || parsed[1] == "Pokemon" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
             role = roles.get("name", parsed[1]).id;
             bot.removeMemberFromRole(user, role);
             bot.reply(message, "Removed you from " + parsed[1] + "!");
@@ -665,7 +807,7 @@ bot.on("message", function(message) {
         }
     }
     // !say channel message
-    else if (!(message.channel.isPrivate) && input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "raiding" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "pokemon" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters")) {
+    else if (!(message.channel.isPrivate) && input.startsWith("!SAY") && (parsed[1] === "developers" || parsed[1] === "music" || parsed[1] === "raiding" || parsed[1] === "guild-chat" || parsed[1] === "senior-raiders" || parsed[1] === "officers" || parsed[1] === "overwatch" || parsed[1] === "pokemon" || parsed[1] === "theorycrafting" || parsed[1] === "welcome" || parsed[1] === "healing" || parsed[1] === "mages" || parsed[1] === "hunters")) {
         channel = channels.get("name", parsed[1]).id; // get channel id
         console.log("Channel id: " + channel + " for " + parsed[1]);
         role = roles.get("name", "Officers").id;
@@ -865,6 +1007,7 @@ bot.on("message", function(message) {
     }
     // ranking
     else if (input.startsWith("!RANKING")) {
+        bot.deleteMessage(message);
         var char = encodeURIComponent(parsed[1]);
         /*
         switch(parsedReg[2]) {
@@ -974,9 +1117,11 @@ bot.on("message", function(message) {
                 break;
         }
         if (input.endsWith("-H")) {
-            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=hps&partition=" + partition + "&api_key=094548df90417c69b09887c0b13ff483";
+            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=hps&partition=" + partition + "&api_key=XXXXXXXXXXX";
+        } else if (input.endsWith("-T")) {
+            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=krsi&partition=" + partition + "&api_key=XXXXXXXXXXX";
         } else {
-            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=dps&partition=" + partition + "&api_key=094548df90417c69b09887c0b13ff483";
+            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=dps&partition=" + partition + "&api_key=XXXXXXXXXXX";
         }
         request({
             method: 'GET',
@@ -989,28 +1134,34 @@ bot.on("message", function(message) {
                 playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
                 var classparsed = classConvert(playerclass);
                 var specparsed = specConvert(playerclass, spec);
+                // krsi for tanks
                 if (input.endsWith("-H")) {
-                    bot.reply(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
+                    bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
+                } else if (input.endsWith("-T")) {
+                    bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in Tanking (KRSI)");
                 } else {
-                    bot.reply(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
+                    bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
                 }
             } else {
-                bot.reply(message, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
+                bot.sendMessage(user, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
             }
         });
     }
     // Prints out list of commands in Discord
     else if (input === "!HELP" || input === "?JARVIS") {
-        bot.sendMessage(message, "You can now message Jarvis directly! Most things will work (other than channel specific stuff).\nList of Commands:\n Kill Vidoes = !BOSS BOSSNAMEHERE or !VIDEO VIDEONAMEHERE\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] CHANNEL (CHANNEL = Healers, Theorycrafting, Overwatch)\n WoW Discord Links = !SERVER searchterms\n Get Source Code = !GITHUB\n Have an issue/suggestion? = !issue\n WCL = !WCL\n WoWProgress = !WOWPROGRESS\n Artifact Power Guide = !Artifact\n Legion Leveling Lexicon = !Lexicon\n Random Lore Facts = !Lore\n WAGO Class Links = !wa CLASSNAME");
+        bot.deleteMessage(message);
+        //bot.sendMessage(message, "You can now message Jarvis directly! Most things will work (other than channel specific stuff).\nList of Commands:\n Kill Vidoes = !BOSS BOSSNAMEHERE or !VIDEO VIDEONAMEHERE\n Website Link = !website\n Weekly Roster = !roster\n Plug.DJ = !music\n Discord invite = !invite\n Add/Remove Channel Roles = !add [or !remove] CHANNEL (CHANNEL = Healers, Theorycrafting, Overwatch)\n WoW Discord Links = !SERVER searchterms\n Get Source Code = !GITHUB\n Have an issue/suggestion? = !issue\n WCL = !WCL\n WoWProgress = !WOWPROGRESS\n Artifact Power Guide = !Artifact\n Legion Leveling Lexicon = !Lexicon\n Random Lore Facts = !Lore\n Guide Links = !guide SPECCLASS\nWAGO Class Links = !wa CLASSNAME");
+        bot.sendFile(message, "http://i.imgur.com/fZtddS1.png");
     }
     // command not found
-    else if (input.startsWith("!")) {
-        bot.reply(message, "I'm sorry, but I don't recognize that command pattern. Try using !help or ?commandname to get assistance.");
+    else if (input.startsWith("!") && !((input.startsWith("!ROSIE") || input.startsWith("!HELP -R") || input.startsWith("!GAME -R") || input === "!GITHUB -R" || input === "!GIT -R" || input === "!CODE -R" || input === "!SOURCE -R" || input === "!ISSUE -R" || input === "!SUGGESTION -R" || input === "!FEATURE -R" || input === "!FEEDBACK -R" || input === "?TWITTER" || input === "?ROSIE"))) {
+        bot.deleteMessage(message);
+        bot.sendMessage(user, "I'm sorry, but I don't recognize " + message + " as a command pattern. Try using !help or ?commandname to get assistance.");
     }
 });
-bot.loginWithToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+bot.loginWithToken("XXXXXXXXXXX");
 
 bot.on("disconnect", function() {
     console.log("Bot disconnected");
-    bot.loginWithToken("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    bot.loginWithToken("XXXXXXXXXXX");
 });
