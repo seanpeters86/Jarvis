@@ -10,10 +10,6 @@ Check out the [Wiki](https://github.com/seanpeters86/Jarvis/wiki) for some walkt
 | ------------- | ------------- |
 | Hello Jarvis |  Jarvis says hello! |
 | Thanks, Jarvis | Jarvis responds! |
-| What is dead may never die | GoT image |
-| Winter is coming | GoT Image |
-| You know nothing | GoT Image |
-| Hold the door | GoT Image |
 | SALT | Displays a random salt gif |
 | WRECKED | displays a random wrecked gif |
 | !FANTASY | Displays a class fantasy gif |
