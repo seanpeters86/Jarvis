@@ -41,7 +41,7 @@ Check out the [Wiki](https://github.com/seanpeters86/Jarvis/wiki) for some walkt
 | !GUIDE SPECCLASS | links to the guide if it exists in the database |
 | !WA QUERY | links to the WAGO.IO category based on the query |
 | !SERVER QUERY | links to the discord server based on the query |
-| !RANKING PLAYERNAME BOSSNAME [-H | -T] | queries WCL for rankings on the given boss for the given player for their specific class/spec (-H = Healing | -T = Tanking) |
+| !RANKING PLAYERNAME BOSSNAME [-H or -T] | queries WCL for rankings on the given boss for the given player for their specific class/spec (-H = Healing or -T = Tanking) |
 | !HELP | DISPLAYS COMMAND LIST. Also can try ?COMMANDNAME to get specific help |
 
 
