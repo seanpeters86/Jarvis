@@ -32,16 +32,17 @@ Check out the [Wiki](https://github.com/seanpeters86/Jarvis/wiki) for some walkt
 | !PINNED [-P] | Gets all Pinned messages in the channel and PMs them to you. Add -P to make it public in the current channel |
 | !ROSTER | links to the guild roster |
 | !LORE | displays a random lore image |
-| !COUNTDOWN QUERY | Displays a countdown for Legion/EN/etc |
 | !BOSS BOSSNAME | links to the boss kill video if in the database |
 | !VIDEO VIDEONAME | links to the video if in the database |
 | !ADDROLE ROLENAME | adds the given role to the user |
 | !REMOVEROLE ROLENAME | removes the given role from the user |
 | !SAY CHANNELNAME MESSAGE STRING HERE| has jarvis say whatever you want in the given channel |
-| !GUIDE SPECCLASS | links to the guide if it exists in the database |
+| !GUIDE CLASS SPEC | links to the guide if it exists in the database |
+| !ARTIFACT CLASS SPEC | links to the artifact if it exists in the database |
 | !WA QUERY | links to the WAGO.IO category based on the query |
 | !SERVER QUERY | links to the discord server based on the query |
 | !RANKING PLAYERNAME BOSSNAME [-H or -T] | queries WCL for rankings on the given boss for the given player for their specific class/spec (-H = Healing or -T = Tanking) |
+| !ARMORY CHARNAME MYTHICS | gets mythic dungeon count for the character |
 | !HELP | DISPLAYS COMMAND LIST. Also can try ?COMMANDNAME to get specific help |
 
 
