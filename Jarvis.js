@@ -3,7 +3,7 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
-Version: 1.3.0
+Version: 1.5.0
 */
 var Discord = require("discord.js");
 var bot = new Discord.Client();
@@ -11,48 +11,25 @@ var Twitter = require('twitter');
 var fs = require('fs');
 var request = require('request');
 var prettyjson = require("prettyjson");
+var debug = false;
+var discordKey = "XXX";
+var wclkey = "XXX";
+var battlenetkey = "XXX";
+
+var balance = ["12/11/2016", "XXX"];
+var planfortheweek = "Going to be working on re-clearing all of EN this week.";
+var affixes = "This weeks' affixes are: Raging (+4) , Necrotic (+7), and Fortified (+10).";
+
+var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
+var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch"];
+var channelList = ["developers", "music", "raiding", "guild-chat", "senior-raiders", "officers", "overwatch", "theorycrafting", "welcome", "healing", "hunters"];
 
 function classConvert(playerclass) {
-    switch (playerclass) {
-        case 1:
-            return "Death Knight";
-            break;
-        case 2:
-            return "Druid";
-            break;
-        case 3:
-            return "Hunter";
-            break;
-        case 4:
-            return "Mage";
-            break;
-        case 5:
-            return "Monk";
-            break;
-        case 6:
-            return "Paladin";
-            break;
-        case 7:
-            return "Priest";
-            break;
-        case 8:
-            return "Rogue";
-            break;
-        case 9:
-            return "Shaman";
-            break;
-        case 10:
-            return "Warlock";
-            break;
-        case 11:
-            return "Warrior";
-            break;
-        case 12:
-            return "Demon Hunter";
-            break;
-        default:
-            return "WTF";
-            break;
+    var classList = {1: "Death Knight", 2: "Druid", 3: "Hunter", 4: "Mage", 5: "Monk", 6: "Paladin", 7: "Priest", 8: "Rogue", 9: "Shaman", 10: "Warlock", 11: "Warrior", 12: "Demon Hunter"};
+    if (classList[playerclass]) {
+       return classList[playerclass];
+    } else {
+        return "WTF";
     }
 }
 
@@ -263,87 +240,81 @@ function specConvert(playerclass, spec) {
 }
 
 var responses = {
-    "!COOKING": "Here is the Legion Cooking Recipes List: <https://docs.google.com/spreadsheets/d/1jqMLjJiXKbGnrRQpekK1ZqcU2F-67epTottR50-3du0/edit#gid=0>",
-    "HELLO JARVIS": "Hello! Good to be back.",
-    "!STAYCLASSY": "The following are the race/class combos we still need:\nTauren(Priest)\nTrolls(Warlock)\nUndead(Hunter)\nGoblins(DK, Rogue, Warlock, Priest)\nPandaren(Mage, Priest)",
-    "!QUESTION IS CODY GOOD AT PLAYING HUNTER?": "Nope",
-    "!INVITE": "Here is the invite link: *****",
-    "!YOUTUBE": "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw",
-    "!WEBSITE": "Check out dat website: http://www.exiledpower.com",
-    "!ROSTER": "Here is the roster: <*****>",
-    "!#AMISITTING": "Here is the roster: <*****>",
-    "!DRAWING": "Here is the drawing board for EP videos: <*****>",
+    "#AMISITTING": "Here is the roster: <XXX>",
+    "#ITSRANDOM": "It's never random. Molo is a cheater.",
     "!ADDONS": "Legion Addon list:\nAuto Turn In: <https://mods.curse.com/addons/wow/autoturnin>\nWorld Quest Tracker: <https://mods.curse.com/addons/wow/world-quest-tracker>\nWorld Quest List: <https://mods.curse.com/addons/wow/world-quests-list>\nCharacter Stat Sheet: <https://mods.curse.com/addons/wow/dejacharacterstats>\nHandyNotes Tracker: <https://mods.curse.com/addons/wow/handynotes_legionrarestreasures>",
-    "!PIPELINE": "<*****>",
-    "!SCHEDULE": "<*****>",
-    "!IDEAS": "<*****>",
-    "!UTILITY": "Here is the Legion Defensive/Utility Spell List: *****>",
-    "!DEFENSIVES": "Here is the Legion Defensive/Utility Spell List: <*****>",
-    "!CODEC": "Here is the link for the Video Codec/Exporting Guide + Handbrake: <*****>",
-    "!LOGS": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
-    "!WCL": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
-    "!WARCRAFTLOGS": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
+    "!BALANCE": "As of " + balance[0] + " the balance is: **" + balance[1] + "**",
+    "!CASH": "As of " + balance[0] + " the balance is: **" + balance[1] + "**",
+    "!CODE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
+    "!CODEC": "Here is the link for the Video Codec/Exporting Guide + Handbrake: <XXX>",
+    "!COMMAND": planfortheweek,
+    "!CONSUMABLES": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
+    "!COOKING": "Here is the Legion Cooking Recipes List: <https://docs.google.com/spreadsheets/d/1jqMLjJiXKbGnrRQpekK1ZqcU2F-67epTottR50-3du0/edit#gid=0>",
+    "!DEFENSIVES": "Here is the Legion Defensive/Utility Spell List: <https://docs.google.com/spreadsheets/d/1x6m0C6zJHVsEh63bgUgkQBKyLnkxYGeK3LM5JiVESzY/edit?usp=sharing>",
+    "!DRAWING": "Here is the drawing board for EP videos: <XXX>",
+    "!ENCHANTS": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
+    "!FOOD": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
+    "!GEMS": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
     "!GITHUB": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
     "!GIT": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
-    "!CODE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
-    "!SOURCE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
+    "HELLO JARVIS": "Hello! Good to be back.",
+    "!IDEAS": "<XXX>",
+    "!INVITE": "Here is the invite link: XXX",
+    "!INVITE ARTHAS": "Here is the invite link for the Arthas Discord: XXX",
     "!ISSUES": "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues",
+    "!LOGS": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
+    "!MONEY": "As of " + balance[0] + " the balance is: **" + balance[1] + "**",
+    "!MUSIC": "Here's our Plug.DJ channel: XXX",
+    "!PIPELINE": "<XXX>",
+    "!PLAN": planfortheweek,
+    "!PLANFORTHEWEEK": planfortheweek,
+    "!PLUGDJ": "Here's our Plug.DJ channel: XXX",
+    "!QUESTION IS CODY GOOD AT PLAYING HUNTER?": "Nope",
     "!RANDOM": "It's never random. Molo is a cheater.",
-    "#ITSRANDOM": "It's never random. Molo is a cheater.",
-    "!INVITE ARTHAS": "Here is the invite link for the Arthas Discord: *****",
-    "!MUSIC": "Here's our Plug.DJ channel: *****",
-    "!PLUGDJ": "Here's our Plug.DJ channel: *****",
-    "!ENCHANTS": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
-    "!GEMS": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
-    "!FOOD": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
-    "!CONSUMABLES": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
+    "!ROSTER": "Here is the roster: <XXX>",
+    "!SCHEDULE": "<XXX>",
+    "!SOURCE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
     "!STATS": "Here is the stat weights/priorities sheet: <https://docs.google.com/document/d/1gIOSfzrSHCd_j_ZUXl0gasuLprjCqzR5hgaVasX7ow4/edit?usp=sharing>",
-    "!WEIGHTS": "Here is the stat weights/priorities sheet: <https://docs.google.com/document/d/1gIOSfzrSHCd_j_ZUXl0gasuLprjCqzR5hgaVasX7ow4/edit?usp=sharing>"
+    "!STAYCLASSY": "The following are the race/class combos we still need:\nTauren(Priest)\nTrolls(Warlock)\nUndead(Hunter)\nGoblins(DK, Rogue, Warlock, Priest)\nPandaren(Mage, Priest)",
+    "!UTILITY": "Here is the Legion Defensive/Utility Spell List: <XXX>",
+    "!WARCRAFTLOGS": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
+    "!WCL": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
+    "!WEBSITE": "Check out dat website: http://www.exiledpower.com",
+    "!WEIGHTS": "Here is the stat weights/priorities sheet: <https://docs.google.com/document/d/1gIOSfzrSHCd_j_ZUXl0gasuLprjCqzR5hgaVasX7ow4/edit?usp=sharing>",
+    "!YOUTUBE": "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw"
 };
 
-// var responseReplies = {"THANKS JARVIS": "Anytime",
-//                        "THANKS, JARVIS": "Anytime"};
+var responseReplies = {"THANKS JARVIS": "Anytime",
+                       "THANKS, JARVIS": "Anytime"};
 
 var responsesFiles = {
     "!FANTASY": "http://i.imgur.com/EMSiUF3.jpg",
+    "!JARVIS": "http://31.media.tumblr.com/dea23aa7056d90cdfdacdc2117171e6f/tumblr_mmq33aTgAD1rvvj1ho2_r2_500.gif",
     "!SHAME": "http://i.imgur.com/FidZknJ.gif",
-    "!JARVIS": "http://31.media.tumblr.com/dea23aa7056d90cdfdacdc2117171e6f/tumblr_mmq33aTgAD1rvvj1ho2_r2_500.gif"
+    "!18STACKS": "http://i.imgur.com/cZioXZF.jpg",
+    "!SWOPE": "http://i.imgur.com/7Wi93en.png",
+    "!TAILSWOPE": "http://i.imgur.com/7Wi93en.png"
 };
 
 bot.on("ready", function() {
-    bot.sendMessage("*****", "Jarvis up and running.");
+    if(debug){
+        bot.sendMessage("XXX", "Jarvis up and running.");
+    }
 });
 
 // begin main bot
 bot.on("message", function(message) {
-    //console.log(message.content);
     var input = message.content.toUpperCase();
-    var server = message.channel.server;
     if (!(message.channel.isPrivate)) {
         var roles = message.channel.server.roles;
         var channels = message.channel.server.channels;
     }
     var user = message.author;
-    var role;
-    var encounter;
-    var bossname;
-    var spec;
-    var playerclass;
+    var role, encounter, bossname, spec, playerclass, channel, reserved, mythicPlusValue, mythicValue;
     var parsed = message.content.split(" ");
     var parsedReg = input.split(" ");
-    var channel;
-    var reserved;
-    var mythicPlusValue;
-    var mythicValue;
-    // Emerald Nightmare id = 10, ToV = 12
-    var raidid = 10;
-    // Partition should almost always be set to 1, Pre-Patch is 2
-    var partition = 1;
-    var planfortheweek = "Going to be working on Tree this week (T/R in Mythic EN) with ToV run on Sunday.";
-    var affixes = "This weeks' affixes are: Teeming (+4) , Skittish (+7), and Fortified (+10). ";
-    var balance = "*****";
-    var wclkey = "***";
-    var battlenetkey = "***";
+    var raidid = 10; // Emerald Nightmare id = 10, ToV = 12
+    var partition = 1; // Partition should almost always be set to 1, Pre-Patch is 2
     // Begin Command list
     // Basic Text Loop
     if (responses[input]) {
@@ -353,44 +324,24 @@ bot.on("message", function(message) {
     else if (responsesFiles[input]) {
         bot.sendFile(message, responsesFiles[input]);
     }
-    // // Replies Loop
-    // else if(responseReplies[input]){
-    //     bot.reply(message, responseReplies[input]);
-    // }
+    // Replies Loop
+    else if(responseReplies[input]){
+        bot.reply(message, responseReplies[input]);
+    }
     // Class Fantasy
     else if (input === "!FANTASY" || input.includes("CLASS FANTASY")) {
         bot.sendFile(message, "http://i.imgur.com/EMSiUF3.jpg");
     }
     // Fuck You Jarvis
     else if (input.includes("FUCK YOU JARVIS") || input.includes("FUCK YOU, JARVIS")) {
-        var random = Math.floor((Math.random() * 3) + 1);
-        if (random == 1) {
-            bot.reply(message, "Why would you say that!?");
-        } else if (random == 2) {
-            bot.reply(message, "Well I don't think that was appropriate.");
-        } else {
-            bot.reply(message, "Fuck you too, silly human. Have you seen your logs recently? (They suck lol)");
-        }
-    }
-    // Thanks Jarvis
-    else if (input.includes("THANKS JARVIS") || input.includes("THANKS, JARVIS") || input.includes("THANK YOU, JARVIS") || input.includes("THANK YOU JARVIS")) {
-        bot.reply(message, "Anytime.");
-    }
-    // Good Night Jarvis
-    else if (input === "GOOD NIGHT JARVIS") {
-        role = roles.get("name", "Officers").id;
-        if (bot.memberHasRole(user, role)) {
-            bot.reply(message, "Good Night Sir.");
-        }
+        var random = Math.floor((Math.random() * 3));
+        var fucker = ["Why would you say that!?", "Well I don't think that was appropriate.","Fuck you too, silly human. Have you seen your logs recently? (They suck lol)"];
+        bot.reply(message, fucker[random]);
     }
     // affixes
     else if (input === "!AFFIXES") {
         bot.sendFile(message, "http://i.imgur.com/SzeLZNa.jpg");
         bot.sendMessage(message, affixes + "For more check out: https://mythicpl.us/");
-    }
-    // monies
-    else if (input === "!CASH" || input === "!MONEY" || input === "!BALANCE") {
-        bot.sendMessage(message, "As of 11/21/2016 the balance is: **" + balance + "**");
     }
     // GoT Stuff
     else if (input.includes("WHAT IS DEAD MAY NEVER DIE")) {
@@ -405,10 +356,6 @@ bot.on("message", function(message) {
     // do you need an adult
     else if (input.includes("I NEED AN ADULT")) {
         bot.reply(message, "Me too.");
-    }
-    // plan for the week
-    else if (input === "!PLAN" || input === "!PLANFORTHEWEEK" || input === "!COMMAND") {
-        bot.sendMessage(message, planfortheweek);
     }
     // !game status for Jarvis
     else if (input.startsWith("!GAME") && input.endsWith("-J")) {
@@ -441,55 +388,15 @@ bot.on("message", function(message) {
     }
     // salt
     else if (input === "SALT" || input === "!SALT") {
-        var random = Math.floor((Math.random() * 7) + 1);
-        switch (random) {
-            case 1:
-                bot.sendFile(message, "http://i.imgur.com/Igir7HF.png");
-                break;
-            case 2:
-                bot.sendFile(message, "http://i.imgur.com/mzfz7vf.jpg");
-                break;
-            case 3:
-                bot.sendFile(message, "https://images.rapgenius.com/44f0fc58fb3a86b3c7cc19cfaab2bf1a.612x612x1.jpg");
-                break;
-            case 4:
-                bot.sendFile(message, "https://cdn.meme.am/instances/500x/51800528.jpg");
-                break;
-            case 5:
-                bot.sendFile(message, "http://ct.fra.bz/ol/fz/sw/i40/2/4/8/frabz-salt-salt-everywhere-898ce5.jpg");
-                break;
-            case 6:
-                bot.sendFile(message, "http://www.relatably.com/m/img/high-level-meme/3972715.jpg");
-                break;
-            default:
-                bot.sendFile(message, "http://static1.gamespot.com/uploads/original/1333/13335885/2874659-2341208346-ibzFa.gif");
-        }
+        var random = Math.floor((Math.random() * 7));
+        var salt = ["http://i.imgur.com/Igir7HF.png","http://i.imgur.com/mzfz7vf.jpg","https://images.rapgenius.com/44f0fc58fb3a86b3c7cc19cfaab2bf1a.612x612x1.jpg","https://cdn.meme.am/instances/500x/51800528.jpg","http://ct.fra.bz/ol/fz/sw/i40/2/4/8/frabz-salt-salt-everywhere-898ce5.jpg","http://www.relatably.com/m/img/high-level-meme/3972715.jpg","http://static1.gamespot.com/uploads/original/1333/13335885/2874659-2341208346-ibzFa.gif"];
+        bot.sendFile(message, salt[random]);
     }
     // wrecked
     else if (input.includes("WRECKED") || input.includes("REKT")) {
-        var random = Math.floor((Math.random() * 7) + 1);
-        switch (random) {
-            case 1:
-                bot.sendFile(message, "https://cdn.meme.am/instances/500x/47131303.jpg");
-                break;
-            case 2:
-                bot.sendFile(message, "https://cdn.meme.am/instances/500x/50087032.jpg");
-                break;
-            case 3:
-                bot.sendFile(message, "https://media.giphy.com/media/opY7SoUTNU3ao/giphy.gif");
-                break;
-            case 4:
-                bot.sendFile(message, "http://i.imgur.com/6mbJFvA.jpg");
-                break;
-            case 5:
-                bot.sendFile(message, "http://s2.quickmeme.com/img/94/941350454edd1fd9e446160102a2a51b3a7a2394dcfcb40caa9c96d60c9ea94e.jpg");
-                break;
-            case 6:
-                bot.sendFile(message, "http://cdnvideo.dolimg.com/cdn_assets/f6ef0c9bee8be77f5896afb421a04d7586ce7dbe.jpg");
-                break;
-            default:
-                bot.sendFile(message, "https://cdn.meme.am/instances/400x/52466269.jpg");
-        }
+        var random = Math.floor((Math.random() * 7));
+        var rekt = ["https://cdn.meme.am/instances/500x/47131303.jpg","https://cdn.meme.am/instances/500x/50087032.jpg","https://media.giphy.com/media/opY7SoUTNU3ao/giphy.gif","http://i.imgur.com/6mbJFvA.jpg","http://s2.quickmeme.com/img/94/941350454edd1fd9e446160102a2a51b3a7a2394dcfcb40caa9c96d60c9ea94e.jpg","http://img.lum.dolimg.com/v1/images/ralph-headretina_f6ef0c9b.jpeg","https://cdn.meme.am/instances/400x/52466269.jpg"];
+        bot.sendFile(message, rekt[random]);
     }
     // artifact helper
     else if (input === "?ARTIFACT") {
@@ -510,7 +417,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://i.imgur.com/9KakC97.png");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Unholy, Frost, or Blood.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Death Knights. Options are: Unholy, Frost, or Blood.");
                 }
                 break;
             case "DH":
@@ -522,7 +430,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://static.icy-veins.com/images/wow/vengeance-demon-hunter-artifact.jpg");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Havoc or Vengeance.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Demon Hunters. Options are: Havoc or Vengeance.");
                 }
                 break;
             case "DRUID":
@@ -541,7 +450,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://static.icy-veins.com/images/wow/feral-druid-artifact.jpg");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Balance, Restoration, Guardian, or Feral.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Druids. Options are: Balance, Restoration, Guardian, or Feral.");
                 }
                 break;
             case "HUNTER":
@@ -558,7 +468,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://static.icy-veins.com/images/wow/survival-hunter-artifact.jpg");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: BM, Marksmanship, or Survival.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Hunters. Options are: BM, Marksmanship, or Survival.");
                 }
                 break;
             case "MAGE":
@@ -573,7 +484,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "https://cdn.discordapp.com/attachments/209851034657357835/217064942589837312/Frost-Artifacts-Templates.png");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Fire, Arcane, or Frost.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Mages. Options are: Fire, Arcane, or Frost.");
                 }
                 break;
             case "MONK":
@@ -584,7 +496,6 @@ bot.on("message", function(message) {
                         break;
                     case "MISTWEAVER":
                     case "MW":
-                        //bot.sendFile(message, "http://www.mistyteahouse.com/wp-content/uploads/2016/09/Artifact-Tree-Progress2.png");
                         bot.sendFile(message, "https://cdn.discordapp.com/attachments/218222107673362432/218222503447887872/circle-path-2.png");
                         break;
                     case "BREWMASTER":
@@ -592,7 +503,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://i.imgur.com/INQTgmd.png");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Windwalker, Mistweaver, or Brewmaster.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Monks. Options are: Windwalker, Mistweaver, or Brewmaster.");
                 }
                 break;
             case "PALADIN":
@@ -609,7 +521,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://i.imgur.com/1Rkv3bh.png");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Holy, Retribution, or Protection");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Paladins. Options are: Holy, Retribution, or Protection");
                 }
                 break;
             case "PRIEST":
@@ -625,7 +538,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "https://pbs.twimg.com/media/CtoWKO4UEAArGN5.jpg");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Holy, Discipline, or Shadow");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Priests. Options are: Holy, Discipline, or Shadow");
                 }
                 break;
             case "ROGUE":
@@ -643,7 +557,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://static.icy-veins.com/images/wow/subtlety-rogue-artifact.jpg");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Outlaw, Assassination, or Subtlety.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Rogues. Options are: Outlaw, Assassination, or Subtlety.");
                 }
                 break;
             case "SHAMAN":
@@ -662,7 +577,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://static.icy-veins.com/images/wow/enhancement-shaman-artifact.jpg");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Restoration, Elemental, or Enhancement.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Shamans. Options are: Restoration, Elemental, or Enhancement.");
                 }
                 break;
             case "WARLOCK":
@@ -680,7 +596,8 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "http://i.imgur.com/xpYCqFi.png");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Demonology, Destruction, or Affliction.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warlocks. Options are: Demonology, Destruction, or Affliction.");
                 }
                 break;
             case "WARRIOR":
@@ -696,38 +613,30 @@ bot.on("message", function(message) {
                         bot.sendFile(message, "https://i.imgur.com/JZbh9Ka.png");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Protection, Arms, or Fury.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warriors. Options are: Protection, Arms, or Fury.");
                 }
                 break;
             default:
-                bot.sendMessage(message, "Not a valid class. Options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
+                bot.deleteMessage(message);
+                bot.sendMessage(user, "`" + parsedReg[1] + "` is not a valid class. Options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
         }
     }
     // EN Guide
     else if (input.startsWith("!EN") || input.startsWith("!EMERALD")) {
-        switch (parsedReg[1]) {
-            case "NYTHENDRA":
-                bot.sendMessage(message, "*****>");
-                break;
-            case "IL'GYNOTH":
-                bot.sendMessage(message, "*****>");
-                break;
-            case "URSOC":
-                bot.sendMessage(message, "*****");
-                break;
-            case "DRAGONS":
-            case "DARGONS":
-            case "DON":
-                bot.sendMessage(message, "*****");
-                break;
-            case "CENARIUS":
-                bot.sendMessage(message, "*****");
-                break;
-            case "XAVIUS":
-                bot.sendMessage(message, "*****");
-                break;
-            default:
-                bot.sendMessage(message, "*****");
+        var en = {
+            "NYTHENDRA": "Here is the Boss Strat/Guide for Nythendra: <XXX>",
+            "IL'GYNOTH": "XXX>",
+            "URSOC": "Here is the Boss Strat/Guide for UrsocXXX: <XXX>",
+            "DRAGONS": "Here is the Boss Strat/Guide for the Dragons of Nightmare: <XXX>",
+            "DARGONS": "Here is the Boss Strat/Guide for the Dragons of Nightmare: <XXX>",
+            "CENARIUS": "Here is the Boss Strat/Guide for Cenarius: <XXX>",
+            "XAVIUS": "Here is the Boss Strat/Guide for Xavius: <XXX>"
+        };
+        if (en[parsedReg[1]]) {
+            bot.sendMessage(message, en[parsedReg[1]]);   
+        } else {
+            bot.sendMessage(message, "Here is the Emerald Nightmare Boss Strat/Guide for EP: <XXX>");
         }
     }
     // WoWProgress Link
@@ -750,74 +659,9 @@ bot.on("message", function(message) {
     }
     // lore core
     else if (input === "!LORE" || input === "!LORECORE" || input === "#LORECORE" || input === "#LORE") {
-        var random = Math.floor((Math.random() * 22) + 1);
-        switch (random) {
-            case 1:
-                bot.sendFile(message, "http://i.imgur.com/d4tjQQJ.jpg");
-                break;
-            case 2:
-                bot.sendFile(message, "http://i.imgur.com/tbwv6GX.png");
-                break;
-            case 3:
-                bot.sendFile(message, "http://i.imgur.com/P2F5bWn.jpg");
-                break;
-            case 4:
-                bot.sendFile(message, "http://i.imgur.com/tKNosl0.png");
-                break;
-            case 5:
-                bot.sendFile(message, "http://i.imgur.com/TeIzUNt.png");
-                break;
-            case 6:
-                bot.sendFile(message, "http://i.imgur.com/G8KLi3L.png");
-                break;
-            case 7:
-                bot.sendFile(message, "http://i.imgur.com/lH4laAS.jpg");
-                break;
-            case 8:
-                bot.sendFile(message, "http://i.imgur.com/3IgAUMT.jpg");
-                break;
-            case 9:
-                bot.sendFile(message, "http://i.imgur.com/ZoKRvOX.png");
-                break;
-            case 10:
-                bot.sendFile(message, "http://imgur.com/qugE1Hd");
-                break;
-            case 11:
-                bot.sendFile(message, "http://i.imgur.com/Y1oULOj.png");
-                break;
-            case 12:
-                bot.sendFile(message, "http://i.imgur.com/ONucxNF.png");
-                break;
-            case 13:
-                bot.sendFile(message, "http://i.imgur.com/dEe9rGv.png");
-                break;
-            case 14:
-                bot.sendFile(message, "http://i.imgur.com/Qfx2M5y.png");
-                break;
-            case 15:
-                bot.sendFile(message, "http://i.imgur.com/8pKvL0X.jpg");
-                break;
-            case 16:
-                bot.sendFile(message, "http://i.imgur.com/7K08VQg.png");
-                break;
-            case 17:
-                bot.sendFile(message, "http://i.imgur.com/xxrNi8P.png");
-                break;
-            case 18:
-                bot.sendFile(message, "http://i.imgur.com/OGhjNNR.png");
-                break;
-            case 19:
-                bot.sendFile(message, "http://i.imgur.com/0luga5w.png");
-                break;
-            case 20:
-                bot.sendFile(message, "http://i.imgur.com/Kp4SNIc.png");
-                break;
-            case 21:
-                bot.sendFile(message, "http://i.imgur.com/mIV7Vmv.png");
-                break;
-            default:
-                bot.sendFile(message, "http://i.imgur.com/TuHyl0N.jpg");
-        }
+        var random = Math.floor((Math.random() * 22));
+        var lore = ["http://i.imgur.com/d4tjQQJ.jpg","http://i.imgur.com/tbwv6GX.png","http://i.imgur.com/P2F5bWn.jpg","http://i.imgur.com/tKNosl0.png","http://i.imgur.com/TeIzUNt.png","http://i.imgur.com/G8KLi3L.png","http://i.imgur.com/lH4laAS.jpg","http://i.imgur.com/3IgAUMT.jpg","http://i.imgur.com/ZoKRvOX.png","http://imgur.com/qugE1Hd","http://i.imgur.com/Y1oULOj.png","http://i.imgur.com/ONucxNF.png","http://i.imgur.com/dEe9rGv.png","http://i.imgur.com/Qfx2M5y.png","http://i.imgur.com/8pKvL0X.jpg","http://i.imgur.com/7K08VQg.png","http://i.imgur.com/xxrNi8P.png","http://i.imgur.com/OGhjNNR.png","http://i.imgur.com/0luga5w.png","http://i.imgur.com/Kp4SNIc.png","http://i.imgur.com/mIV7Vmv.png","http://i.imgur.com/TuHyl0N.jpg"];
+        bot.sendFile(message, lore[random]);
     }
     // Video helper
     else if (input.startsWith("?BOSS") || input.startsWith("?VIDEO")) {
@@ -825,96 +669,44 @@ bot.on("message", function(message) {
     }
     // Kill Videos
     else if (input.startsWith("!BOSS") || input.startsWith("!VIDEO")) {
-        switch (parsedReg[1]) {
-            case "NYTHENDRA":
-                bot.sendMessage(message, "Video not posted yet!");
-                break;
-            case "IL'GYNOTH":
-            case "IL":
-            case "ILGYNOTH":
-                bot.sendMessage(message, "Video not posted yet!");
-                break;
-            case "ELERETHE":
-            case "RENFERAL":
-            case "ELE":
-                bot.sendMessage(message, "Video not posted yet!");
-                break;
-            case "URSOC":
-                bot.sendMessage(message, "Video not posted yet!");
-                break;
-            case "DRAGONS":
-            case "DARGONS":
-                bot.sendMessage(message, "Video not posted yet!");
-                break;
-            case "CENARIUS":
-                bot.sendMessage(message, "Video not posted yet!");
-                break;
-            case "XAVIUS":
-                bot.sendMessage(message, "Video not posted yet!");
-                break;
-            case "ARCHIMONDE":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=Jkt1iId7Xbc");
-                break;
-            case "MANNY":
-            case "MANNOROTH":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=b7mTPw0pv20");
-                break;
-            case "XHUL'HORAC":
-            case "XHUL":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=N2aSgC4DlIU");
-                break;
-            case "TYRANT":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=wHUKGvI6U2Y");
-                break;
-            case "FEL":
-            case "LORD":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=d0C92xy1fts");
-                break;
-            case "ISKAR":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=9iIAlJQ3Fws");
-                break;
-            case "SOCRETHAR":
-            case "SOC":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=cbO6Ri4XqlA");
-                break;
-            case "GOREFIEND":
-            case "GORE":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=OYOQ6ahRAc4");
-                break;
-            case "KILROGG":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=37hyWu503zo");
-                break;
-            case "COUNCIL":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=89wK24T2lK8");
-                break;
-            case "KORMROK":
-            case "KORM":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=KAnECqXw11c");
-                break;
-            case "REAVER":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=8exVgQfHAaA");
-                break;
-            case "ASSAULT":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=FBKpYBYkZ5w");
-                break;
-            case "HANS":
-            case "FRANZ":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=dCbk8OamUow");
-                break;
-            case "OREO":
-            case "OREGORGER":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=F8xwKWEci_I");
-                break;
-            case "GRUUL":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=zYs9iKxrUGU");
-                break;
-            case "BEASTLORD":
-            case "DARMAC":
-                bot.sendMessage(message, "https://www.youtube.com/watch?v=n3Jr61veZkQ");
-                break;
-            default:
-                bot.deleteMessage(message);
-                bot.sendMessage(user, parsedReg[1] + " name not recognized");
+        var videos = {
+            "ARCHIMONDE": "https://www.youtube.com/watch?v=Jkt1iId7Xbc",
+            "MANNY": "https://www.youtube.com/watch?v=b7mTPw0pv20",
+            "MANNOROTH": "https://www.youtube.com/watch?v=b7mTPw0pv20",
+            "XHUL'HORAC": "https://www.youtube.com/watch?v=N2aSgC4DlIU",
+            "XHUL": "https://www.youtube.com/watch?v=N2aSgC4DlIU",
+            "TYRANT": "https://www.youtube.com/watch?v=wHUKGvI6U2Y",
+            "FEL": "https://www.youtube.com/watch?v=d0C92xy1fts",
+            "ISKAR": "https://www.youtube.com/watch?v=9iIAlJQ3Fws",
+            "SOCRETHAR": "https://www.youtube.com/watch?v=cbO6Ri4XqlA",
+            "GOREFIEND": "https://www.youtube.com/watch?v=OYOQ6ahRAc4",
+            "GORE": "https://www.youtube.com/watch?v=OYOQ6ahRAc4",
+            "KILROGG": "https://www.youtube.com/watch?v=37hyWu503zo",
+            "COUNCIL": "https://www.youtube.com/watch?v=89wK24T2lK8",
+            "KORMROK": "https://www.youtube.com/watch?v=KAnECqXw11c",
+            "KORM": "https://www.youtube.com/watch?v=KAnECqXw11c",
+            "IRON": "https://www.youtube.com/watch?v=8exVgQfHAaA",
+            "REAVER": "https://www.youtube.com/watch?v=8exVgQfHAaA",
+            "ASSAULT": "https://www.youtube.com/watch?v=FBKpYBYkZ5w",
+            "HANS": "https://www.youtube.com/watch?v=dCbk8OamUow",
+            "FRANZ": "https://www.youtube.com/watch?v=dCbk8OamUow",
+            "OREO": "https://www.youtube.com/watch?v=F8xwKWEci_I",
+            "OREGORGER": "https://www.youtube.com/watch?v=F8xwKWEci_I",
+            "GRUUL": "https://www.youtube.com/watch?v=zYs9iKxrUGU",
+            "BEASTLORD": "https://www.youtube.com/watch?v=n3Jr61veZkQ",
+            "DRINK1": "https://www.youtube.com/watch?v=b9yNli7FF5s",
+            "DRINK2": "https://www.youtube.com/watch?v=1eyykDPeKME",
+            "SIMCRAFT": "https://www.youtube.com/watch?v=HPkB56VWWDU",
+            "SIMC": "https://www.youtube.com/watch?v=HPkB56VWWDU",
+            "WCL": "https://www.youtube.com/watch?v=91jG59QyN2k",
+            "WARCRAFTLOGS": "https://www.youtube.com/watch?v=91jG59QyN2k",
+            "PAWN": "https://www.youtube.com/watch?v=EnjnOGBn6qI"
+        };
+        if (videos[parsedReg[1]]) {
+            bot.sendMessage(message, videos[parsedReg[1]]);   
+        } else {
+            bot.deleteMessage(message);
+            bot.sendMessage(user, "Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
         }
     }
     // ?addrole helper
@@ -923,9 +715,8 @@ bot.on("message", function(message) {
     }
     // !addrole Role
     else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
-        //bot.sendMessage(message,parsed[1]); // send message that contains the roleid
         // Check of role matches the class list
-        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Priest" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
+        if (classes.indexOf(parsed[1]) != -1) {
             role = roles.get("name", "Officers").id; //get roll id of Officer/Admin role
             // Check if member is an Officer/Admin
             if (bot.memberHasRole(user, role)) {
@@ -942,7 +733,7 @@ bot.on("message", function(message) {
                 bot.sendMessage(user, parsed[1] + " does not exist, or you do not have permission to add that role.");
             }
             // Check if role matches channel list
-        } else if (parsed[1] == "Developers" || parsed[1] == "Music" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
+        } else if (channelRoles.indexOf(parsed[1]) != -1) {
             role = roles.get("name", parsed[1]).id; // get roleid of channel
             bot.addMemberToRole(user, role);
             bot.reply(message, "Added you to the " + parsed[1] + " channel!");
@@ -957,7 +748,7 @@ bot.on("message", function(message) {
     }
     // !removerole Developers
     else if ((input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) && !(message.channel.isPrivate)) {
-        if (parsed[1] == "Mage" || parsed[1] == "Death" || parsed[1] == "Druid" || parsed[1] == "Priest" || parsed[1] == "Hunter" || parsed[1] == "Demon" || parsed[1] == "Monk" || parsed[1] == "Paladin" || parsed[1] == "Rogue" || parsed[1] == "Shaman" || parsed[1] == "Warlock" || parsed[1] == "Warrior") {
+        if (classes.indexOf(parsed[1]) != -1) {
             role = roles.get("name", "Officers").id;
             if (bot.memberHasRole(user, role)) {
                 if (parsed[1] == "Death") {
@@ -972,7 +763,7 @@ bot.on("message", function(message) {
             } else {
                 bot.reply(message, parsed[1] + " does not exist, or you cannot remove that role.");
             }
-        } else if (parsed[1] == "Developers" || parsed[1] == "Music" || parsed[1] == "Healers" || parsed[1] == "Theorycrafting" || parsed[1] == "Overwatch") {
+        } else if (channelRoles.indexOf(parsed[1]) != -1) {
             role = roles.get("name", parsed[1]).id;
             bot.removeMemberFromRole(user, role);
             bot.reply(message, "Removed you from " + parsed[1] + "!");
@@ -1016,7 +807,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<https://docs.google.com/document/d/1rNeybQ76QKKQ2k5NXoErhG6bfijHo8O1FPHuqxR54JE/edit>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Unholy, Frost, or Blood.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Death Knights. Options are: Unholy, Frost, or Blood.");
                 }
                 break;
             case "DH":
@@ -1028,7 +820,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/demon-hunter/vengeance/overview>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Havoc or Vengeance.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Demon Hunters. Options are: Havoc or Vengeance.");
                 }
                 break;
             case "DRUID":
@@ -1047,7 +840,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<http://xanzara.com/xanzarasferalguide.pdf>\n<http://www.wowhead.com/guides/classes/druid/feral/overview>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Balance, Restoration, Guardian, or Feral.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Druids. Options are: Balance, Restoration, Guardian, or Feral.");
                 }
                 break;
             case "HUNTER":
@@ -1064,7 +858,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<http://www.icy-veins.com/wow/survival-hunter-pve-dps-guide>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: BM, Marksmanship, or Survival.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Hunters. Options are: BM, Marksmanship, or Survival.");
                 }
                 break;
             case "MAGE":
@@ -1079,7 +874,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<https://www.altered-time.com/forum/viewtopic.php?f=5&t=2621>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Fire, Arcane, or Frost.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Mages. Options are: Fire, Arcane, or Frost.");
                 }
                 break;
             case "MONK":
@@ -1097,7 +893,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/monk/brewmaster/overview>\n<http://sunniersartofwar.com/brewmaster/>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Windwalker, Mistweaver, or Brewmaster.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Monks. Options are: Windwalker, Mistweaver, or Brewmaster.");
                 }
                 break;
             case "PALADIN":
@@ -1114,7 +911,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/paladin/protection/overview>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Holy, Retribution, or Protection");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Paladins. Options are: Holy, Retribution, or Protection");
                 }
                 break;
             case "PRIEST":
@@ -1130,7 +928,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<https://www.automaticjak.com/guides/holy>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Holy, Discipline, or Shadow");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Priests. Options are: Holy, Discipline, or Shadow");
                 }
                 break;
             case "ROGUE":
@@ -1148,7 +947,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Outlaw, Assassination, or Subtlety.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Rogues. Options are: Outlaw, Assassination, or Subtlety.");
                 }
                 break;
             case "SHAMAN":
@@ -1167,7 +967,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/shaman/enhancement/overview>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Restoration, Elemental, or Enhancement.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Shamans. Options are: Restoration, Elemental, or Enhancement.");
                 }
                 break;
             case "WARLOCK":
@@ -1185,7 +986,8 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<http://goo.gl/puw0Lg>\n<http://goo.gl/7hTC2k>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Demonology, Destruction, or Affliction.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warlocks. Options are: Demonology, Destruction, or Affliction.");
                 }
                 break;
             case "WARRIOR":
@@ -1201,90 +1003,61 @@ bot.on("message", function(message) {
                         bot.sendMessage(message, "<https://goo.gl/4qFqHc>\n<https://goo.gl/NrwZTU>");
                         break;
                     default:
-                        bot.sendMessage(message, "Not a valid spec. Options are: Protection, Arms, or Fury.");
+                        bot.deleteMessage(message);
+                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warriors. Options are: Protection, Arms, or Fury.");
                 }
                 break;
             default:
-                bot.sendMessage(message, "Not a valid class. Options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
+                bot.deleteMessage(message);
+                bot.sendMessage(user, "`" + parsedReg[1] + "` is not a valid class. Options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
         }
     }
     // !WA helper
     else if (input.startsWith("?WA")) {
-        bot.sendMessage(message, "By using !WA you can query my database for class/general Weak Auras from WAGO.io. An example would be '!wa rogue' to get weakauras for rogues.");
+        bot.sendMessage(message, "By using `!WA playername` you can query my database for Weak Auras from WAGO.io/pastebin/etc. An example would be '!wa Publik' to get Publik's WeakAuras.");
     }
     // get WA category links
     else if (input.startsWith("!WA")) {
-        switch (parsedReg[1]) {
-            case "WAGO":
-                bot.reply(message, "<https://wago.io/>");
-                break;
-            case "GENERAL":
-                bot.reply(message, "<https://wago.io/categories/general>");
-                break;
-            case "DEATH":
-            case "DK":
-                bot.reply(message, "<https://wago.io/categories/classes/death-knight>");
-                break;
-            case "DEMON":
-            case "DH":
-                bot.reply(message, "<https://wago.io/categories/classes/demon-hunter>");
-                break;
-            case "DRUID":
-                bot.reply(message, "<https://wago.io/categories/classes/druid>");
-                break;
-            case "HUNTER":
-            case "HUNTARD":
-                bot.reply(message, "<https://wago.io/categories/classes/hunter>");
-                break;
-            case "PALADIN":
-            case "PALY":
-                bot.reply(message, "<https://wago.io/categories/classes/paladin>");
-                break;
-            case "PRIEST":
-                bot.reply(message, "<https://wago.io/categories/classes/priest>");
-                break;
-            case "ROGUE":
-                bot.reply(message, "<https://wago.io/categories/classes/rogue>");
-                break;
-            case "SHAMAN":
-            case "SHAMMY":
-                bot.reply(message, "<https://wago.io/categories/classes/shaman>");
-                break;
-            case "MAGE":
-                bot.reply(message, "<https://wago.io/categories/classes/mage>");
-                break;
-            case "MONK":
-                bot.reply(message, "<https://wago.io/categories/classes/monk>");
-                break;
-            case "WARLOCK":
-            case "LOCK":
-                bot.reply(message, "<https://wago.io/categories/classes/warlock>");
-                break;
-            case "WARRIOR":
-                bot.reply(message, "<https://wago.io/categories/classes/warrior>");
-                break;
-            case "RAID":
-                bot.reply(message, "<https://wago.io/categories/roles/raid-lead>");
-                break;
-            case "DPS":
-            case "DAMAGE":
-                bot.reply(message, "<https://wago.io/categories/roles/damage>");
-                break;
-            case "HEALS":
-            case "HEALER":
-                bot.reply(message, "<https://wago.io/categories/roles/healing>");
-                break;
-            case "TANK":
-                bot.reply(message, "<https://wago.io/categories/roles/tanking>");
-                break;
-            case "EN":
-            case "NIGHTMARE":
-            case "EMERALD":
-                bot.reply(message, "<https://wago.io/categories/pve/emerald-nightmare>");
-                break;
-            default:
-                bot.deleteMessage(message);
-                bot.sendMessage(user, parsedReg[1] + " does not exist, or I'm not sure where to find it.");
+        var weakauras = {"ALEX": "Here are Daenalls Resto Druid WAs: <https://wago.io/V1kEsJwXz>",
+                         "ALÝCE": "Alýce's Holy WAs: <https://wago.io/4yW4iCG_W>\nAlýce's Shadow WAs (More or Less): <https://wago.io/EyUUYYTWG>",
+                         "ALYCE": "Alýce's Holy WAs: <https://wago.io/4yW4iCG_W>\nAlýce's Shadow WAs (More or Less): <https://wago.io/EyUUYYTWG>",
+                         "ASMADAI": "Asmadai's WAs:\nUnholy: <http://pastebin.com/u/Miniaug>\nFrost: <http://pastebin.com/u/frostelion>",
+                         "CHALLCON": "Challcon's WAs: \nIgnore Pain: <https://wago.io/VJQrPJbJG>\nShield Block: <https://wago.io/N1Ub3_ouZ>",
+                         "CURSE": "Curse hasn't given me his WeakAuras yet.",
+                         "CURSEIMPLAER": "Curse hasn't given me his WeakAuras yet.",
+                         "DAENALL": "Here are Daenalls Resto Druid WAs: <https://wago.io/V1kEsJwXz>",
+                         "DANKE": "Danke's WA Sets: \nFire: <https://wago.io/Nk2CbIyd->\nArcane: <https://wago.io/EyTcJ9ZYb>\nFrost: <https://wago.io/V1hPMCXYb>",
+                         "DEMONSANG": "Demonsang's Havoc Set: <https://wago.io/4kTH1dUFb>",
+                         "DONKEY": "Danke's WA Sets: \nFire: <https://wago.io/Nk2CbIyd->\nArcane: <https://wago.io/EyTcJ9ZYb>\nFrost: <https://wago.io/V1hPMCXYb>",
+                         "GOOLDAHN": "Gooldahn's WAs: <https://wago.io/4kqcQcXPb>",
+                         "KELSØ": "Kelsø's Enhance Set: <http://pastebin.com/ckLHK8tC>",
+                         "KELSO": "Kelsø's Enhance Set: <http://pastebin.com/ckLHK8tC>",
+                         "KIEYA": "Kieya's Elemental Set: <https://wago.io/EkKc_E-ub>",
+                         "KRIPTEK": "Kriptek's set for all rogue specs: <https://wago.io/4kz5FKYPW>",
+                         "LUKE": "Challcon's WAs: \nIgnore Pain: <https://wago.io/VJQrPJbJG>\nShield Block: <https://wago.io/N1Ub3_ouZ>",
+                         "MAHANA": "Mahana hasn't given me his WeakAuras yet.",
+                         "MATTAIAS": "Gooldahn's WAs: <https://wago.io/4kqcQcXPb>",
+                         "MIKE": "Moonkin's Set for Balance: <https://wago.io/N14XJo9FZ>",
+                         "MOONKIN": "Moonkin's Set for Balance: <https://wago.io/N14XJo9FZ>",
+                         "NATE": "Pronate's Arms Set: <https://wago.io/41JIPHJqb>",
+                         "PLAN": "Plan's Main Set for all specs: <https://wago.io/4JFBL1vXf>",
+                         "PRONATE": "Pronate's Arms Set: <https://wago.io/41JIPHJqb>",
+                         "PUBLIK": "Publik's Shadow Set: <https://wago.io/EyUUYYTWG>",
+                         "RYAN": "Kieya's Elemental Set: <https://wago.io/EkKc_E-ub>",
+                         "SANG": "Demonsang's Havoc Set: <https://wago.io/4kTH1dUFb>",
+                         "SEAN": "Here is a link to all of Sean's WAs: <https://wago.io/p/publikpriest>",
+                         "STEVE": "Kelsø's Enhance Set: <http://pastebin.com/ckLHK8tC>",
+                         "WAKING": "Waking's Hunter Sets: <http://pastebin.com/u/Azortharion>",
+                         "WAKINGDEMONZ": "Waking's Hunter Sets: <http://pastebin.com/u/Azortharion>",
+                         "XADE": "Xade's Disc WAs: \nDisc Ramp Up: <https://wago.io/4yWfDkDXf>\nDisc Right Bar: <https://wago.io/VyQAU1vQG>\nDisc Left Bar: <https://wago.io/41SiLkD7M>",
+                         "XADEFINN": "Xade's Disc WAs: \nDisc Ramp Up: <https://wago.io/4yWfDkDXf>\nDisc Right Bar: <https://wago.io/VyQAU1vQG>\nDisc Left Bar: <https://wago.io/41SiLkD7M>",
+                         "ZACH": "Danke's WA Sets: \nFire: <https://wago.io/Nk2CbIyd->\nArcane: <https://wago.io/EyTcJ9ZYb>\nFrost: <https://wago.io/V1hPMCXYb>",
+                         "ZURCHI": "Zurchi hasn't given me his WeakAuras yet."};
+        if (weakauras[parsedReg[1]]) {
+            bot.sendMessage(message, weakauras[parsedReg[1]]);
+        } else {
+            bot.deleteMessage(message);
+            bot.sendMessage(user, "Weak Aura set for `" + parsedReg[1] + "` not found. Contact Publik or the player directly.");
         }
     }
     // !server helper
@@ -1293,74 +1066,39 @@ bot.on("message", function(message) {
     }
     // get discord servers
     else if (input.startsWith("!SERVER")) {
-        switch (parsedReg[1]) {
-            case "WA":
-                bot.reply(message, "https://discord.me/wa2");
-                break;
-            case "HEALING":
-                bot.reply(message, "https://discord.gg/wDemsxV");
-                break;
-            case "DEATH":
-            case "DK":
-                bot.reply(message, "https://discord.gg/0ez1cFfUH3ingV96");
-                break;
-            case "DEMON":
-            case "DH":
-                bot.reply(message, "https://discord.gg/taNDycY");
-                break;
-            case "DRUID":
-                bot.reply(message, "https://discord.gg/0dWu0WkuetF87H9H");
-                break;
-            case "HUNTER":
-            case "HUNTARD":
-                bot.reply(message, "https://discord.gg/yqer4BX");
-                break;
-            case "PALADIN":
-            case "PALY":
-                bot.reply(message, "https://discord.gg/0dvRDgpa5xZHFfnD");
-                break;
-            case "PRIEST":
-                bot.reply(message, "https://discord.gg/0f1Ta8lT8xXXEAIY");
-                break;
-            case "ROGUE":
-                bot.reply(message, "https://discord.gg/0h08tydxoNhfDVZf");
-                break;
-            case "SHAMAN":
-            case "SHAMMY":
-                bot.reply(message, "https://discord.gg/0VcupJEQX0HuE5HH");
-                break;
-            case "MAGE":
-                bot.reply(message, "https://discord.gg/0gLMHikX2aZ23VdA");
-                break;
-            case "MONK":
-                bot.reply(message, "https://discord.gg/0dkfBMAxzTmggsPH");
-                break;
-            case "WARLOCK":
-            case "LOCK":
-                bot.reply(message, "https://discord.gg/0onXDymd9Wpc2CEu");
-                break;
-            case "WARRIOR":
-                bot.reply(message, "https://discord.gg/0pYY7932lTH4FHW6");
-                break;
-            case "AMR":
-            case "ASKMRROBOT":
-                bot.reply(message, "https://discord.gg/RuJN9xP");
-                break;
-            case "WCL":
-            case "WARCRAFTLOGS":
-            case "WARCRAFT":
-                bot.reply(message, "https://discord.gg/3752GVf");
-                break;
-            case "DISCORD":
-            case "API":
-                bot.reply(message, "https://discord.gg/WtyHkza");
-                break;
-            case "ARTHAS":
-                bot.reply(message, "*****");
-                break;
-            default:
-                bot.deleteMessage(message);
-                bot.sendMessage(user, parsedReg[1] + " does not exist, or I'm not sure where to find it.");
+        var servers = {"AMR": "https://discord.gg/RuJN9xP",
+                       "API": "https://discord.gg/WtyHkza",
+                       "ARTHAS": "XXX",
+                       "ASKMRROBOT": "https://discord.gg/RuJN9xP",
+                       "DEATH": "https://discord.gg/0ez1cFfUH3ingV96",
+                       "DEMON": "https://discord.gg/taNDycY",
+                       "DH": "https://discord.gg/taNDycY",
+                       "DISCORD": "https://discord.gg/WtyHkza",
+                       "DK": "https://discord.gg/0ez1cFfUH3ingV96",
+                       "DRUID": "https://discord.gg/0dWu0WkuetF87H9H",
+                       "HEALING": "https://discord.gg/wDemsxV",
+                       "HUNTER": "https://discord.gg/yqer4BX",
+                       "HUNTARD": "https://discord.gg/yqer4BX",
+                       "LOCK": "https://discord.gg/0onXDymd9Wpc2CEu",
+                       "MAGE": "https://discord.gg/0gLMHikX2aZ23VdA",
+                       "MONK": "https://discord.gg/0dkfBMAxzTmggsPH",
+                       "PALADIN": "https://discord.gg/0dvRDgpa5xZHFfnD",
+                       "PALY": "https://discord.gg/0dvRDgpa5xZHFfnD",
+                       "PRIEST": "https://discord.gg/0f1Ta8lT8xXXEAIY",
+                       "ROGUE": "https://discord.gg/0h08tydxoNhfDVZf",
+                       "SHAMAN": "https://discord.gg/0VcupJEQX0HuE5HH",
+                       "SHAMMY": "https://discord.gg/0VcupJEQX0HuE5HH",
+                       "WA": "https://discord.me/wa2",
+                       "WARCRAFT": "https://discord.gg/3752GVf",
+                       "WARCRAFTLOGS": "https://discord.gg/3752GVf",
+                       "WARLOCK": "https://discord.gg/0onXDymd9Wpc2CEu",
+                       "WARRIOR": "https://discord.gg/0pYY7932lTH4FHW6",
+                       "WCL": "https://discord.gg/3752GVf"};
+        if (servers[parsedReg[1]]) {
+            bot.reply(message, servers[parsedReg[1]]);
+        } else {
+            bot.deleteMessage(message);
+            bot.sendMessage(user, "The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
         }
     }
     // ranking help
@@ -1471,14 +1209,43 @@ bot.on("message", function(message) {
                     }
                 }
             } else {
+                bot.deleteMessage(message);
                 bot.sendMessage(user, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
             }
         });
     }
-     // !ARMORY Publik MYTHICS
+    else if (input === "?ARMORY") {
+        bot.sendMessage(message, "By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");
+    }
+    // !ARMORY Publik MYTHICS
+    // !ARMORY NEWCLASSOMG ANGER
     else if (input.startsWith("!ARMORY")) {
         var character = encodeURIComponent(parsedReg[1]);
-        if (parsedReg[2] === "MYTHICS") {
+        if (parsedReg[2] === "ANGER" || parsedReg[2] === "ANGEROFTHEHALFGIANTS") {
+            var url = "https://us.api.battle.net/wow/character/arthas/" + character + "?fields=items&locale=en_US&apikey=" + battlenetkey;
+            request({
+                method: 'GET',
+                uri: url,
+                json: true
+            }, (error, response, body) => {
+                if (!error && response.statusCode == 200) {
+                    var char = response.body;
+                    var charName = `${prettyjson.render(char.name)}`;
+                    if(char.items.finger1.name === "Anger of the Half-Giants" || char.items.finger2.name === "Anger of the Half-Giants"){
+                        bot.sendMessage(message, "Yup, you're one lucky SoB, here ya go:");
+                        bot.sendFile(message, "http://i.imgur.com/8otzCZl.png");
+                    } else {
+                        bot.sendMessage(message, "Well. Looks like RNGesus doesn't like you. Take this instead:");
+                        bot.sendFile(message, "http://i.imgur.com/kMqridE.png");
+                    }
+                } else {
+                    bot.deleteMessage(message);
+                    console.log("Error: ```" + error + "``` Response: ```" + response.statusCode + "``` Body: ```" + body + "``` ");
+                    bot.sendMessage(user, "I could not find an armory profile for " + charName);
+                }
+            });
+        }
+        else if (parsedReg[2] === "MYTHICS") {
             var url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=achievements&locale=en_US&apikey=" + battlenetkey;
             request({
                 method: 'GET',
@@ -1518,8 +1285,9 @@ bot.on("message", function(message) {
                     //bot.sendMessage(message, "2+: " + plustwo + " || 5+: " + plusfive + " || 10+: " + plusten);
                     bot.sendMessage(message, charName + " has completed " + mythicPlusValue + " mythic+ dungeons in time.");
                 } else {
+                    bot.deleteMessage(message);
                     console.log("Error: ```" + error + "``` Response: ```" + response.statusCode + "``` Body: ```" + body + "``` ");
-                    console.log("I could not find an armory profile for " + charName);
+                    bot.sendMessage(user, "I could not find an armory profile for " + charName);
                 }
             });
             var url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
@@ -1546,14 +1314,16 @@ bot.on("message", function(message) {
                     bot.sendMessage(message, charName + " has completed " + mythicValue + " mythic dungeons in total.");
                     console.log("Message sent");
                 } else {
+                    bot.deleteMessage(message);
                     console.log("Error: ```" + error + "``` Response: ```" + response.statusCode + "``` Body: ```" + body + "``` ");
-                    console.log("I could not find an armory profile for " + character);
+                    bot.sendMessage(user, "I could not find an armory profile for " + charName);
                     return 0;
                 }
             });
             console.log("Values found " + mythicPlusValue + " " + mythicValue);
         } else {
-            bot.sendMessage(message, "Invalid optiton");
+            bot.deleteMessage(message);
+            bot.sendMessage(user, "Invalid optiton");
         }
     }
     // fuckin ø Ø
@@ -1605,9 +1375,9 @@ bot.on("message", function(message) {
         bot.sendMessage(user, "I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
     }
 });
-bot.loginWithToken("Bot "*****");");
+bot.loginWithToken(discordKey);
 
 bot.on("disconnect", function() {
     console.log("Bot disconnected");
-    bot.loginWithToken("Bot "*****");");
+    bot.loginWithToken(discordKey);
 });
