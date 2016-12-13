@@ -34,208 +34,23 @@ function classConvert(playerclass) {
 }
 
 function specConvert(playerclass, spec) {
-    switch (playerclass) {
-        case 1:
-            switch (spec) {
-                case 1:
-                    return "Blood";
-                    break;
-                case 2:
-                    return "Frost";
-                    break;
-                case 3:
-                    return "Unholy";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 2:
-            switch (spec) {
-                case 1:
-                    return "Balance";
-                    break;
-                case 2:
-                    return "Feral";
-                    break;
-                case 3:
-                    return "Guardian";
-                    break;
-                case 4:
-                    return "Restoration";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 3:
-            switch (spec) {
-                case 1:
-                    return "Beast Mastery";
-                    break;
-                case 2:
-                    return "Marksmanship";
-                    break;
-                case 3:
-                    return "Survival";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 4:
-            switch (spec) {
-                case 1:
-                    return "Arcane";
-                    break;
-                case 2:
-                    return "Fire";
-                    break;
-                case 3:
-                    return "Frost";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 5:
-            switch (spec) {
-                case 1:
-                    return "Brewmaster";
-                    break;
-                case 2:
-                    return "Mistweaver";
-                    break;
-                case 3:
-                    return "Windwalker";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 6:
-            switch (spec) {
-                case 1:
-                    return "Holy";
-                    break;
-                case 2:
-                    return "Protection";
-                    break;
-                case 3:
-                    return "Retribution";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 7:
-            switch (spec) {
-                case 1:
-                    return "Discipline";
-                    break;
-                case 2:
-                    return "Holy";
-                    break;
-                case 3:
-                    return "Shadow";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 8:
-            switch (spec) {
-                case 1:
-                    return "Assassination";
-                    break;
-                case 2:
-                    return "Combat";
-                    break;
-                case 3:
-                    return "Subtlety";
-                    break;
-                case 4:
-                    return "Outlaw";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 9:
-            switch (spec) {
-                case 1:
-                    return "Elemental";
-                    break;
-                case 2:
-                    return "Enhancement";
-                    break;
-                case 3:
-                    return "Restoration";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 10:
-            switch (spec) {
-                case 1:
-                    return "Affliction";
-                    break;
-                case 2:
-                    return "Demonology";
-                    break;
-                case 3:
-                    return "Destruction";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 11:
-            switch (spec) {
-                case 1:
-                    return "Arms";
-                    break;
-                case 2:
-                    return "Fury";
-                    break;
-                case 3:
-                    return "Protection";
-                    break;
-                case 4:
-                    return "Gladiator";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        case 12:
-            switch (spec) {
-                case 1:
-                    return "Havoc";
-                    break;
-                case 2:
-                    return "Vengence";
-                    break;
-                default:
-                    return "WTF";
-                    break;
-            }
-            break;
-        default:
-            return "WTF";
-            break;
+    var dk = {1: "Blood", 2: "Frost", 3: "Unholy"};
+    var druid = {1: "Balance", 2: "Feral", 3: "Guardian", 4: "Restoration"};
+    var hunter = {1: "Beast Mastery", 2: "Marksmanship", 3: "Survival"};
+    var mage = {1: "Arcane", 2: "Fire", 3: "Frost"};
+    var monk = {1: "Brewmaster", 2: "Mistweaver", 3: "Windwalker"};
+    var paladin = {1: "Holy", 2: "Protection", 3: "Retribution"};
+    var priest = {1: "Discipline", 2: "Holy", 3: "Shadow"};
+    var rogue = {1: "Assassination", 2: "Combat", 3: "Subtlety", 4: "Outlaw"};
+    var shaman = {1: "Elemental", 2: "Enhancement", 3: "Restoration"};
+    var warlock = {1: "Affliction", 2: "Demonology", 3: "Destruction"};
+    var warrior = {1: "Arms", 2: "Fury", 3: "Protection", 4: "Gladiator"};
+    var dh = {1: "Havoc", 2: "Vengence"};
+    var classList = {1: dk[spec], 2: druid[spec], 3: hunter[spec], 4: mage[spec], 5: monk[spec], 6: paladin[spec], 7: priest[spec], 8: rogue[spec], 9: shaman[spec], 10: warlock[spec], 11: warrior[spec], 12: dh[spec]};
+    if (classList[playerclass]) {
+      return classList[playerclass];
+    } else {
+      return "WTF";
     }
 }
 
