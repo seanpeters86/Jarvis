@@ -219,222 +219,74 @@ bot.on("message", function(message) {
     }
     // artifact power guide
     else if (input.startsWith("!ARTIFACT")) {
-        switch (parsedReg[1]) {
-            case "DK":
-                switch (parsedReg[2]) {
-                    case "UNHOLY":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/unholy-death-knight-artifact.jpg");
-                        break;
-                    case "FROST":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/frost-death-knight-artifact.jpg");
-                        break;
-                    case "BLOOD":
-                        bot.sendFile(message, "http://i.imgur.com/9KakC97.png");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Death Knights. Options are: Unholy, Frost, or Blood.");
-                }
-                break;
-            case "DH":
-                switch (parsedReg[2]) {
-                    case "HAVOC":
-                        bot.sendFile(message, "http://i.imgur.com/75pbNRS.jpg");
-                        break;
-                    case "VENGEANCE":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/vengeance-demon-hunter-artifact.jpg");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Demon Hunters. Options are: Havoc or Vengeance.");
-                }
-                break;
-            case "DRUID":
-                switch (parsedReg[2]) {
-                    case "BALANCE":
-                        bot.sendFile(message, "http://i.imgur.com/bubvXrX.png");
-                        break;
-                    case "RESTORATION":
-                    case "RESTO":
-                        bot.sendFile(message, "http://i.imgur.com/ZBSWUGB.png");
-                        break;
-                    case "GUARDIAN":
-                        bot.sendFile(message, "http://www.theincbear.com/images/ArtifactPaths.png");
-                        break;
-                    case "FERAL":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/feral-druid-artifact.jpg");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Druids. Options are: Balance, Restoration, Guardian, or Feral.");
-                }
-                break;
-            case "HUNTER":
-                switch (parsedReg[2]) {
-                    case "BM":
-                    case "BEAST":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/beast-mastery-hunter-artifact.jpg");
-                        break;
-                    case "MARKSMANSHIP":
-                    case "MM":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/marksmanship-hunter-artifact.jpg");
-                        break;
-                    case "SURVIVAL":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/survival-hunter-artifact.jpg");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Hunters. Options are: BM, Marksmanship, or Survival.");
-                }
-                break;
-            case "MAGE":
-                switch (parsedReg[2]) {
-                    case "FIRE":
-                        bot.sendFile(message, "http://i.imgur.com/Aff1Kke.png");
-                        break;
-                    case "ARCANE":
-                        bot.sendFile(message, "https://cdn.discordapp.com/attachments/209851034657357835/216690880109740033/Arcane-Artifacts-Templates-Branch.png");
-                        break;
-                    case "FROST":
-                        bot.sendFile(message, "https://cdn.discordapp.com/attachments/209851034657357835/217064942589837312/Frost-Artifacts-Templates.png");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Mages. Options are: Fire, Arcane, or Frost.");
-                }
-                break;
-            case "MONK":
-                switch (parsedReg[2]) {
-                    case "WINDWALKER":
-                    case "WW":
-                        bot.sendFile(message, "http://www.walkingthewind.com/wp-content/uploads/2016/08/Artifact-CCW.png");
-                        break;
-                    case "MISTWEAVER":
-                    case "MW":
-                        bot.sendFile(message, "https://cdn.discordapp.com/attachments/218222107673362432/218222503447887872/circle-path-2.png");
-                        break;
-                    case "BREWMASTER":
-                    case "BM":
-                        bot.sendFile(message, "http://i.imgur.com/INQTgmd.png");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Monks. Options are: Windwalker, Mistweaver, or Brewmaster.");
-                }
-                break;
-            case "PALADIN":
-                switch (parsedReg[2]) {
-                    case "HOLY":
-                        bot.sendFile(message, "http://i.imgur.com/x06h0i7.png");
-                        break;
-                    case "RET":
-                    case "RETRIBUTION":
-                        bot.sendFile(message, "https://cdn.discordapp.com/attachments/122829094168559617/217313949115219969/IMG_2627.JPG");
-                        break;
-                    case "PROT":
-                    case "PROTECTION":
-                        bot.sendFile(message, "http://i.imgur.com/1Rkv3bh.png");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Paladins. Options are: Holy, Retribution, or Protection");
-                }
-                break;
-            case "PRIEST":
-                switch (parsedReg[2]) {
-                    case "SHADOW":
-                        bot.sendFile(message, "http://i.imgur.com/geNBd11.png");
-                        break;
-                    case "DISC":
-                    case "DISCIPLINE":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/discipline-priest-artifact.jpg");
-                        break;
-                    case "HOLY":
-                        bot.sendFile(message, "https://pbs.twimg.com/media/CtoWKO4UEAArGN5.jpg");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Priests. Options are: Holy, Discipline, or Shadow");
-                }
-                break;
-            case "ROGUE":
-                switch (parsedReg[2]) {
-                    case "OUTLAW":
-                    case "COMBAT":
-                        bot.sendFile(message, "http://puu.sh/qKo3P/ecccd6024c.jpg");
-                        break;
-                    case "ASSASSINATION":
-                    case "ASS":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/assassination-rogue-artifact.jpg");
-                        break;
-                    case "SUB":
-                    case "SUBTLETY":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/subtlety-rogue-artifact.jpg");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Rogues. Options are: Outlaw, Assassination, or Subtlety.");
-                }
-                break;
-            case "SHAMAN":
-                switch (parsedReg[2]) {
-                    case "RESTORATION":
-                    case "RESTO":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/restoration-shaman-artifact-casual.jpg");
-                        break;
-                    case "ELEMENTAL":
-                    case "ELE":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/elemental-shaman-artifact.jpg");
-                        break;
-                    case "ENH":
-                    case "ENHANCE":
-                    case "ENHANCEMENT":
-                        bot.sendFile(message, "http://static.icy-veins.com/images/wow/enhancement-shaman-artifact.jpg");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Shamans. Options are: Restoration, Elemental, or Enhancement.");
-                }
-                break;
-            case "WARLOCK":
-                switch (parsedReg[2]) {
-                    case "DEMONOLOGY":
-                    case "DEMO":
-                        bot.sendFile(message, "http://i.imgur.com/1UGnMro.png");
-                        break;
-                    case "DESTRUCTION":
-                    case "DESTRO":
-                        bot.sendFile(message, "http://i.imgur.com/SXM457s.jpeg");
-                        break;
-                    case "AFFLICTION":
-                    case "AFF":
-                        bot.sendFile(message, "http://i.imgur.com/xpYCqFi.png");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warlocks. Options are: Demonology, Destruction, or Affliction.");
-                }
-                break;
-            case "WARRIOR":
-                switch (parsedReg[2]) {
-                    case "PROTECTION":
-                    case "PROT":
-                        bot.sendFile(message, "https://i.imgur.com/OCpTPo1.png");
-                        break;
-                    case "ARMS":
-                        bot.sendFile(message, "https://i.imgur.com/gPAvS0N.png");
-                        break;
-                    case "FURY":
-                        bot.sendFile(message, "https://i.imgur.com/JZbh9Ka.png");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warriors. Options are: Protection, Arms, or Fury.");
-                }
-                break;
-            default:
-                bot.deleteMessage(message);
-                bot.sendMessage(user, "`" + parsedReg[1] + "` is not a valid class. Options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
+        var dk = {
+            "UNHOLY": "http://static.icy-veins.com/images/wow/unholy-death-knight-artifact.jpg",
+            "BLOOD": "http://i.imgur.com/9KakC97.png",
+            "FROST": "http://static.icy-veins.com/images/wow/frost-death-knight-artifact.jpg"
+        };
+        var druid = {
+            "BALANCE": "http://i.imgur.com/bubvXrX.png",
+            "RESTORATION": "http://i.imgur.com/ZBSWUGB.png", "RESTO": "http://i.imgur.com/ZBSWUGB.png",
+            "GUARDIAN": "http://www.theincbear.com/images/ArtifactPaths.png",
+            "FERAL": "http://static.icy-veins.com/images/wow/feral-druid-artifact.jpg"
+        };
+        var hunter = {
+            "BM": "http://static.icy-veins.com/images/wow/beast-mastery-hunter-artifact.jpg", "BEAST": "http://static.icy-veins.com/images/wow/beast-mastery-hunter-artifact.jpg",
+            "MM": "http://static.icy-veins.com/images/wow/marksmanship-hunter-artifact.jpg", "MARKSMANSHIP": "http://static.icy-veins.com/images/wow/marksmanship-hunter-artifact.jpg",
+            "SURVIVAL": "http://static.icy-veins.com/images/wow/survival-hunter-artifact.jpg"
+        };
+        var mage = {
+            "FIRE": "http://i.imgur.com/Aff1Kke.png",
+            "ARCANE": "https://cdn.discordapp.com/attachments/209851034657357835/216690880109740033/Arcane-Artifacts-Templates-Branch.png",
+            "FROST": "https://cdn.discordapp.com/attachments/209851034657357835/217064942589837312/Frost-Artifacts-Templates.png"
+        };
+        var monk = {
+            "WINDWALKER": "http://www.walkingthewind.com/wp-content/uploads/2016/08/Artifact-CCW.png", "WW": "http://www.walkingthewind.com/wp-content/uploads/2016/08/Artifact-CCW.png",
+            "MISTWEAVER": "https://cdn.discordapp.com/attachments/218222107673362432/218222503447887872/circle-path-2.png", "MW": "https://cdn.discordapp.com/attachments/218222107673362432/218222503447887872/circle-path-2.png",
+            "BM": "http://i.imgur.com/INQTgmd.png", "BREWMASTER": "http://i.imgur.com/INQTgmd.png"
+        };
+        var paladin = {
+            "HOLY": "http://i.imgur.com/x06h0i7.png",
+            "RETRIBUTION": "https://cdn.discordapp.com/attachments/122829094168559617/217313949115219969/IMG_2627.JPG", "RET": "https://cdn.discordapp.com/attachments/122829094168559617/217313949115219969/IMG_2627.JPG",
+            "PROT": "http://i.imgur.com/1Rkv3bh.png", "PROTECTION": "http://i.imgur.com/1Rkv3bh.png"
+        };
+        var priest = {
+            "SHADOW": "http://i.imgur.com/geNBd11.png",
+            "DISC": "http://i.imgur.com/ibZJ5tP.png", "DISCIPLINE": "http://i.imgur.com/ibZJ5tP.png",
+            "HOLY": "https://pbs.twimg.com/media/CtoWKO4UEAArGN5.jpg"
+        };
+        var rogue = {
+            "OUTLAW": "http://puu.sh/qKo3P/ecccd6024c.jpg",
+            "ASSASSINATION": "http://static.icy-veins.com/images/wow/assassination-rogue-artifact.jpg",
+            "SUB": "http://static.icy-veins.com/images/wow/subtlety-rogue-artifact.jpg", "SUBTLETY": "http://static.icy-veins.com/images/wow/subtlety-rogue-artifact.jpg"
+        };
+        var shaman = {
+            "RESTO": "http://static.icy-veins.com/images/wow/restoration-shaman-artifact-casual.jpg", "RESTORATION": "http://static.icy-veins.com/images/wow/restoration-shaman-artifact-casual.jpg",
+            "ELE": "http://static.icy-veins.com/images/wow/elemental-shaman-artifact.jpg", "ELEMENTAL": "http://static.icy-veins.com/images/wow/elemental-shaman-artifact.jpg",
+            "ENHANCEMENT": "http://static.icy-veins.com/images/wow/enhancement-shaman-artifact.jpg", "ENHANCE": "http://static.icy-veins.com/images/wow/enhancement-shaman-artifact.jpg"
+        };
+        var warlock = {
+            "DEMO": "http://i.imgur.com/1UGnMro.png", "DEMONOLOGY": "http://i.imgur.com/1UGnMro.png",
+            "DESTRO": "http://i.imgur.com/SXM457s.jpeg", "DESTRUCTION": "http://i.imgur.com/SXM457s.jpeg",
+            "AFF": "http://i.imgur.com/xpYCqFi.png", "AFFLICTION": "http://i.imgur.com/xpYCqFi.png"
+        };
+        var warrior = {
+            "PROT": "https://i.imgur.com/OCpTPo1.png", "PROTECTION": "https://i.imgur.com/OCpTPo1.png",
+            "ARMS": "https://i.imgur.com/gPAvS0N.png",
+            "FURY": "https://i.imgur.com/JZbh9Ka.png"
+        };
+        var dh = {
+            "HAVOC": "http://i.imgur.com/75pbNRS.jpg",
+            "VENGEANCE": "http://static.icy-veins.com/images/wow/vengeance-demon-hunter-artifact.jpg"
+        };
+        var classList = {
+            "DK": dk[parsedReg[2]], "DRUID": druid[parsedReg[2]], "HUNTER": hunter[parsedReg[2]], "MAGE": mage[parsedReg[2]], "MONK": monk[parsedReg[2]], "PALADIN": paladin[parsedReg[2]], "PRIEST": priest[parsedReg[2]], "ROGUE": rogue[parsedReg[2]], "SHAMAN": shaman[parsedReg[2]], "WARLOCK": warlock[parsedReg[2]], "WARRIOR": warrior[parsedReg[2]], "DH": dh[parsedReg[2]]
+        };
+        if (classList[parsedReg[1]]) {
+            bot.sendFile(message, classList[parsedReg[1]]);
+        } else {
+            bot.deleteMessage(message);
+            bot.sendMessage(user, "Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
         }
     }
     // EN Guide
@@ -607,224 +459,76 @@ bot.on("message", function(message) {
     else if (input.startsWith("?GUIDE")) {
         bot.sendMessage(message, "By using !GUIDE you can query my database for class/general guides from across the web. An example would be '!guide priest shadow' to get a guide for shadow priests.");
     }
-    // get guide links by class/spec
+    // guides
     else if (input.startsWith("!GUIDE")) {
-        switch (parsedReg[1]) {
-            case "DK":
-                switch (parsedReg[2]) {
-                    case "UNHOLY":
-                        bot.sendMessage(message, "<https://docs.google.com/document/d/1jNy2mY12agytX47xOyg7O30IllXXHKZQL5HlALzUuzI/edit>\n<http://www.wowhead.com/guides/classes/death-knight/unholy/overview>");
-                        break;
-                    case "FROST":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/death-knight/frost/overview>");
-                        break;
-                    case "BLOOD":
-                        bot.sendMessage(message, "<https://docs.google.com/document/d/1rNeybQ76QKKQ2k5NXoErhG6bfijHo8O1FPHuqxR54JE/edit>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Death Knights. Options are: Unholy, Frost, or Blood.");
-                }
-                break;
-            case "DH":
-                switch (parsedReg[2]) {
-                    case "HAVOC":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/demon-hunter/havoc/overview>");
-                        break;
-                    case "VENGEANCE":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/demon-hunter/vengeance/overview>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Demon Hunters. Options are: Havoc or Vengeance.");
-                }
-                break;
-            case "DRUID":
-                switch (parsedReg[2]) {
-                    case "BALANCE":
-                        bot.sendMessage(message, "<http://us.battle.net/forums/en/wow/topic/20745626938>\n<https://docs.google.com/document/d/1c6-_akHl_Cja-uwg20Gt8R0f12pcw4_qtVcT7LyZW4A/preview>");
-                        break;
-                    case "RESTORATION":
-                    case "RESTO":
-                        bot.sendMessage(message, "<http://www.restokin.com/resto-druid-healing-guide/>\n<http://www.wowhead.com/guides/classes/druid/restoration/overview>");
-                        break;
-                    case "GUARDIAN":
-                        bot.sendMessage(message, "<http://www.theincbear.com/forums/viewtopic.php?f=9&t=1562>");
-                        break;
-                    case "FERAL":
-                        bot.sendMessage(message, "<http://xanzara.com/xanzarasferalguide.pdf>\n<http://www.wowhead.com/guides/classes/druid/feral/overview>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Druids. Options are: Balance, Restoration, Guardian, or Feral.");
-                }
-                break;
-            case "HUNTER":
-                switch (parsedReg[2]) {
-                    case "BM":
-                    case "BEAST":
-                        bot.sendMessage(message, "<http://www.icy-veins.com/wow/beast-mastery-hunter-pve-dps-guide>");
-                        break;
-                    case "MARKSMANSHIP":
-                    case "MM":
-                        bot.sendMessage(message, "<http://www.icy-veins.com/wow/marksmanship-hunter-pve-dps-guide>");
-                        break;
-                    case "SURVIVAL":
-                        bot.sendMessage(message, "<http://www.icy-veins.com/wow/survival-hunter-pve-dps-guide>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Hunters. Options are: BM, Marksmanship, or Survival.");
-                }
-                break;
-            case "MAGE":
-                switch (parsedReg[2]) {
-                    case "FIRE":
-                        bot.sendMessage(message, "<https://www.altered-time.com/forum/viewtopic.php?f=4&t=2611>\n<https://www.altered-time.com/forum/viewtopic.php?f=4&t=2553>");
-                        break;
-                    case "ARCANE":
-                        bot.sendMessage(message, "<https://www.altered-time.com/forum/viewtopic.php?f=3&t=2618>");
-                        break;
-                    case "FROST":
-                        bot.sendMessage(message, "<https://www.altered-time.com/forum/viewtopic.php?f=5&t=2621>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Mages. Options are: Fire, Arcane, or Frost.");
-                }
-                break;
-            case "MONK":
-                switch (parsedReg[2]) {
-                    case "WINDWALKER":
-                    case "WW":
-                        bot.sendMessage(message, "<https://www.wowhead.com/guides/classes/monk/windwalker/overview>\n<http://www.walkingthewind.com/guides/wordy/>");
-                        break;
-                    case "MISTWEAVER":
-                    case "MW":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/monk/mistweaver/overview>\n<http://www.mistyteahouse.com/mistweaver-guide/>");
-                        break;
-                    case "BREWMASTER":
-                    case "BM":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/monk/brewmaster/overview>\n<http://sunniersartofwar.com/brewmaster/>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Monks. Options are: Windwalker, Mistweaver, or Brewmaster.");
-                }
-                break;
-            case "PALADIN":
-                switch (parsedReg[2]) {
-                    case "HOLY":
-                        bot.sendMessage(message, "<https://www.wowhead.com/guides/classes/paladin/holy/overview>\n<https://sacredshielding.wordpress.com/legion-guide-introduction/>");
-                        break;
-                    case "RET":
-                    case "RETRIBUTION":
-                        bot.sendMessage(message, "<http://www.icy-veins.com/wow/retribution-paladin-pve-dps-guide>\n<http://www.wowhead.com/guides/classes/paladin/retribution/overview>\n<https://www.youtube.com/playlist?list=PLDryqnKrFNn_cI-zwx-Tl7BamKOAlko11>");
-                        break;
-                    case "PROT":
-                    case "PROTECTION":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/paladin/protection/overview>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Paladins. Options are: Holy, Retribution, or Protection");
-                }
-                break;
-            case "PRIEST":
-                switch (parsedReg[2]) {
-                    case "SHADOW":
-                        bot.sendMessage(message, "<https://howtopriest.com/viewtopic.php?f=19&t=8402>");
-                        break;
-                    case "DISC":
-                    case "DISCIPLINE":
-                        bot.sendMessage(message, "<https://docs.google.com/document/d/1NbsDtJLVZqNc87jFzt-6WlPL02JOYmwppS1INtjVQTw/pub>\n<https://docs.google.com/document/d/1bYJ1KgX6cO6qHEoCVRTvsc0TCOYkQ_GUwUKd2672Ntg/pub>\n<https://www.automaticjak.com/guides/discipline>");
-                        break;
-                    case "HOLY":
-                        bot.sendMessage(message, "<https://www.automaticjak.com/guides/holy>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Priests. Options are: Holy, Discipline, or Shadow");
-                }
-                break;
-            case "ROGUE":
-                switch (parsedReg[2]) {
-                    case "OUTLAW":
-                    case "COMBAT":
-                        bot.sendMessage(message, "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>");
-                        break;
-                    case "ASSASSINATION":
-                    case "ASS":
-                        bot.sendMessage(message, "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>");
-                        break;
-                    case "SUB":
-                    case "SUBTLETY":
-                        bot.sendMessage(message, "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Rogues. Options are: Outlaw, Assassination, or Subtlety.");
-                }
-                break;
-            case "SHAMAN":
-                switch (parsedReg[2]) {
-                    case "RESTORATION":
-                    case "RESTO":
-                        bot.sendMessage(message, "<https://www.wowhead.com/guides/classes/shaman/restoration/overview>");
-                        break;
-                    case "ELEMENTAL":
-                    case "ELE":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/shaman/elemental/overview>");
-                        break;
-                    case "ENH":
-                    case "ENHANCE":
-                    case "ENHANCEMENT":
-                        bot.sendMessage(message, "<http://www.wowhead.com/guides/classes/shaman/enhancement/overview>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Shamans. Options are: Restoration, Elemental, or Enhancement.");
-                }
-                break;
-            case "WARLOCK":
-                switch (parsedReg[2]) {
-                    case "DEMONOLOGY":
-                    case "DEMO":
-                        bot.sendMessage(message, "<http://goo.gl/Z0wDcx>\n<http://goo.gl/IZ9dGR>");
-                        break;
-                    case "DESTRUCTION":
-                    case "DESTRO":
-                        bot.sendMessage(message, "<http://goo.gl/Td6ldu>\n<http://goo.gl/W3VzOd>");
-                        break;
-                    case "AFFLICTION":
-                    case "AFF":
-                        bot.sendMessage(message, "<http://goo.gl/puw0Lg>\n<http://goo.gl/7hTC2k>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warlocks. Options are: Demonology, Destruction, or Affliction.");
-                }
-                break;
-            case "WARRIOR":
-                switch (parsedReg[2]) {
-                    case "PROTECTION":
-                    case "PROT":
-                        bot.sendMessage(message, "<https://goo.gl/uvKVbZ>\n<https://goo.gl/jpzbxg>");
-                        break;
-                    case "ARMS":
-                        bot.sendMessage(message, "<https://goo.gl/ajsZkT>\n<https://goo.gl/7Y841X>");
-                        break;
-                    case "FURY":
-                        bot.sendMessage(message, "<https://goo.gl/4qFqHc>\n<https://goo.gl/NrwZTU>");
-                        break;
-                    default:
-                        bot.deleteMessage(message);
-                        bot.sendMessage(user, "`" + parsedReg[2] + "` is not a valid spec for Warriors. Options are: Protection, Arms, or Fury.");
-                }
-                break;
-            default:
-                bot.deleteMessage(message);
-                bot.sendMessage(user, "`" + parsedReg[1] + "` is not a valid class. Options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
+        var dk = {
+            "UNHOLY": "<https://docs.google.com/document/d/1jNy2mY12agytX47xOyg7O30IllXXHKZQL5HlALzUuzI/edit>\n<http://www.wowhead.com/guides/classes/death-knight/unholy/overview>",
+            "BLOOD": "<https://docs.google.com/document/d/1rNeybQ76QKKQ2k5NXoErhG6bfijHo8O1FPHuqxR54JE/edit>",
+            "FROST": "<http://www.wowhead.com/guides/classes/death-knight/frost/overview>"
+        };
+        var druid = {
+            "BALANCE": "<http://us.battle.net/forums/en/wow/topic/20745626938>\n<https://docs.google.com/document/d/1c6-_akHl_Cja-uwg20Gt8R0f12pcw4_qtVcT7LyZW4A/preview>",
+            "RESTORATION": "<http://www.restokin.com/resto-druid-healing-guide/>\n<http://www.wowhead.com/guides/classes/druid/restoration/overview>", "RESTO": "<http://www.restokin.com/resto-druid-healing-guide/>\n<http://www.wowhead.com/guides/classes/druid/restoration/overview>",
+            "GUARDIAN": "<http://www.theincbear.com/forums/viewtopic.php?f=9&t=1562>",
+            "FERAL": "<http://xanzara.com/xanzarasferalguide.pdf>\n<http://www.wowhead.com/guides/classes/druid/feral/overview>"
+        };
+        var hunter = {
+            "BM": "<http://www.icy-veins.com/wow/beast-mastery-hunter-pve-dps-guide>", "BEAST": "<http://www.icy-veins.com/wow/beast-mastery-hunter-pve-dps-guide>",
+            "MM": "<http://www.icy-veins.com/wow/marksmanship-hunter-pve-dps-guide>", "MARKSMANSHIP": "<http://www.icy-veins.com/wow/marksmanship-hunter-pve-dps-guide>",
+            "SURVIVAL": "<http://www.icy-veins.com/wow/survival-hunter-pve-dps-guide>"
+        };
+        var mage = {
+            "FIRE": "<https://www.altered-time.com/forum/viewtopic.php?f=4&t=2611>\n<https://www.altered-time.com/forum/viewtopic.php?f=4&t=2553>",
+            "ARCANE": "<https://www.altered-time.com/forum/viewtopic.php?f=3&t=2618>",
+            "FROST": "<https://www.altered-time.com/forum/viewtopic.php?f=5&t=2621>"
+        };
+        var monk = {
+            "WINDWALKER": "<https://www.wowhead.com/guides/classes/monk/windwalker/overview>\n<http://www.walkingthewind.com/guides/wordy/>", "WW": "<https://www.wowhead.com/guides/classes/monk/windwalker/overview>\n<http://www.walkingthewind.com/guides/wordy/>",
+            "MISTWEAVER": "<http://www.wowhead.com/guides/classes/monk/mistweaver/overview>\n<http://www.mistyteahouse.com/mistweaver-guide/>", "MW": "<http://www.wowhead.com/guides/classes/monk/mistweaver/overview>\n<http://www.mistyteahouse.com/mistweaver-guide/>",
+            "BM": "<http://www.wowhead.com/guides/classes/monk/brewmaster/overview>\n<http://sunniersartofwar.com/brewmaster/>", "BREWMASTER": "<http://www.wowhead.com/guides/classes/monk/brewmaster/overview>\n<http://sunniersartofwar.com/brewmaster/>"
+        };
+        var paladin = {
+            "HOLY": "<https://www.wowhead.com/guides/classes/paladin/holy/overview>\n<https://sacredshielding.wordpress.com/legion-guide-introduction/>",
+            "RETRIBUTION": "<http://www.icy-veins.com/wow/retribution-paladin-pve-dps-guide>\n<http://www.wowhead.com/guides/classes/paladin/retribution/overview>\n<https://www.youtube.com/playlist?list=PLDryqnKrFNn_cI-zwx-Tl7BamKOAlko11>", "RET": "<http://www.icy-veins.com/wow/retribution-paladin-pve-dps-guide>\n<http://www.wowhead.com/guides/classes/paladin/retribution/overview>\n<https://www.youtube.com/playlist?list=PLDryqnKrFNn_cI-zwx-Tl7BamKOAlko11>",
+            "PROT": "<http://www.wowhead.com/guides/classes/paladin/protection/overview>", "PROTECTION": "<http://www.wowhead.com/guides/classes/paladin/protection/overview>"
+        };
+        var priest = {
+            "SHADOW": "<https://howtopriest.com/viewtopic.php?f=19&t=8402>",
+            "DISC": "<https://docs.google.com/document/d/1NbsDtJLVZqNc87jFzt-6WlPL02JOYmwppS1INtjVQTw/pub>\n<https://docs.google.com/document/d/1bYJ1KgX6cO6qHEoCVRTvsc0TCOYkQ_GUwUKd2672Ntg/pub>\n<https://www.automaticjak.com/guides/discipline>", "DISCIPLINE": "<https://docs.google.com/document/d/1NbsDtJLVZqNc87jFzt-6WlPL02JOYmwppS1INtjVQTw/pub>\n<https://docs.google.com/document/d/1bYJ1KgX6cO6qHEoCVRTvsc0TCOYkQ_GUwUKd2672Ntg/pub>\n<https://www.automaticjak.com/guides/discipline>",
+            "HOLY": "<https://www.automaticjak.com/guides/holy>"
+        };
+        var rogue = {
+            "OUTLAW": "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>",
+            "ASSASSINATION": "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>",
+            "SUB": "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>", "SUBTLETY": "<https://docs.google.com/document/d/1-1GF7fMzLLkRg6Sa87e5mU3oSw2FwDe8fJwdsXxQKvU/preview>"
+        };
+        var shaman = {
+            "RESTO": "<https://www.wowhead.com/guides/classes/shaman/restoration/overview>", "RESTORATION": "<https://www.wowhead.com/guides/classes/shaman/restoration/overview>",
+            "ELE": "<http://www.wowhead.com/guides/classes/shaman/elemental/overview>", "ELEMENTAL": "<http://www.wowhead.com/guides/classes/shaman/elemental/overview>",
+            "ENHANCEMENT": "<http://www.wowhead.com/guides/classes/shaman/enhancement/overview>", "ENHANCE": "<http://www.wowhead.com/guides/classes/shaman/enhancement/overview>"
+        };
+        var warlock = {
+            "DEMO": "<http://goo.gl/Z0wDcx>\n<http://goo.gl/IZ9dGR>", "DEMONOLOGY": "<http://goo.gl/Z0wDcx>\n<http://goo.gl/IZ9dGR>",
+            "DESTRO": "<http://goo.gl/Td6ldu>\n<http://goo.gl/W3VzOd>", "DESTRUCTION": "<http://goo.gl/Td6ldu>\n<http://goo.gl/W3VzOd>",
+            "AFF": "<http://goo.gl/puw0Lg>\n<http://goo.gl/7hTC2k>", "AFFLICTION": "<http://goo.gl/puw0Lg>\n<http://goo.gl/7hTC2k>"
+        };
+        var warrior = {
+            "PROT": "<https://goo.gl/uvKVbZ>\n<https://goo.gl/jpzbxg>", "PROTECTION": "<https://goo.gl/uvKVbZ>\n<https://goo.gl/jpzbxg>",
+            "ARMS": "<https://goo.gl/ajsZkT>\n<https://goo.gl/7Y841X>",
+            "FURY": "<https://goo.gl/4qFqHc>\n<https://goo.gl/NrwZTU>"
+        };
+        var dh = {
+            "HAVOC": "<http://www.wowhead.com/guides/classes/demon-hunter/havoc/overview>",
+            "VENGEANCE": "<http://www.wowhead.com/guides/classes/demon-hunter/vengeance/overview>"
+        };
+        var classList = {
+            "DK": dk[parsedReg[2]], "DRUID": druid[parsedReg[2]], "HUNTER": hunter[parsedReg[2]], "MAGE": mage[parsedReg[2]], "MONK": monk[parsedReg[2]], "PALADIN": paladin[parsedReg[2]], "PRIEST": priest[parsedReg[2]], "ROGUE": rogue[parsedReg[2]], "SHAMAN": shaman[parsedReg[2]], "WARLOCK": warlock[parsedReg[2]], "WARRIOR": warrior[parsedReg[2]], "DH": dh[parsedReg[2]]
+        };
+        if (classList[parsedReg[1]]) {
+            bot.sendMessage(message, classList[parsedReg[1]]);
+        } else {
+            bot.deleteMessage(message);
+            bot.sendMessage(user, "Could not find a guide for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
         }
     }
     // !WA helper
