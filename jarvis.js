@@ -246,6 +246,9 @@ bot.on("message", function(message) {
         var fucker = ["Why would you say that!?", "Well I don't think that was appropriate.","Fuck you too, silly human. Have you seen your logs recently? (They suck lol)"];
         bot.reply(message, fucker[random]);
     }
+    else if (input.includes("DEV-COMMIT")){
+      bot.deleteMessagel(message);
+    }
     // affix
     else if (input === "!AFFIXES") {
       var d = new Date();
