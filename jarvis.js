@@ -1055,10 +1055,10 @@ bot.on("warn", (m) => console.log("[warn]", m));
 bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
 
-bot.on("serverNewMember", function(bot,msg,suffix) {
+bot.on("serverNewMember", function(botter,msg,suffix) {
   userid = msg.toString().substring(2, 18);
   console.log("User: " + userid + " joined the server.");
-  sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
+  bot.sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
 });
 
 bot.on("disconnected", function() {
