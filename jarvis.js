@@ -1052,9 +1052,8 @@ bot.on("warn", (m) => console.log("[warn]", m));
 bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
 
-bot.on("serverNewMember", function() {
-  //bot.sendMessage(user, "Hello! Welcome to the Discord. Please read the #welcome channel to get associated with the server rules. Any questions about Discord can be directed towards Publik.");
-  console.log("New Member" + user);
+bot.on("serverNewMember", function(bot,msg,suffix) {
+  console.log("Message: " + msg);
 });
 
 bot.on("disconnected", function() {
