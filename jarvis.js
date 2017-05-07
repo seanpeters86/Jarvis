@@ -1053,7 +1053,8 @@ bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
 
 bot.on("serverNewMember", function(bot,msg,suffix) {
-  console.log("Message: " + msg);
+  user = msg.author;
+  console.log("User: " + user + " joined the server.");
 });
 
 bot.on("disconnected", function() {
