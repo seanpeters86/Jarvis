@@ -15,7 +15,7 @@ var request = require('request');
 var prettyjson = require("prettyjson");
 var debug = true;
 
-const config = require('./config');
+const config = require('config');
 //import {config} from 'config';
 
 
