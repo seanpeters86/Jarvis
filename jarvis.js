@@ -1056,7 +1056,7 @@ bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
 
 bot.on("serverNewMember", function(bot,msg,suffix) {
-  userid = msg.substr(2, 18);
+  userid = msg.substring(2, 18);
   console.log("User: " + userid + " joined the server.");
   bot.sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
 });
