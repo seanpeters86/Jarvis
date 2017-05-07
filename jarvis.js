@@ -247,7 +247,7 @@ bot.on("message", function(message) {
         bot.reply(message, fucker[random]);
     }
     else if (input.includes("DEV-COMMIT")){
-      bot.deleteMessagel(message);
+      bot.deleteMessage(message);
     }
     // affix
     else if (input === "!AFFIXES") {
