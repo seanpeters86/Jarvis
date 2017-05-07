@@ -1056,8 +1056,9 @@ bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
 
 bot.on("serverNewMember", function(bot,msg,suffix) {
-  user = msg.author;
-  console.log("User: " + user + " joined the server.");
+  userid = msg.substr(2, 18);
+  console.log("User: " + userid + " joined the server.");
+  bot.sendMessage(userid, "Welcome to the server!");
 });
 
 bot.on("disconnected", function() {
