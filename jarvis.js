@@ -3,7 +3,7 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
-Version: 2.0.3
+Version: 2.1.0
 */
 var express = require('express')
 var app = express()
@@ -15,13 +15,9 @@ var request = require('request');
 var prettyjson = require("prettyjson");
 var debug = true;
 
-const config = require('config');
-//import {config} from 'config';
-
-
-var discordKey = config.DISCORD_KEY;
-var wclkey = config.WCL_KEY;
-var battlenetkey = config.BATTLE_NET_KEY;
+var discordKey = process.env.DISCORD_KEY;
+var wclkey = process.env.WCL_KEY;
+var battlenetkey = process.env.BATTLE_NET_KEY;
 
 var balance = ["4/13/2017", "855.53"];
 var planfortheweek = "Fuck you Cody.";
