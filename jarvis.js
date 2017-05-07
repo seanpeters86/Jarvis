@@ -3,7 +3,7 @@ File: Jarvis.js
 Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
-Version: 2.1.1
+Version: 2.1.2
 */
 var express = require('express')
 var app = express()
