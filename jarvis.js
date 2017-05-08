@@ -1063,13 +1063,14 @@ bot.on("serverNewMember", function(server,user) {
   userid = user.id;
   username = user.name;
   console.log(userid + " " + username);
+  var data = username + " joined the server.";
   if (server.id == exiledpower) {
-    bot.sendMessage(server.channels.officers, username + " joined " + server.name);
+    request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form:{content:data}});
   } else if (server.id == arthas) {
     bot.sendMessage(server.channels.admins, username + " joined " + server.name);
   }
   console.log(username + " joined " + server.name);
-  bot.sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
+  //bot.sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
 });
 
 bot.on("disconnected", function() {
