@@ -1056,7 +1056,21 @@ bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
 
 bot.on("serverNewMember", function(botter,msg,suffix) {
-  userid = msg.user.toString().substring(2, 18);
+  console.log(botter)
+  var arthas = "226510296221483008";
+  var exiledpower = "170037904842817537";
+  userid = botter.toString().substring(2, 18);
+  username = arthas.members.get("id",userid);
+  if (!username) {
+    username = exiledpower.members.get("id",userid);
+    if (!username) {
+      console.log("User not found.");
+    } else {
+      bot.sendMessage(170039738021969920,"New member joined.");
+    }
+  } else {
+    bot.sendMessage(230198388866547712, "New Member joined.")
+  }
   console.log("User: " + userid + " joined the server." + " " + botter);
   //bot.sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
 });
