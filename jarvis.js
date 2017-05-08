@@ -1062,12 +1062,12 @@ bot.on("serverNewMember", function(server,user) {
   username = user.name;
   console.log(userid + " " + username);
   if (server.id == exiledpower) {
-    bot.sendMessage(170039738021969920,"New member joined.");
+    bot.sendMessage("170039738021969920", username + " joined " + server.name);
   } else if (server.id == arthas) {
-    bot.sendMessage(230198388866547712, "New Member joined.");
+    bot.sendMessage("230198388866547712", username + " joined " + server.name);
   }
-  console.log("User: " + username + " joined " + server.name);
-  bot.sendMessage(user, "Welcome to the server! Read the welcome channel pl0x.");
+  console.log(username + " joined " + server.name);
+  bot.sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
 });
 
 bot.on("disconnected", function() {
