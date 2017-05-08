@@ -1058,12 +1058,9 @@ bot.on("error", (m) => console.log("[error]", m));
 bot.on("serverNewMember", function(server,user) {
   var arthas = "226510296221483008";
   var exiledpower = "170037904842817537";
-  var officers = "170039738021969920";
-  var admins = "230198388866547712";
   userid = user.id;
   username = user.name;
-  console.log(userid + " " + username);
-  var data = username + " joined the server.";
+  var data = username + " joined " + server.name;
   if (server.id == exiledpower) {
     request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form:{content:data}});
   } else if (server.id == arthas) {
