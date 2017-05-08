@@ -1058,13 +1058,15 @@ bot.on("error", (m) => console.log("[error]", m));
 bot.on("serverNewMember", function(server,user) {
   var arthas = "226510296221483008";
   var exiledpower = "170037904842817537";
+  var officers = "170039738021969920";
+  var admins = "230198388866547712";
   userid = user.id;
   username = user.name;
   console.log(userid + " " + username);
   if (server.id == exiledpower) {
-    bot.sendMessage("170039738021969920", username + " joined " + server.name);
+    bot.sendMessage(server.channels.officers, username + " joined " + server.name);
   } else if (server.id == arthas) {
-    bot.sendMessage("230198388866547712", username + " joined " + server.name);
+    bot.sendMessage(server.channels.admins, username + " joined " + server.name);
   }
   console.log(username + " joined " + server.name);
   bot.sendMessage(userid, "Welcome to the server! Read the welcome channel pl0x.");
