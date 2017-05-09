@@ -170,6 +170,8 @@ var responsesFiles = {
 bot.on("ready", function() {
     if(debug){
         console.log("Bot is online");
+        var data = "Online.";
+        request.post('https://discordapp.com/api/webhooks/311306144041926657/roiY7k2oiAuDikTMKs8aiseqFzvKjZnf9epD9cH-Di4MfVuSJOlll016a5G1UIS3dRFe', {form:{content:data}});
     }
     client.stream('statuses/filter', {follow: '753346461849354240,27171880,174307074,365528029,2420931980,3065618342', filter_level: 'low', language: 'en'}, function(stream){
       stream.on('data', function(tweet){
