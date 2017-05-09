@@ -30,10 +30,10 @@ var cachedtweet;
 var currenttweet;
 
 var client = new Twitter({
-  consumer_key: 'Tv05gPkI6PROfUspYjXrpvYDS',
-  consumer_secret: 'FVpHYbodfjnrx1FcVkh1GXE4qhNmcH6LaT9jRSZEFlCw2NzePz',
-  access_token_key: '353479984-y52jSGrNBnEdBbMvFB44DpN1hovJtvciZjsSEWkk',
-  access_token_secret: '6wOR1F5KTFI8QJABOH0HFqVFbsDujv8sCKSWKzzIgbSru'
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token_key: process.env.ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
 var affixes = {
