@@ -19,7 +19,7 @@ var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
 var battlenetkey = process.env.BATTLE_NET_KEY;
 
-var balance = ["4/13/2017", "855.53"];
+var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
 var planfortheweek = "Time to kill Elisande! We will be extending to work on her this week.";
 
 var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
