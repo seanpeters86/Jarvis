@@ -44,7 +44,7 @@ var affixes = {
     "5": "Bursting Skittish Tyrannical",
     "6": "Teeming Quaking Fortified",
     "7": "Raging Necrotic Tyrannical",
-    "8": "??? ??? ???"
+    "8": "Bolstering Skittish Fortified"
 }
 
 function classConvert(playerclass) {
