@@ -19,8 +19,6 @@ var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
 var battlenetkey = process.env.BATTLE_NET_KEY;
 
-var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
-
 var commands = require("./plugins/commands");
 var twitter_stream = require("./plugins/twitter_stream");
 

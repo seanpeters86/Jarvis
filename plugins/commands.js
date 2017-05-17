@@ -3,6 +3,8 @@ var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwat
 var channelList = ["memes", "developers", "music", "raiding", "guild-chat", "senior-raiders", "officers", "overwatch", "theorycrafting", "welcome", "healing", "hunters", "hots"];
 var planfortheweek = "Time to kill Elisande! We will be extending to work on her this week.";
 
+var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
+
 var responsesArthas = {
   "?ADDROLE": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
   "?ADD": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
