@@ -13,7 +13,7 @@ var client = new Twitter({
   access_token_secret: process.env.ACCESS_TOKEN_SECRET
 });
 
-function get_tweet() {
+export function get_tweet() {
   var channel, content = "";
   var tweet = [channel, content];
   client.stream('statuses/filter', {follow: '753346461849354240,27171880,174307074,365528029,2420931980,3065618342', filter_level: 'low', language: 'en'}, function(stream){
