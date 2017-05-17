@@ -93,7 +93,7 @@ bot.on("message", function(message) {
     var exiledpower = "170037904842817537";
     // Begin Command list
     // Basic Text Loop
-    if (responses[input] && server == exiledpower) {
+    if (commands.responses[input] && server == exiledpower) {
         bot.sendMessage(message, responses[input]);
     }
     else if (responsesArthas[input] && server == arthas){
