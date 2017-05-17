@@ -65,7 +65,9 @@ function specConvert(playerclass, spec) {
 
 bot.on("ready", function() {
     tweet = twitter_stream.get_tweet();
-    bot.sendMessage(tweet[0],tweet[1]);
+    if (tweet) {
+        bot.sendMessage(tweet[0],tweet[1]);
+    }
     if(debug){
         console.log("Bot is online");
         var data = "Online.";
