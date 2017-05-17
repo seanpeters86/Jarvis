@@ -94,21 +94,21 @@ bot.on("message", function(message) {
     // Begin Command list
     // Basic Text Loop
     if (commands.responses[input] && server == exiledpower) {
-        bot.sendMessage(message, responses[input]);
+        bot.sendMessage(message, commands.responses[input]);
     }
-    else if (responsesArthas[input] && server == arthas){
-      bot.sendMessage(message, responsesArthas[input])
+    else if (commands.responsesArthas[input] && server == arthas){
+      bot.sendMessage(message, commands.responsesArthas[input])
     }
     // Send File Loop
-    else if (responsesFiles[input]) {
-        bot.sendFile(message, responsesFiles[input]);
+    else if (commands.responsesFiles[input]) {
+        bot.sendFile(message, commands.responsesFiles[input]);
     }
     // Replies Loop
-    else if(responseReplies[input]){
-        bot.reply(message, responseReplies[input]);
+    else if(commands.responseReplies[input]){
+        bot.reply(message, commands.responseReplies[input]);
     }
     // includes test
-    else if (banned.some(function(v) { return input.indexOf(v) >= 0; }) && !(user.bot)) {
+    else if (commands.banned.some(function(v) { return input.indexOf(v) >= 0; }) && !(user.bot)) {
       bot.deleteMessage(message);
       bot.sendMessage(user, "This language: ```" + input + "``` is not allowed in this server.")
     }
