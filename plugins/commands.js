@@ -1,13 +1,13 @@
+var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
+var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
+var channelList = ["memes", "developers", "music", "raiding", "guild-chat", "senior-raiders", "officers", "overwatch", "theorycrafting", "welcome", "healing", "hunters", "hots"];
+var planfortheweek = "Time to kill Elisande! We will be extending to work on her this week.";
+
+var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
+
 module.exports = {
 
-  var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
-  var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
-  var channelList = ["memes", "developers", "music", "raiding", "guild-chat", "senior-raiders", "officers", "overwatch", "theorycrafting", "welcome", "healing", "hunters", "hots"];
-  var planfortheweek = "Time to kill Elisande! We will be extending to work on her this week.";
-
-  var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
-
-  var responsesArthas = {
+  responsesArthas: {
     "?ADDROLE": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
     "?ADD": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
     "!ADDONS": "Legion Addon list:\nAuto Turn In: <https://mods.curse.com/addons/wow/autoturnin>\nWorld Quest Tracker: <https://mods.curse.com/addons/wow/world-quest-tracker>\nWorld Quest List: <https://mods.curse.com/addons/wow/world-quests-list>\nCharacter Stat Sheet: <https://mods.curse.com/addons/wow/dejacharacterstats>\nHandyNotes Tracker: <https://mods.curse.com/addons/wow/handynotes_legionrarestreasures>",
@@ -33,7 +33,7 @@ module.exports = {
     "!YOUTUBE": "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw"
   }
 
-  var responses = {
+  responses: {
       "?ADDROLE": "To get added into a channel type '!add channelName' where channel name is a valid name (case matters!). The options are: ```" + channelRoles + "```",
       "?ADD": "To get added into a channel type '!add channelName' where channel name is a valid name (case matters!). The options are: ```" + channelRoles + "```",
       "#AMISITTING": "Here is the roster: <https://docs.google.com/spreadsheets/d/1Clq6mEklsLo5FWLd80D8togXN19MbBhVSci7inhre28/edit#gid=491110509>",
@@ -82,11 +82,11 @@ module.exports = {
       "!YOUTUBE": "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw"
   };
 
-  var responseReplies = {"THANKS JARVIS": "Anytime",
+  responseReplies: {"THANKS JARVIS": "Anytime",
                          "THANKS, JARVIS": "Anytime"};
-  var banned = ["COON","FAG","RETARD","NIGGA","NIGGER","DYKE"];
+  banned: ["COON","FAG","RETARD","NIGGA","NIGGER","DYKE"];
 
-  var responsesFiles = {
+  responsesFiles: {
       "!FANTASY": "http://i.imgur.com/EMSiUF3.jpg",
       "!JARVIS": "http://31.media.tumblr.com/dea23aa7056d90cdfdacdc2117171e6f/tumblr_mmq33aTgAD1rvvj1ho2_r2_500.gif",
       "!KIEYA": "http://i.imgur.com/B5c2DJT.jpg",
