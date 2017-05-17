@@ -15,19 +15,14 @@ var request = require('request');
 var prettyjson = require("prettyjson");
 var debug = true;
 
-var commands = require("./plugins/commands");
-var twitter_stream = require("./plugins/twitter_stream");
-
 var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
 var battlenetkey = process.env.BATTLE_NET_KEY;
 
 var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
-var planfortheweek = "Time to kill Elisande! We will be extending to work on her this week.";
 
-var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
-var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
-var channelList = ["memes", "developers", "music", "raiding", "guild-chat", "senior-raiders", "officers", "overwatch", "theorycrafting", "welcome", "healing", "hunters", "hots"];
+var commands = require("./plugins/commands");
+var twitter_stream = require("./plugins/twitter_stream");
 
 var affixes = {
     "1": "Raging Volcanic Tyrannical",
