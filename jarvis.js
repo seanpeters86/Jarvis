@@ -63,6 +63,16 @@ function specConvert(playerclass, spec) {
     }
 }
 
+bot.on("ready", function() {
+    tweet = get_tweet();
+    bot.sendMessage(tweet[0],tweet[1]);
+    if(debug){
+        console.log("Bot is online");
+        var data = "Online.";
+        request.post('https://discordapp.com/api/webhooks/311306144041926657/roiY7k2oiAuDikTMKs8aiseqFzvKjZnf9epD9cH-Di4MfVuSJOlll016a5G1UIS3dRFe', {form:{content:data}});
+    }
+});
+
 // begin main bot
 bot.on("message", function(message) {
     var input = message.content.toUpperCase();
