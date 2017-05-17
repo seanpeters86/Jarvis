@@ -20,7 +20,7 @@ var wclkey = process.env.WCL_KEY;
 var battlenetkey = process.env.BATTLE_NET_KEY;
 
 var commands = require("./plugins/commands");
-var twitter_stream = require("./plugins/twitter_stream");
+var twitter_stream = require("./plugins/twitter_stream.js");
 
 var affixes = {
     "1": "Raging Volcanic Tyrannical",
