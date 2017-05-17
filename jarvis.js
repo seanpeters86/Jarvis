@@ -20,7 +20,7 @@ var wclkey = process.env.WCL_KEY;
 var battlenetkey = process.env.BATTLE_NET_KEY;
 
 var commands = require("./plugins/commands");
-var twitter_stream = require("./plugins/twitter_stream.js");
+var twitter_stream = require("./plugins/twitter_stream");
 
 var affixes = {
     "1": "Raging Volcanic Tyrannical",
@@ -64,7 +64,7 @@ function specConvert(playerclass, spec) {
 }
 
 bot.on("ready", function() {
-    tweet = get_tweet();
+    tweet = twitter_stream.get_tweet();
     bot.sendMessage(tweet[0],tweet[1]);
     if(debug){
         console.log("Bot is online");
