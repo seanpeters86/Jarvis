@@ -581,13 +581,13 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
         }
         var rank = wcl.ranking(parsed, parsedReg, input, user, message);
+        console.log(rank);
         if(rank) {
           if (!(input.includes("-P"))) {
               bot.sendMessage(user, rank);
           } else {
               bot.sendMessage(message, rank);
           }
-          bot.sendMessage(rank[0], rank[1]);
         } else {
           bot.sendMessage("Character or rank not found");
         }
