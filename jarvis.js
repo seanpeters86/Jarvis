@@ -25,7 +25,7 @@ var commands = require("./plugins/commands");
 var twitter_stream = require("./plugins/twitter_stream");
 var armory = require("./plugins/armory");
 var wcl = require("./plugins/wcl");
-var affixes require("./plugins/affixes");
+var affixes = require("./plugins/affixes");
 
 bot.on("ready", function() {
     tweet = twitter_stream.get_tweet();
