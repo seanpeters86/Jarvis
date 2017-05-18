@@ -14,7 +14,7 @@
     "request": "^2.74.0",
     "twitter": "^1.4.0",
     "forever": "^0.15.3",
-    "wait-until"
+    "wait-until": "^0.0.2"
   },
   "engines": {
     "node": "4.0.0"
