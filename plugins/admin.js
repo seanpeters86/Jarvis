@@ -2,8 +2,8 @@ var role, channel, data;
 //var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
 //var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
 
-var commands = require("commands");
-
+var commands = require("./commands");
+console.log(commands.classes);
 
 module.exports = {
   get_role: function(parsed, roles) {
