@@ -34,7 +34,7 @@ var guides = require("./plugins/guides");
 var admin = require("./plugins/admin");
 
 bot.on("ready", () => {
-	bot.setStatus('online', "Discord.JS");
+	bot.setGame("Discord.JS");
 	tweet = twitter_stream.get_tweet();
 	if (tweet) {
     console.log(tweet);
