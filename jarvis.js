@@ -25,6 +25,7 @@ var armory = require("./plugins/armory");
 var wcl = require("./plugins/wcl");
 var affixes = require("./plugins/affixes");
 var artifacts = require("./plugins/artifacts");
+var videos = require("./plugins/videos");
 
 bot.on("ready", function() {
     tweet = twitter_stream.get_tweet();
