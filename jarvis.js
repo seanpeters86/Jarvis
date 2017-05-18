@@ -25,7 +25,7 @@ var battlenetkey = process.env.BATTLE_NET_KEY;
 
 var commands = require("./plugins/commands");
 var twitter_stream = require("./plugins/twitter_stream");
-var armory = require("./plugins/armory"); // WIP
+var armory = require("./plugins/armory");
 var wcl = require("./plugins/wcl");
 var affixes = require("./plugins/affixes");
 var artifacts = require("./plugins/artifacts");
@@ -335,6 +335,9 @@ bot.on('message', message => {
               .then(function(char) {
                 if (char.statusCode != 404) {
                   mythics = armory.get_mythics(char);
+                  console.log(armory.classColors);
+                  console.log(armory.classColors[5]);
+                  console.log(armory.classColors(5));
                   message.channel.send({embed: {
                     color: armory.classColors[parseInt(`${prettyjson.render(char.class)}`)],
                     author: {
