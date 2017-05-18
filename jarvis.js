@@ -584,7 +584,7 @@ bot.on("message", function(message) {
         }
         var rank = wcl.ranking(parsed, parsedReg, input);
         setTimeout(function () {
-          console.log(rank);
+          console.log(rank + " outside");
           if(rank) {
             if (!(input.includes("-P"))) {
                 bot.sendMessage(user, rank);
