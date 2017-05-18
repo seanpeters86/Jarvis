@@ -172,29 +172,6 @@ module.exports = {
     } else {
         var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=dps&partition=" + partition + "&api_key=" + wclkey;
     }
-    request({
-        method: 'GET',
-        uri: uri,
-        json: true
-    }, (error, response, body) => {
-        if (!error && response.statusCode == 200 && (encounter != 0) && body.length > 0) {
-            var rank = response.body;
-            spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
-            playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
-            var classparsed = classConvert(playerclass);
-            var specparsed = specConvert(playerclass, spec);
-            if (input.includes("-H")) {
-              result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
-              console.log(result);
-              return result;
-            } else {
-              result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
-              console.log(result);
-              return result;
-            }
-        } else {
-          return "Character or rank not found";
-        }
-    });
+    return uri;
   }
 };
