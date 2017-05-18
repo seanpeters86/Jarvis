@@ -30,5 +30,9 @@ module.exports = {
         data = data + " " + parsed[i];
     }
     return [channel, role, data];
+  },
+  random: function(ceiling) {
+    var random = Math.floor((Math.random() * ceiling));
+    return random;
   }
 };
