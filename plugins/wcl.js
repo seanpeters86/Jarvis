@@ -39,7 +39,7 @@ function specConvert(playerclass, spec) {
 }
 
 module.exports = {
-  ranking: function(parsed, parsedReg, input, user, message) {
+  ranking: function(parsed, parsedReg, input) {
     var char = encodeURIComponent(parsed[1]);
     switch (parsedReg[2]) {
         case "SKORPYRON":
