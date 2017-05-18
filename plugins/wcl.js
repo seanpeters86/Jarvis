@@ -169,6 +169,19 @@ var classColors = {
 	12: "10694857"
 };
 
+var bossList = {
+	1849: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_skorpyron.jpg",
+	1865: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_chromaticanomaly.jpg",
+	1867: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_trillax.jpg",
+	1871: "",
+	1862: "",
+	1863: "",
+	1842: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_krosus.jpg",
+	1886: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_highbotanisttelam.jpg",
+	1872: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_grandmagistrixelisande.jpg",
+	1866: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_guldan.jpg",
+}
+
 module.exports = {
 	get_object: function(parsed, parsedReg, input) {
 		var char = encodeURIComponent(parsed[1]);
@@ -312,15 +325,15 @@ module.exports = {
 		var difficultyparsed = difficultyList[difficulty];
 		if (input.includes("-H")) {
 			// rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty]
-			return [parsed[1],`${prettyjson.render(rank[0].rank)}`,`${prettyjson.render(rank[0].outOf)}`,bossname,specparsed,classparsed,"HPS",difficultyparsed];
+			return [parsed[1],`${prettyjson.render(rank[0].rank)}`,`${prettyjson.render(rank[0].outOf)}`,bossname,specparsed,classparsed,"HPS",difficultyparsed,encounter];
 			//return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS for " + difficultyparsed + " difficulty.";
 		} else {
-			return [parsed[1],`${prettyjson.render(rank[0].rank)}`,`${prettyjson.render(rank[0].outOf)}`,bossname,specparsed,classparsed,"DPS",difficultyparsed];
+			return [parsed[1],`${prettyjson.render(rank[0].rank)}`,`${prettyjson.render(rank[0].outOf)}`,bossname,specparsed,classparsed,"DPS",difficultyparsed,encounter];
 			//return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS for " + difficultyparsed + " difficulty.";
 		}
 	},
-	get_art: function(rank) {
+	get_art: function(rank,encounter) {
 		// [color,icon]
-		return [classColors[parseInt(`${prettyjson.render(rank[0].class)}`)],classList[parseInt(`${prettyjson.render(rank[0].class)}`)]];
+		return [classColors[parseInt(`${prettyjson.render(rank[0].class)}`)],classList[parseInt(`${prettyjson.render(rank[0].class)}`)],bossList[encounter]];
 	}
 };

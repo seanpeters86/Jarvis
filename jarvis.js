@@ -287,17 +287,17 @@ bot.on('message', message => {
 				console.log(rank);
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
-          var art = wcl.get_art(rank);
+          var art = wcl.get_art(rank,encounter);
 					if (!(input.includes("-P"))) {
 						message.member.send(rankObject);
 					} else {
-            // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty]
+            // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty,encounter]
             var percent = Math.round((1-(parseInt(rankObject[1])/parseInt(rankObject[2]))) * 100);
             message.channel.send({embed: {
               color: art[0],
               author: {
                 name: rankObject[0],
-                icon_url: message.member.user.avatarURL
+                icon_url: art[2]
               },
               fields: [
                 {
