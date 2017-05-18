@@ -253,29 +253,30 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        var uri = wcl.ranking(parsed, parsedReg, input);
+        /// wclOBject = [uri, encounter, bossname]
+        var wclOBject = wcl.ranking(parsed, parsedReg, input);
         request({
             method: 'GET',
-            uri: uri,
+            uri: wclOBject[0],
             json: true
         }, (error, response, body) => {
-            if (!error && response.statusCode == 200 && (encounter != 0) && body.length > 0) {
+            if (!error && response.statusCode == 200 && (wclOBject[1] != 0) && body.length > 0) {
                 var rank = response.body;
                 spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
                 playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
-                var classparsed = classConvert(playerclass);
-                var specparsed = specConvert(playerclass, spec);
+                var classparsed = wcl.classConvert(playerclass);
+                var specparsed = wcl.specConvert(playerclass, spec);
                 if (input.includes("-H")) {
                     if (!(input.includes("-P"))) {
-                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
+                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in HPS");
                     } else {
-                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
+                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in HPS");
                     }
                 } else {
                     if (!(input.includes("-P"))) {
-                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
+                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in DPS");
                     } else {
-                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
+                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in DPS");
                     }
                 }
             } else {

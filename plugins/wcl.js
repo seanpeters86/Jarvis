@@ -8,36 +8,6 @@ var encounter, bossname, spec, playerclass;
 var raidid = 10; // Emerald Nightmare id = 10, NH = 11, ToV = 12
 var partition = 2; // Partition should almost always be set to 1, Pre-Patch/7.2 is 2
 
-function classConvert(playerclass) {
-    var classList = {1: "Death Knight", 2: "Druid", 3: "Hunter", 4: "Mage", 5: "Monk", 6: "Paladin", 7: "Priest", 8: "Rogue", 9: "Shaman", 10: "Warlock", 11: "Warrior", 12: "Demon Hunter"};
-    if (classList[playerclass]) {
-       return classList[playerclass];
-    } else {
-        return "WTF";
-    }
-}
-
-function specConvert(playerclass, spec) {
-    var dk = {1: "Blood", 2: "Frost", 3: "Unholy"};
-    var druid = {1: "Balance", 2: "Feral", 3: "Guardian", 4: "Restoration"};
-    var hunter = {1: "Beast Mastery", 2: "Marksmanship", 3: "Survival"};
-    var mage = {1: "Arcane", 2: "Fire", 3: "Frost"};
-    var monk = {1: "Brewmaster", 2: "Mistweaver", 3: "Windwalker"};
-    var paladin = {1: "Holy", 2: "Protection", 3: "Retribution"};
-    var priest = {1: "Discipline", 2: "Holy", 3: "Shadow"};
-    var rogue = {1: "Assassination", 2: "Combat", 3: "Subtlety", 4: "Outlaw"};
-    var shaman = {1: "Elemental", 2: "Enhancement", 3: "Restoration"};
-    var warlock = {1: "Affliction", 2: "Demonology", 3: "Destruction"};
-    var warrior = {1: "Arms", 2: "Fury", 3: "Protection", 4: "Gladiator"};
-    var dh = {1: "Havoc", 2: "Vengence"};
-    var classList = {1: dk[spec], 2: druid[spec], 3: hunter[spec], 4: mage[spec], 5: monk[spec], 6: paladin[spec], 7: priest[spec], 8: rogue[spec], 9: shaman[spec], 10: warlock[spec], 11: warrior[spec], 12: dh[spec]};
-    if (classList[playerclass]) {
-      return classList[playerclass];
-    } else {
-      return "WTF";
-    }
-}
-
 var result;
 
 module.exports = {
@@ -172,6 +142,35 @@ module.exports = {
     } else {
         var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=dps&partition=" + partition + "&api_key=" + wclkey;
     }
-    return uri;
+    return [uri, encounter, bossname];
+  },
+
+  classConvert: function(playerclass) {
+      var classList = {1: "Death Knight", 2: "Druid", 3: "Hunter", 4: "Mage", 5: "Monk", 6: "Paladin", 7: "Priest", 8: "Rogue", 9: "Shaman", 10: "Warlock", 11: "Warrior", 12: "Demon Hunter"};
+      if (classList[playerclass]) {
+         return classList[playerclass];
+      } else {
+          return "WTF";
+      }
+  },
+  specConvert: function(playerclass, spec) {
+      var dk = {1: "Blood", 2: "Frost", 3: "Unholy"};
+      var druid = {1: "Balance", 2: "Feral", 3: "Guardian", 4: "Restoration"};
+      var hunter = {1: "Beast Mastery", 2: "Marksmanship", 3: "Survival"};
+      var mage = {1: "Arcane", 2: "Fire", 3: "Frost"};
+      var monk = {1: "Brewmaster", 2: "Mistweaver", 3: "Windwalker"};
+      var paladin = {1: "Holy", 2: "Protection", 3: "Retribution"};
+      var priest = {1: "Discipline", 2: "Holy", 3: "Shadow"};
+      var rogue = {1: "Assassination", 2: "Combat", 3: "Subtlety", 4: "Outlaw"};
+      var shaman = {1: "Elemental", 2: "Enhancement", 3: "Restoration"};
+      var warlock = {1: "Affliction", 2: "Demonology", 3: "Destruction"};
+      var warrior = {1: "Arms", 2: "Fury", 3: "Protection", 4: "Gladiator"};
+      var dh = {1: "Havoc", 2: "Vengence"};
+      var classList = {1: dk[spec], 2: druid[spec], 3: hunter[spec], 4: mage[spec], 5: monk[spec], 6: paladin[spec], 7: priest[spec], 8: rogue[spec], 9: shaman[spec], 10: warlock[spec], 11: warrior[spec], 12: dh[spec]};
+      if (classList[playerclass]) {
+        return classList[playerclass];
+      } else {
+        return "WTF";
+      }
   }
 };
