@@ -292,6 +292,7 @@ bot.on('message', message => {
 						message.member.send(rankObject);
 					} else {
             // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty]
+            var percent = 1-(parseInt(rankObject[1])/parseInt(rankObject[2]));
             message.channel.send({embed: {
               color: art[0],
               author: {
@@ -309,7 +310,7 @@ bot.on('message', message => {
                 },
                 {
                   name: 'Rank',
-                  value: rankObject[1] + " out of " + rankObject[2] + ": **" + 1-(rankObject[1]/rankObject[2]) + "** percentile."
+                  value: rankObject[1] + " out of " + rankObject[2] + ": **" + percent + "** percentile."
                 }
               ],
               timestamp: new Date(),
