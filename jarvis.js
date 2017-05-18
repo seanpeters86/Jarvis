@@ -580,20 +580,18 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        try {
-          var rank = wcl.ranking(parsed, parsedReg, input);
+        var rank = wcl.ranking(parsed, parsedReg, input);
+        bot.when(rank).done(function() {
           console.log(rank);
         }
-        finally {
-          if(rank) {
-            if (!(input.includes("-P"))) {
-                bot.sendMessage(user, rank);
-            } else {
-                bot.sendMessage(message, rank);
-            }
+        if(rank) {
+          if (!(input.includes("-P"))) {
+              bot.sendMessage(user, rank);
           } else {
-            bot.sendMessage("Character or rank not found");
+              bot.sendMessage(message, rank);
           }
+        } else {
+          bot.sendMessage("Character or rank not found");
         }
     }
     else if (input === "?ARMORY") {
