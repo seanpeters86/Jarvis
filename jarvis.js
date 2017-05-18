@@ -454,7 +454,7 @@ function err(error) {
 	process.exit(0);
 }
 // http://discordjs.readthedocs.io/en/8.2.0/docs_client.html?highlight=ready
-bot.on("debug", (m) => console.log("[debug]", m));
+//bot.on("debug", (m) => console.log("[debug]", m));
 bot.on("warn", (m) => console.log("[warn]", m));
 bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
