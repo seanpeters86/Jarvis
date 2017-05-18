@@ -582,7 +582,7 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        var rank = setTimeout(wcl.ranking(parsed, parsedReg, input), 2000);
+        var rank = setTimeout(wcl.ranking(parsed, parsedReg, input), 10000);
         //var rank = wcl.ranking(parsed, parsedReg, input);
         console.log(rank);
         if(rank) {
