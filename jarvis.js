@@ -51,7 +51,7 @@ bot.on("message", function(message) {
         var server = message.channel.server.id;
     }
     var user = message.author;
-    var role, channel, reserved, mythicPlusValue, mythicValue;
+    var role, mythicPlusValue, mythicValue;
     var parsed = message.content.split(" ");
     var parsedReg = input.split(" ");
     var arthas = "226510296221483008";
@@ -221,11 +221,15 @@ bot.on("message", function(message) {
         }
     }
     // !say channel message
-    else if (input.startsWith("!SAY") && (commands.channelList[parsed[1]]) && !(message.channel.isPrivate) ) {
+    else if (input.startsWith("!SAY") && !(message.channel.isPrivate) ) {
         // sayObject = [channel, role, data]
         sayObject = admin.get_channel(channels, roles, parsed);
         if (bot.memberHasRole(user, sayObject[1])) {
-            bot.sendMessage(sayObject[0], sayObject[2]);
+            try {
+              bot.sendMessage(sayObject[0], sayObject[2]);
+            } catch(err) {
+              bot.sendMessage(user, err);
+            }
         } else {
             bot.deleteMessage(message);
             bot.sendMessage(user, "You don't have valid permissions to do that.");
