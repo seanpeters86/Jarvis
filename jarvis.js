@@ -583,7 +583,7 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
         }
 
-        waitUntil(interval, times, wcl.ranking(parsed, parsedReg, input), function done(result) {
+        waitUntil(500, 10, wcl.ranking(parsed, parsedReg, input), function done(result) {
             console.log(result);
         });
 
