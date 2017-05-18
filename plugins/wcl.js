@@ -38,6 +38,8 @@ function specConvert(playerclass, spec) {
     }
 }
 
+var result;
+
 module.exports = {
   ranking: function(parsed, parsedReg, input) {
     var char = encodeURIComponent(parsed[1]);
@@ -182,17 +184,19 @@ module.exports = {
             var classparsed = classConvert(playerclass);
             var specparsed = specConvert(playerclass, spec);
             if (input.includes("-H")) {
-              var result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
+              result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
               console.log(result);
-              return result;
+              //return result;
             } else {
-              var result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
+              result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
               console.log(result);
-              return result;
+              //return result;
             }
         } else {
           return "Character or rank not found";
         }
     });
   }
+  console.log(result);
+  return(result);
 }
