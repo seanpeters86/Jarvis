@@ -174,7 +174,6 @@ module.exports = {
     }
     return [uri, encounter, bossname];
   },
-
   ranking: function(rank, bossname, input) {
     spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
     playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);

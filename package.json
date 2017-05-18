@@ -13,7 +13,8 @@
     "prettyjson": "^1.1.3",
     "request": "^2.74.0",
     "twitter": "^1.4.0",
-    "forever": "^0.15.3"
+    "forever": "^0.15.3",
+    "request-promise": "^4.2.1",
   },
   "engines": {
     "node": "4.0.0"
