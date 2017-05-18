@@ -69,28 +69,28 @@ bot.on('message', message => {
 	*/
 	// Basic Text Loop
 	if (commands.responses[input] && server == exiledpower && !(user.bot)) {
-		bot.sendMessage(message, commands.responses[input]);
+		message.channel.send(commands.responses[input]);
 	} else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
-		bot.sendMessage(message, commands.responsesArthas[input])
+		message.channel.send(commands.responsesArthas[input])
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
-		bot.sendFile(message, commands.responsesFiles[input]);
+		message.channel.send(commands.responsesFiles[input]);
 	}
 	// Replies Loop
 	else if (commands.responseReplies[input] && !(user.bot)) {
-		bot.reply(message, commands.responseReplies[input]);
+		message.reply(commands.responseReplies[input]);
 	}
 	// Includes Removal
 	else if (commands.includesBanned.some(function(v) {
 			return input.indexOf(v) >= 0;
 		}) && !(user.bot)) {
 		bot.deleteMessage(message);
-		bot.sendMessage(user, "This language: ```" + input + "``` is not allowed in this server.")
+		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
 	// fistmas
 	else if (input === "!FISTMAS") {
-		bot.sendMessage(message, commands.fistmas[admin.random(7)]);
+		message.channel.send(commands.fistmas[admin.random(7)]);
 	}
 	// Salt
 	else if (input === "!SALT") {
@@ -107,17 +107,17 @@ bot.on('message', message => {
 	// get discord servers
 	else if (input.startsWith("!SERVER")) {
 		if (commands.servers[parsedReg[1]]) {
-			bot.reply(message, commands.servers[parsedReg[1]]);
+			message.reply(commands.servers[parsedReg[1]]);
 		} else {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, "The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
+			message.member.send("The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
 		}
 	}
 	// Prints out list of commands in Discord
 	else if (input.startsWith("!HELP") || input === "?JARVIS") {
 		if (!(input.endsWith("-P"))) {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, commands.help);
+			message.member.send(commands.help);
 		} else {
 			bot.sendFile(message, "http://i.imgur.com/mISkWv2.png");
 		}
@@ -131,10 +131,10 @@ bot.on('message', message => {
 	else if (input === "!AFFIXES") {
 		var affix = affixes.get_affixes();
 		try {
-			bot.sendMessage(message, affix[0] + affix[1] + "\nFor more check out: https://mythicpl.us/");
+			message.channel.send(affix[0] + affix[1] + "\nFor more check out: https://mythicpl.us/");
 		} catch (err) {
 			console.log(err);
-			bot.sendMessage(message, "Weekly Affixes: https://mythicpl.us/ \n");
+			message.channel.send("Weekly Affixes: https://mythicpl.us/ \n");
 		}
 	}
 	/*
@@ -144,7 +144,7 @@ bot.on('message', message => {
 	*/
 	// artifact helper
 	else if (input === "?ARTIFACT") {
-		bot.sendMessage(message, "By using \n```!artifact CLASS SPEC```\n you can get the artifact path graphic sent. Class options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
+		message.channel.send("By using \n```!artifact CLASS SPEC```\n you can get the artifact path graphic sent. Class options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
 	}
 	// artifact power guide
 	else if (input.startsWith("!ARTIFACT")) {
@@ -153,7 +153,7 @@ bot.on('message', message => {
 			bot.sendFile(message, artifact);
 		} else {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, "Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
+			message.member.send("Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
 		}
 	}
 	/*
@@ -163,16 +163,16 @@ bot.on('message', message => {
 	*/
 	// Video helper
 	else if (input.startsWith("?BOSS") || input.startsWith("?VIDEO")) {
-		bot.sendMessage(message, "By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
+		message.channel.send("By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
 	}
 	// Kill Videos
 	else if (input.startsWith("!BOSS") || input.startsWith("!VIDEO")) {
 		var video = videos.get_video(parsedReg);
 		if (video) {
-			bot.sendMessage(message, video);
+			message.channel.send(video);
 		} else {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, "Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
+			message.member.send("Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
 		}
 	}
 	/*
@@ -182,16 +182,16 @@ bot.on('message', message => {
 	*/
 	// !guide helper
 	else if (input.startsWith("?GUIDE")) {
-		bot.sendMessage(message, "By using !GUIDE you can query my database for class/general guides from across the web. An example would be '!guide priest shadow' to get a guide for shadow priests.");
+		message.channel.send("By using !GUIDE you can query my database for class/general guides from across the web. An example would be '!guide priest shadow' to get a guide for shadow priests.");
 	}
 	// guides
 	else if (input.startsWith("!GUIDE")) {
 		var guide = guides.get_guide(parsedReg);
 		if (guide) {
-			bot.sendMessage(message, guide);
+			message.channel.send(guide);
 		} else {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, "Could not find a guide for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
+			message.member.send("Could not find a guide for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
 		}
 	}
 	/*
@@ -210,12 +210,12 @@ bot.on('message', message => {
 					var content = message.content;
 					//console.log(content);
 					if (input.endsWith("-P")) {
-						bot.sendMessage(message, content);
+						message.channel.send(content);
 					} else {
-						bot.sendMessage(user, content);
+						message.member.send(content);
 					}
 					if (!message.content) {
-						bot.sendMessage(user, "No pinned messages in this channel, or I can't find them.");
+						message.member.send("No pinned messages in this channel, or I can't find them.");
 					}
 				}
 			} else {
@@ -228,10 +228,10 @@ bot.on('message', message => {
 		role = admin.get_role(parsed, roles);
 		if (role) {
 			bot.addMemberToRole(user, role);
-			bot.reply(message, "Added " + parsed[1] + " role.");
+			message.reply("Added " + parsed[1] + " role.");
 		} else {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, "Role does not exist, or you do not have permission to add that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
+			message.member.send("Role does not exist, or you do not have permission to add that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
 		}
 	}
 	// !removerole Developers
@@ -239,10 +239,10 @@ bot.on('message', message => {
 		role = admin.get_role(parsed, roles);
 		if (role) {
 			bot.removeMemberFromRole(user, role);
-			bot.reply(message, "Removed " + parsed[1] + " role.");
+			message.reply("Removed " + parsed[1] + " role.");
 		} else {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, "Role does not exist, or you do not have permission to remove that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
+			message.member.send("Role does not exist, or you do not have permission to remove that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
 		}
 	}
 	// !say channel message
@@ -253,11 +253,11 @@ bot.on('message', message => {
 			try {
 				bot.sendMessage(sayObject[0], sayObject[2]);
 			} catch (err) {
-				bot.sendMessage(user, err);
+				message.member.send(err);
 			}
 		} else {
 			bot.deleteMessage(message);
-			bot.sendMessage(user, "You don't have valid permissions to do that.");
+			message.member.send("You don't have valid permissions to do that.");
 		}
 	}
 	/*
@@ -266,7 +266,7 @@ bot.on('message', message => {
 	*****************************
 	*/
 	else if (input === "?RANKING") {
-		bot.reply(message, "By using !ranking PLAYERNAME BOSSNAME [-h] you can check WCL parses for that characters rankings. Simply add -h to the end to check HPS rankings instead of DPS.");
+		message.reply("By using !ranking PLAYERNAME BOSSNAME [-h] you can check WCL parses for that characters rankings. Simply add -h to the end to check HPS rankings instead of DPS.");
 	}
 	// ranking
 	else if (input.startsWith("!RANKING")) {
@@ -285,22 +285,22 @@ bot.on('message', message => {
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
 					if (!(input.includes("-P"))) {
-						bot.sendMessage(user, rankObject);
+						message.member.send(rankObject);
 					} else {
-						bot.sendMessage(message, rankObject);
+						message.channel.send(rankObject);
 					}
 				} else {
 					bot.deleteMessage(message);
-					bot.sendMessage(user, "Error processing request. Please try again.")
+					message.member.send("Error processing request. Please try again.")
 				}
 			})
 			.catch(function(err) {
 				bot.deleteMessage(message);
-				bot.sendMessage(user, "Error processing request. Please try again.")
+				message.member.send("Error processing request. Please try again.")
 				console.log(err);
 			});
 	} else if (input === "?ARMORY") {
-		bot.sendMessage(message, "By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");
+		message.channel.send("By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");
 	}
 	/*
 	*****************************
@@ -320,15 +320,15 @@ bot.on('message', message => {
 				.then(function(char) {
 					if (char.statusCode != 404) {
 						var mythicPlus = armory.get_mythic_plus(char);
-						bot.sendMessage(message, mythicPlus);
+						message.channel.send(mythicPlus);
 					} else {
 						bot.deleteMessage(message);
-						bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
+						message.member.send("I could not find an armory profile for " + parsedReg[1]);
 					}
 				})
 				.catch(function(err) {
 					bot.deleteMessage(message);
-					bot.sendMessage(user, "Character not found on Arthas-US. Please try again.")
+					message.member.send("Character not found on Arthas-US. Please try again.")
 				});
 			// statistics fields
 			url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
@@ -340,21 +340,21 @@ bot.on('message', message => {
 				.then(function(char) {
 					if (char.statusCode != 404) {
 						var mythics = armory.get_mythics(char);
-						bot.sendMessage(message, mythics);
+						message.channel.send(mythics);
 					} else {
 						bot.deleteMessage(message);
-						bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
+						message.member.send("I could not find an armory profile for " + parsedReg[1]);
 					}
 				})
 				.catch(function(err) {
 					bot.deleteMessage(message);
-					bot.sendMessage(user, "Character not found on Arthas-US. Please try again.")
+					message.member.send("Character not found on Arthas-US. Please try again.")
 				});
 		}
 	}
 	// WoWProgress Link
 	else if (input === "!WOWPROGRESS" && server == exiledpower) {
-		bot.sendMessage(message, "Here is the link to the EP WoWProgress Page: <http://www.wowprogress.com/guild/us/arthas/Exiled+Power>");
+		message.channel.send("Here is the link to the EP WoWProgress Page: <http://www.wowprogress.com/guild/us/arthas/Exiled+Power>");
 		var url = "http://www.wowprogress.com/guild/us/arthas/Exiled+Power/json_rank";
 		request({
 			method: 'GET',
@@ -364,9 +364,9 @@ bot.on('message', message => {
 			if (!error && response.statusCode == 200) {
 				var json_rank = response.body;
 				console.log(json_rank);
-				bot.sendMessage(message, "Exiled Power is currently ranked " + `${prettyjson.render(json_rank.world_rank)}` + " in the world and " + `${prettyjson.render(json_rank.realm_rank)}` + " on Arthas.");
+				message.channel.send("Exiled Power is currently ranked " + `${prettyjson.render(json_rank.world_rank)}` + " in the world and " + `${prettyjson.render(json_rank.realm_rank)}` + " on Arthas.");
 			} else {
-				bot.sendMessage(message, "I could not find a ranking for Exiled Power on WoWProgress for the current tier.");
+				message.channel.send("I could not find a ranking for Exiled Power on WoWProgress for the current tier.");
 			}
 		});
 	}
@@ -378,7 +378,7 @@ bot.on('message', message => {
 	else if (input.includes("FUCK YOU JARVIS") || input.includes("FUCK YOU, JARVIS")) {
 		var random = Math.floor((Math.random() * 3));
 		var fucker = ["Why would you say that!?", "Well I don't think that was appropriate.", "Fuck you too, silly human. Have you seen your logs recently? (They suck lol)"];
-		bot.reply(message, fucker[random]);
+		message.reply(fucker[random]);
 	}
 	// GoT Stuff
 	else if (input.includes("WHAT IS DEAD MAY NEVER DIE")) {
@@ -392,16 +392,16 @@ bot.on('message', message => {
 	}
 	// do you need an adult
 	else if (input.includes("I NEED AN ADULT")) {
-		bot.reply(message, "Me too.");
+		message.reply("Me too.");
 	}
 	// fuckin ø Ø
 	else if (input.includes("Ø") && !(user.bot)) {
-		bot.reply(message, "I hate that stupid o. Can we use real letters please?");
+		message.reply("I hate that stupid o. Can we use real letters please?");
 	}
 	// command not found, but prefix given
 	else if (input.startsWith("!")) {
 		bot.deleteMessage(message);
-		bot.sendMessage(user, "I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
+		message.member.send("I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
 	}
 });
 bot.login(discordKey).then(success).catch(err);
