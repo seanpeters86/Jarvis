@@ -276,7 +276,7 @@ bot.on("message", function(message) {
         };
         rp(options)
           .then(function (rank) {
-              var rankObject = wcl.get_rank(rank, wclOBject[2], input);
+              var rankObject = wcl.get_rank(rank, wclObject[2], input);
               if (!(input.includes("-P"))) {
                   bot.sendMessage(user, rankObject);
               } else {
