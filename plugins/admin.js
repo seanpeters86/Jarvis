@@ -30,6 +30,5 @@ module.exports = {
         data = data + " " + parsed[i];
     }
     return [channel, role, data];
-  },
-
+  }
 };
