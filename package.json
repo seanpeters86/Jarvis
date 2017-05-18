@@ -17,7 +17,7 @@
     "request-promise": "^4.2.1"
   },
   "engines": {
-    "node": "4.0.0"
+    "node": "6.0.0"
   },
   "keywords": [
     "node",
