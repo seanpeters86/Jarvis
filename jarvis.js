@@ -29,6 +29,7 @@ var videos = require("./plugins/videos");
 var guides = require("./plugins/guides");
 
 bot.on("ready", function() {
+    bot.setStatus('online', "Discord.JS");
     tweet = twitter_stream.get_tweet();
     if (tweet) {
         bot.sendMessage(tweet[0],tweet[1]);
@@ -39,8 +40,6 @@ bot.on("ready", function() {
         request.post('https://discordapp.com/api/webhooks/311306144041926657/roiY7k2oiAuDikTMKs8aiseqFzvKjZnf9epD9cH-Di4MfVuSJOlll016a5G1UIS3dRFe', {form:{content:data}});
     }
 });
-
-var battlenetkey = process.env.BATTLE_NET_KEY;
 
 // begin main bot
 bot.on("message", function(message) {
@@ -60,18 +59,18 @@ bot.on("message", function(message) {
     var exiledpower = "170037904842817537";
     // Begin Command list
     // Basic Text Loop
-    if (commands.responses[input] && server == exiledpower) {
+    if (commands.responses[input] && server == exiledpower && !(user.bot)) {
         bot.sendMessage(message, commands.responses[input]);
     }
-    else if (commands.responsesArthas[input] && server == arthas){
+    else if (commands.responsesArthas[input] && server == arthas && !(user.bot)){
       bot.sendMessage(message, commands.responsesArthas[input])
     }
     // Send File Loop
-    else if (commands.responsesFiles[input]) {
+    else if (commands.responsesFiles[input] && !(user.bot)) {
         bot.sendFile(message, commands.responsesFiles[input]);
     }
     // Replies Loop
-    else if(commands.responseReplies[input]){
+    else if(commands.responseReplies[input] && !(user.bot)){
         bot.reply(message, commands.responseReplies[input]);
     }
     // Includes Removal
@@ -79,28 +78,7 @@ bot.on("message", function(message) {
       bot.deleteMessage(message);
       bot.sendMessage(user, "This language: ```" + input + "``` is not allowed in this server.")
     }
-    // Class Fantasy
-    else if (input === "!FANTASY" || input.includes("CLASS FANTASY")) {
-        bot.sendFile(message, "http://i.imgur.com/EMSiUF3.jpg");
-    }
-    // Politics
-    else if ((input.includes("POLITICS") || (input.includes("TRUMP")) || (input.includes("DONALD"))) && !(user.bot)) {
-        bot.sendMessage(message, "Make Exiled Power great again. Don't talk about politics.");
-        bot.sendFile(message, "http://i.imgur.com/fOJGF0Q.png");
-    }
-    // fistmas
-    else if (input === "!FISTMAS") {
-        var random = Math.floor((Math.random() * 3));
-        var fistmas = ["Fistmas is bad kids. Remember that one time Kelsø jumped off the edge on Cenarius? That was Fistmas.\nhttp://i.imgur.com/099eVi0.jpg", "Fistmas is bad kids. Remember that one time Moonkin stood in every Volcanic? That was Fistmas.\nhttp://i.imgur.com/SZ42W7V.png","Here's your EP styled Fistmas: http://i.imgur.com/KlI0zGc.png"];
-        bot.sendMessage(message, fistmas[random]);
-    }
-    // Fuck You Jarvis
-    else if (input.includes("FUCK YOU JARVIS") || input.includes("FUCK YOU, JARVIS")) {
-        var random = Math.floor((Math.random() * 3));
-        var fucker = ["Why would you say that!?", "Well I don't think that was appropriate.","Fuck you too, silly human. Have you seen your logs recently? (They suck lol)"];
-        bot.reply(message, fucker[random]);
-    }
-    // affix
+    // Affixes
     else if (input === "!AFFIXES") {
       var affix = affixes.get_affixes();
       try {
@@ -111,19 +89,11 @@ bot.on("message", function(message) {
         bot.sendMessage(message, "Weekly Affixes: https://mythicpl.us/ \n");
       }
     }
-    // GoT Stuff
-    else if (input.includes("WHAT IS DEAD MAY NEVER DIE")) {
-        bot.sendFile(message, "http://media2.popsugar-assets.com/files/thumbor/8JmtgAwoUtycNcKiKMY626mWtf8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/05/24/864/n/1922283/4b3606df5ff39bb7_tumblr_m52wvwqwBQ1qb9ftxo1_500/i/House-Greyjoy-What-Dead-May-Never-Die.gif");
-    } else if (input.includes("WINTER IS COMING")) {
-        bot.sendFile(message, "https://media.makeameme.org/created/Brace-yourself-Winter.jpg");
-    } else if (input.includes("YOU KNOW NOTHING")) {
-        bot.sendFile(message, "http://i.imgur.com/FBC3qtM.gif");
-    } else if (input.includes("HOLD THE DOOR")) {
-        bot.sendFile(message, "http://gif4share.com/wp-content/uploads/2016/06/hold-the-door-game-of-thrones.gif");
-    }
-    // do you need an adult
-    else if (input.includes("I NEED AN ADULT")) {
-        bot.reply(message, "Me too.");
+    // fistmas
+    else if (input === "!FISTMAS") {
+        var random = Math.floor((Math.random() * 3));
+        var fistmas = ["Fistmas is bad kids. Remember that one time Kelsø jumped off the edge on Cenarius? That was Fistmas.\nhttp://i.imgur.com/099eVi0.jpg", "Fistmas is bad kids. Remember that one time Moonkin stood in every Volcanic? That was Fistmas.\nhttp://i.imgur.com/SZ42W7V.png","Here's your EP styled Fistmas: http://i.imgur.com/KlI0zGc.png"];
+        bot.sendMessage(message, fistmas[random]);
     }
     // !game status for Jarvis
     else if (input.startsWith("!GAME") && input.endsWith("-J")) {
@@ -288,7 +258,7 @@ bot.on("message", function(message) {
     }
     // guides
     else if (input.startsWith("!GUIDE")) {
-      var guide = artifacts.get_guide(parsedReg);
+      var guide = guides.get_guide(parsedReg);
       if (guide) {
         bot.sendMessage(message, guide);
       } else {
@@ -517,6 +487,26 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
             bot.sendMessage(user, "Invalid optiton");
         }
+    }
+    // Fuck You Jarvis
+    else if (input.includes("FUCK YOU JARVIS") || input.includes("FUCK YOU, JARVIS")) {
+        var random = Math.floor((Math.random() * 3));
+        var fucker = ["Why would you say that!?", "Well I don't think that was appropriate.","Fuck you too, silly human. Have you seen your logs recently? (They suck lol)"];
+        bot.reply(message, fucker[random]);
+    }
+    // GoT Stuff
+    else if (input.includes("WHAT IS DEAD MAY NEVER DIE")) {
+        bot.sendFile(message, "http://media2.popsugar-assets.com/files/thumbor/8JmtgAwoUtycNcKiKMY626mWtf8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/05/24/864/n/1922283/4b3606df5ff39bb7_tumblr_m52wvwqwBQ1qb9ftxo1_500/i/House-Greyjoy-What-Dead-May-Never-Die.gif");
+    } else if (input.includes("WINTER IS COMING")) {
+        bot.sendFile(message, "https://media.makeameme.org/created/Brace-yourself-Winter.jpg");
+    } else if (input.includes("YOU KNOW NOTHING")) {
+        bot.sendFile(message, "http://i.imgur.com/FBC3qtM.gif");
+    } else if (input.includes("HOLD THE DOOR")) {
+        bot.sendFile(message, "http://gif4share.com/wp-content/uploads/2016/06/hold-the-door-game-of-thrones.gif");
+    }
+    // do you need an adult
+    else if (input.includes("I NEED AN ADULT")) {
+        bot.reply(message, "Me too.");
     }
     // fuckin ø Ø
     else if (input.includes("Ø") && !(user.bot)) {
