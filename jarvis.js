@@ -4,9 +4,6 @@ Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
 Version: 3.0.0
-
-"discord.js": "^8.0.0",
-"discord.js": "^11.1.0",
 */
 var express = require('express')
 var app = express()
@@ -17,7 +14,6 @@ var fs = require('fs');
 var request = require('request');
 var prettyjson = require("prettyjson");
 var rp = require('request-promise');
-var ytdl = require('ytdl-core');
 var debug = true;
 
 var discordKey = process.env.DISCORD_KEY;
@@ -89,20 +85,6 @@ bot.on('message', message => {
 		message.delete();
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
-  // else if (input.startsWith("!PLAY")) {
-  //   console.log("detected play");
-  //   var voiceChannel = message.member.voiceChannel;
-  //   var streamOptions = { seek: 0, volume: 1 };
-  //   if (!voiceChannel) return message.reply(`Please be in a voice channel first!`);
-  //   voiceChannel.join()
-  //     .then(connnection => {
-  //       var stream = ytdl("https://www.youtube.com/watch?v=d-diB65scQU", { filter: 'audioonly' });
-  //       console.log("Play audio");
-  //       var dispatcher = connnection.playStream(stream, streamOptions);
-  //       dispatcher.on('end', () => voiceChannel.leave());
-  //       console.log("Audio over");
-  //     });
-  // }
 	// fistmas
 	else if (input === "!FISTMAS") {
 		message.channel.send(commands.fistmas[admin.random(7)]);
@@ -468,14 +450,13 @@ bot.on('guildMemberAdd', member => {
 	var data = username + " joined " + server.name;
 	if (server.id == exiledpower) {
 		request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form: {content: data}});
-	} else if (server.id == arthas) {
-		bot.sendMessage(server.channels.admins, username + " joined " + server.name);
 	}
 	console.log(username + " joined " + server.name);
 });
 
-bot.on("disconnected", function() {
+bot.on('disconnected', err => {
 	console.log("Bot disconnected");
+  console.log(err);
 	process.exit(0);
 });
 
