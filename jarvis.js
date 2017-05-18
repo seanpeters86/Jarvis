@@ -23,7 +23,7 @@ var battlenetkey = process.env.BATTLE_NET_KEY;
 var commands = require("./plugins/commands");
 var twitter_stream = require("./plugins/twitter_stream");
 var armory = require("./plugins/armory"); // WIP
-var wcl = require("./plugins/wcl"); // WIP
+var wcl = require("./plugins/wcl");
 var affixes = require("./plugins/affixes");
 var artifacts = require("./plugins/artifacts");
 var videos = require("./plugins/videos");
@@ -288,110 +288,54 @@ bot.on("message", function(message) {
     // !ARMORY NEWCLASSOMG ANGER
     else if (input.startsWith("!ARMORY")) {
         var character = encodeURIComponent(parsedReg[1]);
-        if (parsedReg[2] === "ANGER" || parsedReg[2] === "ANGEROFTHEHALFGIANTS") {
-            var url = "https://us.api.battle.net/wow/character/arthas/" + character + "?fields=items&locale=en_US&apikey=" + battlenetkey;
-            request({
-                method: 'GET',
-                uri: url,
-                json: true
-            }, (error, response, body) => {
-                if (!error && response.statusCode == 200) {
-                    var char = response.body;
-                    var charName = `${prettyjson.render(char.name)}`;
-                    if(char.items.finger1.name === "Anger of the Half-Giants" || char.items.finger2.name === "Anger of the Half-Giants"){
-                        bot.sendMessage(message, "Yup, you're one lucky SoB, here ya go:");
-                        bot.sendFile(message, "http://i.imgur.com/8otzCZl.png");
-                    } else {
-                        bot.sendMessage(message, "Well. Looks like RNGesus doesn't like you. Take this instead:");
-                        bot.sendFile(message, "http://i.imgur.com/kMqridE.png");
-                    }
-                } else {
-                    bot.deleteMessage(message);
-                    console.log("Error: ```" + error + "``` Response: ```" + response.statusCode + "``` Body: ```" + body + "``` ");
-                    bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
-                }
-            });
-        }
-        else if (parsedReg[2] === "MYTHICS") {
+        if (parsedReg[2] === "MYTHICS") {
+            // achievements fields
             var url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=achievements&locale=en_US&apikey=" + battlenetkey;
-            request({
-                method: 'GET',
+            var options = {
+              uri: url,
+              json: true
+            };
+            rp(options)
+              .then(function (char) {
+                  console.log(char);
+                  if (char.statusCode == 200) {
+                    var mythicPlus = armory.get_mythic_plus(char);
+                    bot.sendMessage(message, mythicPlus);
+                  } else {
+                    bot.deleteMessage(message);
+                    console.log("Error: ```" + error + "``` Response: ```" + char.statusCode + "``` Body: ```" + body + "``` ");
+                    bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
+                  }
+              })
+              .catch(function (err) {
+                  bot.deleteMessage(message);
+                  bot.sendMessage(user, "Error processing request. Please try again.")
+                  console.log(err);
+              });
+              // statistics fields
+              url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
+              var options = {
                 uri: url,
                 json: true
-            }, (error, response, body) => {
-                if (!error && response.statusCode == 200) {
-                    var char = response.body;
-                    var charName = `${prettyjson.render(char.name)}`;
-                    var arrayLength = char.achievements.criteria.length;
-                    var index2, index5, index10;
-                    for (var i = 0; i < arrayLength; i++) {
-                        if (char.achievements.criteria[i] == 33096) {
-                            index2 = i;
-                        }
-                        if (char.achievements.criteria[i] == 33097) {
-                            index5 = i;
-                        }
-                        if (char.achievements.criteria[i] == 33098) {
-                            index10 = i;
-                        }
+              };
+              rp(options)
+                .then(function (char) {
+                    console.log(char);
+                    if (char.statusCode == 200) {
+                      var mythics = armory.get_mythics(char);
+                      bot.sendMessage(message, mythics);
+                    } else {
+                      bot.deleteMessage(message);
+                      console.log("Error: ```" + error + "``` Response: ```" + char.statusCode + "``` Body: ```" + body + "``` ");
+                      bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
                     }
-                    var plustwo = (`${prettyjson.render(char.achievements.criteriaQuantity[index2])}`);
-                    var plusfive = (`${prettyjson.render(char.achievements.criteriaQuantity[index5])}`);
-                    var plusten = (`${prettyjson.render(char.achievements.criteriaQuantity[index10])}`);
-                    if (!plustwo) {
-                        plustwo = "0";
-                    }
-                    if (!plusfive) {
-                        plusfive = "0";
-                    }
-                    if (!plusten) {
-                        plusten = "0";
-                    }
-                    console.log(charName + " has completed " + plustwo + " mythic+ dungeons.");
-                    mythicPlusValue = plustwo;
-                    //bot.sendMessage(message, "2+: " + plustwo + " || 5+: " + plusfive + " || 10+: " + plusten);
-                    bot.sendMessage(message, charName + " has completed " + mythicPlusValue + " mythic+ dungeons in time.");
-                } else {
+                })
+                .catch(function (err) {
                     bot.deleteMessage(message);
-                    console.log("Error: ```" + error + "``` Response: ```" + response.statusCode + "``` Body: ```" + body + "``` ");
-                    bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
-                }
-            });
-            var url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
-            request({
-                method: 'GET',
-                uri: url,
-                json: true
-            }, (error, response, body) => {
-                if (!error && response.statusCode == 200) {
-                    var char = response.body;
-                    var count = 0;
-                    var charName = `${prettyjson.render(char.name)}`;
-                    // dungeons and raids = 5, legion = 6
-                    var arrayLength = char.statistics.subCategories[5].subCategories[6].statistics.length;
-                    for (var i = 0; i < arrayLength; i++) {
-                        var object = char.statistics.subCategories[5].subCategories[6].statistics[i];
-                        //console.log(object);
-                        if (object.id == 10880 || object.id == 10883 || object.id == 10886 || object.id == 10889 || object.id == 10892 || object.id == 10895 || object.id == 10898 || object.id == 10901 || object.id == 10904 || object.id == 10907 || object.id == 10910) {
-                            count = count + object.quantity;
-                        }
-                    }
-                    console.log(charName + " has completed " + count + " mythic dungeons.");
-                    mythicValue = count;
-                    bot.sendMessage(message, charName + " has completed " + mythicValue + " mythic dungeons in total.");
-                    console.log("Message sent");
-                } else {
-                    bot.deleteMessage(message);
-                    console.log("Error: ```" + error + "``` Response: ```" + response.statusCode + "``` Body: ```" + body + "``` ");
-                    bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
-                    return 0;
-                }
-            });
-            console.log("Values found " + mythicPlusValue + " " + mythicValue);
-        } else {
-            bot.deleteMessage(message);
-            bot.sendMessage(user, "Invalid optiton");
-        }
+                    bot.sendMessage(user, "Error processing request. Please try again.")
+                    console.log(err);
+                });
+          }
     }
     // Fuck You Jarvis
     else if (input.includes("FUCK YOU JARVIS") || input.includes("FUCK YOU, JARVIS")) {
