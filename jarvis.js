@@ -90,13 +90,15 @@ bot.on('message', message => {
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
   else if (input.startsWith("!PLAY")) {
-    const voiceChannel = message.member.voiceChannel;
+    console.log("detected play");
+    var voiceChannel = message.member.voiceChannel;
+    var streamOptions = { seek: 0, volume: 1 };
     if (!voiceChannel) return message.reply(`Please be in a voice channel first!`);
     voiceChannel.join()
       .then(connnection => {
-        const stream = ytdl("https://www.youtube.com/watch?v=d-diB65scQU", { filter: 'audioonly' });
+        var stream = ytdl("https://www.youtube.com/watch?v=d-diB65scQU", { filter: 'audioonly' });
         console.log("Play audio");
-        const dispatcher = connnection.playStream(stream);
+        var dispatcher = connnection.playStream(stream, streamOptions);
         dispatcher.on('end', () => voiceChannel.leave());
         console.log("Audio over");
       });
