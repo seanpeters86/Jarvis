@@ -15,6 +15,8 @@ var request = require('request');
 var prettyjson = require("prettyjson");
 var debug = true;
 
+var waitUntil = require('wait-until');
+
 var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
 var battlenetkey = process.env.BATTLE_NET_KEY;
@@ -580,14 +582,11 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        function getRanking() {
-          var rank;
-          return new Promise (function (resolve, reject){
-            wcl.ranking(parsed, parsedReg, input).done(function (result) {
-              console.log(result);
-            });
-          });
-        }
+
+        waitUntil(interval, times, wcl.ranking(parsed, parsedReg, input), function done(result) {
+            console.log(result);
+        });
+
         var rank = wcl.ranking(parsed, parsedReg, input);
         console.log(rank);
         if(rank) {
