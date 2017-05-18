@@ -1,8 +1,10 @@
 var role, channel, data;
 var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
+var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
+
 
 module.exports = {
-  get_role: function(classes, parsed, roles) {
+  get_role: function(parsed, roles) {
     // Check of role matches the class list
     if (classes.indexOf(parsed[1]) != -1) {
             if (parsed[1] == "Death") {

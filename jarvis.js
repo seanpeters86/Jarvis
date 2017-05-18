@@ -200,7 +200,7 @@ bot.on("message", function(message) {
     }
     // !addrole Role
     else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
-        role = admin.get_role(classes, parsed, roles);
+        role = admin.get_role(parsed, roles);
         if (role) {
           bot.addMemberToRole(user, role);
           bot.reply(message, "Added " + parsed[1] + " role.");
@@ -211,7 +211,7 @@ bot.on("message", function(message) {
     }
     // !removerole Developers
     else if ((input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) && !(message.channel.isPrivate)) {
-        role = admin.get_role(classes, parsed, roles);
+        role = admin.get_role(parsed, roles);
         if (role) {
           bot.removeMemberFromRole(user, role);
           bot.reply(message, "Removed " + parsed[1] + " role.");
