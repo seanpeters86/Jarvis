@@ -254,7 +254,7 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        /// wclOBject = [uri, encounter, bossname]
+        /// wclObject = [uri, encounter, bossname]
         var wclObject = wcl.get_object(parsed, parsedReg, input);
         var options = {
           uri: wclObject[0],
@@ -263,14 +263,21 @@ bot.on("message", function(message) {
         rp(options)
           .then(function (rank) {
               console.log(rank);
-              var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
-              if (!(input.includes("-P"))) {
-                  bot.sendMessage(user, rankObject);
+              if (wclObject[1] != 0) {
+                var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
+                if (!(input.includes("-P"))) {
+                    bot.sendMessage(user, rankObject);
+                } else {
+                    bot.sendMessage(message, rankObject);
+                }
               } else {
-                  bot.sendMessage(message, rankObject);
+                bot.deleteMessage(message);
+                bot.sendMessage(user, "Error processing request. Please try again.")
               }
           })
           .catch(function (err) {
+              bot.deleteMessage(message);
+              bot.sendMessage(user, "Error processing request. Please try again.")
               console.log(err);
           });
     }
