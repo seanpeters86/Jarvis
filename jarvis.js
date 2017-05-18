@@ -57,7 +57,7 @@ bot.on('message', message => {
 		var server = message.channel.server.id;
 	}
 	var user = message.author;
-	var role, mythicPlusValue, mythicValue;
+	var role;
 	var parsed = message.content.split(" ");
 	var parsedReg = input.split(" ");
 	var arthas = "226510296221483008";
@@ -420,9 +420,10 @@ bot.on("warn", (m) => console.log("[warn]", m));
 bot.on("error", (m) => console.log("[error]", m));
 //bot.on("raw", (m) => console.log("[raw]", m));
 
-bot.on("serverNewMember", function(server, user) {
+bot.on('guildMemberAdd', member => {
 	var arthas = "226510296221483008";
 	var exiledpower = "170037904842817537";
+  member.send("Welcome to the server. Check out the #welcome channel for more info, or type in !help in any of the channels.");
 	userid = user.id;
 	username = user.name;
 	var data = username + " joined " + server.name;

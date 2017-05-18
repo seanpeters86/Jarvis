@@ -1,13 +1,13 @@
 {
   "name": "jarvis",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "A Node.js Discord Bot.",
   "main":"jarvis.js",
   "scripts": {
     "start": "node jarvis.js"
   },
   "dependencies": {
-    "discord.js": "^11.1.0",
+    "discord.js": "11.0.x",
     "express": "^4.13.3",
     "fs": "0.0.2",
     "prettyjson": "^1.1.3",
