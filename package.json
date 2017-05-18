@@ -7,7 +7,7 @@
     "start": "node jarvis.js"
   },
   "dependencies": {
-    "discord.js": "^8.0.0",
+    "discord.js": "^11.1.0",
     "express": "^4.13.3",
     "fs": "0.0.2",
     "prettyjson": "^1.1.3",

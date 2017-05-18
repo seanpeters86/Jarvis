@@ -34,6 +34,8 @@ bot.on("ready", function() {
 	bot.setStatus('online', "Discord.JS");
 	tweet = twitter_stream.get_tweet();
 	if (tweet) {
+    console.log(tweet);
+    console.log("Sending Tweet");
 		bot.sendMessage(tweet[0], tweet[1]);
 	}
 	if (debug) {

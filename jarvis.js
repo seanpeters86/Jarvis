@@ -4,6 +4,9 @@ Author: Sean Peters
 Created: 06/22/2016
 Description: Main Bot File
 Version: 3.0.0
+
+"discord.js": "^8.0.0",
+"discord.js": "^11.1.0",
 */
 var express = require('express')
 var app = express()
@@ -30,7 +33,7 @@ var videos = require("./plugins/videos");
 var guides = require("./plugins/guides");
 var admin = require("./plugins/admin");
 
-bot.on("ready", function() {
+bot.on("ready", () => {
 	bot.setStatus('online', "Discord.JS");
 	tweet = twitter_stream.get_tweet();
 	if (tweet) {
@@ -46,7 +49,7 @@ bot.on("ready", function() {
 });
 
 // begin main bot
-bot.on("message", function(message) {
+bot.on('message', message => {
 	var input = message.content.toUpperCase();
 	if (!(message.channel.isPrivate)) {
 		var roles = message.channel.server.roles;
@@ -401,7 +404,7 @@ bot.on("message", function(message) {
 		bot.sendMessage(user, "I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
 	}
 });
-bot.loginWithToken(discordKey).then(success).catch(err);
+bot.login(discordKey).then(success).catch(err);
 
 function success(token) {
 	console.log("Successful login with token");
