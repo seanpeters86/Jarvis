@@ -170,12 +170,10 @@ bot.on("message", function(message) {
     }
     // artifact power guide
     else if (input.startsWith("!ARTIFACT")) {
-      try {
-        artifact = artifacts.get_artifact(parsedReg);
+      var artifact = artifacts.get_artifact(parsedReg);
+      if (artifact) {
         bot.sendFile(message, artifact);
-      }
-      catch(err) {
-        console.log(err);
+      } else {
         bot.deleteMessage(message);
         bot.sendMessage(user, "Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
       }
@@ -210,45 +208,13 @@ bot.on("message", function(message) {
     }
     // Kill Videos
     else if (input.startsWith("!BOSS") || input.startsWith("!VIDEO")) {
-        var videos = {
-            "ARCHIMONDE": "https://www.youtube.com/watch?v=Jkt1iId7Xbc",
-            "MANNY": "https://www.youtube.com/watch?v=b7mTPw0pv20",
-            "MANNOROTH": "https://www.youtube.com/watch?v=b7mTPw0pv20",
-            "XHUL'HORAC": "https://www.youtube.com/watch?v=N2aSgC4DlIU",
-            "XHUL": "https://www.youtube.com/watch?v=N2aSgC4DlIU",
-            "TYRANT": "https://www.youtube.com/watch?v=wHUKGvI6U2Y",
-            "FEL": "https://www.youtube.com/watch?v=d0C92xy1fts",
-            "ISKAR": "https://www.youtube.com/watch?v=9iIAlJQ3Fws",
-            "SOCRETHAR": "https://www.youtube.com/watch?v=cbO6Ri4XqlA",
-            "GOREFIEND": "https://www.youtube.com/watch?v=OYOQ6ahRAc4",
-            "GORE": "https://www.youtube.com/watch?v=OYOQ6ahRAc4",
-            "KILROGG": "https://www.youtube.com/watch?v=37hyWu503zo",
-            "COUNCIL": "https://www.youtube.com/watch?v=89wK24T2lK8",
-            "KORMROK": "https://www.youtube.com/watch?v=KAnECqXw11c",
-            "KORM": "https://www.youtube.com/watch?v=KAnECqXw11c",
-            "IRON": "https://www.youtube.com/watch?v=8exVgQfHAaA",
-            "REAVER": "https://www.youtube.com/watch?v=8exVgQfHAaA",
-            "ASSAULT": "https://www.youtube.com/watch?v=FBKpYBYkZ5w",
-            "HANS": "https://www.youtube.com/watch?v=dCbk8OamUow",
-            "FRANZ": "https://www.youtube.com/watch?v=dCbk8OamUow",
-            "OREO": "https://www.youtube.com/watch?v=F8xwKWEci_I",
-            "OREGORGER": "https://www.youtube.com/watch?v=F8xwKWEci_I",
-            "GRUUL": "https://www.youtube.com/watch?v=zYs9iKxrUGU",
-            "BEASTLORD": "https://www.youtube.com/watch?v=n3Jr61veZkQ",
-            "DRINK1": "https://www.youtube.com/watch?v=b9yNli7FF5s",
-            "DRINK2": "https://www.youtube.com/watch?v=1eyykDPeKME",
-            "SIMCRAFT": "https://www.youtube.com/watch?v=HPkB56VWWDU",
-            "SIMC": "https://www.youtube.com/watch?v=HPkB56VWWDU",
-            "WCL": "https://www.youtube.com/watch?v=91jG59QyN2k",
-            "WARCRAFTLOGS": "https://www.youtube.com/watch?v=91jG59QyN2k",
-            "PAWN": "https://www.youtube.com/watch?v=EnjnOGBn6qI"
-        };
-        if (videos[parsedReg[1]]) {
-            bot.sendMessage(message, videos[parsedReg[1]]);
-        } else {
-            bot.deleteMessage(message);
-            bot.sendMessage(user, "Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
-        }
+      var video = videos.get_video(parsedReg);
+      if (video) {
+        bot.sendFile(message, video);
+      } else {
+        bot.deleteMessage(message);
+        bot.sendMessage(user, "Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
+      }
     }
     // !addrole Role
     else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
@@ -490,7 +456,6 @@ bot.on("message", function(message) {
         }
         var rank = wcl.ranking(parsed, parsedReg, input);
         console.log(rank + " outside");
-        console.log(wcl.resultTest + " also outside");
         if(rank) {
           if (!(input.includes("-P"))) {
               bot.sendMessage(user, rank);

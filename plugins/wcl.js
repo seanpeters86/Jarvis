@@ -186,12 +186,10 @@ module.exports = {
             if (input.includes("-H")) {
               result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
               console.log(result);
-              exports.resultTest = result;
               return result;
             } else {
               result = (parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
               console.log(result);
-              exports.resultTest = result;
               return result;
             }
         } else {
