@@ -94,7 +94,7 @@ bot.on('message', message => {
     if (!voiceChannel) return message.reply(`Please be in a voice channel first!`);
     voiceChannel.join()
       .then(connnection => {
-        const stream = ytdl(parsed[1], { filter: 'audioonly' });
+        const stream = ytdl("https://www.youtube.com/watch?v=d-diB65scQU", { filter: 'audioonly' });
         const dispatcher = connnection.playStream(stream);
         dispatcher.on('end', () => voiceChannel.leave());
       });
