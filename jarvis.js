@@ -582,18 +582,20 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        var rank = setTimeout(wcl.ranking(parsed, parsedReg, input), 20000);
-        //var rank = wcl.ranking(parsed, parsedReg, input);
-        console.log(rank);
-        if(rank) {
-          if (!(input.includes("-P"))) {
-              bot.sendMessage(user, rank);
+        var rank = wcl.ranking(parsed, parsedReg, input);
+        setTimeout(function () {
+          console.log(rank);
+          if(rank) {
+            if (!(input.includes("-P"))) {
+                bot.sendMessage(user, rank);
+            } else {
+                bot.sendMessage(message, rank);
+            }
           } else {
-              bot.sendMessage(message, rank);
+            bot.sendMessage("Character or rank not found");
           }
-        } else {
-          bot.sendMessage("Character or rank not found");
-        }
+        }, 20000);
+        //var rank = wcl.ranking(parsed, parsedReg, input);
     }
     else if (input === "?ARMORY") {
         bot.sendMessage(message, "By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");
