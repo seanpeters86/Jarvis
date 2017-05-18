@@ -256,23 +256,9 @@ bot.on("message", function(message) {
         }
         /// wclOBject = [uri, encounter, bossname]
         var wclObject = wcl.get_object(parsed, parsedReg, input);
-        // var rank;
-        // request({
-        //     method: 'GET',
-        //     uri: wclOBject[0],
-        //     json: true
-        // }, (error, response, body) => {
-        //     if (!error && response.statusCode == 200 && (wclOBject[1] != 0) && body.length > 0) {
-        //         rank = response.body;
-        //     } else {
-        //         rank = 0;
-        //         bot.deleteMessage(message);
-        //         bot.sendMessage(user, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
-        //     }
-        // });
         var options = {
           uri: wclObject[0],
-          json: true // Automatically parses the JSON string in the response
+          json: true
         };
         rp(options)
           .then(function (rank) {
@@ -286,15 +272,6 @@ bot.on("message", function(message) {
           .catch(function (err) {
               console.log(err);
           });
-        // console.log(rank);
-        // if(rank) {
-        //   var rankObject = wcl.get_rank(rank, wclOBject[2], input);
-        //   if (!(input.includes("-P"))) {
-        //       bot.sendMessage(user, rankObject);
-        //   } else {
-        //       bot.sendMessage(message, rankObject);
-        //   }
-        // }
     }
     else if (input === "?ARMORY") {
         bot.sendMessage(message, "By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");
