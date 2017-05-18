@@ -53,6 +53,7 @@ bot.on('message', message => {
 	var input = message.content.toUpperCase();
 	if (message.channel.type == 'text') {
 		var roles = message.channel.guild.roles;
+    console.log(roles);
 		var channels = message.channel.guild.channels;
 		var server = message.channel.guild.id;
 	}
@@ -204,7 +205,7 @@ bot.on('message', message => {
 		role = admin.get_role(parsed, roles);
     console.log(role);
 		if (role) {
-			bot.addMemberToRole(user, role);
+			user.addRole(role);
 			message.reply("Added " + parsed[1] + " role.");
 		} else {
 			message.delete();
