@@ -16,6 +16,10 @@ exports.channelList = channelList;
 
 var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
 
+function fistmas() {
+  return fistmas[admin.random(3)];
+}
+
 exports.responsesArthas = {
   "?ADDROLE": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
   "?ADD": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
@@ -164,13 +168,3 @@ exports.help = "You can now message Jarvis directly! Most things will work (othe
     Random Lore Facts = **!LORE**\n \
     Mythic Dungeon Stats = **!ARMORY CHARNAME MYTHICS**\n \
     To get WCL Ranking [optional features incluide P for public, T for tanking and H for healing] = **!RANKING CHARACTERNAME BOSSNAME [-P] [-T] [-H]** i.e. **!RANKING Daenall Archimonde -P -H**";
-
-// module.exports = {
-//   fistmas: function() {
-//     return fistmas[admin.random(3)];
-//   }
-// };
-
-function fistmas() {
-  return fistmas[admin.random(3)];
-}
