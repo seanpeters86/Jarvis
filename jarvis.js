@@ -75,7 +75,7 @@ bot.on('message', message => {
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
-		message.channel.send(commands.responsesFiles[input]);
+		message.channel.sendFilecommands.responsesFiles[input]);
 	}
 	// Replies Loop
 	else if (commands.responseReplies[input] && !(user.bot)) {
@@ -85,7 +85,7 @@ bot.on('message', message => {
 	else if (commands.includesBanned.some(function(v) {
 			return input.indexOf(v) >= 0;
 		}) && !(user.bot)) {
-		bot.deleteMessage(message);
+		message.delete();
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
 	// fistmas
@@ -94,32 +94,32 @@ bot.on('message', message => {
 	}
 	// Salt
 	else if (input === "!SALT") {
-		bot.sendFile(message, commands.salt[admin.random(7)]);
+		message.channel.sendFilecommands.salt[admin.random(7)]);
 	}
 	// Wrecked
 	else if (input === "!REKT" || input === "!WRECKED") {
-		bot.sendFile(message, commands.rekt[admin.random(7)]);
+		message.channel.sendFilecommands.rekt[admin.random(7)]);
 	}
 	// Lore
 	else if (input === "!LORE") {
-		bot.sendFile(message, commands.lore[admin.random(22)]);
+		message.channel.sendFilecommands.lore[admin.random(22)]);
 	}
 	// get discord servers
 	else if (input.startsWith("!SERVER")) {
 		if (commands.servers[parsedReg[1]]) {
 			message.reply(commands.servers[parsedReg[1]]);
 		} else {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send("The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
 		}
 	}
 	// Prints out list of commands in Discord
 	else if (input.startsWith("!HELP") || input === "?JARVIS") {
 		if (!(input.endsWith("-P"))) {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send(commands.help);
 		} else {
-			bot.sendFile(message, "http://i.imgur.com/mISkWv2.png");
+			message.channel.sendFile"http://i.imgur.com/mISkWv2.png");
 		}
 	}
 	/*
@@ -150,9 +150,9 @@ bot.on('message', message => {
 	else if (input.startsWith("!ARTIFACT")) {
 		var artifact = artifacts.get_artifact(parsedReg);
 		if (artifact) {
-			bot.sendFile(message, artifact);
+			message.channel.sendFileartifact);
 		} else {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send("Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
 		}
 	}
@@ -171,7 +171,7 @@ bot.on('message', message => {
 		if (video) {
 			message.channel.send(video);
 		} else {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send("Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
 		}
 	}
@@ -190,7 +190,7 @@ bot.on('message', message => {
 		if (guide) {
 			message.channel.send(guide);
 		} else {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send("Could not find a guide for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
 		}
 	}
@@ -202,7 +202,7 @@ bot.on('message', message => {
 	// Get Pinned Messages
 	else if (input.startsWith("!PINNED")) {
 		if (!(input.endsWith("-P"))) {
-			bot.deleteMessage(message);
+			message.delete();
 		}
 		bot.getPinnedMessages(message.channel, (err, messages) => {
 			if (!err) {
@@ -230,7 +230,7 @@ bot.on('message', message => {
 			bot.addMemberToRole(user, role);
 			message.reply("Added " + parsed[1] + " role.");
 		} else {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send("Role does not exist, or you do not have permission to add that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
 		}
 	}
@@ -241,7 +241,7 @@ bot.on('message', message => {
 			bot.removeMemberFromRole(user, role);
 			message.reply("Removed " + parsed[1] + " role.");
 		} else {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send("Role does not exist, or you do not have permission to remove that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
 		}
 	}
@@ -256,7 +256,7 @@ bot.on('message', message => {
 				message.member.send(err);
 			}
 		} else {
-			bot.deleteMessage(message);
+			message.delete();
 			message.member.send("You don't have valid permissions to do that.");
 		}
 	}
@@ -271,7 +271,7 @@ bot.on('message', message => {
 	// ranking
 	else if (input.startsWith("!RANKING")) {
 		if (!(input.includes("-P"))) {
-			bot.deleteMessage(message);
+			message.delete();
 		}
 		/// wclObject = [uri, encounter, bossname]
 		var wclObject = wcl.get_object(parsed, parsedReg, input);
@@ -290,12 +290,12 @@ bot.on('message', message => {
 						message.channel.send(rankObject);
 					}
 				} else {
-					bot.deleteMessage(message);
+					message.delete();
 					message.member.send("Error processing request. Please try again.")
 				}
 			})
 			.catch(function(err) {
-				bot.deleteMessage(message);
+				message.delete();
 				message.member.send("Error processing request. Please try again.")
 				console.log(err);
 			});
@@ -322,12 +322,12 @@ bot.on('message', message => {
 						var mythicPlus = armory.get_mythic_plus(char);
 						message.channel.send(mythicPlus);
 					} else {
-						bot.deleteMessage(message);
+						message.delete();
 						message.member.send("I could not find an armory profile for " + parsedReg[1]);
 					}
 				})
 				.catch(function(err) {
-					bot.deleteMessage(message);
+					message.delete();
 					message.member.send("Character not found on Arthas-US. Please try again.")
 				});
 			// statistics fields
@@ -342,12 +342,12 @@ bot.on('message', message => {
 						var mythics = armory.get_mythics(char);
 						message.channel.send(mythics);
 					} else {
-						bot.deleteMessage(message);
+						message.delete();
 						message.member.send("I could not find an armory profile for " + parsedReg[1]);
 					}
 				})
 				.catch(function(err) {
-					bot.deleteMessage(message);
+					message.delete();
 					message.member.send("Character not found on Arthas-US. Please try again.")
 				});
 		}
@@ -382,13 +382,13 @@ bot.on('message', message => {
 	}
 	// GoT Stuff
 	else if (input.includes("WHAT IS DEAD MAY NEVER DIE")) {
-		bot.sendFile(message, "http://media2.popsugar-assets.com/files/thumbor/8JmtgAwoUtycNcKiKMY626mWtf8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/05/24/864/n/1922283/4b3606df5ff39bb7_tumblr_m52wvwqwBQ1qb9ftxo1_500/i/House-Greyjoy-What-Dead-May-Never-Die.gif");
+		message.channel.sendFile"http://media2.popsugar-assets.com/files/thumbor/8JmtgAwoUtycNcKiKMY626mWtf8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/05/24/864/n/1922283/4b3606df5ff39bb7_tumblr_m52wvwqwBQ1qb9ftxo1_500/i/House-Greyjoy-What-Dead-May-Never-Die.gif");
 	} else if (input.includes("WINTER IS COMING")) {
-		bot.sendFile(message, "https://media.makeameme.org/created/Brace-yourself-Winter.jpg");
+		message.channel.sendFile"https://media.makeameme.org/created/Brace-yourself-Winter.jpg");
 	} else if (input.includes("YOU KNOW NOTHING")) {
-		bot.sendFile(message, "http://i.imgur.com/FBC3qtM.gif");
+		message.channel.sendFile"http://i.imgur.com/FBC3qtM.gif");
 	} else if (input.includes("HOLD THE DOOR")) {
-		bot.sendFile(message, "http://gif4share.com/wp-content/uploads/2016/06/hold-the-door-game-of-thrones.gif");
+		message.channel.sendFile"http://gif4share.com/wp-content/uploads/2016/06/hold-the-door-game-of-thrones.gif");
 	}
 	// do you need an adult
 	else if (input.includes("I NEED AN ADULT")) {
@@ -400,7 +400,7 @@ bot.on('message', message => {
 	}
 	// command not found, but prefix given
 	else if (input.startsWith("!")) {
-		bot.deleteMessage(message);
+		message.delete();
 		message.member.send("I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
 	}
 });
