@@ -580,7 +580,9 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        var rank = wcl.ranking(parsed, parsedReg, input, user, message);
+        try {
+          var rank = wcl.ranking(parsed, parsedReg, input, user, message);
+        }
         console.log(rank);
         if(rank) {
           if (!(input.includes("-P"))) {
