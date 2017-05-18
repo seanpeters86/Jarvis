@@ -75,7 +75,7 @@ bot.on('message', message => {
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
-		message.send({files:[commands.responsesFiles[input]]});
+		message.channel.send({files:[commands.responsesFiles[input]]});
 	}
 	// Replies Loop
 	else if (commands.responseReplies[input] && !(user.bot)) {
@@ -94,15 +94,15 @@ bot.on('message', message => {
 	}
 	// Salt
 	else if (input === "!SALT") {
-		message.send({files:[commands.salt[admin.random(7)]]});
+		message.channel.send({files:[commands.salt[admin.random(7)]]});
 	}
 	// Wrecked
 	else if (input === "!REKT" || input === "!WRECKED") {
-		message.send({files:[commands.rekt[admin.random(7)]]});
+		message.channel.send({files:[commands.rekt[admin.random(7)]]});
 	}
 	// Lore
 	else if (input === "!LORE") {
-		message.send({files:[commands.lore[admin.random(22)]]});
+		message.channel.send({files:[commands.lore[admin.random(22)]]});
 	}
 	// get discord servers
 	else if (input.startsWith("!SERVER")) {
@@ -119,7 +119,7 @@ bot.on('message', message => {
 			message.delete();
 			message.member.send(commands.help);
 		} else {
-			message.send({files:["http://i.imgur.com/mISkWv2.png"]});
+			message.channel.send({files:["http://i.imgur.com/mISkWv2.png"]});
 		}
 	}
 	/*
@@ -150,7 +150,7 @@ bot.on('message', message => {
 	else if (input.startsWith("!ARTIFACT")) {
 		var artifact = artifacts.get_artifact(parsedReg);
 		if (artifact) {
-			message.send({files:[artifact]});
+			message.channel.send({files:[artifact]});
 		} else {
 			message.delete();
 			message.member.send("Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
@@ -382,13 +382,13 @@ bot.on('message', message => {
 	}
 	// GoT Stuff
 	else if (input.includes("WHAT IS DEAD MAY NEVER DIE")) {
-		message.send({files:["http://media2.popsugar-assets.com/files/thumbor/8JmtgAwoUtycNcKiKMY626mWtf8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/05/24/864/n/1922283/4b3606df5ff39bb7_tumblr_m52wvwqwBQ1qb9ftxo1_500/i/House-Greyjoy-What-Dead-May-Never-Die.gif"]});
+		message.channel.send({files:["http://media2.popsugar-assets.com/files/thumbor/8JmtgAwoUtycNcKiKMY626mWtf8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2016/05/24/864/n/1922283/4b3606df5ff39bb7_tumblr_m52wvwqwBQ1qb9ftxo1_500/i/House-Greyjoy-What-Dead-May-Never-Die.gif"]});
 	} else if (input.includes("WINTER IS COMING")) {
-		message.send({files:["https://media.makeameme.org/created/Brace-yourself-Winter.jpg"]});
+		message.channel.send({files:["https://media.makeameme.org/created/Brace-yourself-Winter.jpg"]});
 	} else if (input.includes("YOU KNOW NOTHING")) {
-		message.send({files:["http://i.imgur.com/FBC3qtM.gif"]});
+		message.channel.send({files:["http://i.imgur.com/FBC3qtM.gif"]});
 	} else if (input.includes("HOLD THE DOOR")) {
-		message.send({files:["http://gif4share.com/wp-content/uploads/2016/06/hold-the-door-game-of-thrones.gif"]});
+		message.channel.send({files:["http://gif4share.com/wp-content/uploads/2016/06/hold-the-door-game-of-thrones.gif"]});
 	}
 	// do you need an adult
 	else if (input.includes("I NEED AN ADULT")) {
