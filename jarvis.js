@@ -363,6 +363,7 @@ bot.on('message', message => {
                 }
               })
               .catch(function(err) {
+                console.log(err);
                 message.delete();
                 message.member.send("Character not found on Arthas-US. Please try again.")
               });
@@ -372,6 +373,7 @@ bot.on('message', message => {
 					}
 				})
 				.catch(function(err) {
+          console.log(err);
 					message.delete();
 					message.member.send("Character not found on Arthas-US. Please try again.")
 				});
