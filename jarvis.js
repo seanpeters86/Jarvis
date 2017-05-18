@@ -581,14 +581,11 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
         }
         function getRanking() {
-          return new Promise (function (fulfill, reject){
-            var rank = wcl.ranking(parsed, parsedReg, input).done(function() {
-              try {
-                console.log(rank);
-              } catch (ex) {
-                reject(ex);
-              }
-            }, reject);
+          var rank;
+          return new Promise (function (resolve, reject){
+            wcl.ranking(parsed, parsedReg, input).done(function (result) {
+              console.log(result);
+            });
           });
         }
         var rank = wcl.ranking(parsed, parsedReg, input);
