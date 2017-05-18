@@ -100,3 +100,59 @@ exports.responsesFiles = {
     "!TAILSWOPE": "http://i.imgur.com/7Wi93en.png",
     "!THINKING": "https://i.imgur.com/eSsPjos.gif"
 };
+
+exports.servers = {
+    "AMR": "https://discord.gg/RuJN9xP",
+    "API": "https://discord.gg/WtyHkza",
+    "ARTHAS": "https://discord.gg/sqDuZth",
+    "ASKMRROBOT": "https://discord.gg/RuJN9xP",
+    "DEATH": "https://discord.gg/0ez1cFfUH3ingV96",
+    "DEMON": "https://discord.gg/taNDycY",
+    "DH": "https://discord.gg/taNDycY",
+    "DISCORD": "https://discord.gg/WtyHkza",
+    "DK": "https://discord.gg/0ez1cFfUH3ingV96",
+    "DRUID": "https://discord.gg/0dWu0WkuetF87H9H",
+    "HEALING": "https://discord.gg/wDemsxV",
+    "HUNTER": "https://discord.gg/yqer4BX",
+    "HUNTARD": "https://discord.gg/yqer4BX",
+    "LOCK": "https://discord.gg/0onXDymd9Wpc2CEu",
+    "MAGE": "https://discord.gg/0gLMHikX2aZ23VdA",
+    "MONK": "https://discord.gg/0dkfBMAxzTkWj21F",
+    "PALADIN": "https://discord.gg/0dvRDgpa5xZHFfnD",
+    "PALY": "https://discord.gg/0dvRDgpa5xZHFfnD",
+    "PRIEST": "https://discord.gg/0f1Ta8lT8xXXEAIY",
+    "ROGUE": "https://discord.gg/0h08tydxoNhfDVZf",
+    "SHAMAN": "https://discord.gg/0VcupJEQX0HuE5HH",
+    "SHAMMY": "https://discord.gg/0VcupJEQX0HuE5HH",
+    "WA": "https://discord.me/wa2",
+    "WARCRAFT": "https://discord.gg/3752GVf",
+    "WARCRAFTLOGS": "https://discord.gg/3752GVf",
+    "WARLOCK": "https://discord.gg/0onXDymd9Wpc2CEu",
+    "WARRIOR": "https://discord.gg/0pYY7932lTH4FHW6",
+    "WCL": "https://discord.gg/3752GVf"
+};
+
+exports.help = "You can now message Jarvis directly! Most things will work (other than channel specific stuff).\n \
+    *Some commands you can also do ?COMMANDNAME to get more help!*\n \
+    **List of Commands:**\n \
+    If you need some Fantasy = **!FANTASY**\n \
+    What are this weeks' affixes? = **!AFFIXES**\n \
+    To get WoWProgress Ranking = **!WOWPROGRESS**\n \
+    To get WarcraftLogs Page = **!WCL**\n \
+    Get Source Code = **!GITHUB**\n \
+    Have an issue/suggestion? = **!ISSUE**\n \
+    Is it random? = **!RANDOM**\n \
+    Discord invite Link = **!INVITE**\n \
+    YouTube Link = **!YOUTUBE**\n \
+    Weekly Roster Link = **!ROSTER**\n \
+    To get Pinned Messages = **!PINNED**\n \
+    Kill Vidoes = **!BOSS BOSSNAMEHERE** or **!VIDEO VIDEONAMEHERE**\n \
+    Website Link = **!WEBSITE**\n \
+    Weekly Roster = **!ROSTER**\n \
+    Plug.DJ = **!MUSIC**\n \
+    Class guides = **!GUIDE SPECCLASS** i.e. **!GUIDE SHADOWPRIEST**\n \
+    Add/Remove Channel Roles = **!ADD** [or **!REMOVE**] **CHANNEL** (CHANNEL = Healers, Theorycrafting, Overwatch, Music)\n \
+    WoW Discord Links = **!SERVER searchterms**\n \
+    Random Lore Facts = **!LORE**\n \
+    Mythic Dungeon Stats = **!ARMORY CHARNAME MYTHICS**\n \
+    To get WCL Ranking [optional features incluide P for public, T for tanking and H for healing] = **!RANKING CHARACTERNAME BOSSNAME [-P] [-T] [-H]** i.e. **!RANKING Daenall Archimonde -P -H**";

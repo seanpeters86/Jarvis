@@ -235,42 +235,10 @@ bot.on("message", function(message) {
             bot.sendMessage(user, "You don't have valid permissions to do that.");
         }
     }
-    // !server helper
-    else if (input.startsWith("?SERVER")) {
-        bot.sendMessage(message, "By using !server you can query my database for discord channel invite links. An example would be '!server rogue' to get the inite link for the rogue discord.");
-    }
     // get discord servers
     else if (input.startsWith("!SERVER")) {
-        var servers = {"AMR": "https://discord.gg/RuJN9xP",
-                       "API": "https://discord.gg/WtyHkza",
-                       "ARTHAS": "https://discord.gg/sqDuZth",
-                       "ASKMRROBOT": "https://discord.gg/RuJN9xP",
-                       "DEATH": "https://discord.gg/0ez1cFfUH3ingV96",
-                       "DEMON": "https://discord.gg/taNDycY",
-                       "DH": "https://discord.gg/taNDycY",
-                       "DISCORD": "https://discord.gg/WtyHkza",
-                       "DK": "https://discord.gg/0ez1cFfUH3ingV96",
-                       "DRUID": "https://discord.gg/0dWu0WkuetF87H9H",
-                       "HEALING": "https://discord.gg/wDemsxV",
-                       "HUNTER": "https://discord.gg/yqer4BX",
-                       "HUNTARD": "https://discord.gg/yqer4BX",
-                       "LOCK": "https://discord.gg/0onXDymd9Wpc2CEu",
-                       "MAGE": "https://discord.gg/0gLMHikX2aZ23VdA",
-                       "MONK": "https://discord.gg/0dkfBMAxzTkWj21F",
-                       "PALADIN": "https://discord.gg/0dvRDgpa5xZHFfnD",
-                       "PALY": "https://discord.gg/0dvRDgpa5xZHFfnD",
-                       "PRIEST": "https://discord.gg/0f1Ta8lT8xXXEAIY",
-                       "ROGUE": "https://discord.gg/0h08tydxoNhfDVZf",
-                       "SHAMAN": "https://discord.gg/0VcupJEQX0HuE5HH",
-                       "SHAMMY": "https://discord.gg/0VcupJEQX0HuE5HH",
-                       "WA": "https://discord.me/wa2",
-                       "WARCRAFT": "https://discord.gg/3752GVf",
-                       "WARCRAFTLOGS": "https://discord.gg/3752GVf",
-                       "WARLOCK": "https://discord.gg/0onXDymd9Wpc2CEu",
-                       "WARRIOR": "https://discord.gg/0pYY7932lTH4FHW6",
-                       "WCL": "https://discord.gg/3752GVf"};
-        if (servers[parsedReg[1]]) {
-            bot.reply(message, servers[parsedReg[1]]);
+        if (commands.servers[parsedReg[1]]) {
+            bot.reply(message, commands.servers[parsedReg[1]]);
         } else {
             bot.deleteMessage(message);
             bot.sendMessage(user, "The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
@@ -437,36 +405,7 @@ bot.on("message", function(message) {
     else if (input.startsWith("!HELP") || input === "?JARVIS") {
         if (!(input.endsWith("-P"))) {
             bot.deleteMessage(message);
-            bot.sendMessage(user, "You can now message Jarvis directly! Most things will work (other than channel specific stuff).\n \
-            *Some commands you can also do ?COMMANDNAME to get more help!*\n \
-            **List of Commands:**\n \
-            GoT Statements = GoT Gifs/Images\n \
-            If you need some Fantasy = **!FANTASY**\n \
-            To check the video Pipeline = **!PIPELINE**\n \
-            What are this weeks' affixes? = **!AFFIXES**\n \
-            Help exporting videos = **!CODEC**\n \
-            To get status on Stay Classy Achievement = **!STAYCLASSY**\n \
-            Legion Leveling Lexicon = **!Lexicon**\n \
-            To get WoWProgress Ranking = **!WOWPROGRESS**\n \
-            To get WarcraftLogs Page = **!WCL**\n \
-            Get Source Code = **!GITHUB**\n \
-            Have an issue/suggestion? = **!ISSUE**\n \
-            Is it random? = **!RANDOM**\n \
-            Discord invite Link = **!INVITE**\n \
-            YouTube Link = **!YOUTUBE**\n \
-            Weekly Roster Link = **!ROSTER**\n");
-            bot.sendMessage(user, " \
-            To get Pinned Messages = **!PINNED**\n \
-            Kill Vidoes = **!BOSS BOSSNAMEHERE** or **!VIDEO VIDEONAMEHERE**\n \
-            Website Link = **!WEBSITE**\n \
-            Weekly Roster = **!ROSTER**\n \
-            Plug.DJ = **!MUSIC**\n \
-            Class guides = **!GUIDE SPECCLASS** i.e. **!GUIDE SHADOWPRIEST**\n \
-            Add/Remove Channel Roles = **!ADD** [or **!REMOVE**] **CHANNEL** (CHANNEL = Healers, Theorycrafting, Overwatch, Music)\n \
-            WoW Discord Links = **!SERVER searchterms**\n \
-            Random Lore Facts = **!LORE**\n \
-            Mythic Dungeon Stats = **!ARMORY CHARNAME MYTHICS**\n \
-            To get WCL Ranking [optional features incluide P for public, T for tanking and H for healing] = **!RANKING CHARACTERNAME BOSSNAME [-P] [-T] [-H]** i.e. **!RANKING Daenall Archimonde -P -H**");
+            bot.sendMessage(user, commands.help);
         } else {
             bot.sendFile(message, "http://i.imgur.com/mISkWv2.png");
         }
