@@ -11,7 +11,7 @@ module.exports = {
 			if (parsed[1] == "Demon") {
 				parsed[1] = "Demon Hunter";
 			}
-			console.log(roles);
+			console.log(roles.get("name", "Senior Raiders").id);
 			role = roles.get("name", parsed[1]).id; // get roleid of class
 			return role;
 			// Check if role matches channel list
