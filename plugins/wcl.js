@@ -190,9 +190,9 @@ module.exports = {
     var specparsed = specConvert(playerclass, spec);
     var difficultyparsed = difficultyList[difficulty];
     if (input.includes("-H")) {
-        return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS for " + difficultyparsed;
+        return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS for " + difficultyparsed + " difficulty.";
     } else {
-        return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS for " + difficultyparsed;
+        return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS for " + difficultyparsed + " difficulty.";
     }
   }
 };
