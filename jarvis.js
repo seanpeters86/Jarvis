@@ -312,7 +312,7 @@ bot.on('message', message => {
 	*/
 	else if (input.startsWith("!ARMORY")) {
 		var character = encodeURIComponent(parsedReg[1]);
-    var mythicPlus, mythics;
+    var mythicPlus, mythics, charName;
 		if (parsedReg[2] === "MYTHICS") {
 			// achievements fields
 			var url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=achievements&locale=en_US&apikey=" + battlenetkey;
@@ -323,6 +323,7 @@ bot.on('message', message => {
 			rp(options)
 				.then(function(char) {
 					if (char.statusCode != 404) {
+            charName = `${prettyjson.render(char.name)}`;
 						mythicPlus = armory.get_mythic_plus(char);
             // statistics fields
             url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
@@ -337,8 +338,8 @@ bot.on('message', message => {
                   message.channel.send({embed: {
                     color: message.member.displayColor,
                     author: {
-                      name: message.member.displayName,
-                      icon_url: message.member.user.avatarURL
+                      name: charName,
+                      icon_url: "https://render-us.worldofwarcraft.com/character/" + `${prettyjson.render(char.thumbnail)}`
                     },
                     fields: [
                       {
