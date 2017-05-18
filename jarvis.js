@@ -255,7 +255,7 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
         }
         /// wclOBject = [uri, encounter, bossname]
-        var wclOBject = wcl.get_object(parsed, parsedReg, input);
+        var wclObject = wcl.get_object(parsed, parsedReg, input);
         // var rank;
         // request({
         //     method: 'GET',
