@@ -297,7 +297,8 @@ bot.on("message", function(message) {
             };
             rp(options)
               .then(function (char) {
-                  if (1) {
+                console.log(char.statusCode);
+                  if (char.statusCode != 404) {
                     var mythicPlus = armory.get_mythic_plus(char);
                     bot.sendMessage(message, mythicPlus);
                   } else {
@@ -318,8 +319,8 @@ bot.on("message", function(message) {
               };
               rp(options)
                 .then(function (char) {
-                    if (1) {
-                      console.log(char);
+                  console.log(char.statusCode);
+                    if (char.statusCode != 404) {
                       var mythics = armory.get_mythics(char);
                       bot.sendMessage(message, mythics);
                     } else {
