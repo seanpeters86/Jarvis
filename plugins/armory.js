@@ -83,5 +83,9 @@ module.exports = {
 		console.log(charName + " has completed " + count + " mythic dungeons.");
 		var mythicValue = "**" + count + "** Mythic dungeons completed.";
 		return mythicValue;
+	},
+	get_art: function(char) {
+		// [color,icon]
+		return [classColors[parseInt(`${prettyjson.render(char.class)}`)],classList[parseInt(`${prettyjson.render(char.class)}`)]];
 	}
 };
