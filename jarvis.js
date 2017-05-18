@@ -199,33 +199,10 @@ bot.on('message', message => {
 	ADMIN.JS
 	*****************************
 	*/
-	// Get Pinned Messages
-	else if (input.startsWith("!PINNED")) {
-		if (!(input.endsWith("-P"))) {
-			message.delete();
-		}
-		bot.getPinnedMessages(message.channel, (err, messages) => {
-			if (!err) {
-				for (var message of messages) {
-					var content = message.content;
-					//console.log(content);
-					if (input.endsWith("-P")) {
-						message.channel.send(content);
-					} else {
-						message.member.send(content);
-					}
-					if (!message.content) {
-						message.member.send("No pinned messages in this channel, or I can't find them.");
-					}
-				}
-			} else {
-				console.log("Couldn't fetch pins: " + err);
-			}
-		});
-	}
 	// !addrole Role
 	else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
 		role = admin.get_role(parsed, roles);
+    console.log(role);
 		if (role) {
 			bot.addMemberToRole(user, role);
 			message.reply("Added " + parsed[1] + " role.");
