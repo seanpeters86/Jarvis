@@ -297,12 +297,11 @@ bot.on("message", function(message) {
             };
             rp(options)
               .then(function (char) {
-                  if (char.statusCode == 200) {
+                  if (1) {
                     var mythicPlus = armory.get_mythic_plus(char);
                     bot.sendMessage(message, mythicPlus);
                   } else {
                     bot.deleteMessage(message);
-                    console.log("Error: ```" + error + "``` Response: ```" + char.statusCode + "``` Body: ```" + body + "``` ");
                     bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
                   }
               })
@@ -319,12 +318,12 @@ bot.on("message", function(message) {
               };
               rp(options)
                 .then(function (char) {
-                    if (char.statusCode == 200) {
+                    if (1) {
+                      console.log(char);
                       var mythics = armory.get_mythics(char);
                       bot.sendMessage(message, mythics);
                     } else {
                       bot.deleteMessage(message);
-                      console.log("Error: ```" + error + "``` Response: ```" + char.statusCode + "``` Body: ```" + body + "``` ");
                       bot.sendMessage(user, "I could not find an armory profile for " + parsedReg[1]);
                     }
                 })
