@@ -15,7 +15,7 @@
     "twitter": "^1.4.0",
     "forever": "^0.15.3",
     "request-promise": "^4.2.1",
-    "ytdl-core": "latest"
+    "ytdl-core": "0.14.1"
   },
   "engines": {
     "node": "6.0.0"

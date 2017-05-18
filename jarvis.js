@@ -89,20 +89,20 @@ bot.on('message', message => {
 		message.delete();
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
-  else if (input.startsWith("!PLAY")) {
-    console.log("detected play");
-    var voiceChannel = message.member.voiceChannel;
-    var streamOptions = { seek: 0, volume: 1 };
-    if (!voiceChannel) return message.reply(`Please be in a voice channel first!`);
-    voiceChannel.join()
-      .then(connnection => {
-        var stream = ytdl("https://www.youtube.com/watch?v=d-diB65scQU", { filter: 'audioonly' });
-        console.log("Play audio");
-        var dispatcher = connnection.playStream(stream, streamOptions);
-        dispatcher.on('end', () => voiceChannel.leave());
-        console.log("Audio over");
-      });
-  }
+  // else if (input.startsWith("!PLAY")) {
+  //   console.log("detected play");
+  //   var voiceChannel = message.member.voiceChannel;
+  //   var streamOptions = { seek: 0, volume: 1 };
+  //   if (!voiceChannel) return message.reply(`Please be in a voice channel first!`);
+  //   voiceChannel.join()
+  //     .then(connnection => {
+  //       var stream = ytdl("https://www.youtube.com/watch?v=d-diB65scQU", { filter: 'audioonly' });
+  //       console.log("Play audio");
+  //       var dispatcher = connnection.playStream(stream, streamOptions);
+  //       dispatcher.on('end', () => voiceChannel.leave());
+  //       console.log("Audio over");
+  //     });
+  // }
 	// fistmas
 	else if (input === "!FISTMAS") {
 		message.channel.send(commands.fistmas[admin.random(7)]);
