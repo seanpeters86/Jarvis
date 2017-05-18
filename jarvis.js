@@ -25,6 +25,7 @@ var commands = require("./plugins/commands");
 var twitter_stream = require("./plugins/twitter_stream");
 var armory = require("./plugins/armory");
 var wcl = require("./plugins/wcl");
+var affixes require("./plugins/affixes");
 
 bot.on("ready", function() {
     tweet = twitter_stream.get_tweet();
@@ -39,18 +40,6 @@ bot.on("ready", function() {
 });
 
 var battlenetkey = process.env.BATTLE_NET_KEY;
-
-var affixes = {
-    "1": "Raging Volcanic Tyrannical",
-    "2": "Teeming Explosive Fortified",
-    "3": "Bolstering Grievous Tyrannical",
-    "4": "Sanguine Volcanic Fortified",
-    "5": "Bursting Skittish Tyrannical",
-    "6": "Teeming Quaking Fortified",
-    "7": "Raging Necrotic Tyrannical",
-    "8": "Bolstering Skittish Fortified"
-}
-
 
 // begin main bot
 bot.on("message", function(message) {
@@ -110,37 +99,15 @@ bot.on("message", function(message) {
         var fucker = ["Why would you say that!?", "Well I don't think that was appropriate.","Fuck you too, silly human. Have you seen your logs recently? (They suck lol)"];
         bot.reply(message, fucker[random]);
     }
-    else if (input.includes("DEV-COMMIT")){
-      bot.deleteMessage(message);
-    }
     // affix
     else if (input === "!AFFIXES") {
-      var d = new Date();
-      var oneday = 24*60*60*1000;
-      var firstDate = new Date(Date.UTC(2017, 0, 31, 15, 0, 0));
-      var secondDate = d;
-      var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime())/(oneday)));
-      var weeks = Math.floor(diffDays/7);
-      var week = (weeks % 8) + 1;
-      var nextweek;
-      if (week == 8){
-          nextweek = 1;
-      }
-      else {
-          nextweek = week + 1;
-      }
+      var affix = affixes.get_affixes();
       try {
-        var affix = affixes[week].split(" ");
-        var nextAffix = affixes[nextweek].split(" ");
-        affix = "This week's affixes are +4: **" + affix[0] + "**, +7: **" + affix[1] + "**, +10: **" + affix[2] + "**";
-        nextAffix = "\nNext week's affixes are +4: **" + nextAffix[0] + "**, +7: **" + nextAffix[1] + "**, +10: **" + nextAffix[2] + "**";
-        bot.sendMessage(message, affix + nextAffix + "\nFor more check out: https://mythicpl.us/");
-        //bot.sendFile(message, "http://i.imgur.com/SzeLZNa.jpg");
+        bot.sendMessage(message, affix[0] + affix[1] + "\nFor more check out: https://mythicpl.us/");
       }
       catch(err) {
         console.log(err);
         bot.sendMessage(message, "Weekly Affixes: https://mythicpl.us/ \n");
-        //bot.sendFile(message, "http://i.imgur.com/SzeLZNa.jpg");
       }
     }
     // GoT Stuff
@@ -583,29 +550,16 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
         }
         var rank = wcl.ranking(parsed, parsedReg, input);
-          console.log(rank + " outside");
-          if(rank) {
-            if (!(input.includes("-P"))) {
-                bot.sendMessage(user, rank);
-            } else {
-                bot.sendMessage(message, rank);
-            }
+        console.log(rank + " outside");
+        if(rank) {
+          if (!(input.includes("-P"))) {
+              bot.sendMessage(user, rank);
           } else {
-            bot.sendMessage("Character or rank not found");
+              bot.sendMessage(message, rank);
           }
-        // setTimeout(function () {
-        //   console.log(rank + " outside");
-        //   if(rank) {
-        //     if (!(input.includes("-P"))) {
-        //         bot.sendMessage(user, rank);
-        //     } else {
-        //         bot.sendMessage(message, rank);
-        //     }
-        //   } else {
-        //     bot.sendMessage("Character or rank not found");
-        //   }
-        // }, 10000);
-        //var rank = wcl.ranking(parsed, parsedReg, input);
+        } else {
+          bot.sendMessage("Character or rank not found");
+        }
     }
     else if (input === "?ARMORY") {
         bot.sendMessage(message, "By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");

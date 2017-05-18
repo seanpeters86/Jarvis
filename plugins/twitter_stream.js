@@ -23,7 +23,7 @@ module.exports = {
         if(tweet.user.name == undefined){ var name = tweet.user.screen_name; } else { var name = tweet.user.name; }
         if ((name.startsWith("Exiled") || name.startsWith("MMO-Champion") || name.startsWith("BlizzardCS")) &&  !(tweet.text.startsWith("@") || tweet.text.startsWith("RT") || tweet.text.startsWith("**Current Wait Times**"))) {
           currenttweet = tweet.text;
-          console.log("Tweet Found");
+          console.log(tweet.text);
           if (currenttweet !== cachedtweet) {
             cachedtweet = currenttweet;
             return ["170037904842817537", "```*" + name + "* @" + tweet.user.screen_name + " - " + tweet.text + "```"];
