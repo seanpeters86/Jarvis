@@ -319,8 +319,8 @@ module.exports = {
 			//return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS for " + difficultyparsed + " difficulty.";
 		}
 	},
-	get_art: function(char) {
+	get_art: function(rank) {
 		// [color,icon]
-		return [classColors[parseInt(`${prettyjson.render(char.class)}`)],classList[parseInt(`${prettyjson.render(char.class)}`)]];
+		return [classColors[parseInt(`${prettyjson.render(rank[0].class)}`)],classList[parseInt(`${prettyjson.render(rank[0].class)}`)]];
 	}
 };
