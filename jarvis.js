@@ -226,11 +226,11 @@ bot.on('message', message => {
 	*/
 	// !addrole Role
 	else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
-		//role = admin.get_role(parsed, roles);
-    //console.log(role);
-    message.member.addRole('Hunter');
+		role = admin.get_role(parsed, roles);
+    console.log(role);
+    //message.member.addRole('Hunter');
 		if (role) {
-			member.addRole('Hunter');
+			message.member.addRole(role);
 			message.reply("Added " + parsed[1] + " role.");
 		} else {
 			message.delete();
@@ -324,7 +324,29 @@ bot.on('message', message => {
 				.then(function(char) {
 					if (char.statusCode != 404) {
 						mythicPlus = armory.get_mythic_plus(char);
-						//message.channel.send(mythicPlus);
+            message.channel.send({embed: {
+              color: 3447003,
+              author: {
+                name: message.member.username,
+                icon_url: message.member.avatarURL
+              },
+              title: 'Mythic Plus Statistics',
+              fields: [
+                {
+                  name: 'Mythic Dungeons',
+                  value: "mythics"
+                },
+                {
+                  name: 'Mythic+ Dungeons',
+                  value: mythicPlus
+                }
+              ],
+              timestamp: new Date(),
+              footer: {
+                icon_url: bot.user.avatarURL,
+                text: 'Pulled from Armory'
+              }
+            }});
 					} else {
 						message.delete();
 						message.member.send("I could not find an armory profile for " + parsedReg[1]);
@@ -354,31 +376,6 @@ bot.on('message', message => {
 					message.delete();
 					message.member.send("Character not found on Arthas-US. Please try again.")
 				});
-        if (mythicPlus && mythics) {
-          message.channel.send({embed: {
-            color: 3447003,
-            author: {
-              name: message.member.username,
-              icon_url: message.member.avatarURL
-            },
-            title: 'Mythic Plus Statistics',
-            fields: [
-              {
-                name: 'Mythic Dungeons',
-                value: mythics
-              },
-              {
-                name: 'Mythic+ Dungeons',
-                value: mythicPlus
-              }
-            ],
-            timestamp: new Date(),
-            footer: {
-              icon_url: bot.user.avatarURL,
-              text: 'Pulled from Armory'
-            }
-          }});
-        }
 		}
 	}
 	// WoWProgress Link
