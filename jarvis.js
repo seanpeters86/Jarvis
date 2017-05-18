@@ -297,7 +297,6 @@ bot.on("message", function(message) {
             };
             rp(options)
               .then(function (char) {
-                  console.log(char);
                   if (char.statusCode == 200) {
                     var mythicPlus = armory.get_mythic_plus(char);
                     bot.sendMessage(message, mythicPlus);
@@ -320,7 +319,6 @@ bot.on("message", function(message) {
               };
               rp(options)
                 .then(function (char) {
-                    console.log(char);
                     if (char.statusCode == 200) {
                       var mythics = armory.get_mythics(char);
                       bot.sendMessage(message, mythics);
