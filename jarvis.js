@@ -15,8 +15,6 @@ var request = require('request');
 var prettyjson = require("prettyjson");
 var debug = true;
 
-var wait = require('wait.for');
-
 var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
 var battlenetkey = process.env.BATTLE_NET_KEY;
@@ -26,6 +24,7 @@ var twitter_stream = require("./plugins/twitter_stream");
 var armory = require("./plugins/armory");
 var wcl = require("./plugins/wcl");
 var affixes = require("./plugins/affixes");
+var artifacts = require("./plugins/artifacts");
 
 bot.on("ready", function() {
     tweet = twitter_stream.get_tweet();
@@ -73,8 +72,8 @@ bot.on("message", function(message) {
     else if(commands.responseReplies[input]){
         bot.reply(message, commands.responseReplies[input]);
     }
-    // includes test
-    else if (commands.banned.some(function(v) { return input.indexOf(v) >= 0; }) && !(user.bot)) {
+    // Includes Removal
+    else if (commands.includesBanned.some(function(v) { return input.indexOf(v) >= 0; }) && !(user.bot)) {
       bot.deleteMessage(message);
       bot.sendMessage(user, "This language: ```" + input + "``` is not allowed in this server.")
     }
@@ -171,75 +170,15 @@ bot.on("message", function(message) {
     }
     // artifact power guide
     else if (input.startsWith("!ARTIFACT")) {
-        var dk = {
-            "UNHOLY": "http://static.icy-veins.com/images/wow/unholy-death-knight-artifact.jpg",
-            "BLOOD": "http://i.imgur.com/9KakC97.png",
-            "FROST": "http://static.icy-veins.com/images/wow/frost-death-knight-artifact.jpg"
-        };
-        var druid = {
-            "BALANCE": "http://i.imgur.com/bubvXrX.png",
-            "RESTORATION": "http://i.imgur.com/ZBSWUGB.png", "RESTO": "http://i.imgur.com/ZBSWUGB.png",
-            "GUARDIAN": "http://www.theincbear.com/images/ArtifactPaths.png",
-            "FERAL": "http://static.icy-veins.com/images/wow/feral-druid-artifact.jpg"
-        };
-        var hunter = {
-            "BM": "http://static.icy-veins.com/images/wow/beast-mastery-hunter-artifact.jpg", "BEAST": "http://static.icy-veins.com/images/wow/beast-mastery-hunter-artifact.jpg",
-            "MM": "http://static.icy-veins.com/images/wow/marksmanship-hunter-artifact.jpg", "MARKSMANSHIP": "http://static.icy-veins.com/images/wow/marksmanship-hunter-artifact.jpg",
-            "SURVIVAL": "http://static.icy-veins.com/images/wow/survival-hunter-artifact.jpg"
-        };
-        var mage = {
-            "FIRE": "http://i.imgur.com/Aff1Kke.png",
-            "ARCANE": "https://cdn.discordapp.com/attachments/209851034657357835/216690880109740033/Arcane-Artifacts-Templates-Branch.png",
-            "FROST": "https://cdn.discordapp.com/attachments/209851034657357835/217064942589837312/Frost-Artifacts-Templates.png"
-        };
-        var monk = {
-            "WINDWALKER": "http://www.walkingthewind.com/wp-content/uploads/2016/08/Artifact-CCW.png", "WW": "http://www.walkingthewind.com/wp-content/uploads/2016/08/Artifact-CCW.png",
-            "MISTWEAVER": "https://cdn.discordapp.com/attachments/218222107673362432/218222503447887872/circle-path-2.png", "MW": "https://cdn.discordapp.com/attachments/218222107673362432/218222503447887872/circle-path-2.png",
-            "BM": "http://i.imgur.com/INQTgmd.png", "BREWMASTER": "http://i.imgur.com/INQTgmd.png"
-        };
-        var paladin = {
-            "HOLY": "http://i.imgur.com/x06h0i7.png",
-            "RETRIBUTION": "https://cdn.discordapp.com/attachments/122829094168559617/217313949115219969/IMG_2627.JPG", "RET": "https://cdn.discordapp.com/attachments/122829094168559617/217313949115219969/IMG_2627.JPG",
-            "PROT": "http://i.imgur.com/1Rkv3bh.png", "PROTECTION": "http://i.imgur.com/1Rkv3bh.png"
-        };
-        var priest = {
-            "SHADOW": "http://i.imgur.com/geNBd11.png",
-            "DISC": "http://i.imgur.com/ibZJ5tP.png", "DISCIPLINE": "http://i.imgur.com/ibZJ5tP.png",
-            "HOLY": "http://i.imgur.com/W4UXsdY.png"
-        };
-        var rogue = {
-            "OUTLAW": "http://puu.sh/qKo3P/ecccd6024c.jpg",
-            "ASSASSINATION": "http://static.icy-veins.com/images/wow/assassination-rogue-artifact.jpg",
-            "SUB": "http://static.icy-veins.com/images/wow/subtlety-rogue-artifact.jpg", "SUBTLETY": "http://static.icy-veins.com/images/wow/subtlety-rogue-artifact.jpg"
-        };
-        var shaman = {
-            "RESTO": "http://static.icy-veins.com/images/wow/restoration-shaman-artifact-casual.jpg", "RESTORATION": "http://static.icy-veins.com/images/wow/restoration-shaman-artifact-casual.jpg",
-            "ELE": "http://static.icy-veins.com/images/wow/elemental-shaman-artifact.jpg", "ELEMENTAL": "http://static.icy-veins.com/images/wow/elemental-shaman-artifact.jpg",
-            "ENHANCEMENT": "http://static.icy-veins.com/images/wow/enhancement-shaman-artifact.jpg", "ENHANCE": "http://static.icy-veins.com/images/wow/enhancement-shaman-artifact.jpg"
-        };
-        var warlock = {
-            "DEMO": "http://i.imgur.com/1UGnMro.png", "DEMONOLOGY": "http://i.imgur.com/1UGnMro.png",
-            "DESTRO": "http://i.imgur.com/SXM457s.jpeg", "DESTRUCTION": "http://i.imgur.com/SXM457s.jpeg",
-            "AFF": "http://i.imgur.com/xpYCqFi.png", "AFFLICTION": "http://i.imgur.com/xpYCqFi.png"
-        };
-        var warrior = {
-            "PROT": "https://i.imgur.com/8eCEYYR.png", "PROTECTION": "https://i.imgur.com/8eCEYYR.png",
-            "ARMS": "https://i.imgur.com/gPAvS0N.png",
-            "FURY": "https://i.imgur.com/JZbh9Ka.png"
-        };
-        var dh = {
-            "HAVOC": "http://i.imgur.com/75pbNRS.jpg",
-            "VENGEANCE": "http://static.icy-veins.com/images/wow/vengeance-demon-hunter-artifact.jpg"
-        };
-        var classList = {
-            "DK": dk[parsedReg[2]], "DRUID": druid[parsedReg[2]], "HUNTER": hunter[parsedReg[2]], "MAGE": mage[parsedReg[2]], "MONK": monk[parsedReg[2]], "PALADIN": paladin[parsedReg[2]], "PRIEST": priest[parsedReg[2]], "ROGUE": rogue[parsedReg[2]], "SHAMAN": shaman[parsedReg[2]], "WARLOCK": warlock[parsedReg[2]], "WARRIOR": warrior[parsedReg[2]], "DH": dh[parsedReg[2]]
-        };
-        if (classList[parsedReg[1]]) {
-            bot.sendFile(message, classList[parsedReg[1]]);
-        } else {
-            bot.deleteMessage(message);
-            bot.sendMessage(user, "Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
-        }
+      try {
+        artifact = artifacts.get_artifact(parsedReg);
+        bot.sendFile(message, artifact);
+      }
+      catch(err) {
+        console.log(err);
+        bot.deleteMessage(message);
+        bot.sendMessage(user, "Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
+      }
     }
     // WoWProgress Link
     else if (input === "!WOWPROGRESS" && server == exiledpower) {
@@ -551,6 +490,7 @@ bot.on("message", function(message) {
         }
         var rank = wcl.ranking(parsed, parsedReg, input);
         console.log(rank + " outside");
+        console.log(wcl.resultTest + " also outside");
         if(rank) {
           if (!(input.includes("-P"))) {
               bot.sendMessage(user, rank);
