@@ -196,7 +196,7 @@ module.exports = {
           return "Character or rank not found";
         }
     });
+    console.log(result);
+    return(result);
   }
-  console.log(result);
-  return(result);
 }
