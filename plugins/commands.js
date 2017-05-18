@@ -165,8 +165,12 @@ exports.help = "You can now message Jarvis directly! Most things will work (othe
     Mythic Dungeon Stats = **!ARMORY CHARNAME MYTHICS**\n \
     To get WCL Ranking [optional features incluide P for public, T for tanking and H for healing] = **!RANKING CHARACTERNAME BOSSNAME [-P] [-T] [-H]** i.e. **!RANKING Daenall Archimonde -P -H**";
 
-module.exports = {
-  fistmas: function() {
-    return fistmas[admin.random(3)];
-  }
-};
+// module.exports = {
+//   fistmas: function() {
+//     return fistmas[admin.random(3)];
+//   }
+// };
+
+function fistmas() {
+  return fistmas[admin.random(3)];
+}
