@@ -89,33 +89,27 @@ bot.on('message', message => {
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
   else if (input === "!TEST") {
-        message.channel.send({embed: {
+    message.channel.send({embed: {
       color: 3447003,
       author: {
-        name: bot.user.username,
-        icon_url: bot.user.avatarURL
+        name: message.member.username,
+        icon_url: message.member.avatarURL
       },
-      title: 'This is an embed',
-      url: 'http://google.com',
-      description: 'This is a test embed to showcase what they look like and what they can do.',
+      title: 'Mythic Plus Statistics',
       fields: [
         {
-          name: 'Fields',
+          name: 'Mythic Dungeons',
           value: 'They can have different fields with small headlines.'
         },
         {
-          name: 'Masked links',
+          name: 'Mythic+ Dungeons',
           value: 'You can put [masked links](http://google.com) inside of rich embeds.'
-        },
-        {
-          name: 'Markdown',
-          value: 'You can put all the *usual* **__Markdown__** inside of them.'
         }
       ],
       timestamp: new Date(),
       footer: {
         icon_url: bot.user.avatarURL,
-        text: '© Example'
+        text: 'Pulled from Armory'
       }
     }});
   }
@@ -318,6 +312,7 @@ bot.on('message', message => {
 	*/
 	else if (input.startsWith("!ARMORY")) {
 		var character = encodeURIComponent(parsedReg[1]);
+    var mythicPlus, mythics;
 		if (parsedReg[2] === "MYTHICS") {
 			// achievements fields
 			var url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=achievements&locale=en_US&apikey=" + battlenetkey;
@@ -328,8 +323,8 @@ bot.on('message', message => {
 			rp(options)
 				.then(function(char) {
 					if (char.statusCode != 404) {
-						var mythicPlus = armory.get_mythic_plus(char);
-						message.channel.send(mythicPlus);
+						mythicPlus = armory.get_mythic_plus(char);
+						//message.channel.send(mythicPlus);
 					} else {
 						message.delete();
 						message.member.send("I could not find an armory profile for " + parsedReg[1]);
@@ -348,8 +343,8 @@ bot.on('message', message => {
 			rp(options)
 				.then(function(char) {
 					if (char.statusCode != 404) {
-						var mythics = armory.get_mythics(char);
-						message.channel.send(mythics);
+						mythics = armory.get_mythics(char);
+						//message.channel.send(mythics);
 					} else {
 						message.delete();
 						message.member.send("I could not find an armory profile for " + parsedReg[1]);
@@ -359,6 +354,31 @@ bot.on('message', message => {
 					message.delete();
 					message.member.send("Character not found on Arthas-US. Please try again.")
 				});
+        if (mythicPlus && mythics) {
+          message.channel.send({embed: {
+            color: 3447003,
+            author: {
+              name: message.member.username,
+              icon_url: message.member.avatarURL
+            },
+            title: 'Mythic Plus Statistics',
+            fields: [
+              {
+                name: 'Mythic Dungeons',
+                value: mythics
+              },
+              {
+                name: 'Mythic+ Dungeons',
+                value: mythicPlus
+              }
+            ],
+            timestamp: new Date(),
+            footer: {
+              icon_url: bot.user.avatarURL,
+              text: 'Pulled from Armory'
+            }
+          }});
+        }
 		}
 	}
 	// WoWProgress Link
