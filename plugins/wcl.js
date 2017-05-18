@@ -10,6 +10,14 @@ var partition = 2; // Partition should almost always be set to 1, Pre-Patch/7.2 
 
 var result;
 
+var difficultyList = {
+  1: "LFR",
+  2: "Flex",
+  3: "Normal",
+  4: "Heroic",
+  5: "Mythic"
+};
+
 function classConvert(playerclass) {
     var classList = {1: "Death Knight", 2: "Druid", 3: "Hunter", 4: "Mage", 5: "Monk", 6: "Paladin", 7: "Priest", 8: "Rogue", 9: "Shaman", 10: "Warlock", 11: "Warrior", 12: "Demon Hunter"};
     if (classList[playerclass]) {
@@ -175,10 +183,13 @@ module.exports = {
     return [uri, encounter, bossname];
   },
   get_rank: function(rank, bossname, input, parsed) {
+    difficulty = parseInt(`${prettyjson.render(rank[0].difficulty)}`)
     spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
     playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
     var classparsed = classConvert(playerclass);
     var specparsed = specConvert(playerclass, spec);
+    var difficultyparsed = difficultyList[difficulty];
+    console.log(difficultyparsed);
     if (input.includes("-H")) {
         return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS";
     } else {
