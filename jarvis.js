@@ -95,8 +95,10 @@ bot.on('message', message => {
     voiceChannel.join()
       .then(connnection => {
         const stream = ytdl("https://www.youtube.com/watch?v=d-diB65scQU", { filter: 'audioonly' });
+        console.log("Play audio");
         const dispatcher = connnection.playStream(stream);
         dispatcher.on('end', () => voiceChannel.leave());
+        console.log("Audio over");
       });
   }
 	// fistmas
