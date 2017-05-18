@@ -17,6 +17,7 @@ var fs = require('fs');
 var request = require('request');
 var prettyjson = require("prettyjson");
 var rp = require('request-promise');
+var ytdl = require('ytdl-core');
 var debug = true;
 
 var discordKey = process.env.DISCORD_KEY;
@@ -88,30 +89,15 @@ bot.on('message', message => {
 		message.delete();
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
-  else if (input === "!TEST") {
-    message.channel.send({embed: {
-      color: 3447003,
-      author: {
-        name: message.member.username,
-        icon_url: message.member.avatarURL
-      },
-      title: 'Mythic Plus Statistics',
-      fields: [
-        {
-          name: 'Mythic Dungeons',
-          value: 'They can have different fields with small headlines.'
-        },
-        {
-          name: 'Mythic+ Dungeons',
-          value: 'You can put [masked links](http://google.com) inside of rich embeds.'
-        }
-      ],
-      timestamp: new Date(),
-      footer: {
-        icon_url: bot.user.avatarURL,
-        text: 'Pulled from Armory'
-      }
-    }});
+  else if (input.startsWith("!PLAY")) {
+    const voiceChannel = message.member.voiceChannel;
+    if (!voiceChannel) return message.reply(`Please be in a voice channel first!`);
+    voiceChannel.join()
+      .then(connnection => {
+        const stream = ytdl(parsed[1], { filter: 'audioonly' });
+        const dispatcher = connnection.playStream(stream);
+        dispatcher.on('end', () => voiceChannel.leave());
+      });
   }
 	// fistmas
 	else if (input === "!FISTMAS") {

@@ -14,7 +14,8 @@
     "request": "^2.74.0",
     "twitter": "^1.4.0",
     "forever": "^0.15.3",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "ytdl-core": "latest"
   },
   "engines": {
     "node": "6.0.0"
