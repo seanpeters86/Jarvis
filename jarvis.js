@@ -308,8 +308,7 @@ bot.on("message", function(message) {
               })
               .catch(function (err) {
                   bot.deleteMessage(message);
-                  bot.sendMessage(user, "Error processing request. Please try again.")
-                  console.log(err);
+                  bot.sendMessage(user, "Character not found on Arthas-US. Please try again.")
               });
               // statistics fields
               url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
@@ -330,8 +329,7 @@ bot.on("message", function(message) {
                 })
                 .catch(function (err) {
                     bot.deleteMessage(message);
-                    bot.sendMessage(user, "Error processing request. Please try again.")
-                    console.log(err);
+                    bot.sendMessage(user, "Character not found on Arthas-US. Please try again.")
                 });
           }
     }
