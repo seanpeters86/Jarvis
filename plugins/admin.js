@@ -2,7 +2,7 @@ var role, channel, data;
 //var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
 //var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
 
-var commands = require("./plugins/commands");
+var commands = require("./commands");
 
 
 module.exports = {

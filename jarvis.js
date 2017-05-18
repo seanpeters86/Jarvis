@@ -206,7 +206,7 @@ bot.on("message", function(message) {
           bot.reply(message, "Added " + parsed[1] + " role.");
         } else {
           bot.deleteMessage(message);
-          bot.sendMessage(user, "Role does not exist, or you do not have permission to add that role. Available roles: " + "```" + commands.channelRoles + "```")
+          bot.sendMessage(user, "Role does not exist, or you do not have permission to add that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
         }
     }
     // !removerole Developers
@@ -217,7 +217,7 @@ bot.on("message", function(message) {
           bot.reply(message, "Removed " + parsed[1] + " role.");
         } else {
           bot.deleteMessage(message);
-          bot.sendMessage(user, "Role does not exist, or you do not have permission to remove that role. Available roles: " + "```" + commands.channelRoles + "```")
+          bot.sendMessage(user, "Role does not exist, or you do not have permission to remove that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
         }
     }
     // !say channel message
