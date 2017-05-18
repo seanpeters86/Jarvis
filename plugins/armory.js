@@ -4,6 +4,36 @@ var prettyjson = require("prettyjson");
 
 var battlenetkey = process.env.BATTLE_NET_KEY;
 
+exports.classList = {
+	1: "http://wow.zamimg.com/images/wow/icons/large/classicon_warrior.jpg",
+	2: "http://wow.zamimg.com/images/wow/icons/large/classicon_paladin.jpg",
+	3: "http://wow.zamimg.com/images/wow/icons/large/classicon_hunter.jpg",
+	4: "http://wow.zamimg.com/images/wow/icons/large/classicon_rogue.jpg",
+	5: "http://wow.zamimg.com/images/wow/icons/large/classicon_priest.jpg",
+	6: "http://wow.zamimg.com/images/wow/icons/large/classicon_deathknight.jpg",
+	7: "http://wow.zamimg.com/images/wow/icons/large/classicon_shaman.jpg",
+	8: "http://wow.zamimg.com/images/wow/icons/large/classicon_mage.jpg",
+	9: "http://wow.zamimg.com/images/wow/icons/large/classicon_warlock.jpg",
+	10: "http://wow.zamimg.com/images/wow/icons/large/classicon_monk.jpg",
+	11: "http://wow.zamimg.com/images/wow/icons/large/classicon_druid.jpg",
+	12: "http://wow.zamimg.com/images/wow/icons/large/classicon_demonhunter.jpg"
+};
+
+exports.classColors = {
+	1: "13081710",
+	2: "16092346",
+	3: "11261043",
+	4: "16774505",
+	5: "16777215",
+	6: "12853051",
+	7: "28894",
+	8: "6933744",
+	9: "9732809",
+	10: "65430",
+	11: "16743690",
+	12: "10694857"
+};
+
 module.exports = {
 	get_mythic_plus: function(char) {
 		var charName = `${prettyjson.render(char.name)}`;
