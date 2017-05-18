@@ -288,39 +288,34 @@ bot.on('message', message => {
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
           var art = wcl.get_art(rank,rankObject[8]);
-          console.log(art);
-					if (!(input.includes("-P"))) {
-						message.member.send(rankObject);
-					} else {
-            // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty,encounter]
-            var percent = Math.round((1-(parseInt(rankObject[1])/parseInt(rankObject[2]))) * 100);
-            message.channel.send({embed: {
-              color: art[0],
-              author: {
-                name: rankObject[0],
-                icon_url: art[2]
+          // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty,encounter]
+          var percent = Math.round((1-(parseInt(rankObject[1])/parseInt(rankObject[2]))) * 100);
+          message.channel.send({embed: {
+            color: art[0],
+            author: {
+              name: rankObject[0],
+              icon_url: art[2]
+            },
+            fields: [
+              {
+                name: 'Boss',
+                value: rankObject[7] + " " + rankObject[3]
               },
-              fields: [
-                {
-                  name: 'Boss',
-                  value: rankObject[7] + " " + rankObject[3]
-                },
-                {
-                  name: 'Type',
-                  value: rankObject[4] + " " + rankObject[5] + " " + rankObject[6]
-                },
-                {
-                  name: 'Rank',
-                  value: rankObject[1] + " out of " + rankObject[2] + ": **" + percent + "** percentile."
-                }
-              ],
-              timestamp: new Date(),
-              footer: {
-                icon_url: art[1],
-                text: 'Pulled from WCL'
+              {
+                name: 'Type',
+                value: rankObject[4] + " " + rankObject[5] + " " + rankObject[6]
+              },
+              {
+                name: 'Rank',
+                value: rankObject[1] + " out of " + rankObject[2] + ": **" + percent + "** percentile."
               }
-            }});
-					}
+            ],
+            timestamp: new Date(),
+            footer: {
+              icon_url: art[1],
+              text: 'Pulled from WCL'
+            }
+          }});
 				} else {
 					message.delete();
 					message.member.send("Error processing request. Please try again.")
