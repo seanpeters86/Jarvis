@@ -254,36 +254,30 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
         }
         /// wclOBject = [uri, encounter, bossname]
-        var wclOBject = wcl.ranking(parsed, parsedReg, input);
+        var wclOBject = wcl.get_object(parsed, parsedReg, input);
+        var rank;
         request({
             method: 'GET',
             uri: wclOBject[0],
             json: true
         }, (error, response, body) => {
             if (!error && response.statusCode == 200 && (wclOBject[1] != 0) && body.length > 0) {
-                var rank = response.body;
-                spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
-                playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
-                var classparsed = wcl.classConvert(playerclass);
-                var specparsed = wcl.specConvert(playerclass, spec);
-                if (input.includes("-H")) {
-                    if (!(input.includes("-P"))) {
-                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in HPS");
-                    } else {
-                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in HPS");
-                    }
-                } else {
-                    if (!(input.includes("-P"))) {
-                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in DPS");
-                    } else {
-                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + wclOBject[2] + " for all " + specparsed + " " + classparsed + "s in DPS");
-                    }
-                }
+                rank = response.body;
             } else {
+                rank = 0;
                 bot.deleteMessage(message);
                 bot.sendMessage(user, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
             }
         });
+        console.log(rank);
+        if(rank) {
+          var rankObject = wcl.get_rank(rank, wclOBject[2], input);
+          if (!(input.includes("-P"))) {
+              bot.sendMessage(user, rankObject);
+          } else {
+              bot.sendMessage(message, rankObject);
+          }
+        }
     }
     else if (input === "?ARMORY") {
         bot.sendMessage(message, "By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");
