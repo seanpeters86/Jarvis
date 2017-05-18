@@ -273,9 +273,6 @@ bot.on('message', message => {
 	}
 	// ranking
 	else if (input.startsWith("!RANKING")) {
-		if (!(input.includes("-P"))) {
-			message.delete();
-		}
 		/// wclObject = [uri, encounter, bossname]
 		var wclObject = wcl.get_object(parsed, parsedReg, input);
 		var options = {
@@ -284,7 +281,6 @@ bot.on('message', message => {
 		};
 		rp(options)
 			.then(function(rank) {
-				//console.log(rank);
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
           var art = wcl.get_art(rank,rankObject[8]);
