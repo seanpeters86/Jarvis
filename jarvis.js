@@ -287,10 +287,37 @@ bot.on('message', message => {
 				console.log(rank);
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
+          var art = armory.get_art(char);
 					if (!(input.includes("-P"))) {
 						message.member.send(rankObject);
 					} else {
-						message.channel.send(rankObject);
+            // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty]
+            message.channel.send({embed: {
+              color: art[0],
+              author: {
+                name: rankObject[0],
+                icon_url: message.member.user.avatarURL
+              },
+              fields: [
+                {
+                  name: 'Boss',
+                  value: rankObject[7] + " " + rankObject[3]
+                },
+                {
+                  name: 'Type',
+                  value: rankObject[4] + " " + rankObject[5] + " " + rankObject[6]
+                },
+                {
+                  name: 'Rank',
+                  value: rankObject[1] + " out of " + rankObject[2] + ": **" + 1-(rankObject[1]/rankObject[2]) + "** percentile."
+                }
+              ],
+              timestamp: new Date(),
+              footer: {
+                icon_url: art[1],
+                text: 'Pulled from WCL'
+              }
+            }});
 					}
 				} else {
 					message.delete();
@@ -312,7 +339,7 @@ bot.on('message', message => {
 	*/
 	else if (input.startsWith("!ARMORY")) {
 		var character = encodeURIComponent(parsedReg[1]);
-    var mythicPlus, mythics, charName;
+    var mythicPlus, mythics, charName, art;
 		if (parsedReg[2] === "MYTHICS") {
 			// achievements fields
 			var url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=achievements&locale=en_US&apikey=" + battlenetkey;

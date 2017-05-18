@@ -124,6 +124,51 @@ function specConvert(playerclass, spec) {
 	}
 }
 
+var classList = {
+	1: "Death Knight",
+	2: "Druid",
+	3: "Hunter",
+	4: "Mage",
+	5: "Monk",
+	6: "Paladin",
+	7: "Priest",
+	8: "Rogue",
+	9: "Shaman",
+	10: "Warlock",
+	11: "Warrior",
+	12: "Demon Hunter"
+};
+
+var classList = {
+	1: "http://wow.zamimg.com/images/wow/icons/large/classicon_deathknight.jpg",
+	2: "http://wow.zamimg.com/images/wow/icons/large/classicon_druid.jpg",
+	3: "http://wow.zamimg.com/images/wow/icons/large/classicon_hunter.jpg",
+	4: "http://wow.zamimg.com/images/wow/icons/large/classicon_mage.jpg",
+	5: "http://wow.zamimg.com/images/wow/icons/large/classicon_monk.jpg",
+	6: "http://wow.zamimg.com/images/wow/icons/large/classicon_paladin.jpg",
+	7: "http://wow.zamimg.com/images/wow/icons/large/classicon_priest.jpg",
+	8: "http://wow.zamimg.com/images/wow/icons/large/classicon_rogue.jpg",
+	9: "http://wow.zamimg.com/images/wow/icons/large/classicon_shaman.jpg",
+	10: "http://wow.zamimg.com/images/wow/icons/large/classicon_warlock.jpg",
+	11: "http://wow.zamimg.com/images/wow/icons/large/classicon_warrior.jpg",
+	12: "http://wow.zamimg.com/images/wow/icons/large/classicon_demonhunter.jpg"
+};
+
+var classColors = {
+	11: "13081710",
+	6: "16092346",
+	3: "11261043",
+	8: "16774505",
+	7: "16777215",
+	1: "12853051",
+	9: "28894",
+	4: "6933744",
+	10: "9732809",
+	5: "65430",
+	2: "16743690",
+	12: "10694857"
+};
+
 module.exports = {
 	get_object: function(parsed, parsedReg, input) {
 		var char = encodeURIComponent(parsed[1]);
@@ -266,9 +311,16 @@ module.exports = {
 		var specparsed = specConvert(playerclass, spec);
 		var difficultyparsed = difficultyList[difficulty];
 		if (input.includes("-H")) {
-			return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS for " + difficultyparsed + " difficulty.";
+			// rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty]
+			return [parsed[1],`${prettyjson.render(rank[0].rank)}`,`${prettyjson.render(rank[0].outOf)}`,bossname,specparsed,classparsed,"HPS",difficultyparsed];
+			//return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS for " + difficultyparsed + " difficulty.";
 		} else {
-			return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS for " + difficultyparsed + " difficulty.";
+			return [parsed[1],`${prettyjson.render(rank[0].rank)}`,`${prettyjson.render(rank[0].outOf)}`,bossname,specparsed,classparsed,"DPS",difficultyparsed];
+			//return parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS for " + difficultyparsed + " difficulty.";
 		}
+	},
+	get_art: function(char) {
+		// [color,icon]
+		return [classColors[parseInt(`${prettyjson.render(char.class)}`)],classList[parseInt(`${prettyjson.render(char.class)}`)]];
 	}
 };
