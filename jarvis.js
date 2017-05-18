@@ -336,7 +336,7 @@ bot.on('message', message => {
                 if (char.statusCode != 404) {
                   mythics = armory.get_mythics(char);
                   message.channel.send({embed: {
-                    color: armory.classColors[`${prettyjson.render(char.class)}`],
+                    color: armory.classColors[parseInt(`${prettyjson.render(char.class)}`)],
                     author: {
                       name: charName,
                       icon_url: "https://render-us.worldofwarcraft.com/character/" + `${prettyjson.render(char.thumbnail)}`
@@ -353,7 +353,7 @@ bot.on('message', message => {
                     ],
                     timestamp: new Date(),
                     footer: {
-                      icon_url: armory.classList[`${prettyjson.render(char.class)}`],
+                      icon_url: armory.classList[parseInt(`${prettyjson.render(char.class)}`)],
                       text: 'Pulled from Armory'
                     }
                   }});
