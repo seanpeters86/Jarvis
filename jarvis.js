@@ -325,12 +325,11 @@ bot.on('message', message => {
 					if (char.statusCode != 404) {
 						mythicPlus = armory.get_mythic_plus(char);
             message.channel.send({embed: {
-              color: 3447003,
+              color: message.member.displayColor,
               author: {
-                name: message.member.username,
-                icon_url: message.member.avatarURL
+                name: message.member.displayName,
+                icon_url: message.member.user.avatarURL
               },
-              title: 'Mythic Plus Statistics',
               fields: [
                 {
                   name: 'Mythic Dungeons',

@@ -15,7 +15,7 @@ module.exports = {
 			return role;
 			// Check if role matches channel list
 		} else if (commands.channelRoles.indexOf(parsed[1]) != -1) {
-			role = roles.get("name", parsed[1]).id; // get roleid of channel
+			role = roles.find("name", parsed[1]).id; // get roleid of channel
 			return role;
 			// if role does not exist
 		} else {
@@ -23,8 +23,8 @@ module.exports = {
 		}
 	},
 	get_channel: function(channels, roles, parsed) {
-		channel = channels.get("name", parsed[1]).id; // get channel id
-		role = roles.get("name", "Officers").id;
+		channel = channels.find("name", parsed[1]).id; // get channel id
+		role = roles.find("name", "Officers").id;
 		data = parsed[2];
 		for (var i = 3; i < parsed.length; i++) {
 			data = data + " " + parsed[i];
