@@ -201,10 +201,10 @@ bot.on('message', message => {
 	*/
 	// !addrole Role
 	else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
-		role = admin.get_role(parsed, roles);
-    console.log(role);
+		//role = admin.get_role(parsed, roles);
+    //console.log(role);
 		if (role) {
-			user.addRole(role);
+			user.addRole('Hunter');
 			message.reply("Added " + parsed[1] + " role.");
 		} else {
 			message.delete();
