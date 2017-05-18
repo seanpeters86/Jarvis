@@ -221,7 +221,7 @@ bot.on("message", function(message) {
         }
     }
     // !say channel message
-    else if (input.startsWith("!SAY") && (commands.channelList[parsed[1]] && !(message.channel.isPrivate) ) {
+    else if (input.startsWith("!SAY") && (commands.channelList[parsed[1]]) && !(message.channel.isPrivate) ) {
         // sayObject = [channel, role, data]
         sayObject = admin.get_channel(channels, roles, parsed);
         if (bot.memberHasRole(user, sayObject[1])) {
