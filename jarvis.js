@@ -336,8 +336,6 @@ bot.on('message', message => {
                 if (char.statusCode != 404) {
                   mythics = armory.get_mythics(char);
                   console.log(armory.classColors);
-                  console.log(armory.classColors[5]);
-                  console.log(armory.classColors(5));
                   message.channel.send({embed: {
                     color: armory.classColors[parseInt(`${prettyjson.render(char.class)}`)],
                     author: {

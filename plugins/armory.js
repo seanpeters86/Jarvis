@@ -4,7 +4,7 @@ var prettyjson = require("prettyjson");
 
 var battlenetkey = process.env.BATTLE_NET_KEY;
 
-exports.classList = {
+var classList = {
 	1: "http://wow.zamimg.com/images/wow/icons/large/classicon_warrior.jpg",
 	2: "http://wow.zamimg.com/images/wow/icons/large/classicon_paladin.jpg",
 	3: "http://wow.zamimg.com/images/wow/icons/large/classicon_hunter.jpg",
@@ -19,7 +19,7 @@ exports.classList = {
 	12: "http://wow.zamimg.com/images/wow/icons/large/classicon_demonhunter.jpg"
 };
 
-exports.classColors = {
+var classColors = {
 	1: "13081710",
 	2: "16092346",
 	3: "11261043",
@@ -33,6 +33,9 @@ exports.classColors = {
 	11: "16743690",
 	12: "10694857"
 };
+
+exports.classList = classList;
+exports.classColors = classColors;
 
 module.exports = {
 	get_mythic_plus: function(char) {
