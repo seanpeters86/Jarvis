@@ -51,7 +51,8 @@ bot.on("ready", () => {
 // begin main bot
 bot.on('message', message => {
 	var input = message.content.toUpperCase();
-	if (message.channel.type == `text`) {
+  console.log(message.channel.type);
+	if (message.channel.type == 'text') {
 		var roles = message.channel.guild.roles;
 		var channels = message.channel.guild.channels;
 		var server = message.channel.guild.id;
