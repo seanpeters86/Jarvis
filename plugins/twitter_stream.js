@@ -34,6 +34,8 @@ module.exports = {
 					console.log(tweet.text);
 					if (currenttweet !== cachedtweet) {
 						cachedtweet = currenttweet;
+						data = "```*" + name + "* @" + tweet.user.screen_name + " - " + tweet.text + "```";
+						request.post('https://discordapp.com/api/webhooks/314832166083362827/XUYfAijYPsO8tV4fx2dOlSw_Gw84WnQWpZjc9pptrKb-b0MX6TgBLZqZzmfLJMzPVSKl', {form: {content: data}});
 						return ["170037904842817537", "```*" + name + "* @" + tweet.user.screen_name + " - " + tweet.text + "```"];
 					}
 				}
