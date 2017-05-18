@@ -287,7 +287,7 @@ bot.on('message', message => {
 				console.log(rank);
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
-          var art = armory.get_art(rank);
+          var art = wcl.get_art(rank);
 					if (!(input.includes("-P"))) {
 						message.member.send(rankObject);
 					} else {
