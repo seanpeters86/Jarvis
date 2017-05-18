@@ -88,7 +88,7 @@ bot.on('message', message => {
 		message.delete();
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
-  else if (intput === "!TEST") {
+  else if (input === "!TEST") {
         message.channel.send({embed: {
       color: 3447003,
       author: {
