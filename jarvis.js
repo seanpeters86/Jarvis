@@ -583,7 +583,6 @@ bot.on("message", function(message) {
             bot.deleteMessage(message);
         }
         var rank = wcl.ranking(parsed, parsedReg, input);
-        setTimeout(function () {
           console.log(rank + " outside");
           if(rank) {
             if (!(input.includes("-P"))) {
@@ -594,7 +593,18 @@ bot.on("message", function(message) {
           } else {
             bot.sendMessage("Character or rank not found");
           }
-        }, 10000);
+        // setTimeout(function () {
+        //   console.log(rank + " outside");
+        //   if(rank) {
+        //     if (!(input.includes("-P"))) {
+        //         bot.sendMessage(user, rank);
+        //     } else {
+        //         bot.sendMessage(message, rank);
+        //     }
+        //   } else {
+        //     bot.sendMessage("Character or rank not found");
+        //   }
+        // }, 10000);
         //var rank = wcl.ranking(parsed, parsedReg, input);
     }
     else if (input === "?ARMORY") {
