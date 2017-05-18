@@ -594,7 +594,7 @@ bot.on("message", function(message) {
           } else {
             bot.sendMessage("Character or rank not found");
           }
-        }, 20000);
+        }, 10000);
         //var rank = wcl.ranking(parsed, parsedReg, input);
     }
     else if (input === "?ARMORY") {
