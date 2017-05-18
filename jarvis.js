@@ -583,7 +583,7 @@ bot.on("message", function(message) {
         var rank = wcl.ranking(parsed, parsedReg, input);
         bot.when(rank).done(function() {
           console.log(rank);
-        }
+        });
         if(rank) {
           if (!(input.includes("-P"))) {
               bot.sendMessage(user, rank);
