@@ -1,12 +1,14 @@
 var role, channel, data;
-var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
-var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
+//var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
+//var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
+
+var commands = require("./plugins/commands");
 
 
 module.exports = {
   get_role: function(parsed, roles) {
     // Check of role matches the class list
-    if (classes.indexOf(parsed[1]) != -1) {
+    if (commands.classes.indexOf(parsed[1]) != -1) {
             if (parsed[1] == "Death") {
                 parsed[1] = "Death Knight";
             }
@@ -16,7 +18,7 @@ module.exports = {
             role = roles.get("name", parsed[1]).id; // get roleid of class
             return role;
     // Check if role matches channel list
-    } else if (channelRoles.indexOf(parsed[1]) != -1) {
+    } else if (commands.channelRoles.indexOf(parsed[1]) != -1) {
         role = roles.get("name", parsed[1]).id; // get roleid of channel
         return role;
     // if role does not exist
