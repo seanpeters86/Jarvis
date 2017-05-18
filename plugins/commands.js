@@ -60,7 +60,7 @@ exports.responses = {
     "!DEFENSIVES": "Here is the Legion Defensive/Utility Spell List: <https://docs.google.com/spreadsheets/d/1x6m0C6zJHVsEh63bgUgkQBKyLnkxYGeK3LM5JiVESzY/edit?usp=sharing>",
     "!DRAWING": "Here is the drawing board for EP videos: <https://docs.google.com/document/d/1iKo5CfvR2X-fCaQfzUvI7LJIgwGvs5TYvUJrcEWJC00/edit?usp=sharing>",
     "!ENCHANTS": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
-    "!FISTMAS": fistmas[admin.random(3)],
+    "!FISTMAS": fistmas(),
     "!FOOD": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
     "!GEMS": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
     "!GITHUB": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
@@ -164,3 +164,11 @@ exports.help = "You can now message Jarvis directly! Most things will work (othe
     Random Lore Facts = **!LORE**\n \
     Mythic Dungeon Stats = **!ARMORY CHARNAME MYTHICS**\n \
     To get WCL Ranking [optional features incluide P for public, T for tanking and H for healing] = **!RANKING CHARACTERNAME BOSSNAME [-P] [-T] [-H]** i.e. **!RANKING Daenall Archimonde -P -H**";
+
+    "!FISTMAS": fistmas[admin.random(3)],
+
+module.exports = {
+  fistmas: function() {
+    return fistmas[admin.random(3)];
+  }
+};
