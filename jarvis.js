@@ -287,7 +287,7 @@ bot.on('message', message => {
 				//console.log(rank);
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
-          var art = wcl.get_art(rank,wclObject[8]);
+          var art = wcl.get_art(rank,rankObject[8]);
           console.log(art);
 					if (!(input.includes("-P"))) {
 						message.member.send(rankObject);
