@@ -292,7 +292,7 @@ bot.on('message', message => {
 						message.member.send(rankObject);
 					} else {
             // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty]
-            var percent = 1-(parseInt(rankObject[1])/parseInt(rankObject[2]));
+            var percent = Math.round((1-(parseInt(rankObject[1])/parseInt(rankObject[2]))) * 100);
             message.channel.send({embed: {
               color: art[0],
               author: {
