@@ -324,48 +324,47 @@ bot.on('message', message => {
 				.then(function(char) {
 					if (char.statusCode != 404) {
 						mythicPlus = armory.get_mythic_plus(char);
-            message.channel.send({embed: {
-              color: message.member.displayColor,
-              author: {
-                name: message.member.displayName,
-                icon_url: message.member.user.avatarURL
-              },
-              fields: [
-                {
-                  name: 'Mythic Dungeons',
-                  value: "mythics"
-                },
-                {
-                  name: 'Mythic+ Dungeons',
-                  value: mythicPlus
+            // statistics fields
+            url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
+            var options = {
+              uri: url,
+              json: true
+            };
+            rp(options)
+              .then(function(char) {
+                if (char.statusCode != 404) {
+                  mythics = armory.get_mythics(char);
+                  message.channel.send({embed: {
+                    color: message.member.displayColor,
+                    author: {
+                      name: message.member.displayName,
+                      icon_url: message.member.user.avatarURL
+                    },
+                    fields: [
+                      {
+                        name: 'Mythic Dungeons',
+                        value: mythics
+                      },
+                      {
+                        name: 'Mythic+ Dungeons',
+                        value: mythicPlus
+                      }
+                    ],
+                    timestamp: new Date(),
+                    footer: {
+                      icon_url: bot.user.avatarURL,
+                      text: 'Pulled from Armory'
+                    }
+                  }});
+                } else {
+                  message.delete();
+                  message.member.send("I could not find an armory profile for " + parsedReg[1]);
                 }
-              ],
-              timestamp: new Date(),
-              footer: {
-                icon_url: bot.user.avatarURL,
-                text: 'Pulled from Armory'
-              }
-            }});
-					} else {
-						message.delete();
-						message.member.send("I could not find an armory profile for " + parsedReg[1]);
-					}
-				})
-				.catch(function(err) {
-					message.delete();
-					message.member.send("Character not found on Arthas-US. Please try again.")
-				});
-			// statistics fields
-			url = "https://us.api.battle.net/wow/character/Arthas/" + character + "?fields=statistics&locale=en_US&apikey=" + battlenetkey;
-			var options = {
-				uri: url,
-				json: true
-			};
-			rp(options)
-				.then(function(char) {
-					if (char.statusCode != 404) {
-						mythics = armory.get_mythics(char);
-						//message.channel.send(mythics);
+              })
+              .catch(function(err) {
+                message.delete();
+                message.member.send("Character not found on Arthas-US. Please try again.")
+              });
 					} else {
 						message.delete();
 						message.member.send("I could not find an armory profile for " + parsedReg[1]);

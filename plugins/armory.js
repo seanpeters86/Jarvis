@@ -33,7 +33,7 @@ module.exports = {
 			plusten = "0";
 		}
 		console.log(charName + " has completed " + plustwo + " mythic+ dungeons.");
-		var mythicPlusValue = charName + " has completed " + plustwo + " mythic+ dungeons in time.";
+		var mythicPlusValue = "**" + plustwo + "** Mythic+ dungeons completed in time.";
 		return mythicPlusValue;
 	},
 	get_mythics: function(char) {
@@ -48,7 +48,7 @@ module.exports = {
 			}
 		}
 		console.log(charName + " has completed " + count + " mythic dungeons.");
-		var mythicValue = charName + " has completed " + count + " mythic dungeons.";
+		var mythicValue = "**" + count + "** Mythic dungeons completed.";
 		return mythicValue;
 	}
 };
