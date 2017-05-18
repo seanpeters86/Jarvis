@@ -189,6 +189,7 @@ module.exports = {
                 }
             } else {
                 if (!(input.includes("-P"))) {
+                    console.log("did the thing");
                     return [user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS"];
                 } else {
                     return [message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS"];
