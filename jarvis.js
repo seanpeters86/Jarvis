@@ -205,7 +205,7 @@ bot.on('message', message => {
     //console.log(role);
     user.addRole('Hunter');
 		if (role) {
-			user.addRole('Hunter');
+			member.addRole('Hunter');
 			message.reply("Added " + parsed[1] + " role.");
 		} else {
 			message.delete();
