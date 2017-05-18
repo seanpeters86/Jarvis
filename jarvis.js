@@ -21,47 +21,8 @@ var battlenetkey = process.env.BATTLE_NET_KEY;
 
 var commands = require("./plugins/commands");
 var twitter_stream = require("./plugins/twitter_stream");
-
-var affixes = {
-    "1": "Raging Volcanic Tyrannical",
-    "2": "Teeming Explosive Fortified",
-    "3": "Bolstering Grievous Tyrannical",
-    "4": "Sanguine Volcanic Fortified",
-    "5": "Bursting Skittish Tyrannical",
-    "6": "Teeming Quaking Fortified",
-    "7": "Raging Necrotic Tyrannical",
-    "8": "Bolstering Skittish Fortified"
-}
-
-function classConvert(playerclass) {
-    var classList = {1: "Death Knight", 2: "Druid", 3: "Hunter", 4: "Mage", 5: "Monk", 6: "Paladin", 7: "Priest", 8: "Rogue", 9: "Shaman", 10: "Warlock", 11: "Warrior", 12: "Demon Hunter"};
-    if (classList[playerclass]) {
-       return classList[playerclass];
-    } else {
-        return "WTF";
-    }
-}
-
-function specConvert(playerclass, spec) {
-    var dk = {1: "Blood", 2: "Frost", 3: "Unholy"};
-    var druid = {1: "Balance", 2: "Feral", 3: "Guardian", 4: "Restoration"};
-    var hunter = {1: "Beast Mastery", 2: "Marksmanship", 3: "Survival"};
-    var mage = {1: "Arcane", 2: "Fire", 3: "Frost"};
-    var monk = {1: "Brewmaster", 2: "Mistweaver", 3: "Windwalker"};
-    var paladin = {1: "Holy", 2: "Protection", 3: "Retribution"};
-    var priest = {1: "Discipline", 2: "Holy", 3: "Shadow"};
-    var rogue = {1: "Assassination", 2: "Combat", 3: "Subtlety", 4: "Outlaw"};
-    var shaman = {1: "Elemental", 2: "Enhancement", 3: "Restoration"};
-    var warlock = {1: "Affliction", 2: "Demonology", 3: "Destruction"};
-    var warrior = {1: "Arms", 2: "Fury", 3: "Protection", 4: "Gladiator"};
-    var dh = {1: "Havoc", 2: "Vengence"};
-    var classList = {1: dk[spec], 2: druid[spec], 3: hunter[spec], 4: mage[spec], 5: monk[spec], 6: paladin[spec], 7: priest[spec], 8: rogue[spec], 9: shaman[spec], 10: warlock[spec], 11: warrior[spec], 12: dh[spec]};
-    if (classList[playerclass]) {
-      return classList[playerclass];
-    } else {
-      return "WTF";
-    }
-}
+var armory = require("./plugins/armory");
+var wcl = require("./plugins/wcl");
 
 bot.on("ready", function() {
     tweet = twitter_stream.get_tweet();
@@ -74,6 +35,20 @@ bot.on("ready", function() {
         request.post('https://discordapp.com/api/webhooks/311306144041926657/roiY7k2oiAuDikTMKs8aiseqFzvKjZnf9epD9cH-Di4MfVuSJOlll016a5G1UIS3dRFe', {form:{content:data}});
     }
 });
+
+var battlenetkey = process.env.BATTLE_NET_KEY;
+
+var affixes = {
+    "1": "Raging Volcanic Tyrannical",
+    "2": "Teeming Explosive Fortified",
+    "3": "Bolstering Grievous Tyrannical",
+    "4": "Sanguine Volcanic Fortified",
+    "5": "Bursting Skittish Tyrannical",
+    "6": "Teeming Quaking Fortified",
+    "7": "Raging Necrotic Tyrannical",
+    "8": "Bolstering Skittish Fortified"
+}
+
 
 // begin main bot
 bot.on("message", function(message) {
@@ -596,7 +571,7 @@ bot.on("message", function(message) {
             bot.sendMessage(user, "The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
         }
     }
-    // ranking help
+    // ranking stuffs
     else if (input === "?RANKING") {
         bot.reply(message, "By using !ranking PLAYERNAME BOSSNAME [-h] you can check WCL parses for that characters rankings. Simply add -h to the end to check HPS rankings instead of DPS.");
     }
@@ -605,165 +580,12 @@ bot.on("message", function(message) {
         if (!(input.includes("-P"))) {
             bot.deleteMessage(message);
         }
-        var char = encodeURIComponent(parsed[1]);
-        switch (parsedReg[2]) {
-            case "SKORPYRON":
-            case "SKORPADRON":
-            case "SKORP":
-                raidid = 11;
-                encounter = 1849;
-                bossname = "Skorpyron";
-                break;
-            case "CHRONOMATIC":
-            case "ANOMALY":
-                raidid = 11;
-                encounter = 1865;
-                bossname = "Chronomatic Anomaly";
-                break;
-            case "TRILLIAX":
-                raidid = 11;
-                encounter = 1867;
-                bossname = "Trilliax";
-                break;
-            case "SPELLBLADE":
-            case "ALURIEL":
-                raidid = 11;
-                encounter = 1871;
-                bossname = "Spellblade Aluriel";
-                break;
-            case "TICHONDRIUS":
-            case "TICH":
-                raidid = 11;
-                encounter = 1862;
-                bossname = "Tichondrius";
-                break;
-            case "STAR":
-            case "AUGUR":
-            case "ETRAEUS":
-                raidid = 11;
-                encounter = 1863;
-                bossname = "Star Augur Etraeus";
-                break;
-            case "KROSUS":
-                raidid = 11;
-                encounter = 1842;
-                bossname = "Krosus";
-                break;
-            case "BOTANIST":
-            case "TELARN":
-            case "TEL'ARN":
-            case "HIGH":
-                raidid = 11;
-                encounter = 1886;
-                bossname = "High Botanist Tel'arn";
-                break;
-            case "ELISANDE":
-            case "MAGISTRIX":
-            case "GRAND":
-                raidid = 11;
-                encounter = 1872;
-                bossname = "Grand Magistrix Elisande";
-                break;
-            case "GULDANK":
-            case "GUL'DAN":
-            case "GULDAN":
-                raidid = 11;
-                encounter = 1866;
-                bossname = "Gul'dan";
-                break;
-            case "ODYN":
-                raidid = 12;
-                encounter = 1958;
-                bossname = "Odyn";
-                break;
-            case "GUARM":
-                raidid = 12;
-                encounter = 1962;
-                bossname = "Guarm";
-                break;
-            case "HELYA":
-                raidid = 12;
-                encounter = 2008;
-                bossname = "Helya";
-                break;
-            case "NYTHENDRA":
-                raidid = 10;
-                encounter = 1853;
-                bossname = "Nythendra";
-                break;
-            case "IL'GYNOTH":
-            case "IL":
-            case "ILGYNOTH":
-            case "TREE":
-            case "HEART":
-                raidid = 10;
-                encounter = 1873;
-                bossname = "Il'gynoth, Heart of Corruption";
-                break;
-            case "ELERETHE":
-            case "RENFERAL":
-            case "ELE":
-                raidid = 10;
-                encounter = 1876;
-                bossname = "Elerethe Renferal";
-                break;
-            case "URSOC":
-            case "BEAR":
-                raidid = 10;
-                encounter = 1841;
-                bossname = "Ursoc";
-                break;
-            case "DRAGONS":
-            case "DARGONS":
-                raidid = 10;
-                encounter = 1854;
-                bossname = "Dragons of the Nightmare";
-                break;
-            case "CENARIUS":
-                raidid = 10;
-                encounter = 1877;
-                bossname = "Cenarius";
-                break;
-            case "XAVIUS":
-                raidid = 10;
-                encounter = 1864;
-                bossname = "Xavius";
-                break;
-        }
-        if (input.includes("-H")) {
-            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=hps&partition=" + partition + "&api_key=" + wclkey;
+        var rank = wcl.ranking(parsed, parsedReg, input, user, message);
+        if(rank) {
+          bot.sendMessage(rank[0], rank[1]);
         } else {
-            var uri = "https://www.warcraftlogs.com:443/v1/rankings/character/" + char + "/Arthas/US?zone=" + raidid + "&encounter=" + encounter + "&metric=dps&partition=" + partition + "&api_key=" + wclkey;
+          bot.sendMessage("Character or rank not found");
         }
-        request({
-            method: 'GET',
-            uri: uri,
-            json: true
-        }, (error, response, body) => {
-            if (!error && response.statusCode == 200 && (encounter != 0) && body.length > 0) {
-                var rank = response.body;
-                spec = parseInt(`${prettyjson.render(rank[0].spec)}`);
-                playerclass = parseInt(`${prettyjson.render(rank[0].class)}`);
-                var classparsed = classConvert(playerclass);
-                var specparsed = specConvert(playerclass, spec);
-                if (input.includes("-H")) {
-                    if (!(input.includes("-P"))) {
-                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
-                    } else {
-                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in HPS");
-                    }
-                } else {
-                    if (!(input.includes("-P"))) {
-                        bot.sendMessage(user, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
-                    } else {
-                        bot.sendMessage(message, parsed[1] + " ranked " + `${prettyjson.render(rank[0].rank)}` + " out of " + `${prettyjson.render(rank[0].outOf)}` + " on " + bossname + " for all " + specparsed + " " + classparsed + "s in DPS");
-                    }
-                }
-            } else {
-                bot.deleteMessage(message);
-                bot.sendMessage(user, "I could not find a ranking for " + parsed[1] + " on " + parsed[2] + ". Check query and try again. Silly Human.");
-            }
-        });
     }
     else if (input === "?ARMORY") {
         bot.sendMessage(message, "By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");

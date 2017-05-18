@@ -5,7 +5,6 @@ var planfortheweek = "Time to kill Elisande! We will be extending to work on her
 
 var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
 
-
 exports.responsesArthas = {
   "?ADDROLE": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
   "?ADD": "To get your class color added use '!add className' where channel name is a valid name (case matters!). The options are: ```" + classes + "```",
