@@ -254,7 +254,7 @@ bot.on('message', message => {
 		rp(options)
 			.then(function(rank) {
 				console.log(wclObject);
-				if (wclObject[1] != 0) {
+				if (wclObject[1] !== "undefined") {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
           var art = wcl.get_art(rank,rankObject[8]);
           // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty,encounter]
