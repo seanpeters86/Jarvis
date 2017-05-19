@@ -15,6 +15,7 @@ var request = require('request');
 var prettyjson = require("prettyjson");
 var rp = require('request-promise');
 var debug = true;
+var raw = false;
 
 var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
@@ -35,7 +36,6 @@ bot.on("ready", () => {
 	tweet = twitter_stream.get_tweet();
 	if (tweet) {
     console.log(tweet);
-    console.log("Sending Tweet");
 		bot.sendMessage(tweet[0], tweet[1]);
 	}
 	if (debug) {
@@ -436,7 +436,7 @@ function err(error) {
 	process.exit(0);
 }
 
-if (debug) {
+if (raw) {
   bot.on("debug", (m) => console.log("[debug]", m));
   bot.on("raw", (m) => console.log("[raw]", m));
 }
