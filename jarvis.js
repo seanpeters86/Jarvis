@@ -359,7 +359,7 @@ bot.on('message', message => {
               .catch(function(err) {
                 console.log(err);
                 message.delete();
-                message.member.send("Character not found on Arthas-US. Please try again.")
+                message.member.send("Character not found on Arthas-US. Please try again.");
               });
 					} else {
 						message.delete();
@@ -369,8 +369,11 @@ bot.on('message', message => {
 				.catch(function(err) {
           console.log(err);
 					message.delete();
-					message.member.send("Character not found on Arthas-US. Please try again.")
+					message.member.send("Character not found on Arthas-US. Please try again.");
 				});
+		} else {
+			message.delete();
+			message.member.send("Invalid option. Format should be: ```!armory character mythics``` You entered: ```" + message.content + "```");
 		}
 	}
 	// WoWProgress Link
