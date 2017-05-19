@@ -31,7 +31,7 @@ var guides = require("./plugins/guides");
 var admin = require("./plugins/admin");
 
 bot.on("ready", () => {
-	bot.user.setgame("Discord.JS");
+	bot.user.setGame("Discord.JS");
 	tweet = twitter_stream.get_tweet();
 	if (tweet) {
     console.log(tweet);
