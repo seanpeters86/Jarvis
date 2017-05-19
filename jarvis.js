@@ -253,6 +253,7 @@ bot.on('message', message => {
 		};
 		rp(options)
 			.then(function(rank) {
+				console.log(wclObject);
 				if (wclObject[1] != 0) {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
           var art = wcl.get_art(rank,rankObject[8]);
