@@ -14,7 +14,7 @@ var fs = require('fs');
 var request = require('request');
 var prettyjson = require("prettyjson");
 var rp = require('request-promise');
-var debug = true;
+var debug = false;
 
 var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
@@ -435,11 +435,13 @@ function err(error) {
 	console.log("Insuccessful login with token");
 	process.exit(0);
 }
-// http://discordjs.readthedocs.io/en/8.2.0/docs_client.html?highlight=ready
-//bot.on("debug", (m) => console.log("[debug]", m));
+
+if (debug) {
+  bot.on("debug", (m) => console.log("[debug]", m));
+  bot.on("raw", (m) => console.log("[raw]", m));
+}
 bot.on("warn", (m) => console.log("[warn]", m));
 bot.on("error", (m) => console.log("[error]", m));
-//bot.on("raw", (m) => console.log("[raw]", m));
 
 bot.on('guildMemberAdd', member => {
 	var arthas = "226510296221483008";
