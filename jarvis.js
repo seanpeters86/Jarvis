@@ -254,7 +254,7 @@ bot.on('message', message => {
 		rp(options)
 			.then(function(rank) {
 				console.log(wclObject);
-				if (wclObject[1] !== "undefined") {
+				if (typeof wclObject[1] !== "undefined") {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
           var art = wcl.get_art(rank,rankObject[8]);
           // rankObject = [charName,rank,total,bossname,spec,class,metric,difficulty,encounter]
@@ -287,16 +287,16 @@ bot.on('message', message => {
           }});
 				} else {
 					message.delete();
-					message.member.send("Error processing request. Please try again.")
+					message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + parsed + "```");
 				}
 			})
 			.catch(function(err) {
 				message.delete();
-				message.member.send("Error processing request. Please try again.")
+				message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + parsed + "```");
 				console.log(err);
 			});
 	} else if (input === "?ARMORY") {
-		message.channel.send("By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed\n`anger`: lookup if that char has the Anger of the half giants.");
+		message.channel.send("By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed.");
 	}
 	/*
 	*****************************
