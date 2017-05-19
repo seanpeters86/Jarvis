@@ -253,7 +253,6 @@ bot.on('message', message => {
 		};
 		rp(options)
 			.then(function(rank) {
-				console.log(wclObject);
 				if (typeof wclObject[1] !== "undefined") {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
           var art = wcl.get_art(rank,rankObject[8]);
@@ -287,12 +286,12 @@ bot.on('message', message => {
           }});
 				} else {
 					message.delete();
-					message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + parsed + "```");
+					message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + message.content + "```");
 				}
 			})
 			.catch(function(err) {
 				message.delete();
-				message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + parsed + "```");
+				message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + message.content + "```");
 				console.log(err);
 			});
 	} else if (input === "?ARMORY") {
