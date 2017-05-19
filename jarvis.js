@@ -130,7 +130,6 @@ bot.on('message', message => {
 		try {
 			message.channel.send(affix[0] + affix[1] + "\nFor more check out: https://mythicpl.us/");
 		} catch (err) {
-			console.log(err);
 			message.channel.send("Weekly Affixes: https://mythicpl.us/ \n");
 		}
 	}
@@ -199,8 +198,6 @@ bot.on('message', message => {
 	// !addrole Role
 	else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
 		role = admin.get_role(parsed, roles);
-    console.log(role);
-    //message.member.addRole('Hunter');
 		if (role) {
 			message.member.addRole(role);
 			message.reply("Added " + parsed[1] + " role.");
@@ -292,7 +289,6 @@ bot.on('message', message => {
 			.catch(function(err) {
 				message.delete();
 				message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + message.content + "```");
-				console.log(err);
 			});
 	} else if (input === "?ARMORY") {
 		message.channel.send("By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed.");
@@ -328,7 +324,6 @@ bot.on('message', message => {
                 if (char.statusCode != 404) {
                   mythics = armory.get_mythics(char);
                   art = armory.get_art(char);
-                  console.log(armory.classColors);
                   message.channel.send({embed: {
                     color: art[0],
                     author: {
@@ -357,7 +352,6 @@ bot.on('message', message => {
                 }
               })
               .catch(function(err) {
-                console.log(err);
                 message.delete();
                 message.member.send("Character not found on Arthas-US. Please try again.");
               });
@@ -367,7 +361,6 @@ bot.on('message', message => {
 					}
 				})
 				.catch(function(err) {
-          console.log(err);
 					message.delete();
 					message.member.send("Character not found on Arthas-US. Please try again.");
 				});
@@ -387,7 +380,6 @@ bot.on('message', message => {
 		}, (error, response, body) => {
 			if (!error && response.statusCode == 200) {
 				var json_rank = response.body;
-				console.log(json_rank);
 				message.channel.send("Exiled Power is currently ranked " + `${prettyjson.render(json_rank.world_rank)}` + " in the world and " + `${prettyjson.render(json_rank.realm_rank)}` + " on Arthas.");
 			} else {
 				message.channel.send("I could not find a ranking for Exiled Power on WoWProgress for the current tier.");
@@ -456,7 +448,6 @@ bot.on('guildMemberAdd', member => {
 	if (server.id == exiledpower) {
 		request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form: {content: data}});
 	}
-	console.log(username + " joined " + server.name);
 });
 
 bot.on('disconnected', err => {
