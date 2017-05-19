@@ -14,7 +14,7 @@ var fs = require('fs');
 var request = require('request');
 var prettyjson = require("prettyjson");
 var rp = require('request-promise');
-var debug = false;
+var debug = true;
 
 var discordKey = process.env.DISCORD_KEY;
 var wclkey = process.env.WCL_KEY;
@@ -31,7 +31,7 @@ var guides = require("./plugins/guides");
 var admin = require("./plugins/admin");
 
 bot.on("ready", () => {
-	bot.user.setPresence('online', "Discord.JS");
+	bot.user.setgame("Discord.JS");
 	tweet = twitter_stream.get_tweet();
 	if (tweet) {
     console.log(tweet);
