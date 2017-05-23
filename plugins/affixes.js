@@ -17,7 +17,7 @@ module.exports = {
 		var firstDate = new Date(Date.UTC(2017, 0, 31, 15, 0, 0));
 		var secondDate = d;
 		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneday)));
-		var weeks = Math.floor(diffDays / affixes.length);
+		var weeks = Math.floor(diffDays / 7);
 		var week = (weeks % 8) + 1;
 		var nextweek;
 		if (week == affixes.length) {
@@ -25,7 +25,7 @@ module.exports = {
 		} else {
 			nextweek = week + 1;
 		}
-		console.log(week + " " + nextweek);
+		console.log(weeks + " " + week + " " + nextweek);
 		try {
 			var affix = affixes[week].split(" ");
 			var nextAffix = affixes[nextweek].split(" ");
