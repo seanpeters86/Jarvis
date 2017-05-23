@@ -6,7 +6,8 @@ var affixes = {
 	"5": "Bursting Skittish Tyrannical",
 	"6": "Teeming Quaking Fortified",
 	"7": "Raging Necrotic Tyrannical",
-	"8": "Bolstering Skittish Fortified"
+	"8": "Bolstering Skittish Fortified",
+	"9": "Teeming Necrotic Tyrannical"
 }
 
 module.exports = {
@@ -17,9 +18,9 @@ module.exports = {
 		var secondDate = d;
 		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneday)));
 		var weeks = Math.floor(diffDays / 7);
-		var week = (weeks % 8) + 1;
+		var week = (weeks % 9) + 1;
 		var nextweek;
-		if (week == 8) {
+		if (week == 9) {
 			nextweek = 1;
 		} else {
 			nextweek = week + 1;
