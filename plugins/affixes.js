@@ -26,7 +26,7 @@ module.exports = {
 		} else {
 			nextweek = week + 1;
 		}
-		console.log(weeks + " " + week + " " + nextweek);
+		//console.log(weeks + " " + week + " " + nextweek);
 		try {
 			var affix = affixes[week].split(" ");
 			var nextAffix = affixes[nextweek].split(" ");
