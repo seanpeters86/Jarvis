@@ -19,13 +19,13 @@ module.exports = {
 		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneday)));
 		var weeks = Math.floor(diffDays / 7);
 		var week = (weeks % 8) + 1;
-		console.log(week + " " + nextweek)
 		var nextweek;
 		if (week == 9) {
 			nextweek = 1;
 		} else {
 			nextweek = week + 1;
 		}
+		console.log(week + " " + nextweek);
 		try {
 			var affix = affixes[week].split(" ");
 			var nextAffix = affixes[nextweek].split(" ");
