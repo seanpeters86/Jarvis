@@ -18,9 +18,9 @@ module.exports = {
 		var secondDate = d;
 		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneday)));
 		var weeks = Math.floor(diffDays / 8);
-		var week = (weeks % 8) + 1;
+		var week = (weeks % 8) + 2;
 		var nextweek;
-		if (week == 9) {
+		if (week == affixes.length) {
 			nextweek = 1;
 		} else {
 			nextweek = week + 1;
