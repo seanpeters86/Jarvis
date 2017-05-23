@@ -17,7 +17,7 @@ module.exports = {
 		var firstDate = new Date(Date.UTC(2017, 0, 31, 15, 0, 0));
 		var secondDate = d;
 		var diffDays = Math.round(Math.abs((firstDate.getTime() - secondDate.getTime()) / (oneday)));
-		var weeks = Math.floor(diffDays / 7);
+		var weeks = Math.floor(diffDays / 8);
 		var week = (weeks % 8) + 1;
 		var nextweek;
 		if (week == 9) {
