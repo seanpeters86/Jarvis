@@ -121,6 +121,7 @@ exports.servers = {
 	"DISCORD": "https://discord.gg/WtyHkza",
 	"DK": "https://discord.gg/0ez1cFfUH3ingV96",
 	"DRUID": "https://discord.gg/0dWu0WkuetF87H9H",
+	"EP": "https://discord.gg/Sd6wRfb",
 	"HEALING": "https://discord.gg/wDemsxV",
 	"HUNTER": "https://discord.gg/yqer4BX",
 	"HUNTARD": "https://discord.gg/yqer4BX",
