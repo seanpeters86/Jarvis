@@ -8,7 +8,7 @@ var affixes = {
 	"7": "Raging Necrotic Tyrannical",
 	"8": "Bolstering Skittish Fortified",
 	"9": "Teeming Necrotic Tyrannical",
-	"10": "??? ??? ???"
+	"10": "Sanguine Grevious Fortified"
 }
 
 module.exports = {
@@ -26,7 +26,7 @@ module.exports = {
 		} else {
 			nextweek = week + 1;
 		}
-		//console.log(weeks + " " + week + " " + nextweek);
+		console.log(weeks + " " + week + " " + nextweek);
 		try {
 			var affix = affixes[week].split(" ");
 			var nextAffix = affixes[nextweek].split(" ");
