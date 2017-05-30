@@ -21,13 +21,14 @@ module.exports = {
 		var weeks = Math.floor(diffDays / 7);
 		var week = (weeks % 9) + 2;
 		var nextweek;
-		if (week == affixes.length) {
+		if (week == 10) {
 			nextweek = 1;
 		} else {
 			nextweek = week + 1;
 		}
 		console.log(weeks + " " + week + " " + nextweek);
 		try {
+			console.log(affixes[week].split(" "));
 			var affix = affixes[week].split(" ");
 			var nextAffix = affixes[nextweek].split(" ");
 			affix = "This week's affixes are +4: **" + affix[0] + "**, +7: **" + affix[1] + "**, +10: **" + affix[2] + "**";
