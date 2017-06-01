@@ -210,7 +210,7 @@ bot.on('message', message => {
 	else if ((input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) && !(message.channel.isPrivate)) {
 		role = admin.get_role(parsed, roles);
 		if (role) {
-			bot.removeMemberFromRole(user, role);
+			message.member.removeRole(role);
 			message.reply("Removed " + parsed[1] + " role.");
 		} else {
 			message.delete();
