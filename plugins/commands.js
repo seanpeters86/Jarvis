@@ -85,6 +85,7 @@ exports.responses = {
 	"!SOURCE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
 	"!STATS": "Here is the stat weights/priorities sheet: <https://docs.google.com/document/d/1gIOSfzrSHCd_j_ZUXl0gasuLprjCqzR5hgaVasX7ow4/edit?usp=sharing>",
 	"!STAYCLASSY": "The following are the race/class combos we still need:\nTauren(Priest)\nTrolls(Warlock)\nUndead(Hunter)\nGoblins(DK, Rogue, Warlock, Priest)\nPandaren(Mage, Priest)",
+	"!TOOLKIT": "Here is the video toolkot: <https://www.dropbox.com/sh/3ly14sy3k4633j3/AADgUuFn8rP3ZwDC6P_Tyqoaa?dl=0>",
 	"!UTILITY": "Here is the Legion Defensive/Utility Spell List: <https://docs.google.com/spreadsheets/d/1x6m0C6zJHVsEh63bgUgkQBKyLnkxYGeK3LM5JiVESzY/edit?usp=sharing>",
 	"!WARCRAFTLOGS": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
 	"!WCL": "Here is the link to the EP Logs: <https://www.warcraftlogs.com/guilds/reportslist/75984/>",
