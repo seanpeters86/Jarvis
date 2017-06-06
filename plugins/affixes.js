@@ -8,7 +8,8 @@ var affixes = {
 	"7": "Raging Necrotic Tyrannical",
 	"8": "Bolstering Skittish Fortified",
 	"9": "Teeming Necrotic Tyrannical",
-	"10": "Sanguine Grevious Fortified"
+	"10": "Sanguine Grevious Fortified",
+	"11": "Explosive Bursting Tyrannical"
 }
 
 module.exports = {
@@ -21,12 +22,12 @@ module.exports = {
 		var weeks = Math.floor(diffDays / 7);
 		var week = (weeks % 9) + 2;
 		var nextweek;
-		if (week == 10) {
+		if (week == 11) {
 			nextweek = 1;
 		} else {
 			nextweek = week + 1;
 		}
-		console.log(weeks + " " + week + " " + nextweek);
+		console.log(diffDays + " " + weeks + " " + week + " " + nextweek);
 		try {
 			console.log(affixes[week].split(" "));
 			var affix = affixes[week].split(" ");
