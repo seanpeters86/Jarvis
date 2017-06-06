@@ -27,9 +27,9 @@ module.exports = {
 		} else {
 			nextweek = week + 1;
 		}
-		console.log(diffDays + " " + weeks + " " + week + " " + nextweek);
+		//console.log(diffDays + " " + weeks + " " + week + " " + nextweek);
 		try {
-			console.log(affixes[week].split(" "));
+			//console.log(affixes[week].split(" "));
 			var affix = affixes[week].split(" ");
 			var nextAffix = affixes[nextweek].split(" ");
 			affix = "This week's affixes are +4: **" + affix[0] + "**, +7: **" + affix[1] + "**, +10: **" + affix[2] + "**";
