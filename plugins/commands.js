@@ -49,7 +49,7 @@ exports.responses = {
 	"#AMISITTING": "Here is the roster: <https://docs.google.com/spreadsheets/d/1Clq6mEklsLo5FWLd80D8togXN19MbBhVSci7inhre28/edit#gid=491110509>",
 	"#ITSRANDOM": "It's never random. Molo is a cheater.",
 	"!ADDONS": "Legion Addon list:\nAuto Turn In: <https://mods.curse.com/addons/wow/autoturnin>\nWorld Quest Tracker: <https://mods.curse.com/addons/wow/world-quest-tracker>\nWorld Quest List: <https://mods.curse.com/addons/wow/world-quests-list>\nCharacter Stat Sheet: <https://mods.curse.com/addons/wow/dejacharacterstats>\nHandyNotes Tracker: <https://mods.curse.com/addons/wow/handynotes_legionrarestreasures>",
-	"!AUDIT": "Here is the audit spreadsheet <https://docs.google.com/spreadsheets/d/17vrjNIiPXNUSuRfglGzkNV62GWRaD-LJa88NdVcxXhk/edit?usp=sharing>\nHere is the other audit spreadsheet from Plan: <https://docs.google.com/spreadsheets/d/1JdxmWiqMkA4RRGBSXMhy7sCdMX02qvHD0qt77V-FN10/edit#gid=241918221>",
+	"!AUDIT": "Here is the audit spreadsheet <https://docs.google.com/spreadsheets/d/1JdxmWiqMkA4RRGBSXMhy7sCdMX02qvHD0qt77V-FN10/edit#gid=241918221>",
 	"!BALANCE": "As of " + balance[0] + " the balance is: **" + balance[1] + "**",
 	"!CASH": "As of " + balance[0] + " the balance is: **" + balance[1] + "**",
 	"!CODE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
