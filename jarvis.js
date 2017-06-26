@@ -85,9 +85,15 @@ bot.on('message', message => {
 		message.delete();
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
+	// DLC
+	else if (input === "!DLC") {
+		value = admin.random(587);
+		image = "http://darklegacycomics.com/comics/" + value + ".jpg";
+		message.channel.send(image);
+	}
 	// fistmas
 	else if (input === "!FISTMAS") {
-		message.channel.send(commands.fistmas[admin.random(7)]);
+		message.channel.send(dlc.get_comic(admin.random(3));
 	}
 	// Salt
 	else if (input === "!SALT") {
