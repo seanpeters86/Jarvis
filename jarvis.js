@@ -94,8 +94,9 @@ bot.on('message', message => {
 		}
 		image = "http://darklegacycomics.com/comics/" + value + ".jpg";
 		try {
-			message.channel.send({files:image});
+			message.channel.send({files:[image]});
 		} catch (err) {
+			console.log(err);
 			message.channel.send("Unknown error occured, make sure you typed in the value correctly (comicNumber is optional): ```!dlc\n!dlc comicNumber```");
 		}
 	}
