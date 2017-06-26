@@ -87,13 +87,21 @@ bot.on('message', message => {
 	}
 	// DLC
 	else if (input === "!DLC") {
-		value = admin.random(587);
+		if (parsedReg[1]) {
+			value = parsedReg[1];
+		} else {
+			value = admin.random(587);
+		}
 		image = "http://darklegacycomics.com/comics/" + value + ".jpg";
-		message.channel.send(image);
+		try {
+			message.channel.send(image);
+		} catch (err) {
+			message.channel.send("Unknown error occured, make sure you typed in the value correctly (comicNumber is optional): ```!dlc\n!dlc comicNumber```");
+		}
 	}
 	// fistmas
 	else if (input === "!FISTMAS") {
-		message.channel.send(dlc.get_comic(admin.random(3));
+		message.channel.send({files:[commands.fistmas[admin.random(3)]]});
 	}
 	// Salt
 	else if (input === "!SALT") {
