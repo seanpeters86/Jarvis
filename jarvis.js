@@ -86,7 +86,7 @@ bot.on('message', message => {
 		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
 	}
 	// DLC
-	else if (input === "!DLC") {
+	else if (input.startsWith("!DLC")) {
 		if (parsedReg[1]) {
 			value = parsedReg[1];
 		} else {
