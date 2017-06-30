@@ -206,9 +206,9 @@ bot.on('message', message => {
 		}
 	}
 	/*
-	*****************************
+	******************************
 	ADMIN.JS
-	*****************************
+	******************************
 	*/
 	// !addrole Role
 	else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
