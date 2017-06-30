@@ -83,7 +83,11 @@ bot.on('message', message => {
 			return input.indexOf(v) >= 0;
 		}) && !(user.bot)) {
 		message.delete();
-		message.member.send("This language: ```" + input + "``` is not allowed in this server.")
+		try {
+			message.member.send("This language: ```" + input + "``` is not allowed in this server.")
+		} catch (err) {
+			console.log(err);
+		}
 	}
 	// DLC
 	else if (input.startsWith("!DLC")) {
@@ -122,14 +126,22 @@ bot.on('message', message => {
 			message.reply(commands.servers[parsedReg[1]]);
 		} else {
 			message.delete();
-			message.member.send("The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
+			try {
+				message.member.send("The server `" + parsedReg[1] + "` does not exist, or I'm not sure where to find it.");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	// Prints out list of commands in Discord
 	else if (input.startsWith("!HELP") || input === "?JARVIS") {
 		if (!(input.endsWith("-P"))) {
 			message.delete();
-			message.member.send(commands.help);
+			try {
+				message.member.send(commands.help);
+			} catch (err) {
+				console.log(err);
+			}
 		} else {
 			message.channel.send({files:["http://i.imgur.com/mISkWv2.png"]});
 		}
@@ -164,7 +176,11 @@ bot.on('message', message => {
 			message.channel.send({files:[artifact]});
 		} else {
 			message.delete();
-			message.member.send("Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
+			try {
+				message.member.send("Could not find an artifact weapon for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	/*
@@ -183,7 +199,11 @@ bot.on('message', message => {
 			message.channel.send(video);
 		} else {
 			message.delete();
-			message.member.send("Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
+			try {
+				message.member.send("Cannot find the video, `" + parsedReg[1] + "`, you requested. By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	/*
@@ -202,7 +222,11 @@ bot.on('message', message => {
 			message.channel.send(guide);
 		} else {
 			message.delete();
-			message.member.send("Could not find a guide for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
+			try {
+				message.member.send("Could not find a guide for Spec: `" + parsedReg[2] + "` Class: `" + parsedReg[1] + "`. Make sure you spelled it correctly.");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	/*
@@ -218,7 +242,11 @@ bot.on('message', message => {
 			message.reply("Added " + parsed[1] + " role.");
 		} else {
 			message.delete();
-			message.member.send("Role does not exist, or you do not have permission to add that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
+			try {
+				message.member.send("Role does not exist, or you do not have permission to add that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	// !removerole Developers
@@ -229,7 +257,11 @@ bot.on('message', message => {
 			message.reply("Removed " + parsed[1] + " role.");
 		} else {
 			message.delete();
-			message.member.send("Role does not exist, or you do not have permission to remove that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
+			try {
+				message.member.send("Role does not exist, or you do not have permission to remove that role. Available roles: " + "```" + commands.channelRoles + "```" + "```" + commands.classes + "```")
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	// !say channel message
@@ -244,7 +276,11 @@ bot.on('message', message => {
 			}
 		} else {
 			message.delete();
-			message.member.send("You don't have valid permissions to do that.");
+			try {
+				message.member.send("You don't have valid permissions to do that.");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	/*
@@ -298,12 +334,20 @@ bot.on('message', message => {
           }});
 				} else {
 					message.delete();
-					message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + message.content + "```");
+					try {
+						message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + message.content + "```");
+					} catch (err) {
+						console.log(err);
+					}
 				}
 			})
 			.catch(function(err) {
 				message.delete();
-				message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + message.content + "```");
+				try {
+					message.member.send("Error processing request. Please try again. Check Typos and make sure you are using the ```!ranking character bossname``` format.\n```" + message.content + "```");
+				} catch (err) {
+					console.log(err);
+				}
 			});
 	} else if (input === "?ARMORY") {
 		message.channel.send("By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed.");
@@ -363,25 +407,45 @@ bot.on('message', message => {
                   }});
                 } else {
                   message.delete();
-                  message.member.send("I could not find an armory profile for " + parsedReg[1]);
+									try {
+										message.member.send("I could not find an armory profile for " + parsedReg[1]);
+									} catch (err) {
+										console.log(err);
+									}
                 }
               })
               .catch(function(err) {
                 message.delete();
-                message.member.send("Character not found on Arthas-US. Please try again.");
+								try {
+									message.member.send("Character not found on Arthas-US. Please try again.");
+								} catch (err) {
+									console.log(err);
+								}
               });
 					} else {
 						message.delete();
-						message.member.send("I could not find an armory profile for " + parsedReg[1]);
+						try {
+							message.member.send("I could not find an armory profile for " + parsedReg[1]);
+						} catch (err) {
+							console.log(err);
+						}
 					}
 				})
 				.catch(function(err) {
 					message.delete();
-					message.member.send("Character not found on Arthas-US. Please try again.");
+					try {
+						message.member.send("Character not found on Arthas-US. Please try again.");
+					} catch (err) {
+						console.log(err);
+					}
 				});
 		} else {
 			message.delete();
-			message.member.send("Invalid option. Format should be: ```!armory character mythics``` You entered: ```" + message.content + "```");
+			try {
+				message.member.send("Invalid option. Format should be: ```!armory character mythics``` You entered: ```" + message.content + "```");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 	// WoWProgress Link
@@ -432,7 +496,11 @@ bot.on('message', message => {
 	// command not found, but prefix given
 	else if (input.startsWith("!")) {
 		message.delete();
-		message.member.send("I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
+		try {
+			message.member.send("I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
+		} catch (err) {
+			console.log(err);
+		}
 	}
 });
 bot.login(discordKey).then(success).catch(err);
@@ -456,7 +524,11 @@ bot.on("error", (m) => console.log("[error]", m));
 bot.on('guildMemberAdd', member => {
 	var arthas = "226510296221483008";
 	var exiledpower = "170037904842817537";
-  member.send("Welcome to the server. Check out the #welcome channel for more info, or type in !help in any of the channels.");
+	try {
+		member.send("Welcome to the server. Check out the #welcome channel for more info, or type in !help in any of the channels.");
+	} catch (err) {
+		console.log(err);
+	}
 	userid = member.id;
 	username = member.name;
 	var data = username + " joined " + server.name;
@@ -469,11 +541,11 @@ bot.on('guildMemberAdd', member => {
 	}
 });
 
-bot.on('disconnected', err => {
-	console.log("Bot disconnected");
-  console.log(err);
-	process.exit(0);
-});
+// bot.on('disconnected', err => {
+// 	console.log("Bot disconnected");
+//   console.log(err);
+// 	process.exit(0);
+// });
 
 bot.on('disconnect', err => {
 	console.log("Bot disconnected");
