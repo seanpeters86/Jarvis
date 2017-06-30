@@ -475,6 +475,12 @@ bot.on('disconnected', err => {
 	process.exit(0);
 });
 
+bot.on('disconnect', err => {
+	console.log("Bot disconnected");
+  console.log(err);
+	process.exit(0);
+});
+
 app.set('port', (process.env.PORT || 5000))
 app.use(express.static(__dirname + '/public'))
 
