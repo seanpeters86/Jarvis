@@ -505,11 +505,11 @@ bot.on('message', message => {
 		//if (server != publik || (server == publik && !(commands.responsesBot.contains(input)))) {
 		if (server != publik || (server == publik && (commands.responsesBot.indexOf(input) == -1))) {
 			message.delete();
-		}
-		try {
-			message.member.send("I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
-		} catch (err) {
-			console.log(err);
+			try {
+				message.member.send("I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
+			} catch (err) {
+				console.log(err);
+			}
 		}
 	}
 });
