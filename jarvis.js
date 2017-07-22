@@ -538,21 +538,21 @@ bot.on("error", (m) => console.log("[error]", m));
 bot.on('guildMemberAdd', member => {
 	var arthas = "226510296221483008";
 	var exiledpower = "170037904842817537";
+	var publik = "338380273416798208";
 	try {
 		member.send("Welcome to the server. Check out the #welcome channel for more info, or type in !help in any of the channels.");
 	} catch (err) {
 		console.log(err);
 	}
-	userid = member.id;
-	username = member.name;
-	var data = username + " joined " + server.name;
-	if (server.id == exiledpower) {
-		console.log(data)
-		request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form: {content: data}});
-	} else {
-		console.log(data)
-		request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form: {content: data}});
-	}
+	// userid = member.id;
+	// username = member.name;
+	// if (server.id == exiledpower) {
+	// 	console.log(data)
+	// 	request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form: {content: data}});
+	// } else {
+	// 	console.log(data)
+	// 	request.post('https://discordapp.com/api/webhooks/310917891765567498/j_RkPcgv_RCjiriivvZiK5036WXF6BiFAApO8V412BqV5lLGyV2gBZktRlsCJijjNtEH', {form: {content: data}});
+	// }
 });
 
 // bot.on('disconnected', err => {
