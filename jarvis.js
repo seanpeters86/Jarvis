@@ -59,6 +59,7 @@ bot.on('message', message => {
 	var parsedReg = input.split(" ");
 	var arthas = "226510296221483008";
 	var exiledpower = "170037904842817537";
+	var publik = "338380273416798208";
 	/*
 	*****************************
 	COMMANDS.JS
@@ -67,8 +68,14 @@ bot.on('message', message => {
 	// Basic Text Loop
 	if (commands.responses[input] && server == exiledpower && !(user.bot)) {
 		message.channel.send(commands.responses[input]);
-	} else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
+	}
+	// Arthas
+	else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
 		message.channel.send(commands.responsesArthas[input])
+	}
+	// publik
+	else if (commands.responsesPublik[input] && server == publik && !(user.bot)) {
+		message.channel.send(commands.responsesPublik[input])
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
@@ -105,7 +112,7 @@ bot.on('message', message => {
 		}
 	}
 	// fistmas
-	else if (input === "!FISTMAS") {
+	else if (input === "!FISTMAS" && server != publik) {
 		message.channel.send({files:[commands.fistmas[admin.random(3)]]});
 	}
 	// Salt
@@ -166,11 +173,11 @@ bot.on('message', message => {
 	*****************************
 	*/
 	// artifact helper
-	else if (input === "?ARTIFACT") {
+	else if (input === "?ARTIFACT" && server != publik) {
 		message.channel.send("By using \n```!artifact CLASS SPEC```\n you can get the artifact path graphic sent. Class options are DK, DH, Druid, Hunter, Mage, Monk, Paladin, Priest, Rogue, Shaman, Warlock, or Warrior.");
 	}
 	// artifact power guide
-	else if (input.startsWith("!ARTIFACT")) {
+	else if (input.startsWith("!ARTIFACT") && server != publik) {
 		var artifact = artifacts.get_artifact(parsedReg);
 		if (artifact) {
 			message.channel.send({files:[artifact]});
@@ -189,11 +196,11 @@ bot.on('message', message => {
 	*****************************
 	*/
 	// Video helper
-	else if (input.startsWith("?BOSS") || input.startsWith("?VIDEO")) {
+	else if (input.startsWith("?BOSS") || input.startsWith("?VIDEO") && server != publik) {
 		message.channel.send("By using !BOSS or !VIDEO simply follow it with the boss name or the video you wish to search my database for.");
 	}
 	// Kill Videos
-	else if (input.startsWith("!BOSS") || input.startsWith("!VIDEO")) {
+	else if (input.startsWith("!BOSS") || input.startsWith("!VIDEO") && server != publik) {
 		var video = videos.get_video(parsedReg);
 		if (video) {
 			message.channel.send(video);
@@ -212,11 +219,11 @@ bot.on('message', message => {
 	*****************************
 	*/
 	// !guide helper
-	else if (input.startsWith("?GUIDE")) {
+	else if (input.startsWith("?GUIDE") && server != publik) {
 		message.channel.send("By using !GUIDE you can query my database for class/general guides from across the web. An example would be '!guide priest shadow' to get a guide for shadow priests.");
 	}
 	// guides
-	else if (input.startsWith("!GUIDE")) {
+	else if (input.startsWith("!GUIDE") && server != publik) {
 		var guide = guides.get_guide(parsedReg);
 		if (guide) {
 			message.channel.send(guide);
@@ -235,7 +242,7 @@ bot.on('message', message => {
 	******************************
 	*/
 	// !addrole Role
-	else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate)) {
+	else if ((input.startsWith("!ADDROLE") || input.startsWith("!ADD") || input.startsWith("!JOIN")) && !(message.channel.isPrivate) && server != publik) {
 		role = admin.get_role(parsed, roles);
 		if (role) {
 			message.member.addRole(role);
@@ -250,7 +257,7 @@ bot.on('message', message => {
 		}
 	}
 	// !removerole Developers
-	else if ((input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) && !(message.channel.isPrivate)) {
+	else if ((input.startsWith("!REMOVEROLE") || input.startsWith("!REMOVE") || input.startsWith("!RM")) && !(message.channel.isPrivate) && server != publik) {
 		role = admin.get_role(parsed, roles);
 		if (role) {
 			message.member.removeRole(role);
@@ -265,7 +272,7 @@ bot.on('message', message => {
 		}
 	}
 	// !say channel message
-	else if (input.startsWith("!SAY") && !(message.channel.isPrivate)) {
+	else if (input.startsWith("!SAY") && !(message.channel.isPrivate) && server != publik) {
 		// sayObject = [channel, role, data]
 		sayObject = admin.get_channel(channels, roles, parsed);
 		if (bot.memberHasRole(user, sayObject[1])) {
@@ -288,11 +295,11 @@ bot.on('message', message => {
 	WCL.JS
 	*****************************
 	*/
-	else if (input === "?RANKING") {
+	else if (input === "?RANKING" && server != publik) {
 		message.reply("By using !ranking PLAYERNAME BOSSNAME [-h] you can check WCL parses for that characters rankings. Simply add -h to the end to check HPS rankings instead of DPS.");
 	}
 	// ranking
-	else if (input.startsWith("!RANKING")) {
+	else if (input.startsWith("!RANKING") && server != publik) {
 		/// wclObject = [uri, encounter, bossname]
 		var wclObject = wcl.get_object(parsed, parsedReg, input);
 		var options = {
@@ -349,7 +356,7 @@ bot.on('message', message => {
 					console.log(err);
 				}
 			});
-	} else if (input === "?ARMORY") {
+	} else if (input === "?ARMORY" && server != publik) {
 		message.channel.send("By using `!armory charname value` you can search things via the WoW Armory. Current options include: \n`mythics`: lookup amount of mythic dungeons completed.");
 	}
 	/*
@@ -357,7 +364,7 @@ bot.on('message', message => {
 	ARMORY.JS
 	*****************************
 	*/
-	else if (input.startsWith("!ARMORY")) {
+	else if (input.startsWith("!ARMORY") && server != publik) {
 		var character = encodeURIComponent(parsedReg[1]);
     var mythicPlus, mythics, charName, art;
 		if (parsedReg[2] === "MYTHICS") {
@@ -490,12 +497,14 @@ bot.on('message', message => {
 		message.reply("Me too.");
 	}
 	// fuckin ø Ø
-	else if (input.includes("Ø") && !(user.bot)) {
+	else if (input.includes("Ø") && !(user.bot) && server != publik) {
 		message.reply("I hate that stupid o. Can we use real letters please?");
 	}
 	// command not found, but prefix given
 	else if (input.startsWith("!")) {
-		message.delete();
+		if (server != publik || (server == publik && !(commands.responsesBot[input]))) {
+			message.delete();
+		}
 		try {
 			message.member.send("I'm sorry, but I don't recognize...\n\n```" + message + "```\n...as a command pattern. Try using !help or ?commandname to get assistance.");
 		} catch (err) {

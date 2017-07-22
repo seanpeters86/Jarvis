@@ -96,6 +96,43 @@ exports.responses = {
 	"!YOUTUBE": "Here's our youtube channel: https://www.youtube.com/channel/UClDUcIXf0USA_WRRuFsmfCw"
 };
 
+exports.responsesPublik = {
+	"!CODE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
+	"!GITHUB": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
+	"!GIT": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
+	"HELLO JARVIS": "Hello! Good to be back.",
+	"!INVITE": "Here is the invite link: https://discord.gg/bHfbMdb",
+	"!ISSUES": "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues",
+	"!SOURCE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>"
+};
+
+exports.responsesBot = {
+	"!ADDONS": "",
+	"!ARMORY":"",
+	"!ARTIFACT":"",
+	"!DISCORD":"",
+	"!DK":"",
+	"!DPS":"",
+	"!GUIDE":"",
+	"!LEGENDARIES":"",
+	"!MACROS":"",
+	"!MAGE":"",
+	"!MAGICSIM":"",
+	"!PLAYLIST":"",
+	"!POLL":"",
+	"!PRIEST":"",
+	"!RELICS":"",
+	"!ROGUE":"",
+	"!TOS":"",
+	"!TRINKETS":"",
+	"!UI":"",
+	"!WA":"",
+	"!WARLOCK":"",
+	"!WCL":"",
+	"!WEIGHTS":"",
+	"!YOUTUBE":""
+}
+
 exports.responseReplies = {
 	"THANKS JARVIS": "Anytime",
 	"THANKS, JARVIS": "Anytime"
