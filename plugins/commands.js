@@ -12,6 +12,7 @@ exports.fistmas = ["Fistmas is bad kids. Remember that one time Kelsø jumped of
 exports.salt = ["http://i.imgur.com/Igir7HF.png", "http://i.imgur.com/mzfz7vf.jpg", "https://images.rapgenius.com/44f0fc58fb3a86b3c7cc19cfaab2bf1a.612x612x1.jpg", "https://cdn.meme.am/instances/500x/51800528.jpg", "http://ct.fra.bz/ol/fz/sw/i40/2/4/8/frabz-salt-salt-everywhere-898ce5.jpg", "http://www.relatably.com/m/img/high-level-meme/3972715.jpg", "http://static1.gamespot.com/uploads/original/1333/13335885/2874659-2341208346-ibzFa.gif"];
 exports.rekt = ["https://cdn.meme.am/instances/500x/47131303.jpg", "https://cdn.meme.am/instances/500x/50087032.jpg", "https://media.giphy.com/media/opY7SoUTNU3ao/giphy.gif", "http://i.imgur.com/6mbJFvA.jpg", "http://s2.quickmeme.com/img/94/941350454edd1fd9e446160102a2a51b3a7a2394dcfcb40caa9c96d60c9ea94e.jpg", "http://img.lum.dolimg.com/v1/images/ralph-headretina_f6ef0c9b.jpeg", "https://cdn.meme.am/instances/400x/52466269.jpg"];
 exports.lore = ["http://i.imgur.com/d4tjQQJ.jpg", "http://i.imgur.com/tbwv6GX.png", "http://i.imgur.com/P2F5bWn.jpg", "http://i.imgur.com/tKNosl0.png", "http://i.imgur.com/TeIzUNt.png", "http://i.imgur.com/G8KLi3L.png", "http://i.imgur.com/lH4laAS.jpg", "http://i.imgur.com/3IgAUMT.jpg", "http://i.imgur.com/ZoKRvOX.png", "http://imgur.com/qugE1Hd", "http://i.imgur.com/Y1oULOj.png", "http://i.imgur.com/ONucxNF.png", "http://i.imgur.com/dEe9rGv.png", "http://i.imgur.com/Qfx2M5y.png", "http://i.imgur.com/8pKvL0X.jpg", "http://i.imgur.com/7K08VQg.png", "http://i.imgur.com/xxrNi8P.png", "http://i.imgur.com/OGhjNNR.png", "http://i.imgur.com/0luga5w.png", "http://i.imgur.com/Kp4SNIc.png", "http://i.imgur.com/mIV7Vmv.png", "http://i.imgur.com/TuHyl0N.jpg"];
+exports.responsesBot = ["!ADDONS","!ARMORY","!ARTIFACT","!DISCORD","!DK","!DPS","!GUIDE","!LEGENDARIES","!MACROS","!MAGE","!MAGICSIM","!PLAYLIST","!POLL","!PRIEST","!RELICS","!ROGUE","!TOS","!TRINKETS","!UI","!WA","!WARLOCK","!WCL","!WEIGHTS","!YOUTUBE"]
 
 
 var balance = [process.env.BALANCE_DATE, process.env.BALANCE];
@@ -105,33 +106,6 @@ exports.responsesPublik = {
 	"!ISSUES": "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues",
 	"!SOURCE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>"
 };
-
-exports.responsesBot = {
-	"!ADDONS": "",
-	"!ARMORY":"",
-	"!ARTIFACT":"",
-	"!DISCORD":"",
-	"!DK":"",
-	"!DPS":"",
-	"!GUIDE":"",
-	"!LEGENDARIES":"",
-	"!MACROS":"",
-	"!MAGE":"",
-	"!MAGICSIM":"",
-	"!PLAYLIST":"",
-	"!POLL":"",
-	"!PRIEST":"",
-	"!RELICS":"",
-	"!ROGUE":"",
-	"!TOS":"",
-	"!TRINKETS":"",
-	"!UI":"",
-	"!WA":"",
-	"!WARLOCK":"",
-	"!WCL":"",
-	"!WEIGHTS":"",
-	"!YOUTUBE":""
-}
 
 exports.responseReplies = {
 	"THANKS JARVIS": "Anytime",

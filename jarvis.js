@@ -502,7 +502,7 @@ bot.on('message', message => {
 	}
 	// command not found, but prefix given
 	else if (input.startsWith("!")) {
-		if (server != publik || (server == publik && !(commands.responsesBot[input]))) {
+		if (server != publik || (server == publik && !(commands.responsesBot.contains(input)))) {
 			message.delete();
 		}
 		try {
