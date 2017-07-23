@@ -71,11 +71,6 @@ bot.on('message', message => {
 	if (commands.responses[input] && server == exiledpower && !(user.bot)) {
 		message.channel.send(commands.responses[input]);
 	}
-	// test
-	else if (input === "!TEST") {
-		bot.channels.get(dev).send({files:["http://i.imgur.com/nBAiPz0.gif"]});
-		bot.channels.get(dev).send("Doesn't matter what games you play, remember to record your footage :rainbow:");
-	}
 	// Arthas
 	else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
 		message.channel.send(commands.responsesArthas[input])
@@ -502,6 +497,11 @@ bot.on('message', message => {
 		message.channel.send({files:["https://media.giphy.com/media/c1oP0AunRfP7a/giphy.gif"]});
 	} else if (input.includes("CURE FOR BEING A CUNT")) {
 		message.channel.send({files:["http://media.timeout.com/blogimages/wp-content/uploads/2014/04/tumblr_mqcs3h2O9C1rsudrjo1_500.gif"]});
+	}
+	// GAMES
+	else if (input === "!GAMES") {
+		bot.channels.get(guildchat).send({files:["http://i.imgur.com/nBAiPz0.gif"]});
+		bot.channels.get(guildchat).send("Doesn't matter what games you play, remember to record your footage :rainbow:");
 	}
 	// do you need an adult
 	else if (input.includes("I NEED AN ADULT")) {
