@@ -72,7 +72,7 @@ bot.on('message', message => {
 	}
 	// test
 	else if (input === "!TEST") {
-		dev.send("test");
+		message.dev.send("test");
 	}
 	// Arthas
 	else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
