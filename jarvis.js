@@ -72,7 +72,7 @@ bot.on('message', message => {
 	}
 	// test
 	else if (input === "!TEST") {
-		message.dev.send("test");
+		exiledpower.dev.send("test");
 	}
 	// Arthas
 	else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
