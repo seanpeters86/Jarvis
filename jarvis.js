@@ -60,6 +60,7 @@ bot.on('message', message => {
 	var arthas = "226510296221483008";
 	var exiledpower = "170037904842817537";
 	var publik = "338380273416798208";
+	var dev = "180011389115564032";
 	/*
 	*****************************
 	COMMANDS.JS
@@ -68,6 +69,10 @@ bot.on('message', message => {
 	// Basic Text Loop
 	if (commands.responses[input] && server == exiledpower && !(user.bot)) {
 		message.channel.send(commands.responses[input]);
+	}
+	// test
+	else if (input === "!TEST") {
+		dev.send("test");
 	}
 	// Arthas
 	else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
