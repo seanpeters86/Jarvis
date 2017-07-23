@@ -499,7 +499,7 @@ bot.on('message', message => {
 		message.channel.send({files:["http://media.timeout.com/blogimages/wp-content/uploads/2014/04/tumblr_mqcs3h2O9C1rsudrjo1_500.gif"]});
 	}
 	// GAMES
-	else if (input === "!GAMES") {
+	else if (input === "!GAMES" && server == exiledpower) {
 		bot.channels.get(guildchat).send({files:["http://i.imgur.com/nBAiPz0.gif"]});
 		bot.channels.get(guildchat).send("Doesn't matter what games you play, remember to record your footage :rainbow:");
 	}
