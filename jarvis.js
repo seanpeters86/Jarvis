@@ -60,6 +60,7 @@ bot.on('message', message => {
 	var arthas = "226510296221483008";
 	var exiledpower = "170037904842817537";
 	var publik = "338380273416798208";
+	var guildchat = "170037904842817537";
 	var dev = "180011389115564032";
 	/*
 	*****************************
@@ -72,7 +73,8 @@ bot.on('message', message => {
 	}
 	// test
 	else if (input === "!TEST") {
-		bot.channels.get(dev).send('test');
+		bot.channels.get(dev).send({files:["https://giphy.com/gifs/video-game-nyan-cat-cqDSefa9l4peE?utm_source=media-link&utm_medium=landing&utm_campaign=Media%20Links&utm_term="]});
+		bot.channels.get(dev).send("Doesn't matter what games you play, remember to record your footage :rainbow:");
 	}
 	// Arthas
 	else if (commands.responsesArthas[input] && server == arthas && !(user.bot)) {
