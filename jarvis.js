@@ -73,7 +73,7 @@ bot.on('message', message => {
 	}
 	// test
 	else if (input === "!TEST") {
-		bot.channels.get(dev).send({files:["http://i.imgur.com/nBAiPz0.gifv"]});
+		bot.channels.get(dev).send({files:["http://i.imgur.com/nBAiPz0.gif"]});
 		bot.channels.get(dev).send("Doesn't matter what games you play, remember to record your footage :rainbow:");
 	}
 	// Arthas
