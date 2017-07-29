@@ -216,6 +216,7 @@ module.exports = {
 				raidid = 17;
 				encounter = 2076;
 				bossname = "Garothi Worldbreaker";
+				partition = 1;
 				break;
 			case "HOUNDS":
 			case "HOS":
@@ -223,6 +224,7 @@ module.exports = {
 				raidid = 17;
 				encounter = 2074;
 				bossname = "Hounds of Sargeras";
+				partition = 1;
 				break;
 			case "WARCOUNCIL":
 			case "COUNCIL":
@@ -230,6 +232,7 @@ module.exports = {
 				raidid = 17;
 				encounter = 2070;
 				bossname = "War Council";
+				partition = 1;
 				break;
 			case "EONAR":
 			case "LIFEBINDER":
@@ -237,6 +240,7 @@ module.exports = {
 				raidid = 17;
 				encounter = 2075;
 				bossname = "Eonar, the Lifebinder";
+				partition = 1;
 				break;
 			case "PORTALKEEPERHASABEL":
 			case "PORTAL":
@@ -245,6 +249,7 @@ module.exports = {
 				raidid = 17;
 				encounter = 2064;
 				bossname = "Portal Keeper Hasabel";
+				partition = 1;
 				break;
 			case "IMONAR":
 			case "SOULHUNTER":
@@ -252,17 +257,20 @@ module.exports = {
 				raidid = 17;
 				encounter = 2082;
 				bossname = "Imonar the Soulhunter";
+				partition = 1;
 				break;
 			case "KINGAROTH":
 			case "KIN'GAROTH":
 				raidid = 17;
 				encounter = 2088;
 				bossname = "Kin'garoth";
+				partition = 1;
 				break;
 			case "VARIMATHRAS":
 				raidid = 17;
 				encounter = 2069;
 				bossname = "Varimathras";
+				partition = 1;
 				break;
 			case "COVEN":
 			case "SHIVARRA":
@@ -270,22 +278,26 @@ module.exports = {
 				raidid = 17;
 				encounter = 2073;
 				bossname = "The Coven of Shivarra";
+				partition = 1;
 				break;
 			case "AGGRAMAR":
 				raidid = 17;
 				encounter = 2063;
 				bossname = "Aggramar";
+				partition = 1;
 				break;
 			case "ARGUS":
 			case "UNMAKER":
 				raidid = 17;
 				encounter = 2092;
 				bossname = "Argus the Unmaker";
+				partition = 1;
 				break;
 			case "GOROTH":
 				raidid = 13;
 				encounter = 2032;
 				bossname = "Goroth";
+				partition = 1;
 				break;
 			case "DEMONIC":
 			case "DEMONICINQUISITION":
@@ -293,11 +305,13 @@ module.exports = {
 				raidid = 13;
 				encounter = 2048;
 				bossname = "Demonic Inquisition";
+				partition = 1;
 				break;
 			case "HARJATAN":
 				raidid = 13;
 				encounter = 2036;
 				bossname = "Harjatan";
+				partition = 1;
 				break;
 			case "MISTRESS":
 			case "SASSZ'INE":
@@ -305,12 +319,14 @@ module.exports = {
 				raidid = 13;
 				encounter = 2037;
 				bossname = "Misstress Sassz'ine";
+				partition = 1;
 				break;
 			case "SISTERS":
 			case "SISTERSOFTHEMOON":
 				raidid = 13;
 				encounter = 2050;
 				bossname = "Sisters of the Moon";
+				partition = 1;
 				break;
 			case "DESOLATE":
 			case "HOST":
@@ -319,12 +335,14 @@ module.exports = {
 				raidid = 13;
 				encounter = 2054;
 				bossname = "The Desolate Host";
+				partition = 1;
 				break;
 			case "MAIDEN":
 			case "MAIDENOFVIGILANCE":
 				raidid = 13;
 				encounter = 2052;
 				bossname = "Maiden of Vigilance";
+				partition = 1;
 				break;
 			case "AVATAR":
 			case "FALLEN":
@@ -332,6 +350,7 @@ module.exports = {
 				raidid = 13;
 				encounter = 2038;
 				bossname = "Fallen Avatar";
+				partition = 1;
 				break;
 			case "KJ":
 			case "KIL'JAEDEN":
@@ -339,6 +358,7 @@ module.exports = {
 				raidid = 13;
 				encounter = 2051;
 				bossname = "Kil'jaeden";
+				partition = 1;
 				break;
 			case "SKORPYRON":
 			case "SKORPADRON":
@@ -346,29 +366,34 @@ module.exports = {
 				raidid = 11;
 				encounter = 1849;
 				bossname = "Skorpyron";
+				partition = 3;
 				break;
 			case "CHRONOMATIC":
 			case "ANOMALY":
 				raidid = 11;
 				encounter = 1865;
 				bossname = "Chronomatic Anomaly";
+				partition = 3;
 				break;
 			case "TRILLIAX":
 				raidid = 11;
 				encounter = 1867;
 				bossname = "Trilliax";
+				partition = 3;
 				break;
 			case "SPELLBLADE":
 			case "ALURIEL":
 				raidid = 11;
 				encounter = 1871;
 				bossname = "Spellblade Aluriel";
+				partition = 3;
 				break;
 			case "TICHONDRIUS":
 			case "TICH":
 				raidid = 11;
 				encounter = 1862;
 				bossname = "Tichondrius";
+				partition = 3;
 				break;
 			case "STAR":
 			case "AUGUR":
@@ -376,11 +401,13 @@ module.exports = {
 				raidid = 11;
 				encounter = 1863;
 				bossname = "Star Augur Etraeus";
+				partition = 3;
 				break;
 			case "KROSUS":
 				raidid = 11;
 				encounter = 1842;
 				bossname = "Krosus";
+				partition = 3;
 				break;
 			case "BOTANIST":
 			case "TELARN":
@@ -389,6 +416,7 @@ module.exports = {
 				raidid = 11;
 				encounter = 1886;
 				bossname = "High Botanist Tel'arn";
+				partition = 3;
 				break;
 			case "ELISANDE":
 			case "MAGISTRIX":
@@ -396,6 +424,7 @@ module.exports = {
 				raidid = 11;
 				encounter = 1872;
 				bossname = "Grand Magistrix Elisande";
+				partition = 3;
 				break;
 			case "GULDANK":
 			case "GUL'DAN":
@@ -403,6 +432,7 @@ module.exports = {
 				raidid = 11;
 				encounter = 1866;
 				bossname = "Gul'dan";
+				partition = 3;
 				break;
 		}
 		if (input.includes("-H")) {
