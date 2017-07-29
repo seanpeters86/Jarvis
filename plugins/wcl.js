@@ -170,6 +170,7 @@ var classColors = {
 };
 
 var bossList = {
+	// Nighthold
 	1849: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_skorpyron.jpg",
 	1865: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_chromaticanomaly.jpg",
 	1867: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_trillax.jpg",
@@ -180,14 +181,165 @@ var bossList = {
 	1886: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_highbotanisttelam.jpg",
 	1872: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_grandmagistrixelisande.jpg",
 	1866: "http://wow.zamimg.com/images/wow/icons/large/achievement_thenighthold_guldan.jpg",
+	// Tomb of Sargeras
+	2032: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_pitinfernal.jpg",
+	2048: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_jailers.jpg",
+	2036: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_nagabruteboss.jpg",
+	2037: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_seawitch.jpg",
+	2050: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_councilsentinel.jpg",
+	2054: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_soulengine.jpg",
+	2052: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_maidenofgrief.jpg",
+	2038: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_titanconstructshell.jpg",
+	2051: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_kiljaeden2.jpg",
+	// Argus
+	2076: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_felreaver.jpg",
+	2074: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_hound.jpg",
+	2070: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_maleeredar.jpg",
+	2075: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_eonar.jpg",
+	2064: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_femaleeredar.jpg",
+	2082: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_bountyhunter.jpg",
+	2088: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_titanbuilder.jpg",
+	2069: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_varimathras.jpg",
+	2073: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_shivan.jpg",
+	2063: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_aggramar.jpg",
+	2092: "http://wow.zamimg.com/images/wow/icons/large/achievement_boss_argus_worldsoul.jpg"
 }
 
 module.exports = {
 	get_object: function(parsed, parsedReg, input) {
 		var char = encodeURIComponent(parsed[1]);
 		switch (parsedReg[2]) {
+			case "GAROTHI":
+			case "WORLDBREAKER":
+			case "GAROTHIWORLDBREAKER":
+			case "GW":
+				raidid = 17;
+				encounter = 2076;
+				bossname = "Garothi Worldbreaker";
+				break;
+			case "HOUNDS":
+			case "HOS":
+			case "HOUNDSOFSARGERAS":
+				raidid = 17;
+				encounter = 2074;
+				bossname = "Hounds of Sargeras";
+				break;
+			case "WARCOUNCIL":
+			case "COUNCIL":
+			case "WAR":
+				raidid = 17;
+				encounter = 2070;
+				bossname = "War Council";
+				break;
+			case "EONAR":
+			case "LIFEBINDER":
+			case "EONARTHELIFEBINDER":
+				raidid = 17;
+				encounter = 2075;
+				bossname = "Eonar, the Lifebinder";
+				break;
+			case "PORTALKEEPERHASABEL":
+			case "PORTAL":
+			case "KEEPER":
+			case "HASABEL":
+				raidid = 17;
+				encounter = 2064;
+				bossname = "Portal Keeper Hasabel";
+				break;
+			case "IMONAR":
+			case "SOULHUNTER":
+			case "IMONARTHESOULHUNTER":
+				raidid = 17;
+				encounter = 2082;
+				bossname = "Imonar the Soulhunter";
+				break;
+			case "KINGAROTH":
+			case "KIN'GAROTH":
+				raidid = 17;
+				encounter = 2088;
+				bossname = "Kin'garoth";
+				break;
+			case "VARIMATHRAS":
+				raidid = 17;
+				encounter = 2069;
+				bossname = "Varimathras";
+				break;
+			case "COVEN":
+			case "SHIVARRA":
+			case "COVENOFSHIVARRA":
+				raidid = 17;
+				encounter = 2073;
+				bossname = "The Coven of Shivarra";
+				break;
+			case "AGGRAMAR":
+				raidid = 17;
+				encounter = 2063;
+				bossname = "Aggramar";
+				break;
+			case "ARGUS":
+			case "UNMAKER":
+				raidid = 17;
+				encounter = 2092;
+				bossname = "Argus the Unmaker";
+				break;
 			case "GOROTH":
-				raidid = 0;
+				raidid = 13;
+				encounter = 2032;
+				bossname = "Goroth";
+				break;
+			case "DEMONIC":
+			case "DEMONICINQUISITION":
+			case "DI":
+				raidid = 13;
+				encounter = 2048;
+				bossname = "Demonic Inquisition";
+				break;
+			case "HARJATAN":
+				raidid = 13;
+				encounter = 2036;
+				bossname = "Harjatan";
+				break;
+			case "MISTRESS":
+			case "SASSZ'INE":
+			case "MISTRESSSASSZ'INE":
+				raidid = 13;
+				encounter = 2037;
+				bossname = "Misstress Sassz'ine";
+				break;
+			case "SISTERS":
+			case "SISTERSOFTHEMOON":
+				raidid = 13;
+				encounter = 2050;
+				bossname = "Sisters of the Moon";
+				break;
+			case "DESOLATE":
+			case "HOST":
+			case "DESOLATEHOST":
+			case "DH":
+				raidid = 13;
+				encounter = 2054;
+				bossname = "The Desolate Host";
+				break;
+			case "MAIDEN":
+			case "MAIDENOFVIGILANCE":
+				raidid = 13;
+				encounter = 2052;
+				bossname = "Maiden of Vigilance";
+				break;
+			case "AVATAR":
+			case "FALLEN":
+			case "FALLENAVATAR":
+				raidid = 13;
+				encounter = 2038;
+				bossname = "Fallen Avatar";
+				break;
+			case "KJ":
+			case "KIL'JAEDEN":
+			case "KILJAEDEN":
+				raidid = 13;
+				encounter = 2051;
+				bossname = "Kil'jaeden";
+				break;
 			case "SKORPYRON":
 			case "SKORPADRON":
 			case "SKORP":
@@ -251,64 +403,6 @@ module.exports = {
 				raidid = 11;
 				encounter = 1866;
 				bossname = "Gul'dan";
-				break;
-			case "ODYN":
-				raidid = 12;
-				encounter = 1958;
-				bossname = "Odyn";
-				break;
-			case "GUARM":
-				raidid = 12;
-				encounter = 1962;
-				bossname = "Guarm";
-				break;
-			case "HELYA":
-				raidid = 12;
-				encounter = 2008;
-				bossname = "Helya";
-				break;
-			case "NYTHENDRA":
-				raidid = 10;
-				encounter = 1853;
-				bossname = "Nythendra";
-				break;
-			case "IL'GYNOTH":
-			case "IL":
-			case "ILGYNOTH":
-			case "TREE":
-			case "HEART":
-				raidid = 10;
-				encounter = 1873;
-				bossname = "Il'gynoth, Heart of Corruption";
-				break;
-			case "ELERETHE":
-			case "RENFERAL":
-			case "ELE":
-				raidid = 10;
-				encounter = 1876;
-				bossname = "Elerethe Renferal";
-				break;
-			case "URSOC":
-			case "BEAR":
-				raidid = 10;
-				encounter = 1841;
-				bossname = "Ursoc";
-				break;
-			case "DRAGONS":
-			case "DARGONS":
-				raidid = 10;
-				encounter = 1854;
-				bossname = "Dragons of the Nightmare";
-				break;
-			case "CENARIUS":
-				raidid = 10;
-				encounter = 1877;
-				bossname = "Cenarius";
-				break;
-			case "XAVIUS":
-				raidid = 10;
-				encounter = 1864;
-				bossname = "Xavius";
 				break;
 		}
 		if (input.includes("-H")) {
