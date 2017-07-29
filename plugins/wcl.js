@@ -186,6 +186,8 @@ module.exports = {
 	get_object: function(parsed, parsedReg, input) {
 		var char = encodeURIComponent(parsed[1]);
 		switch (parsedReg[2]) {
+			case "GOROTH":
+				raidid = 0;
 			case "SKORPYRON":
 			case "SKORPADRON":
 			case "SKORP":
