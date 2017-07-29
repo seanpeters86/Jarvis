@@ -304,13 +304,13 @@ bot.on('message', message => {
 	else if (input.startsWith("!RANKING") && server != publik) {
 		/// wclObject = [uri, encounter, bossname]
 		var wclObject = wcl.get_object(parsed, parsedReg, input);
+		console.log(wclObject)
 		var options = {
 			uri: wclObject[0],
 			json: true
 		};
 		rp(options)
 			.then(function(rank) {
-				console.log(rank);
 				if (typeof wclObject[1] !== "undefined") {
 					var rankObject = wcl.get_rank(rank, wclObject[2], input, parsed);
           var art = wcl.get_art(rank,rankObject[8]);
