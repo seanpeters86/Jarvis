@@ -319,7 +319,7 @@ bot.on('message', message => {
           message.channel.send({embed: {
             color: art[0],
             author: {
-              name: rankObject[0],
+              name: rankObject[0].charAt(0).toUpperCase() + rankObject[0].slice(1),
               icon_url: art[2]
             },
             fields: [
