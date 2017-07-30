@@ -304,7 +304,6 @@ bot.on('message', message => {
 	else if (input.startsWith("!RANKING") && server != publik) {
 		/// wclObject = [uri, encounter, bossname]
 		var wclObject = wcl.get_object(parsed, parsedReg, input);
-		console.log(wclObject)
 		var options = {
 			uri: wclObject[0],
 			json: true
