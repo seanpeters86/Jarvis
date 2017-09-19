@@ -76,7 +76,7 @@ module.exports = {
 		var arrayLength = char.statistics.subCategories[5].subCategories[6].statistics.length;
 		for (var i = 0; i < arrayLength; i++) {
 			var object = char.statistics.subCategories[5].subCategories[6].statistics[i];
-			if (object.id == 10880 || object.id == 10883 || object.id == 10886 || object.id == 10889 || object.id == 10892 || object.id == 10895 || object.id == 10898 || object.id == 10901 || object.id == 10904 || object.id == 10907 || object.id == 10910) {
+			if (object.id == 10880 || object.id == 10883 || object.id == 10886 || object.id == 10889 || object.id == 10892 || object.id == 10895 || object.id == 10898 || object.id == 10901 || object.id == 10904 || object.id == 10907 || object.id == 11406 || object.id == 10910) {
 				count = count + object.quantity;
 			}
 		}
