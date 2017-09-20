@@ -29,7 +29,7 @@ module.exports = {
 				} else {
 					var name = tweet.user.name;
 				}
-				if ((name.startsWith("Exiled") || name.startsWith("MMO-Champion") || name.startsWith("BlizzardCS")) && !(tweet.text.startsWith("@") || tweet.text.startsWith("RT") || tweet.text.startsWith("**Current Wait Times**"))) {
+				if ((name.startsWith("Exiled") || name.startsWith("MMO-Champion") || name.startsWith("BlizzardCS")) && !(tweet.text.startsWith("@") || tweet.text.includes("PS4") || tweet.text.includes("SC2") || tweet.text.includes("PlayStation") || tweet.text.startsWith("RT") || tweet.text.startsWith("**Current Wait Times**"))) {
 					currenttweet = tweet.text;
 					console.log(tweet.text);
 					if (currenttweet !== cachedtweet) {
