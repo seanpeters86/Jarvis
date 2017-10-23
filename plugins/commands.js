@@ -1,7 +1,7 @@
 var admin = require("./admin");
 
 var classes = ["Mage", "Death", "Druid", "Hunter", "Demon", "Monk", "Paladin", "Priest", "Rogue", "Shaman", "Warlock", "Warrior"];
-var channelRoles = ["Developers", "Music", "Healers", "Theorycrafting", "Overwatch", "HoTs", "Memes"];
+var channelRoles = ["Developers", "Healers", "Theorycrafting", "Overwatch", "HoTs", "DJ"];
 var channelList = ["memes", "developers", "music", "raiding", "guild-chat", "senior-raiders", "officers", "overwatch", "theorycrafting", "welcome", "healing", "hunters", "hots"];
 var planfortheweek = "Time to kill Elisande! We will be extending to work on her this week.";
 

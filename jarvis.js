@@ -30,6 +30,7 @@ var artifacts = require("./plugins/artifacts");
 var videos = require("./plugins/videos");
 var guides = require("./plugins/guides");
 var admin = require("./plugins/admin");
+var wqs = require("./plugins/wqs");
 
 bot.on("ready", () => {
 	bot.user.setGame("Discord.JS");
