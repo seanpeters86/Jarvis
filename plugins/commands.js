@@ -50,7 +50,7 @@ exports.responses = {
 	"#AMISITTING": "Here is the roster: <https://goo.gl/kkGVNt>",
 	"#ITSRANDOM": "It's never random. Molo is a cheater.",
 	"!ADDONS": "Legion Addon list:\nAuto Turn In: <https://mods.curse.com/addons/wow/autoturnin>\nWorld Quest Tracker: <https://mods.curse.com/addons/wow/world-quest-tracker>\nWorld Quest List: <https://mods.curse.com/addons/wow/world-quests-list>\nCharacter Stat Sheet: <https://mods.curse.com/addons/wow/dejacharacterstats>\nHandyNotes Tracker: <https://mods.curse.com/addons/wow/handynotes_legionrarestreasures>",
-	"!AUDIT": "Here is the audit spreadsheet <https://wowaudit.com/us/arthas/exiled-power>",
+	"!AUDIT": "Here is the audit spreadsheet:\nMains: <https://wowaudit.com/us/arthas/exiled-power>\nAlts: <https://wowaudit.com/us/arthas/exiled-power/2>",
 	"!BALANCE": "As of " + balance[0] + " the balance is: **" + balance[1] + "**",
 	"!CASH": "As of " + balance[0] + " the balance is: **" + balance[1] + "**",
 	"!CODE": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
