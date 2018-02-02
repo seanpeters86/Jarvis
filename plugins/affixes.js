@@ -7,7 +7,7 @@ var affixes = {
 	"6": "Teeming Quaking Fortified",
 	"7": "Raging Necrotic Tyrannical",
 	"8": "Bolstering Skittish Fortified",
-	"9": "Teeming Necrotic Tyrannical",
+	"9": "Teeming Volcanic Tyrannical",
 	"10": "Sanguine Grevious Fortified",
 	"11": "Explosive Bursting Tyrannical",
 	"12": "Bursting Quaking Fortified"
