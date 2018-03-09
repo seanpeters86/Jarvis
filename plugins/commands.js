@@ -69,7 +69,7 @@ exports.responses = {
 	"!GIT": "Here is the link to my public source code: <https://github.com/seanpeters86/Jarvis>",
 	"HELLO JARVIS": "Hello! Good to be back.",
 	"!IDEAS": "<https://docs.google.com/spreadsheets/d/1sViRs20RzGfe9-mR2TipW5U0oDUJreh7SDI4mysjums/edit?usp=sharing>",
-	"!INVITE": "Here is the invite link: https://discord.gg/0wt0wUFZgL39GHuH",
+	"!INVITE": "Here is the invite link: https://discord.gg/rs7VfHY",
 	"!INVITE ARTHAS": "Here is the invite link for the Arthas Discord: https://discord.gg/sqDuZth",
 	"!ISHAVI": "https://www.youtube.com/watch?v=PkOcm_XaWrw",
 	"!ISSUES": "All suggestions/issues for Jarvis should be filled out here: https://github.com/seanpeters86/Jarvis/issues",
