@@ -52,4 +52,4 @@ Check out the [Wiki](https://github.com/seanpeters86/Jarvis/wiki) for some walkt
 - then run ```npm install discord.js```
 - Grab your API key [here](https://discordapp.com/developers/docs/topics/oauth2) to fill in the XXXX at the bottom of Jarvis.js
 - then run ```node Jarvis.js``` in your directory
-- OR download [PM2](https://github.com/Unitech/PM2/) which is a great console runtime manager
+- OR download [PM2](https://github.com/Unitech/PM2/) which is a great console runtime manager.
