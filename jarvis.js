@@ -165,9 +165,9 @@ bot.on('message', message => {
 	else if (input === "!AFFIXES") {
 		var affix = affixes.get_affixes();
 		try {
-			message.channel.send(affix[0] + affix[1] + "\nFor more check out: https://mythicpl.us/");
+			message.channel.send(affix[0] + affix[1] + "\nFor more check out: <https://mythicpl.us/>");
 		} catch (err) {
-			message.channel.send("Weekly Affixes: https://mythicpl.us/ \n");
+			message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
 		}
 	}
 	/*
