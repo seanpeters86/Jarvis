@@ -31,7 +31,7 @@ var videos = require("./plugins/videos");
 var guides = require("./plugins/guides");
 var admin = require("./plugins/admin");
 var wqs = require("./plugins/wqs");
-var voice = require(".plugins/voice");
+var voice = require("./plugins/voice");
 
 bot.on("ready", () => {
 	bot.user.setGame("Discord.JS");
