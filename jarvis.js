@@ -31,7 +31,6 @@ var videos = require("./plugins/videos");
 var guides = require("./plugins/guides");
 var admin = require("./plugins/admin");
 var wqs = require("./plugins/wqs");
-var voice = require("./plugins/voice");
 
 bot.on("ready", () => {
 	bot.user.setGame("Discord.JS");
@@ -156,22 +155,6 @@ bot.on('message', message => {
 		} else {
 			message.channel.send({files:["http://i.imgur.com/mISkWv2.png"]});
 		}
-	}
-	/*
-	*****************************
-	VOICE.JS
-	*****************************
-	*/
-	else if (input === "!JOIN") {
-		if (message.member.voiceChannel) {
-      message.member.voiceChannel.join()
-        .then(connection => { // Connection is an instance of VoiceConnection
-          message.reply('I have successfully connected to the channel!');
-        })
-        .catch(console.log);
-    } else {
-      message.reply('You need to join a voice channel first!');
-    }
 	}
 	// Affixes
 	/*
