@@ -136,7 +136,7 @@ exports.servers = {
 	"DEMON": "https://discord.gg/taNDycY",
 	"DH": "https://discord.gg/taNDycY",
 	"DISCORD": "https://discord.gg/WtyHkza",
-	"DK": "https://discord.gg/0ez1cFfUH3ingV96 \n https://discord.gg/AyW5RUW",
+	"DK": "https://discord.gg/acherus \n https://discord.gg/AyW5RUW",
 	"DRUID": "https://discord.gg/0dWu0WkuetF87H9H",
 	"EP": "https://discord.gg/Sd6wRfb",
 	"HEALING": "https://discord.gg/wDemsxV",
