@@ -132,7 +132,7 @@ exports.servers = {
 	"API": "https://discord.gg/WtyHkza",
 	"ARTHAS": "https://discord.gg/sqDuZth",
 	"ASKMRROBOT": "https://discord.gg/RuJN9xP",
-	"DEATH": "https://discord.gg/0ez1cFfUH3ingV96 \n https://discord.gg/AyW5RUW",
+	"DEATH": "https://discord.gg/acherus \n https://discord.gg/AyW5RUW",
 	"DEMON": "https://discord.gg/taNDycY",
 	"DH": "https://discord.gg/taNDycY",
 	"DISCORD": "https://discord.gg/WtyHkza",
