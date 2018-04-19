@@ -104,7 +104,7 @@ bot.on('message', message => {
 		if (parsedReg[1]) {
 			value = parsedReg[1];
 		} else {
-			value = admin.random(587);
+			value = admin.random(628);
 		}
 		image = "http://darklegacycomics.com/comics/" + value + ".jpg";
 		try {
