@@ -99,6 +99,12 @@ bot.on('message', message => {
 			console.log(err);
 		}
 	}
+	// @here test
+	else if (input.startsWith("!HERE")) {
+		message.channel.send(message.channel)
+		var newMessage = "@here" + input.slice(6)
+		message.channel.send(newMessage)
+	}
 	// DLC
 	else if (input.startsWith("!DLC")) {
 		if (parsedReg[1]) {
