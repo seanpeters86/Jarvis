@@ -102,7 +102,7 @@ bot.on('message', message => {
 	// @here test
 	else if ((input.startsWith("!HERE") || input.startsWith("@HERE")) && ((message.channel.id == "230827366740393984") || (message.channel.id == "180011389115564032"))) {
 		sayObject = admin.get_channel(channels, roles, parsed);
-		console.log(sayObject[1]))
+		console.log(sayObject[1]);
 		if (bot.memberHasRole(user, sayObject[1])) {
 			try {
 				message.channel.send(sayObject[1]);
@@ -110,8 +110,8 @@ bot.on('message', message => {
 				message.member.send(err);
 			}
 		}
-		var newMessage = "@here" + message.content.slice(5)
-		message.channel.send(newMessage)
+		var newMessage = "@here" + message.content.slice(5);
+		message.channel.send(newMessage);
 	}
 	// DLC
 	else if (input.startsWith("!DLC")) {
