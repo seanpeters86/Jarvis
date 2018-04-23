@@ -100,14 +100,15 @@ bot.on('message', message => {
 		}
 	}
 	// @here test
-	else if ((input.startsWith("!HERE") || input.startsWith("@HERE")) && ((message.channel.id == "230827366740393984") || (message.channel.id == "180011389115564032"))) {
-		if (!message.author.bot) {
-			roleid = roles.find("name", "Officers")
-			console.log(roleid.members)
-			console.log(roleid.members.has(message.author.id))
+	else if ((input.startsWith("!HERE") || input.startsWith("@HERE")) && !message.author.bot && ((message.channel.id == "230827366740393984") || (message.channel.id == "180011389115564032"))) {
+		// check if an officer
+		if (!roles.find("name", "Officers").members.has(message.author.id) || input.startsWith("!HERE")) {
+			// roleid = roles.find("name", "Officers")
+			// console.log(roleid.members)
+			// console.log(roles.find("name", "Officers").members.has(message.author.id))
+			var newMessage = "@here" + message.content.slice(5);
+			message.channel.send(newMessage)
 		}
-		var newMessage = "@here" + message.content.slice(5);
-		// message.channel.send(newMessage);
 	}
 	// DLC
 	else if (input.startsWith("!DLC")) {
