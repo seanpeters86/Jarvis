@@ -101,8 +101,8 @@ bot.on('message', message => {
 	}
 	// @here test
 	else if (input.startsWith("!HERE")) {
-		message.channel.send(message.channel)
-		var newMessage = "@here" + input.slice(6)
+		message.channel.send(message.channel.id)
+		var newMessage = "@here" + message.content.slice(6)
 		message.channel.send(newMessage)
 	}
 	// DLC
