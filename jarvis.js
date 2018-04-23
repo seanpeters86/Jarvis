@@ -100,10 +100,7 @@ bot.on('message', message => {
 		}
 	}
 	// @here test
-	// else if (input.startsWith("!HERE") && message.channel.id === 230827366740393984) {
-	else if (input.startsWith("!HERE")) {
-		console.log(message.channel.id)
-		console.log(message.channel)
+	else if (input.startsWith("!HERE") && message.channel.id === 230827366740393984) {
 		var newMessage = "@here" + message.content.slice(5)
 		message.channel.send(newMessage)
 	}
