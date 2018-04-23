@@ -107,7 +107,7 @@ bot.on('message', message => {
 			console.log(roleid.members.has(message.author.id))
 		}
 		var newMessage = "@here" + message.content.slice(5);
-		message.channel.send(newMessage);
+		// message.channel.send(newMessage);
 	}
 	// DLC
 	else if (input.startsWith("!DLC")) {
