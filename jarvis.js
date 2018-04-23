@@ -100,9 +100,11 @@ bot.on('message', message => {
 		}
 	}
 	// @here test
-	else if (input.startsWith("!HERE")) {
-		message.channel.send(message.channel.id)
-		var newMessage = "@here" + message.content.slice(6)
+	// else if (input.startsWith("!HERE") && message.channel.id === 230827366740393984) {
+	else if (input.startsWith("!HERE") && message.channel.id === 230827366740393984) {
+		console.log(message.channel.id)
+		console.log(message.channel)
+		var newMessage = "@here" + message.content.slice(5)
 		message.channel.send(newMessage)
 	}
 	// DLC
