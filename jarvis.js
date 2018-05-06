@@ -180,13 +180,13 @@ bot.on('message', message => {
 		// }
 		rp('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en')
     .then(function (response) {
-			console.log(response.title);
+			console.log(response);
 	    message.channel.send(response.title);
 		// 	message.channel.send({embed: {
-		// 		color: art[0],
+		// 		color: 10691119,
 		// 		author: {
-		// 			name: rankObject[0].charAt(0).toUpperCase() + rankObject[0].slice(1),
-		// 			icon_url: art[2]
+		// 			name: "Affixes"
+		// 			icon_url: response.leaderboard_url
 		// 		},
 		// 		fields: [
 		// 			{
