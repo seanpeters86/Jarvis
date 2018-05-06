@@ -565,10 +565,10 @@ bot.on('message', message => {
 							footer: {
 								icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
 								text: 'Pulled from Raider.IO'
-							},
-							thumbnail: {
-								"url": thumbnail_url
 							}
+							// thumbnail: {
+							// 	"url": thumbnail_url
+							// }
 						}});
 					} else {
 						message.delete();
@@ -605,23 +605,23 @@ bot.on('message', message => {
 							fields: [
 								{
 									name: response.rankings.rankedCharacters[0].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[0].score)}`
+									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[0].score)}`
 								},
 								{
 									name: response.rankings.rankedCharacters[1].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[1].score)}`
+									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[1].score)}`
 								},
 								{
 									name: response.rankings.rankedCharacters[2].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[2].score)}`
+									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[2].score)}`
 								},
 								{
 									name: response.rankings.rankedCharacters[3].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`
+									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`
 								},
 								{
-									name: response.rankings.rankedCharacters[3].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`
+									name: response.rankings.rankedCharacters[4].character.name,
+									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[4].score)}`
 								}
 							],
 							timestamp: new Date(),
