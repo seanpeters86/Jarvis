@@ -604,23 +604,23 @@ bot.on('message', message => {
 							},
 							fields: [
 								{
-									name: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + response.rankings.rankedCharacters[0].character.name,
+									name: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". " + response.rankings.rankedCharacters[0].character.name,
 									value: `${prettyjson.render(response.rankings.rankedCharacters[0].score)}`
 								},
 								{
-									name: `${prettyjson.render(response.rankings.rankedCharacters[1].rank)}` + ". - " + response.rankings.rankedCharacters[1].character.name,
+									name: `${prettyjson.render(response.rankings.rankedCharacters[1].rank)}` + ". " + response.rankings.rankedCharacters[1].character.name,
 									value: `${prettyjson.render(response.rankings.rankedCharacters[1].score)}`
 								},
 								{
-									name: `${prettyjson.render(response.rankings.rankedCharacters[2].rank)}` + ". - " + response.rankings.rankedCharacters[2].character.name,
+									name: `${prettyjson.render(response.rankings.rankedCharacters[2].rank)}` + ". " + response.rankings.rankedCharacters[2].character.name,
 									value: `${prettyjson.render(response.rankings.rankedCharacters[2].score)}`
 								},
 								{
-									name: `${prettyjson.render(response.rankings.rankedCharacters[3].rank)}` + ". - " + response.rankings.rankedCharacters[3].character.name,
+									name: `${prettyjson.render(response.rankings.rankedCharacters[3].rank)}` + ". " + response.rankings.rankedCharacters[3].character.name,
 									value: `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`
 								},
 								{
-									name: `${prettyjson.render(response.rankings.rankedCharacters[4].rank)}` + ". - " + response.rankings.rankedCharacters[4].character.name,
+									name: `${prettyjson.render(response.rankings.rankedCharacters[4].rank)}` + ". " + response.rankings.rankedCharacters[4].character.name,
 									value: `${prettyjson.render(response.rankings.rankedCharacters[4].score)}`
 								}
 							],
