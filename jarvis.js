@@ -558,6 +558,7 @@ bot.on('message', message => {
 							fields: [
 								{
 									name: char.name + " - " + `${prettyjson.render(char.mythic_plus_scores.all)}`,
+									value: ""
 								}
 							],
 							timestamp: new Date(),
@@ -604,18 +605,23 @@ bot.on('message', message => {
 							fields: [
 								{
 									name: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + response.rankings.rankedCharacters[0].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[0].score)}`,
+									value: ""
 								},
 								{
 									name: `${prettyjson.render(response.rankings.rankedCharacters[1].rank)}` + ". - " + response.rankings.rankedCharacters[1].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[1].score)}`,
+									value: ""
 								},
 								{
 									name: `${prettyjson.render(response.rankings.rankedCharacters[2].rank)}` + ". - " + response.rankings.rankedCharacters[2].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[2].score)}`,
+									value: ""
 								},
 								{
 									name: `${prettyjson.render(response.rankings.rankedCharacters[3].rank)}` + ". - " + response.rankings.rankedCharacters[3].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`,
+									value: ""
 								},
 								{
 									name: `${prettyjson.render(response.rankings.rankedCharacters[4].rank)}` + ". - " + response.rankings.rankedCharacters[4].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[4].score)}`,
+									value: ""
 								}
 							],
 							timestamp: new Date(),
