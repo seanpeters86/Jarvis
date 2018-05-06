@@ -180,34 +180,32 @@ bot.on('message', message => {
 		// }
 		rp('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en')
     .then(function (response) {
-			console.log(response);
-	    message.channel.send(response.title);
-		// 	message.channel.send({embed: {
-		// 		color: 10691119,
-		// 		author: {
-		// 			name: "Affixes"
-		// 			icon_url: response.leaderboard_url
-		// 		},
-		// 		fields: [
-		// 			{
-		// 				name: 'Boss',
-		// 				value: rankObject[7] + " " + rankObject[3]
-		// 			},
-		// 			{
-		// 				name: 'Type',
-		// 				value: rankObject[4] + " " + rankObject[5] + " " + rankObject[6]
-		// 			},
-		// 			{
-		// 				name: 'Rank',
-		// 				value: rankObject[1] + " out of " + rankObject[2] + ": **" + percent + "** percentile."
-		// 			}
-		// 		],
-		// 		timestamp: new Date(),
-		// 		footer: {
-		// 			icon_url: art[1],
-		// 			text: 'Pulled from WCL'
-		// 		}
-			// }});
+			message.channel.send({embed: {
+				color: 10691119,
+				author: {
+					name: "Affixes"
+					icon_url: response.leaderboard_url
+				},
+				fields: [
+					{
+						name: affix_details[0].name,
+						value: [JSON.stringify(affix_details[0].description)](affix_details[0].wowhead_url)
+					},
+					{
+						name: affix_details[1].name,
+						value: [JSON.stringify(affix_details[1].description)](affix_details[1].wowhead_url)
+					},
+					{
+						name: affix_details[2].name,
+						value: [JSON.stringify(affix_details[2].description)](affix_details[2].wowhead_url)
+					}
+				],
+				timestamp: new Date(),
+				footer: {
+					icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
+					text: 'Pulled from Raider.IO'
+				}
+			}});
     })
     .catch(function (err) {
 	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
