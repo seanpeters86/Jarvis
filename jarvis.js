@@ -535,7 +535,7 @@ bot.on('message', message => {
 	*/
 	else if (input.startsWith("!RAIDERIO") && server != publik) {
 		var input = encodeURIComponent(parsedReg[1]);
-		if (input !== "guild") {
+		if (input !== "GUILD") {
 			// var url = "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + input + "&fields=mythic_plus_scores";
 			var options = {
 				uri: "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + input + "&fields=mythic_plus_scores",
