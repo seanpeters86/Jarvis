@@ -180,7 +180,7 @@ bot.on('message', message => {
 		// }
 		rp('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en')
     .then(function (response) {
-			console.log(JSON.stringify(response.affix_details));
+			console.log(response);
 			message.channel.send({embed: {
 				color: 10691119,
 				author: {
