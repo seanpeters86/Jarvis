@@ -185,28 +185,29 @@ bot.on('message', message => {
 
 		rp(options)
     .then(function (response) {
-			console.log(response.leaderboard_url);
-			var affix1 = response.affix_details[0].description
-			var affix2 = response.affix_details[1].description
-			var affix3 = response.affix_details[2].description
+			if (response.affix_details[2].name === "Tyrannical") {
+				var thumbnail_url = "https://wow.zamimg.com/images/wow/icons/large/achievement_boss_archaedas.jpg";
+			} else {
+				var thumbnail_url = "https://wow.zamimg.com/images/wow/icons/large/ability_toughness.jpg";
+			}
 			message.channel.send({embed: {
 				color: 10691119,
 				author: {
 					name: "Affixes",
-					icon_url: response.leaderboard_url
+					url: response.leaderboard_url
 				},
 				fields: [
 					{
 						name: response.affix_details[0].name,
-						value: "[JSON.stringify(response.affix_details[0].description)](response.affix_details[0].wowhead_url)"
+						value: response.affix_details[0].description
 					},
 					{
 						name: response.affix_details[1].name,
-						value: "[affix2](response.affix_details[2].wowhead_url)"
+						value: response.affix_details[1].description
 					},
 					{
 						name: response.affix_details[2].name,
-						value: "[affix3](response.affix_details[3].wowhead_url)"
+						value: response.affix_details[2].description
 					}
 				],
 				timestamp: new Date(),
@@ -214,6 +215,9 @@ bot.on('message', message => {
 					icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
 					text: 'Pulled from Raider.IO'
 				}
+				thumbnail: {
+      		"url": thumbnail_url
+    		},
 			}});
     })
     .catch(function (err) {
