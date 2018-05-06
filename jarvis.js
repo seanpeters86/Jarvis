@@ -172,12 +172,19 @@ bot.on('message', message => {
 	*/
 	// Affixes
 	else if (input === "!AFFIXES") {
-		var affix = affixes.get_affixes();
-		try {
-			message.channel.send(affix[0] + affix[1] + "\nFor more check out: <https://mythicpl.us/>");
-		} catch (err) {
-			message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
-		}
+		// var affix = affixes.get_affixes();
+		// try {
+		// 	message.channel.send(affix[0] + affix[1] + "\nFor more check out: <https://mythicpl.us/>");
+		// } catch (err) {
+		// 	message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
+		// }
+		rp('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en')
+    .then(function (response) {
+	    message.channel.send(response.title);
+    })
+    .catch(function (err) {
+	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");.
+    });
 	}
 	/*
 	*****************************
