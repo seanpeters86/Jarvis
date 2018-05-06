@@ -188,16 +188,16 @@ bot.on('message', message => {
 				},
 				fields: [
 					{
-						name: affix_details[0].name,
-						value: [JSON.stringify(affix_details[0].description)](affix_details[0].wowhead_url)
+						name: response.affix_details[0].name,
+						value: [JSON.stringify(response.affix_details[0].description)](response.affix_details[0].wowhead_url)
 					},
 					{
-						name: affix_details[1].name,
-						value: [JSON.stringify(affix_details[1].description)](affix_details[1].wowhead_url)
+						name: response.affix_details[1].name,
+						value: [JSON.stringify(response.affix_details[1].description)](response.affix_details[1].wowhead_url)
 					},
 					{
-						name: affix_details[2].name,
-						value: [JSON.stringify(affix_details[2].description)](affix_details[2].wowhead_url)
+						name: response.affix_details[2].name,
+						value: [JSON.stringify(response.affix_details[2].description)](response.affix_details[2].wowhead_url)
 					}
 				],
 				timestamp: new Date(),
