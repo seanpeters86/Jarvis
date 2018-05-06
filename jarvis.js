@@ -180,8 +180,35 @@ bot.on('message', message => {
 		// }
 		rp('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en')
     .then(function (response) {
+			console.log(response.title)
 	    message.channel.send(response.title);
-    })
+		// 	message.channel.send({embed: {
+		// 		color: art[0],
+		// 		author: {
+		// 			name: rankObject[0].charAt(0).toUpperCase() + rankObject[0].slice(1),
+		// 			icon_url: art[2]
+		// 		},
+		// 		fields: [
+		// 			{
+		// 				name: 'Boss',
+		// 				value: rankObject[7] + " " + rankObject[3]
+		// 			},
+		// 			{
+		// 				name: 'Type',
+		// 				value: rankObject[4] + " " + rankObject[5] + " " + rankObject[6]
+		// 			},
+		// 			{
+		// 				name: 'Rank',
+		// 				value: rankObject[1] + " out of " + rankObject[2] + ": **" + percent + "** percentile."
+		// 			}
+		// 		],
+		// 		timestamp: new Date(),
+		// 		footer: {
+		// 			icon_url: art[1],
+		// 			text: 'Pulled from WCL'
+		// 		}
+		// 	}});
+    // })
     .catch(function (err) {
 	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
     });
