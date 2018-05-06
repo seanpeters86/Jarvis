@@ -530,7 +530,7 @@ bot.on('message', message => {
 	}
 	/*
 	*****************************
-	INCLUDES
+	RAIDER.IO
 	*****************************
 	*/
 	else if (input.startsWith("!RAIDERIO") && server != publik) {
@@ -653,7 +653,6 @@ bot.on('message', message => {
 			});
 		}
 	}
-
 	/*
 	*****************************
 	INCLUDES
