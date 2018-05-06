@@ -178,9 +178,14 @@ bot.on('message', message => {
 		// } catch (err) {
 		// 	message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
 		// }
-		rp('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en')
+		var options = {
+	    uri: 'https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en',
+	    json: true // Automatically parses the JSON string in the response
+		};
+
+		rp(options)
     .then(function (response) {
-			console.log(response);
+			console.log(response.leaderboard_url);
 			message.channel.send({embed: {
 				color: 10691119,
 				author: {
