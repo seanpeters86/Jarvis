@@ -214,10 +214,10 @@ bot.on('message', message => {
 				footer: {
 					icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
 					text: 'Pulled from Raider.IO'
-				}
+				},
 				thumbnail: {
       		"url": thumbnail_url
-    		},
+    		}
 			}});
     })
     .catch(function (err) {
