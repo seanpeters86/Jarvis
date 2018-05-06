@@ -180,7 +180,7 @@ bot.on('message', message => {
 		// }
 		rp('https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en')
     .then(function (response) {
-			console.log(response.title)
+			console.log(response.title);
 	    message.channel.send(response.title);
 		// 	message.channel.send({embed: {
 		// 		color: art[0],
@@ -207,8 +207,8 @@ bot.on('message', message => {
 		// 			icon_url: art[1],
 		// 			text: 'Pulled from WCL'
 		// 		}
-		// 	}});
-    // })
+			// }});
+    })
     .catch(function (err) {
 	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
     });
