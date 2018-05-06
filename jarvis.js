@@ -183,7 +183,7 @@ bot.on('message', message => {
 			message.channel.send({embed: {
 				color: 10691119,
 				author: {
-					name: "Affixes"
+					name: "Affixes",
 					icon_url: response.leaderboard_url
 				},
 				fields: [
