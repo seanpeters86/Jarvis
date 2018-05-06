@@ -172,17 +172,10 @@ bot.on('message', message => {
 	*/
 	// Affixes
 	else if (input === "!AFFIXES") {
-		// var affix = affixes.get_affixes();
-		// try {
-		// 	message.channel.send(affix[0] + affix[1] + "\nFor more check out: <https://mythicpl.us/>");
-		// } catch (err) {
-		// 	message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
-		// }
 		var options = {
 	    uri: 'https://raider.io/api/v1/mythic-plus/affixes?region=us&locale=en',
 	    json: true // Automatically parses the JSON string in the response
 		};
-
 		rp(options)
     .then(function (response) {
 			if (response.affix_details[2].name === "Tyrannical") {
@@ -222,7 +215,12 @@ bot.on('message', message => {
     })
     .catch(function (err) {
 			console.log(err);
-	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
+			var affix = affixes.get_affixes();
+			try {
+				message.channel.send(affix[0] + affix[1] + "\nFor more check out: <https://mythicpl.us/>");
+			} catch (err) {
+				message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
+			}
     });
 	}
 	/*
@@ -504,14 +502,72 @@ bot.on('message', message => {
 						console.log(err);
 					}
 				});
-		} else {
-			message.delete();
-			try {
-				message.member.send("Invalid option. Format should be: ```!armory character mythics``` You entered: ```" + message.content + "```");
-			} catch (err) {
-				console.log(err);
-			}
-		}
+		} else if (parsedReg[2] === "RAIDERIO") {
+			// achievements fields
+			var url = "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + character + "&fields=mythic_plus_scores";
+			var options = {
+				uri: url,
+				json: true
+			};
+			rp(options)
+				.then(function(char) {
+					if (char.faction === "horde") {
+						var thumbnail_url = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-horde.png";
+					} else {
+						var thumbnail_url = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-alliance.png";
+					}
+					if (char.statusCode != 404) {
+            message.channel.send({embed: {
+              color: 10691119,
+              author: {
+                name: char.name,
+                icon_url: char.thumbnail_url,
+								url: char.profile_url
+              },
+              fields: [
+                {
+                  name: 'All',
+                  value: char.mythic_plus_scores.all
+                },
+                {
+                  name: 'DPS',
+                  value: char.mythic_plus_scores.dps
+                },
+                {
+                  name: 'Healer',
+                  value: char.mythic_plus_scores.healer
+                },
+                {
+                  name: 'Tank',
+                  value: char.mythic_plus_scores.tank
+                }
+              ],
+              timestamp: new Date(),
+							footer: {
+								icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
+								text: 'Pulled from Raider.IO'
+							},
+							thumbnail: {
+			      		"url": thumbnail_url
+			    		}
+            }});
+          } else {
+            message.delete();
+						try {
+							message.member.send("I could not find a raider.io profile for " + parsedReg[1]);
+						} catch (err) {
+							console.log(err);
+						}
+          }
+        })
+      .catch(function(err) {
+        message.delete();
+				try {
+					message.member.send("Character not found on Arthas-US. Please try again.");
+				} catch (err) {
+					console.log(err);
+				}
+      });
 	}
 	// WoWProgress Link
 	else if (input === "!WOWPROGRESS" && server == exiledpower) {
