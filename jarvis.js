@@ -536,7 +536,6 @@ bot.on('message', message => {
 	else if (input.startsWith("!RAIDERIO") && server != publik) {
 		var testInput = encodeURIComponent(parsedReg[1]);
 		if (testInput !== "GUILD") {
-			// var url = "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + input + "&fields=mythic_plus_scores";
 			var options = {
 				uri: "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + testInput + "&fields=mythic_plus_scores",
 				json: true
@@ -644,6 +643,7 @@ bot.on('message', message => {
 					}
 				})
 			.catch(function(err) {
+				console.log(err);
 				message.delete();
 				try {
 					message.member.send("Guild not found on Arthas-US. Please try again.");
