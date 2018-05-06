@@ -551,14 +551,13 @@ bot.on('message', message => {
 						message.channel.send({embed: {
 							color: 10691119,
 							author: {
-								name: char.name,
+								name: '7.3.5 Mythic+ Rank',
 								icon_url: char.thumbnail_url,
 								url: char.profile_url
 							},
 							fields: [
 								{
-									name: '7.3.5 Mythic+ Rank',
-									value: `${prettyjson.render(char.mythic_plus_scores.all)}`
+									name: char.name + " - " + `${prettyjson.render(char.mythic_plus_scores.all)}`,
 								}
 							],
 							timestamp: new Date(),
@@ -604,24 +603,19 @@ bot.on('message', message => {
 							},
 							fields: [
 								{
-									name: response.rankings.rankedCharacters[0].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[0].score)}`
+									name: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + response.rankings.rankedCharacters[0].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[0].score)}`,
 								},
 								{
-									name: response.rankings.rankedCharacters[1].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[1].score)}`
+									name: `${prettyjson.render(response.rankings.rankedCharacters[1].rank)}` + ". - " + response.rankings.rankedCharacters[1].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[1].score)}`,
 								},
 								{
-									name: response.rankings.rankedCharacters[2].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[2].score)}`
+									name: `${prettyjson.render(response.rankings.rankedCharacters[2].rank)}` + ". - " + response.rankings.rankedCharacters[2].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[2].score)}`,
 								},
 								{
-									name: response.rankings.rankedCharacters[3].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`
+									name: `${prettyjson.render(response.rankings.rankedCharacters[3].rank)}` + ". - " + response.rankings.rankedCharacters[3].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`,
 								},
 								{
-									name: response.rankings.rankedCharacters[4].character.name,
-									value: `${prettyjson.render(response.rankings.rankedCharacters[0].rank)}` + ". - " + `${prettyjson.render(response.rankings.rankedCharacters[4].score)}`
+									name: `${prettyjson.render(response.rankings.rankedCharacters[4].rank)}` + ". - " + response.rankings.rankedCharacters[4].character.name + " - " + `${prettyjson.render(response.rankings.rankedCharacters[4].score)}`,
 								}
 							],
 							timestamp: new Date(),
