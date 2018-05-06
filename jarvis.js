@@ -604,24 +604,24 @@ bot.on('message', message => {
 							},
 							fields: [
 								{
-									name: response.rankedCharacters[0].character.name,
-									value: `${prettyjson.render(response.rankedCharacters[0].score)}`
+									name: response.rankings.rankedCharacters[0].character.name,
+									value: `${prettyjson.render(response.rankings.rankedCharacters[0].score)}`
 								},
 								{
-									name: response.rankedCharacters[1].character.name,
-									value: `${prettyjson.render(response.rankedCharacters[1].score)}`
+									name: response.rankings.rankedCharacters[1].character.name,
+									value: `${prettyjson.render(response.rankings.rankedCharacters[1].score)}`
 								},
 								{
-									name: response.rankedCharacters[2].character.name,
-									value: `${prettyjson.render(response.rankedCharacters[2].score)}`
+									name: response.rankings.rankedCharacters[2].character.name,
+									value: `${prettyjson.render(response.rankings.rankedCharacters[2].score)}`
 								},
 								{
-									name: response.rankedCharacters[3].character.name,
-									value: `${prettyjson.render(response.rankedCharacters[3].score)}`
+									name: response.rankings.rankedCharacters[3].character.name,
+									value: `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`
 								},
 								{
-									name: response.rankedCharacters[3].character.name,
-									value: `${prettyjson.render(response.rankedCharacters[3].score)}`
+									name: response.rankings.rankedCharacters[3].character.name,
+									value: `${prettyjson.render(response.rankings.rankedCharacters[3].score)}`
 								}
 							],
 							timestamp: new Date(),
