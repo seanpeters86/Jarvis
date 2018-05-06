@@ -186,6 +186,9 @@ bot.on('message', message => {
 		rp(options)
     .then(function (response) {
 			console.log(response.leaderboard_url);
+			var affix1 = response.affix_details[0].description
+			var affix2 = response.affix_details[1].description
+			var affix3 = response.affix_details[2].description
 			message.channel.send({embed: {
 				color: 10691119,
 				author: {
@@ -195,15 +198,15 @@ bot.on('message', message => {
 				fields: [
 					{
 						name: response.affix_details[0].name,
-						value: [JSON.stringify(response.affix_details[0].description)](response.affix_details[0].wowhead_url)
+						value: "[JSON.stringify(response.affix_details[0].description)](response.affix_details[0].wowhead_url)"
 					},
 					{
 						name: response.affix_details[1].name,
-						value: [JSON.stringify(response.affix_details[1].description)](response.affix_details[1].wowhead_url)
+						value: "[affix2](response.affix_details[2].wowhead_url)"
 					},
 					{
 						name: response.affix_details[2].name,
-						value: [JSON.stringify(response.affix_details[2].description)](response.affix_details[2].wowhead_url)
+						value: "[affix3](response.affix_details[3].wowhead_url)"
 					}
 				],
 				timestamp: new Date(),
