@@ -183,7 +183,7 @@ bot.on('message', message => {
 	    message.channel.send(response.title);
     })
     .catch(function (err) {
-	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");.
+	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
     });
 	}
 	/*
