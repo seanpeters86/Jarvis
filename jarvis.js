@@ -534,72 +534,124 @@ bot.on('message', message => {
 	*****************************
 	*/
 	else if (input.startsWith("!RAIDERIO") && server != publik) {
-		var character = encodeURIComponent(parsedReg[1]);
-		// !raiderio character
-		var url = "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + character + "&fields=mythic_plus_scores";
-		var options = {
-			uri: url,
-			json: true
-		};
-		rp(options)
-			.then(function(char) {
-				if (char.faction === "horde") {
-					var thumbnail_url = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-horde.png";
-				} else {
-					var thumbnail_url = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-alliance.png";
-				}
-				if (char.statusCode != 404) {
-					message.channel.send({embed: {
-						color: 10691119,
-						author: {
-							name: char.name,
-							icon_url: char.thumbnail_url,
-							url: char.profile_url
-						},
-						fields: [
-							{
-								name: 'All',
-								value: `${prettyjson.render(char.mythic_plus_scores.all)}`
-							},
-							{
-								name: 'DPS',
-								value: `${prettyjson.render(char.mythic_plus_scores.dps)}`
-							},
-							{
-								name: 'Healer',
-								value: `${prettyjson.render(char.mythic_plus_scores.healer)}`
-							},
-							{
-								name: 'Tank',
-								value: `${prettyjson.render(char.mythic_plus_scores.tank)}`
-							}
-						],
-						timestamp: new Date(),
-						footer: {
-							icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
-							text: 'Pulled from Raider.IO'
-						},
-						thumbnail: {
-							"url": thumbnail_url
-						}
-					}});
-				} else {
-					message.delete();
-					try {
-						message.member.send("I could not find a raider.io profile for " + parsedReg[1]);
-					} catch (err) {
-						console.log(err);
+		var input = encodeURIComponent(parsedReg[1]);
+		if (input !== "guild") {
+			// var url = "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + input + "&fields=mythic_plus_scores";
+			var options = {
+				uri: "https://raider.io/api/v1/characters/profile?region=us&realm=arthas&name=" + input + "&fields=mythic_plus_scores",
+				json: true
+			};
+			rp(options)
+				.then(function(char) {
+					if (char.faction === "horde") {
+						var thumbnail_url = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-horde.png";
+					} else {
+						var thumbnail_url = "https://worldofwarcraft.akamaized.net/static/components/Logo/Logo-alliance.png";
 					}
+					if (char.statusCode != 404) {
+						message.channel.send({embed: {
+							color: 10691119,
+							author: {
+								name: char.name,
+								icon_url: char.thumbnail_url,
+								url: char.profile_url
+							},
+							fields: [
+								{
+									name: '7.3.5 Mythic+ Rank',
+									value: `${prettyjson.render(char.mythic_plus_scores.all)}`
+								}
+							],
+							timestamp: new Date(),
+							footer: {
+								icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
+								text: 'Pulled from Raider.IO'
+							},
+							thumbnail: {
+								"url": thumbnail_url
+							}
+						}});
+					} else {
+						message.delete();
+						try {
+							message.member.send("I could not find a raider.io profile for " + parsedReg[1]);
+						} catch (err) {
+							console.log(err);
+						}
+					}
+				})
+			.catch(function(err) {
+				message.delete();
+				try {
+					message.member.send("Character not found on Arthas-US. Please try again.");
+				} catch (err) {
+					console.log(err);
 				}
-			})
-		.catch(function(err) {
-			message.delete();
-			try {
-				message.member.send("Character not found on Arthas-US. Please try again.");
-			} catch (err) {
-				console.log(err);
-			}
-		});
+			});
+			// Guild rankings
+		} else {
+			var options = {
+				uri: "https://raider.io/api/mythic-plus/rankings/characters?region=us&realm=arthas&guild=Exiled%20Power&season=season-7.3.2&class=all&role=all&page=0",
+				json: true
+			};
+			rp(options)
+				.then(function(response) {
+					if (response.statusCode != 404) {
+						message.channel.send({embed: {
+							color: 10691119,
+							author: {
+								name: "Exiled Power Guild Mythic+ Rankings",
+								url: "https://raider.io/guilds/us/arthas/Exiled%20Power/mythic-plus-characters"
+							},
+							fields: [
+								{
+									name: response.rankedCharacters[0].character.name,
+									value: `${prettyjson.render(response.rankedCharacters[0].score)}`
+								},
+								{
+									name: response.rankedCharacters[1].character.name,
+									value: `${prettyjson.render(response.rankedCharacters[1].score)}`
+								},
+								{
+									name: response.rankedCharacters[2].character.name,
+									value: `${prettyjson.render(response.rankedCharacters[2].score)}`
+								},
+								{
+									name: response.rankedCharacters[3].character.name,
+									value: `${prettyjson.render(response.rankedCharacters[3].score)}`
+								},
+								{
+									name: response.rankedCharacters[3].character.name,
+									value: `${prettyjson.render(response.rankedCharacters[3].score)}`
+								}
+							],
+							timestamp: new Date(),
+							footer: {
+								icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
+								text: 'Pulled from Raider.IO'
+							},
+							thumbnail: {
+								"url": "https://www.exiledpower.com/dist/img/EP_Icon.png"
+							}
+						}});
+					} else {
+						message.delete();
+						try {
+							message.member.send("I could not find a raider.io profile for " + parsedReg[1]);
+						} catch (err) {
+							console.log(err);
+						}
+					}
+				})
+			.catch(function(err) {
+				message.delete();
+				try {
+					message.member.send("Character not found on Arthas-US. Please try again.");
+				} catch (err) {
+					console.log(err);
+				}
+			});
+		}
 	}
 
 	/*
