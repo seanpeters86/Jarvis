@@ -208,6 +208,7 @@ bot.on('message', message => {
 			}});
     })
     .catch(function (err) {
+			console.log(err);
 	    message.channel.send("Weekly Affixes: <https://mythicpl.us/> \n");
     });
 	}
