@@ -57,7 +57,7 @@ exports.responses = {
 	"!CODEC": "Here is the link for the Video Codec/Exporting Guide + Handbrake: <https://docs.google.com/document/d/1yUhICx-zh16jSX5IF2ReI_CbY39rDArHn2qxI6JprTQ/edit?usp=sharing>",
 	"!COLIN": "https://www.youtube.com/watch?v=PkOcm_XaWrw",
 	"!COMMAND": planfortheweek,
-	"!CONSUMABLES": "Here is the cheat sheet for enchants/food/gems: <https://docs.google.com/spreadsheets/d/15flVJkQneUV6ezKmfIOuJRzzOfYvSP7nqX1qtWzXfpM/htmlview?sle=true#gid=0>",
+	"!CONSUMABLES": "Here is the cheat sheet for consumables: <https://docs.google.com/spreadsheets/d/1xFxvryNFfbYRhmhZAPZs4zfa4S6KgoL42aivMFUZxP0/edit?usp=sharing>",
 	"!COOKIE": "https://www.youtube.com/watch?v=PkOcm_XaWrw",
 	"!COOKING": "Here is the Legion Cooking Recipes List: <https://docs.google.com/spreadsheets/d/1jqMLjJiXKbGnrRQpekK1ZqcU2F-67epTottR50-3du0/edit#gid=0>",
 	"!DEFENSIVES": "Here is the Legion Defensive/Utility Spell List: <https://docs.google.com/spreadsheets/d/1x6m0C6zJHVsEh63bgUgkQBKyLnkxYGeK3LM5JiVESzY/edit?usp=sharing>",
