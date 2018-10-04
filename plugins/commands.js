@@ -96,7 +96,7 @@ exports.responseReplies = {
 	"THANKS JARVIS": "Anytime",
 	"THANKS, JARVIS": "Anytime"
 };
-exports.includesBanned = ["COON", "FAG", "RETARD", "NIGGA", "NIGGER", "DYKE"];
+exports.includesBanned = ["FAG", "RETARD", "NIGGA", "NIGGER", "DYKE"];
 
 exports.responsesFiles = {
 	"!FANTASY": "http://i.imgur.com/EMSiUF3.jpg",
