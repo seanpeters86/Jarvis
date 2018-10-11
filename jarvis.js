@@ -557,7 +557,7 @@ bot.on('message', message => {
 							},
 							fields: [
 								{
-									name: '7.3.5 Mythic+ Rank',
+									name: '8.0.1 Mythic+ Rank',
 									value: `${prettyjson.render(char.mythic_plus_scores.all)}`
 								}
 							],
@@ -566,9 +566,6 @@ bot.on('message', message => {
 								icon_url: "https://s3.amazonaws.com/reamaze-prod/avatars/8268745/thumb/raiderio_square_bg.jpg?1503530714",
 								text: 'Pulled from Raider.IO'
 							}
-							// thumbnail: {
-							// 	"url": thumbnail_url
-							// }
 						}});
 					} else {
 						message.delete();
@@ -590,7 +587,7 @@ bot.on('message', message => {
 			// Guild rankings
 		} else {
 			var options = {
-				uri: "https://raider.io/api/mythic-plus/rankings/characters?region=us&realm=arthas&guild=Exiled%20Power&season=season-7.3.2&class=all&role=all&page=0",
+				uri: "https://raider.io/api/mythic-plus/rankings/characters?region=us&realm=arthas&guild=Exiled%20Power&season=season-bfa-1&class=all&role=all&page=0",
 				json: true
 			};
 			rp(options)
