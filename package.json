@@ -8,16 +8,16 @@
   },
   "dependencies": {
     "discord.js": "^11.6.4",
-    "express": "^4.13.3",
+    "express": "^4.17.1",
     "fs": "0.0.2",
     "prettyjson": "^1.1.3",
-    "request": "^2.74.0",
+    "request": "^2.88.2",
     "twitter": "^1.4.0",
     "forever": "^0.15.3",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.6"
   },
   "engines": {
-    "node": "6.11.1"
+    "node": "6.17.1"
   },
   "keywords": [
     "node",
