@@ -82,7 +82,7 @@ bot.on('message', message => {
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
-		const attachment = new MessageAttachment(commands.responsesFiles[input]);
+		const attachment = new Discord.MessageAttachment(commands.responsesFiles[input]);
 		message.channel.send(attachment);
 	}
 	// Replies Loop
@@ -117,7 +117,7 @@ bot.on('message', message => {
 		}
 		image = "http://darklegacycomics.com/comics/" + value + ".jpg";
 		try {
-			const attachment = new MessageAttachment(image);
+			const attachment = new Discord.MessageAttachment(image);
 			message.channel.send(attachment);
 		} catch (err) {
 			console.log(err);
@@ -126,22 +126,22 @@ bot.on('message', message => {
 	}
 	// fistmas
 	else if (input === "!FISTMAS" && server != publik) {
-		const attachment = new MessageAttachment(commands.fistmas[admin.random(3)]);
+		const attachment = new Discord.MessageAttachment(commands.fistmas[admin.random(3)]);
 		message.channel.send(attachment);
 	}
 	// Salt
 	else if (input === "!SALT") {
-		const attachment = new MessageAttachment(commands.salt[admin.random(7)]);
+		const attachment = new Discord.MessageAttachment(commands.salt[admin.random(7)]);
 		message.channel.send(attachment);
 	}
 	// Wrecked
 	else if (input === "!REKT" || input === "!WRECKED") {
-		const attachment = new MessageAttachment(commands.rekt[admin.random(7)]);
+		const attachment = new Discord.MessageAttachment(commands.rekt[admin.random(7)]);
 		message.channel.send(attachment);
 	}
 	// Lore
 	else if (input === "!LORE") {
-		const attachment = new MessageAttachment(commands.lore[admin.random(22)]);
+		const attachment = new Discord.MessageAttachment(commands.lore[admin.random(22)]);
 		message.channel.send(attachment);
 	}
 	// get discord servers
@@ -167,7 +167,7 @@ bot.on('message', message => {
 				console.log(err);
 			}
 		} else {
-			const attachment = new MessageAttachment("http://i.imgur.com/mISkWv2.png");
+			const attachment = new Discord.MessageAttachment("http://i.imgur.com/mISkWv2.png");
 			message.channel.send(attachment);
 		}
 	}
