@@ -82,7 +82,8 @@ bot.on('message', message => {
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
-		message.channel.send({files:[commands.responsesFiles[input]]});
+		const attachment = new MessageAttachment(commands.responsesFiles[input]);
+		message.channel.send(attachment);
 	}
 	// Replies Loop
 	else if (commands.responseReplies[input] && !(user.bot)) {
@@ -116,7 +117,8 @@ bot.on('message', message => {
 		}
 		image = "http://darklegacycomics.com/comics/" + value + ".jpg";
 		try {
-			message.channel.send({files:[image]});
+			const attachment = new MessageAttachment(image);
+			message.channel.send(attachment);
 		} catch (err) {
 			console.log(err);
 			message.channel.send("Unknown error occured, make sure you typed in the value correctly (comicNumber is optional): ```!dlc\n!dlc comicNumber```");
@@ -124,19 +126,23 @@ bot.on('message', message => {
 	}
 	// fistmas
 	else if (input === "!FISTMAS" && server != publik) {
-		message.channel.send({files:[commands.fistmas[admin.random(3)]]});
+		const attachment = new MessageAttachment(commands.fistmas[admin.random(3)]);
+		message.channel.send(attachment);
 	}
 	// Salt
 	else if (input === "!SALT") {
-		message.channel.send({files:[commands.salt[admin.random(7)]]});
+		const attachment = new MessageAttachment(commands.salt[admin.random(7)]);
+		message.channel.send(attachment);
 	}
 	// Wrecked
 	else if (input === "!REKT" || input === "!WRECKED") {
-		message.channel.send({files:[commands.rekt[admin.random(7)]]});
+		const attachment = new MessageAttachment(commands.rekt[admin.random(7)]);
+		message.channel.send(attachment);
 	}
 	// Lore
 	else if (input === "!LORE") {
-		message.channel.send({files:[commands.lore[admin.random(22)]]});
+		const attachment = new MessageAttachment(commands.lore[admin.random(22)]);
+		message.channel.send(attachment);
 	}
 	// get discord servers
 	else if (input.startsWith("!SERVER")) {
@@ -161,7 +167,8 @@ bot.on('message', message => {
 				console.log(err);
 			}
 		} else {
-			message.channel.send({files:["http://i.imgur.com/mISkWv2.png"]});
+			const attachment = new MessageAttachment("http://i.imgur.com/mISkWv2.png");
+			message.channel.send(attachment);
 		}
 	}
 	// Affixes
