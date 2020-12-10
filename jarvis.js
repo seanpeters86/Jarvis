@@ -82,7 +82,7 @@ bot.on('message', message => {
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
-		message.channel.send({files:[attachment: commands.responsesFiles[input], name: input]});
+		message.channel.send({files:[{attachment: commands.responsesFiles[input], name: input}]});
 	}
 	// Replies Loop
 	else if (commands.responseReplies[input] && !(user.bot)) {
