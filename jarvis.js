@@ -82,8 +82,7 @@ bot.on('message', message => {
 	}
 	// Send File Loop
 	else if (commands.responsesFiles[input] && !(user.bot)) {
-		const attachment = new Discord.MessageAttachment(commands.responsesFiles[input]);
-		message.channel.send(attachment);
+		message.channel.send({files:[attachment: commands.responsesFiles[input], name: input]});
 	}
 	// Replies Loop
 	else if (commands.responseReplies[input] && !(user.bot)) {
